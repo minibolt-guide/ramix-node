@@ -29,7 +29,6 @@ layout:
 ### System Administration
 
 * [**Aliases**](aliases.md) - set up CLI command shortcuts to simplify your node management experienc**e**
-* [**Static IP & custom DNS servers**](broken-reference) - set a static IP local address and customize the DNS servers
 
 ### Common programming languages
 
@@ -51,7 +50,3 @@ layout:
 
 * [**Tor Obfs4 Bridge**](../../index-4/index/tor-bridge.md) - run an obfs4 bridge to help censored users connect to the Tor network
 * [**NYM mixnet**](../../bonus-guides/system/nym-mixnet.md) - proxying the clearnet connections using the NYM Mixnet
-
-### Hardware
-
-* [**Store data in a secondary disk**](broken-reference) - use a different disk to store data (blockchain and other databases) independently of the disk of the system

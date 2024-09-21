@@ -21,6 +21,6 @@ layout:
 
 ## Raspberry Pi
 
-This guide builds on the easily available Raspberry Pi.
+This guide builds on the easily available and very flexible Raspberry Pi. This amazing piece of hardware is a tiny computer-on-a-chip, is cheap, and consumes very little energy.
 
-In the following sections, we will start it up and prepare the operating system for your MiniBolt.
+In the following sections, we will start it up and prepare the operating system for your RaMiX node.

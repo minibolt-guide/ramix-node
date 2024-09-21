@@ -24,19 +24,32 @@ This guide builds on the readily available Raspberry Pi.
 
 While a personal computer is the best choice, this guide works with other computing platforms, cloud servers, or virtual machines.
 
+<div>
+
+<figure><img src="../.gitbook/assets/raspberry-pi-5-model-b.jpg" alt="" width="375"><figcaption><p>Raspberry Pi 5B</p></figcaption></figure>
+
+ 
+
+<figure><img src="../.gitbook/assets/raspberry-pi-m-2-hat.jpg" alt="" width="375"><figcaption><p>Raspberry Pi M.2 HAT + (optional)</p></figcaption></figure>
+
+</div>
+
 ## Hardware requirements
 
 You need the following hardware:
 
-* Intel/AMD processor (2010+ gen), with 2+ GB RAM (only Bitcoin), a 4+ GB RAM is recommended (Bitcoin + Lightning + bonus)
-* Internal storage: SSD 2+ TB is recommended
-* Pen drive: 4+ GB
-* Temporary monitor screen or television
-* Temporary keyboard USB/PS2
+* Raspberry Pi 4B/5B (recommended) - with 4GB/8GB (recommended) RAM
+* Official Raspberry Pi power adapter: other adapters are a common cause of reliability issues
+* Storage:
+  * Option 1: External storage: SSD with USB3 (2+ TB is recommended)
+  * Option 2 (only Raspberry Pi 5): Internal storage: M.2 HAT + NVME (2+ TB is recommended)
+* A regular computer (laptop, PC, etc)
 
 You might also want to get this optional hardware:
 
 * UPS (uninterruptible power supply)
+* Raspberry Pi case to protect your Pi and cool it down
+* A small USB thumbdrive or microSD card to create regular local backups of your Lightning channels
 
 ## Write down your passwords
 
