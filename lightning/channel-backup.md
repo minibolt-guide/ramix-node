@@ -379,7 +379,7 @@ sudo nano /etc/systemd/system/scb-backup.service
 
 * Paste the following lines. Save and exit
 
-<pre><code># MiniBolt: systemd unit for automatic SCB backup
+<pre><code># RaMiX: systemd unit for automatic SCB backup
 # /etc/systemd/system/scb-backup.service
 
 [Unit]

@@ -130,7 +130,7 @@ VERSION=1.11.1
 
 {% code overflow="wrap" %}
 ```sh
-wget https://github.com/cculianu/Fulcrum/releases/download/v$VERSION/Fulcrum-$VERSION-x86_64-linux.tar.gz
+wget https://github.com/cculianu/Fulcrum/releases/download/v$VERSION/Fulcrum-$VERSION-arm64-linux.tar.gz
 ```
 {% endcode %}
 
@@ -189,32 +189,32 @@ Expected output:
 * Verify the signed checksum against the actual checksum of your download
 
 ```sh
-grep 'x86_64-linux.tar.gz' Fulcrum-$VERSION-shasums.txt | sha256sum --check
+grep 'arm64-linux.tar.gz' Fulcrum-$VERSION-shasums.txt | sha256sum --check
 ```
 
 **Example** of expected output:
 
-<pre><code><strong>> <a data-footnote-ref href="#user-content-fn-4">Fulcrum-1.9.4-x86_64-linux.tar.gz: OK</a>
+<pre><code><strong>> Fulcrum-1.9.4-arm64-linux.tar.gz: OK
 </strong></code></pre>
 
 * Extract
 
 ```sh
-tar -xvf Fulcrum-$VERSION-x86_64-linux.tar.gz
+tar -xvf Fulcrum-$VERSION-arm64-linux.tar.gz
 ```
 
 **Example** of expected output:
 
 ```
-Fulcrum-1.11.1-amd64-linux/
-Fulcrum-1.11.1-amd64-linux/man/
-Fulcrum-1.11.1-amd64-linux/man/Fulcrum.1
-Fulcrum-1.11.1-amd64-linux/FulcrumAdmin
-Fulcrum-1.11.1-amd64-linux/fulcrum-example-config.conf
-Fulcrum-1.11.1-amd64-linux/LICENSE.txt
-Fulcrum-1.11.1-amd64-linux/Fulcrum
-Fulcrum-1.11.1-amd64-linux/unix-man-page.md
-Fulcrum-1.11.1-amd64-linux/fulcrum-quick-config.conf
+Fulcrum-1.11.1-arm64-linux/
+Fulcrum-1.11.1-arm64-linux/man/
+Fulcrum-1.11.1-arm64-linux/man/Fulcrum.1
+Fulcrum-1.11.1-arm64-linux/FulcrumAdmin
+Fulcrum-1.11.1-arm64-linux/fulcrum-example-config.conf
+Fulcrum-1.11.1-arm64-linux/LICENSE.txt
+Fulcrum-1.11.1-arm64-linux/Fulcrum
+Fulcrum-1.11.1-arm64-linux/unix-man-page.md
+Fulcrum-1.11.1-arm64-linux/fulcrum-quick-config.conf
 ```
 
 ### Binaries installation
@@ -223,7 +223,7 @@ Fulcrum-1.11.1-amd64-linux/fulcrum-quick-config.conf
 
 {% code overflow="wrap" %}
 ```bash
-sudo install -m 0755 -o root -g root -t /usr/local/bin Fulcrum-$VERSION-x86_64-linux/Fulcrum Fulcrum-$VERSION-x86_64-linux/FulcrumAdmin
+sudo install -m 0755 -o root -g root -t /usr/local/bin Fulcrum-$VERSION-arm64-linux/Fulcrum Fulcrum-$VERSION-arm64-linux/FulcrumAdmin
 ```
 {% endcode %}
 
@@ -245,7 +245,7 @@ Fulcrum --version
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm -r Fulcrum-$VERSION-x86_64-linux Fulcrum-$VERSION-x86_64-linux.tar.gz Fulcrum-$VERSION-shasums.txt Fulcrum-$VERSION-shasums.txt.asc
+sudo rm -r Fulcrum-$VERSION-arm64-linux Fulcrum-$VERSION-arm64-linux.tar.gz Fulcrum-$VERSION-shasums.txt Fulcrum-$VERSION-shasums.txt.asc
 ```
 {% endcode %}
 
@@ -307,7 +307,7 @@ drwxr-xr-x 6 root    root    4096 Jul 15 07:56 ..
 -rw------- 1 fulcrum fulcrum   24 Jul 15 07:59 .bash_history
 -rw-r--r-- 1 fulcrum fulcrum  220 Jul 15 07:56 .bash_logout
 -rw-r--r-- 1 fulcrum fulcrum 3771 Jul 15 07:56 .bashrc
-lrwxrwxrwx 1 fulcrum fulcrum   13 Jul 15 07:59 <a data-footnote-ref href="#user-content-fn-5">.fulcrum -> /data/fulcrum</a>
+lrwxrwxrwx 1 fulcrum fulcrum   13 Jul 15 07:59 <a data-footnote-ref href="#user-content-fn-4">.fulcrum -> /data/fulcrum</a>
 -rw-r--r-- 1 fulcrum fulcrum  807 Jul 15 07:56 .profile
 </code></pre>
 
@@ -359,7 +359,7 @@ nano /data/fulcrum/fulcrum.conf
 Remember to accommodate the `"utxo-cache"` parameter depending on your hardware. Recommended: utxo-cache=1/2 x RAM available, e.g. 4GB RAM -> utxo-cache=2000
 {% endhint %}
 
-<pre><code># MiniBolt: fulcrum configuration
+<pre><code># RaMiX: fulcrum configuration
 # /data/fulcrum/fulcrum.conf
 
 ## Bitcoin Core settings
@@ -379,7 +379,7 @@ peering = false
 
 # Set utxo-cache according to your device performance,
 # recommended: utxo-cache=1/2 x RAM available e.g: 4GB RAM -> utxo-cache=2000
-utxo-cache = <a data-footnote-ref href="#user-content-fn-6">2000</a>
+utxo-cache = <a data-footnote-ref href="#user-content-fn-5">2000</a>
 
 # Banner
 banner = /data/fulcrum/fulcrum-banner.txt
@@ -408,7 +408,7 @@ sudo nano /etc/systemd/system/fulcrum.service
 * Enter the complete following configuration. Save and exit
 
 ```
-# MiniBolt: systemd unit for Fulcrum
+# RaMiX: systemd unit for Fulcrum
 # /etc/systemd/system/fulcrum.service
 
 [Unit]
@@ -501,14 +501,16 @@ sudo systemctl start fulcrum
 * When you see logs like this `SrvMgr: starting 3 services ...`, which means that Fulcrum is fully indexed
 
 ```
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.705] SrvMgr: starting 3 services ...
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.706] Starting listener service for TcpSrv 0.0.0.0:50001 ...
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.706] Service started, listening for connections on 0.0.0.0:50001
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.706] Starting listener service for SslSrv 0.0.0.0:50002 ...
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.706] Service started, listening for connections on 0.0.0.0:50002
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.707] Starting listener service for AdminSrv 127.0.0.1:8000 ...
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.707] Service started, listening for connections on 127.0.0.1:8000
-Jun 09 10:28:56 minibolt Fulcrum[3345722]: [2024-06-09 10:28:56.707] <Controller> Starting ZMQ Notifier (hashblock) ...
+[...]
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.705] SrvMgr: starting 3 services ...
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.706] Starting listener service for TcpSrv 0.0.0.0:50001 ...
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.706] Service started, listening for connections on 0.0.0.0:50001
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.706] Starting listener service for SslSrv 0.0.0.0:50002 ...
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.706] Service started, listening for connections on 0.0.0.0:50002
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.707] Starting listener service for AdminSrv 127.0.0.1:8000 ...
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.707] Service started, listening for connections on 127.0.0.1:8000
+Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.707] <Controller> Starting ZMQ Notifier (hashblock) ...
+[...]
 ```
 
 * Ensure the service is working and listening at the default `50002` & `50001` ports and the `8000` admin port
@@ -704,12 +706,11 @@ journalctl -fu fulcrum
 
 **Example** of expected output:
 
-{% code overflow="wrap" %}
 ```
-Jul 28 12:20:13 minibolt Fulcrum[181811]: [2022-07-28 12:20:13.064] Fulcrum 1.9.1 (Release a5a53cf) - Wed Dec 21, 2022 15:35:25.963 UTC - starting up ...
+[...]
+Jul 28 12:20:13 ramix Fulcrum[181811]: [2022-07-28 12:20:13.064] Fulcrum 1.9.1 (Release a5a53cf) - Wed Dec 21, 2022 15:35:25.963 UTC - starting up ...
 [...]
 ```
-{% endcode %}
 
 ## Uninstall
 
@@ -848,8 +849,6 @@ Filename            Type                Size           Used    Priority
 
 [^3]: Check this
 
-[^4]: That's it!
+[^4]: Symbolic link
 
-[^5]: Symbolic link
-
-[^6]: Accommodate this
+[^5]: Accommodate this

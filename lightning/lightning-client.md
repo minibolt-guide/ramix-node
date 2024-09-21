@@ -124,7 +124,7 @@ VERSION=0.18.3
 
 {% code overflow="wrap" %}
 ```sh
-wget https://github.com/lightningnetwork/lnd/releases/download/v$VERSION-beta/lnd-linux-amd64-v$VERSION-beta.tar.gz
+wget https://github.com/lightningnetwork/lnd/releases/download/v$VERSION-beta/lnd-linux-arm64-v$VERSION-beta.tar.gz
 ```
 {% endcode %}
 
@@ -163,7 +163,7 @@ sha256sum --check manifest-v$VERSION-beta.txt --ignore-missing
 **Example** of expected output:
 
 ```
-> lnd-linux-amd64-v0.16.3-beta.tar.gz: OK
+> lnd-linux-arm64-v0.16.3-beta.tar.gz: OK
 ```
 
 ### Signature check
@@ -248,15 +248,15 @@ Check that the date of the timestamp is close to the [release date](https://gith
 * Having verified the integrity and authenticity of the release binary, we can safely
 
 ```sh
-tar -xvf lnd-linux-amd64-v$VERSION-beta.tar.gz
+tar -xvf lnd-linux-arm64-v$VERSION-beta.tar.gz
 ```
 
 **Example** of expected output:
 
 ```
-> lnd-linux-amd64-v0.17.1-beta/lnd
-> lnd-linux-amd64-v0.17.1-beta/lncli
-> lnd-linux-amd64-v0.17.1-beta/
+> lnd-linux-arm64-v0.17.1-beta/lnd
+> lnd-linux-arm64-v0.17.1-beta/lncli
+> lnd-linux-arm64-v0.17.1-beta/
 ```
 
 ### Binaries installation
@@ -265,7 +265,7 @@ tar -xvf lnd-linux-amd64-v$VERSION-beta.tar.gz
 
 {% code overflow="wrap" %}
 ```sh
-sudo install -m 0755 -o root -g root -t /usr/local/bin lnd-linux-amd64-v$VERSION-beta/lnd lnd-linux-amd64-v$VERSION-beta/lncli
+sudo install -m 0755 -o root -g root -t /usr/local/bin lnd-linux-arm64-v$VERSION-beta/lnd lnd-linux-arm64-v$VERSION-beta/lncli
 ```
 {% endcode %}
 
@@ -283,7 +283,7 @@ lnd --version
 
 * **(Optional)** Clean the LND files of the `tmp` folder
 
-<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>sudo rm -r lnd-linux-amd64-v$VERSION-beta lnd-linux-amd64-v$VERSION-beta.tar.gz manifest-roasbeef-v$VERSION-beta.sig manifest-roasbeef-v$VERSION-beta.sig.ots manifest-v$VERSION-beta.txt manifest-v$VERSION-beta.txt.ots
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>sudo rm -r lnd-linux-arm64-v$VERSION-beta lnd-linux-arm64-v$VERSION-beta.tar.gz manifest-roasbeef-v$VERSION-beta.sig manifest-roasbeef-v$VERSION-beta.sig.ots manifest-v$VERSION-beta.txt manifest-v$VERSION-beta.txt.ots
 </strong></code></pre>
 
 {% hint style="info" %}
@@ -386,7 +386,7 @@ nano /data/lnd/lnd.conf
 
 * Paste the following content (set your alias `"<YOUR_FANCY_ALIAS>"`, your preferred color `"<#ff9900>"`, your minimum channel size **`"minchansize"`** , and fees). Save and exit
 
-<pre><code># MiniBolt: lnd configuration
+<pre><code># RaMiX: lnd configuration
 # /data/lnd/lnd.conf
 
 [Application Options]
@@ -415,8 +415,8 @@ tlsdisableautofill=true
 
 ## (Optional) High fee environment settings
 <a data-footnote-ref href="#user-content-fn-13">#max-commit-fee-rate-anchors=</a><a data-footnote-ref href="#user-content-fn-14">10</a>
-<strong><a data-footnote-ref href="#user-content-fn-15">#max-channel-fee-allocation=</a><a data-footnote-ref href="#user-content-fn-16">0.5</a>
-</strong>
+<a data-footnote-ref href="#user-content-fn-15">#max-channel-fee-allocation=</a><a data-footnote-ref href="#user-content-fn-16">0.5</a>
+
 ## Communication
 accept-keysend=true
 accept-amp=true
@@ -504,7 +504,7 @@ sudo nano /etc/systemd/system/lnd.service
 * Enter the following complete content. Save and exit
 
 ```
-# MiniBolt: systemd unit for lnd
+# RaMiX: systemd unit for lnd
 # /etc/systemd/system/lnd.service
 
 [Unit]
@@ -688,17 +688,17 @@ This information must be kept secret at all times
 
 ```
 [...]
-Nov 26 19:17:38 minibolt lnd[1004]: 2023-11-26 19:17:38.037 [INF] LNWL: Opened wallet
-Nov 26 19:17:38 minibolt lnd[1004]: 2023-11-26 19:17:38.204 [INF] CHRE: Primary chain is set to: bitcoin
-Nov 26 19:17:38 minibolt lnd[1004]: 2023-11-26 19:17:38.244 [INF] LNWL: Started listening for bitcoind block notifications via ZMQ on 127.0.0.1:28332
-Nov 26 19:17:38 minibolt lnd[1004]: 2023-11-26 19:17:38.245 [INF] CHRE: Initializing bitcoind backed fee estimator in CONSERVATIVE mode
-Nov 26 19:17:38 minibolt lnd[1004]: 2023-11-26 19:17:38.244 [INF] LNWL: Started listening for bitcoind transaction notifications via ZMQ on 127.0.0.1:28333
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.576 [INF] LNWL: The wallet has been unlocked without a time limit
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.712 [INF] CHRE: LightningWallet opened
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.722 [INF] SRVR: Proxying all network traffic via Tor (stream_isolation=true)! NOTE: Ensure the backend node is proxying over Tor as well
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.723 [INF] TORC: Starting tor controller
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.744 [INF] HSWC: Cleaning circuits from disk for closed channels
-Nov 26 19:17:40 minibolt lnd[1004]: 2023-11-26 19:17:40.744 [INF] HSWC: Finished cleaning: no closed channels found, no actions taken.
+Nov 26 19:17:38 ramix lnd[1004]: 2023-11-26 19:17:38.037 [INF] LNWL: Opened wallet
+Nov 26 19:17:38 ramix lnd[1004]: 2023-11-26 19:17:38.204 [INF] CHRE: Primary chain is set to: bitcoin
+Nov 26 19:17:38 ramix lnd[1004]: 2023-11-26 19:17:38.244 [INF] LNWL: Started listening for bitcoind block notifications via ZMQ on 127.0.0.1:28332
+Nov 26 19:17:38 ramix lnd[1004]: 2023-11-26 19:17:38.245 [INF] CHRE: Initializing bitcoind backed fee estimator in CONSERVATIVE mode
+Nov 26 19:17:38 ramix lnd[1004]: 2023-11-26 19:17:38.244 [INF] LNWL: Started listening for bitcoind transaction notifications via ZMQ on 127.0.0.1:28333
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.576 [INF] LNWL: The wallet has been unlocked without a time limit
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.712 [INF] CHRE: LightningWallet opened
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.722 [INF] SRVR: Proxying all network traffic via Tor (stream_isolation=true)! NOTE: Ensure the backend node is proxying over Tor as well
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.723 [INF] TORC: Starting tor controller
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.744 [INF] HSWC: Cleaning circuits from disk for closed channels
+Nov 26 19:17:40 ramix lnd[1004]: 2023-11-26 19:17:40.744 [INF] HSWC: Finished cleaning: no closed channels found, no actions taken.
 [...]
 ```
 {% endtab %}
@@ -761,25 +761,26 @@ lnd successfully initialized!
 
 Return to the first terminal with `journalctl -f -u lnd`. Search to the next lines to ensure LND already entered the RECOVERY MODE and go out of this ⬇️
 
-<pre><code><strong>[...]
-</strong>Jun 05 15:05:16 minibolt lnd[124224]: 2024-06-05 15:05:16.248 [INF] LNWL: Opened wallet
-Jun 05 15:05:16 minibolt lnd[124224]: 2024-06-05 15:05:16.249 [INF] LTND: Wallet recovery mode enabled with address lookahead of 2500 addresses
-Jun 05 15:05:16 minibolt lnd[124224]: 2024-06-05 15:05:16.442 [INF] LNWL: Started listening for bitcoind block notifications via ZMQ on 127.0.0.1:28332
-Jun 05 15:05:16 minibolt lnd[124224]: 2024-06-05 15:05:16.442 [INF] LNWL: Started listening for bitcoind transaction notifications via ZMQ on 127.0.0.1:28333
-Jun 05 15:05:16 minibolt lnd[124224]: 2024-06-05 15:05:16.442 [INF] CHRE: Initializing bitcoind backed fee estimator in CONSERVATIVE mode
-Jun 05 15:05:18 minibolt lnd[124224]: 2024-06-05 15:05:18.762 [INF] LNWL: The wallet has been unlocked without a time limit
-Jun 05 15:05:21 minibolt lnd[124224]: 2024-06-05 15:05:21.066 [INF] CHRE: LightningWallet opened
-<strong>[...]
-</strong><strong>Jun 05 19:47:08 minibolt lnd[124224]: 2023-11-26 19:47:08.642 [INF] LNWL: RECOVERY MODE ENABLED -- rescanning for used addresses with recovery_window=2500
-</strong>Jun 05 19:47:08 minibolt lnd[124224]: 2023-11-26 19:47:08.685 [INF] LNWL: Seed birthday surpassed, starting recovery of wallet from height=2540246 hash=00000000000000178484e446a4fb5c966b5fd5db76121421bfa470c7c879ff05 with recovery-window=2500
-Jun 05 19:47:09 minibolt lnd[124224]: 2023-11-26 19:47:09.859 [INF] LNWL: Scanning 311 blocks for recoverable addresses
-Jun 05 19:48:36 minibolt lnd[124224]: 2023-11-26 19:48:36.328 [INF] LNWL: Recovered addresses from blocks 2540246-2540556
-Jun 05 19:48:36 minibolt lnd[124224]: 2023-11-26 19:48:36.338 [INF] LNWL: Started rescan from block 000000000000001e297a052a69708908dbe9769d834a07447d85e446b6b4b2a0 (height 2540556) for 0 addresses
-Jun 05 19:48:36 minibolt lnd[124224]: 2023-11-26 19:48:36.360 [INF] LNWL: Catching up block hashes to height 2540557, this might take a while
-Jun 05 19:48:36 minibolt lnd[124224]: 2023-11-26 19:48:36.361 [INF] LNWL: Done catching up block hashes
-Jun 05 19:48:36 minibolt lnd[124224]: 2023-11-26 19:48:36.361 [INF] LNWL: Finished rescan for 0 addresses (synced to block 00000000443337ee5135e26cc7611c570f0cfface2823516a59fee41fc9750b0, height 2540557)
+```
 [...]
-</code></pre>
+Jun 05 15:05:16 ramix lnd[124224]: 2024-06-05 15:05:16.248 [INF] LNWL: Opened wallet
+Jun 05 15:05:16 ramix lnd[124224]: 2024-06-05 15:05:16.249 [INF] LTND: Wallet recovery mode enabled with address lookahead of 2500 addresses
+Jun 05 15:05:16 ramix lnd[124224]: 2024-06-05 15:05:16.442 [INF] LNWL: Started listening for bitcoind block notifications via ZMQ on 127.0.0.1:28332
+Jun 05 15:05:16 ramix lnd[124224]: 2024-06-05 15:05:16.442 [INF] LNWL: Started listening for bitcoind transaction notifications via ZMQ on 127.0.0.1:28333
+Jun 05 15:05:16 ramix lnd[124224]: 2024-06-05 15:05:16.442 [INF] CHRE: Initializing bitcoind backed fee estimator in CONSERVATIVE mode
+Jun 05 15:05:18 ramix lnd[124224]: 2024-06-05 15:05:18.762 [INF] LNWL: The wallet has been unlocked without a time limit
+Jun 05 15:05:21 ramix lnd[124224]: 2024-06-05 15:05:21.066 [INF] CHRE: LightningWallet opened
+[...]
+Jun 05 19:47:08 ramix lnd[124224]: 2023-11-26 19:47:08.642 [INF] LNWL: RECOVERY MODE ENABLED -- rescanning for used addresses with recovery_window=2500
+Jun 05 19:47:08 ramix lnd[124224]: 2023-11-26 19:47:08.685 [INF] LNWL: Seed birthday surpassed, starting recovery of wallet from height=2540246 hash=00000000000000178484e446a4fb5c966b5fd5db76121421bfa470c7c879ff05 with recovery-window=2500
+Jun 05 19:47:09 ramix lnd[124224]: 2023-11-26 19:47:09.859 [INF] LNWL: Scanning 311 blocks for recoverable addresses
+Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.328 [INF] LNWL: Recovered addresses from blocks 2540246-2540556
+Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.338 [INF] LNWL: Started rescan from block 000000000000001e297a052a69708908dbe9769d834a07447d85e446b6b4b2a0 (height 2540556) for 0 addresses
+Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.360 [INF] LNWL: Catching up block hashes to height 2540557, this might take a while
+Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.361 [INF] LNWL: Done catching up block hashes
+Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.361 [INF] LNWL: Finished rescan for 0 addresses (synced to block 00000000443337ee5135e26cc7611c570f0cfface2823516a59fee41fc9750b0, height 2540557)
+[...]
+```
 {% endtab %}
 {% endtabs %}
 
@@ -871,7 +872,7 @@ lncli getinfo
 ## LND in action
 
 {% hint style="success" %}
-&#x20;Now your Lightning node is ready. This is also the point of no return. Up until now, you can just start over. Once you send real Bitcoin to your MiniBolt, you have "skin in the game"
+Now your Lightning node is ready. This is also the point of no return. Up until now, you can just start over. Once you send real Bitcoin to your MiniBolt, you have "skin in the game"
 {% endhint %}
 
 {% hint style="info" %}
@@ -1365,11 +1366,7 @@ The `[WRN]` logs indicate that LND has detected an existing old bbolt database a
 [...]
 ```
 
-
-
 \-> You can delete these logs by following the [next section](lightning-client.md#optional-delete-old-bbolt-files-database)
-
-
 
 Pay attention to this `[INF]` significant log to confirm you are using PostgreSQL now
 
@@ -1514,7 +1511,7 @@ sudo systemctl disable lnd
 sudo rm /etc/systemd/system/lnd.service
 ```
 
-### &#x20;Delete user & group&#x20;
+### Delete user & group
 
 * Delete lnd user's group
 

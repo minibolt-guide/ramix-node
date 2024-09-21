@@ -53,7 +53,7 @@ VERSION=2.0.0
 
 {% code overflow="wrap" %}
 ```bash
-wget https://github.com/sparrowwallet/sparrow/releases/download/$VERSION/sparrow-server-$VERSION-x86_64.tar.gz
+wget https://github.com/sparrowwallet/sparrow/releases/download/$VERSION/sparrow-server-$VERSION-aarch64.tar.gz
 ```
 {% endcode %}
 
@@ -97,16 +97,16 @@ gpg --verify sparrow-$VERSION-manifest.txt.asc
 sha256sum --check sparrow-$VERSION-manifest.txt --ignore-missing
 ```
 
-Expected output:
+Example of expected output:
 
 ```
-> sparrow-server-$VERSION-x86_64.tar.gz: OK
+> sparrow-server-2.0.0-aarch64.tar.gz: OK
 ```
 
 * If everything is correct, unpack Sparrow
 
 ```sh
-tar -xvf sparrow-server-$VERSION-x86_64.tar.gz
+tar -xvf sparrow-server-$VERSION-aarch64.tar.gz
 ```
 
 * Move data files to the home `admin` user
@@ -118,11 +118,11 @@ sudo cp -r Sparrow /home/admin/
 * Clean the remaining installation files from the `tmp` folder to avoid problems for the next update
 
 ```sh
-sudo rm -r Sparrow && rm sparrow-server-$VERSION-x86_64.tar.gz
+sudo rm -r Sparrow && rm sparrow-server-$VERSION-aarch64.tar.gz
 ```
 
 {% hint style="info" %}
-If you come to update, this is the final step. Check the correct update by entering the "`Sparrow --version"` command, skip the next step, and jump directly to the [Run Sparrow](sparrow-server.md#run) section to start Sparrow server again with the new version
+If you come to update, this is the final step. Check the correct update by entering the "`Sparrow --version"` command, skip the next step, and jump directly to the [Run Sparrow](sparrow-server.md#run) section to start the Sparrow server again with the new version
 {% endhint %}
 
 * Add the Sparrow executable to your PATH by creating a symlink to it within `/usr/local/bin`, which is already part of the PATH

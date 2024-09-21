@@ -158,7 +158,7 @@ Several components of this guide will expose a communication port, for example, 
 
 We use Ngnix to encrypt the communication with SSL/TLS (Transport Layer Security). This setup is called a "reverse proxy": Nginx provides secure communication to the outside and routes the traffic back to the internal service without encryption.
 
-* With user `admin`, update and upgradeth OS
+* With user `admin`, update and upgrade the OS
 
 ```bash
 sudo apt update && sudo apt full-upgrade
@@ -167,7 +167,7 @@ sudo apt update && sudo apt full-upgrade
 * Install Ngnix
 
 ```sh
-sudo apt install nginx
+sudo apt install nginx libnginx-mod-stream
 ```
 
 * Check the correct installation

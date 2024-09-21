@@ -90,7 +90,7 @@ VERSION=0.2.0
 
 {% code overflow="wrap" %}
 ```sh
-wget https://github.com/LN-Zap/lndconnect/releases/download/v$VERSION/lndconnect-linux-amd64-v$VERSION.tar.gz
+wget https://github.com/LN-Zap/lndconnect/releases/download/v$VERSION/lndconnect-linux-arm64-v$VERSION.tar.gz
 ```
 {% endcode %}
 
@@ -104,7 +104,7 @@ tar -xvf lndconnect-linux-amd64-v$VERSION.tar.gz
 
 {% code overflow="wrap" %}
 ```bash
-sudo install -m 0755 -o root -g root -t /usr/local/bin lndconnect-linux-amd64-v$VERSION/lndconnect
+sudo install -m 0755 -o root -g root -t /usr/local/bin lndconnect-linux-arm64-v$VERSION/lndconnect
 ```
 {% endcode %}
 
@@ -177,7 +177,7 @@ lndconnect generates a URI and displays it as a QR code that Zeus can read.
 
 {% tabs %}
 {% tab title="Tor connection" %}
-Set the `--host` parameter with the  `.onion` address with the one you generated above. e.g. abcdefg......xyz.onion
+Set the `--host` parameter with the `.onion` address with the one you generated above. e.g. abcdefg......xyz.onion
 
 ```bash
 lndconnect --host=abcdefg......xyz.onion --port=8080 --nocert
@@ -201,7 +201,7 @@ lndconnect --host=192.168.X.XXX --port=8080
 {% endtab %}
 {% endtabs %}
 
-* It will be a big QR code, so maximize your terminal window and use `CTRL+- / "Terminal unzoom" / "Zoom out"` options of your terminal, to shrink the code further to fit the screen or if you prefer you can use `-j`  parameter to get a code you can copy and paste into the app
+* It will be a big QR code, so maximize your terminal window and use `CTRL+- / "Terminal unzoom" / "Zoom out"` options of your terminal, to shrink the code further to fit the screen or if you prefer you can use `-j` parameter to get a code you can copy and paste into the app
 
 {% hint style="warning" %}
 Keep the SSH session with the QR code open, it will be necessary later to scan the obtained QR code

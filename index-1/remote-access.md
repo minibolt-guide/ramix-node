@@ -18,9 +18,9 @@ We connect to your personal computer by using the Secure Shell.
 
 <figure><img src="../.gitbook/assets/remote-access.png" alt="" width="375"><figcaption></figcaption></figure>
 
-## Find your PC
+## Find your node
 
-Your Personal Computer is starting and gets a new address from your home network. Give it a few minutes to come to life.
+Your Raspberry Pi is starting and gets a new address from your home network. Give it a few minutes to come to life.
 
 * On your regular computer, open the Terminal (also known as "command line")
   * On Linux/macOS with a graphical interface, search on the application list, "Terminal" or press the keyboard shortcut `Ctrl + Alt + T`

@@ -52,124 +52,9 @@ sudo apt update && sudo apt full-upgrade
 
 {% code overflow="wrap" %}
 ```sh
-sudo apt install libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev make g++ clang cmake build-essential
+sudo apt install librocksdb-dev=7.8.3-2
 ```
 {% endcode %}
-
-* Install the `librocksdb v7.8.3` from the source code. Go to the temporary folder
-
-```bash
-cd /tmp
-```
-
-* Clone the [rocksdb](https://github.com/facebook/rocksdb) GitHub repository and enter the `rocksdb` folder
-
-```bash
-git clone -b v7.8.3 --depth 1 https://github.com/facebook/rocksdb && cd rocksdb
-```
-
-* Compile it
-
-```bash
-make shared_lib -j $(nproc)
-```
-
-<details>
-
-<summary>Expected output ⬇️</summary>
-
-```
-$DEBUG_LEVEL is 0
-$DEBUG_LEVEL is 0
-  CC       cache/cache.o
-  CC       cache/cache_entry_roles.o
-  CC       cache/cache_key.o
-  CC       cache/cache_reservation_manager.o
-  CC       cache/charged_cache.o
-  CC       cache/clock_cache.o
-  CC       cache/fast_lru_cache.o
-  CC       cache/lru_cache.o
-  CC       cache/compressed_secondary_cache.o
-  CC       cache/sharded_cache.o
-  CC       db/arena_wrapped_db_iter.o
-  CC       db/blob/blob_contents.o
-  CC       db/blob/blob_fetcher.o
-  CC       db/blob/blob_file_addition.o
-  CC       db/blob/blob_file_builder.o
-  CC       db/blob/blob_file_cache.o
-  CC       db/blob/blob_file_garbage.o
-  [...]
-```
-
-</details>
-
-{% hint style="info" %}
-This could take time depending on your system performance, be patient
-{% endhint %}
-
-* Install it
-
-```bash
-sudo make install-shared
-```
-
-<details>
-
-<summary>Expected output ⬇️</summary>
-
-```
-$DEBUG_LEVEL is 0
-echo 'prefix=/usr/local' > rocksdb.pc
-echo 'exec_prefix=${prefix}' >> rocksdb.pc
-echo 'includedir=${prefix}/include' >> rocksdb.pc
-echo 'libdir=/usr/local/lib' >> rocksdb.pc
-echo '' >> rocksdb.pc
-echo 'Name: rocksdb' >> rocksdb.pc
-echo 'Description: An embeddable persistent key-value store for fast storage' >> rocksdb.pc
-echo Version: 7.8.3 >> rocksdb.pc
-echo 'Libs: -L${libdir}  -ldl -Wl,-rpath -Wl,'$ORIGIN' -lrocksdb' >> rocksdb.pc
-echo 'Libs.private: -lpthread -lrt -ldl -lsnappy -lgflags -lz -lbz2 -llz4 -lzstd ' >> rocksdb.pc
-echo 'Cflags: -I${includedir} -std=c++17  -faligned-new -DHAVE_ALIGNED_NEW -DROCKSDB_PLATFORM_POSIX -DROCKSDB_LIB_IO_POSIX  -DOS_LINUX -fno-builtin-memcmp -DROCKSDB_FALLOCATE_PRESENT -DSNAPPY -DGFLAGS=1 -DZLIB -DBZIP2 -DLZ4 -DZSTD -DROCKSDB_MALLOC_USABLE_SIZE -DROCKSDB_PTHREAD_ADAPTIVE_MUTEX -DROCKSDB_BACKTRACE -DROCKSDB_RANGESYNC_PRESENT -DROCKSDB_SCHED_GETCPU_PRESENT -DROCKSDB_AUXV_GETAUXVAL_PRESENT -DHAVE_UINT128_EXTENSION  -isystem third-party/gtest-1.8.1/fused-src' >> rocksdb.pc
-echo 'Requires: ' >> rocksdb.pc
-install -d /usr/local/lib
-install -d /usr/local/lib/pkgconfig
-for header_dir in `find "include/rocksdb" -type d`; do \
-        install -d //usr/local/$header_dir; \
-done
-for header in `find "include/rocksdb" -type f -name *.h`; do \
-        install -C -m 644 $header //usr/local/$header; \
-done
-for header in ; do \
-        install -d //usr/local/include/rocksdb/`dirname $header`; \
-        install -C -m 644 $header //usr/local/include/rocksdb/$header; \
-done
-install -C -m 644 rocksdb.pc /usr/local/lib/pkgconfig/rocksdb.pc
-install -d /usr/local/lib
-install -C -m 755 librocksdb.so.7.8.3 /usr/local/lib
-ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so.7.8
-ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so.7
-ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so
-```
-
-</details>
-
-* Update the shared library cache. Wait until the prompt comes back to show
-
-```bash
-sudo ldconfig
-```
-
-* Come back to the `/tmp` folder
-
-```bash
-cd ..
-```
-
-* Delete `rocksdb` folder
-
-```bash
-sudo rm -r rocksdb
-```
 
 * Check if you already have `Rustc` installed
 
@@ -441,7 +326,7 @@ nano /data/electrs/electrs.conf
 * Enter the complete next content
 
 ```
-# MiniBolt: electrs configuration
+# RaMiX: electrs configuration
 # /data/electrs/electrs.conf
 
 # Bitcoin Core settings
@@ -476,7 +361,7 @@ sudo nano /etc/systemd/system/electrs.service
 * Enter the complete following configuration. Save and exit
 
 ```
-# MiniBolt: systemd unit for electrs
+# RaMiX: systemd unit for electrs
 # /etc/systemd/system/electrs.service
 
 [Unit]

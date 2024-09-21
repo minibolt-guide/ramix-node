@@ -33,36 +33,36 @@ cd /tmp
 * Set a temporary version environment variable to the installation
 
 ```bash
-VERSION=1.22.5
+VERSION=1.23.1
 ```
 
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=904b924d435eaea086515bc63235b192ea441bd8c9b198c507e85009e6e4c7f0
+SHA256=faec7f7f8ae53fda0f3d408f52182d942cc89ef5b7d3d9f23ff117437d4b2d2f
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
 
 ```bash
-wget https://go.dev/dl/go$VERSION.linux-amd64.tar.gz
+wget https://go.dev/dl/go$VERSION.linux-arm64.tar.gz
 ```
 
 * Check the checksum of the file
 
 ```bash
-echo "$SHA256 go$VERSION.linux-amd64.tar.gz" | sha256sum --check
+echo "$SHA256 go$VERSION.linux-arm64.tar.gz" | sha256sum --check
 ```
 
 **Example** of expected output:
 
-<pre><code><strong>> go1.21.10.linux-amd64.tar.gz: OK
+<pre><code><strong>> go1.21.10.linux-arm64.tar.gz: OK
 </strong></code></pre>
 
 * Extract and install Go in the `/usr/local` directory
 
 ```bash
-sudo tar -C /usr/local -xvzf go$VERSION.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvzf go$VERSION.linux-arm64.tar.gz
 ```
 
 * Add the next line at the end of the `/etc/profile` file
@@ -92,13 +92,13 @@ go version
 **Example** of expected output:
 
 ```
-> go version go1.21.10 linux/amd64
+> go version go1.21.10 linux/arm64
 ```
 
 * **(Optional)** Delete the file of the temporary folder to be immediately ready for the next update
 
 ```bash
-rm go$VERSION.linux-amd64.tar.gz
+rm go$VERSION.linux-arm64.tar.gz
 ```
 
 ## Upgrade
@@ -118,19 +118,19 @@ cd /tmp
 * Set a temporary version environment variable with the new value, to the installation
 
 ```bash
-VERSION=1.22.3
+VERSION=1.23.1
 ```
 
 * Set the new temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=8920ea521bad8f6b7bc377b4824982e011c19af27df88a815e3586ea895f1b36
+SHA256=faec7f7f8ae53fda0f3d408f52182d942cc89ef5b7d3d9f23ff117437d4b2d2f
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
 
 ```bash
-wget https://go.dev/dl/go$VERSION.linux-amd64.tar.gz
+wget https://go.dev/dl/go$VERSION.linux-arm64.tar.gz
 ```
 
 * Check the checksum of the file
@@ -142,13 +142,13 @@ echo "$SHA256 go$VERSION.linux-amd64.tar.gz" | sha256sum --check
 **Example** of expected output:
 
 ```
-> go1.22.3.linux-amd64.tar.gz: OK
+> go1.22.3.linux-arm64.tar.gz: OK
 ```
 
 * Extract and install Go in the `/usr/local` directory
 
 ```bash
-sudo tar -C /usr/local -xvzf go$VERSION.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvzf go$VERSION.linux-arm64.tar.gz
 ```
 
 * Verify that you've updated Go by typing the following command
@@ -160,13 +160,13 @@ go version
 **Example** of expected output:
 
 ```
-go version go1.22.3 linux/amd64
+go version go1.22.3 linux/arm64
 ```
 
 * **(Optional)** Delete the file of the temporary folder to be immediately ready for the next update
 
 ```bash
-rm go$VERSION.linux-amd64.tar.gz
+rm go$VERSION.linux-arm64.tar.gz
 ```
 
 ## Uninstall

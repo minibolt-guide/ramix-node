@@ -17,7 +17,7 @@ layout:
 
 # 1. System
 
-<figure><img src="../.gitbook/assets/rpi_optical_illusion.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/rpi_optical_illusion.jpg" alt="" width="384"><figcaption></figcaption></figure>
 
 ## Raspberry Pi
 

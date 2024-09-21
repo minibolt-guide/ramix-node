@@ -140,7 +140,7 @@ sudo ufw allow 4000/tcp comment 'allow BTC RPC Explorer SSL from anywhere'
 
 ### Create the btcrpcexplorer user & group
 
-For improved security, we will create a new user `btcrpcexplorer` that will run the block explorer. Using a dedicated user limits potential damage in case there's a security vulnerability in the code. An attacker could not do much within this user's permission settings. We will install  BTC RPC Explorer in the home directory since it doesn't need too much space.
+For improved security, we will create a new user `btcrpcexplorer` that will run the block explorer. Using a dedicated user limits potential damage in case there's a security vulnerability in the code. An attacker could not do much within this user's permission settings. We will install BTC RPC Explorer in the home directory since it doesn't need too much space.
 
 * Create the `btcrpcexplorer` user and group
 
@@ -293,7 +293,7 @@ sudo nano /etc/systemd/system/btcrpcexplorer.service
 * Paste the following configuration. Save and exit
 
 ```
-# MiniBolt: systemd unit for BTC RPC Explorer
+# RaMiX: systemd unit for BTC RPC Explorer
 # /etc/systemd/system/btcrpcexplorer.service
 
 [Unit]
@@ -648,7 +648,7 @@ sudo systemctl start btcrpcexplorer
 
 ### Uninstall service
 
-* With the user `admin`  , stop btcrpcexplorer
+* With the user `admin` , stop btcrpcexplorer
 
 ```bash
 sudo systemctl stop btcrpcexplorer

@@ -29,7 +29,7 @@ layout:
 ### System Administration
 
 * [**Aliases**](aliases.md) - set up CLI command shortcuts to simplify your node management experienc**e**
-* [**Static IP & custom DNS servers**](../../bonus-guides/system/static-ip-and-custom-dns-servers.md) - set a static IP local address and customize the DNS servers
+* [**Static IP & custom DNS servers**](broken-reference) - set a static IP local address and customize the DNS servers
 
 ### Common programming languages
 
@@ -54,4 +54,4 @@ layout:
 
 ### Hardware
 
-* [**Store data in a secondary disk**](store-data-secondary-disk.md) - use a different disk to store data (blockchain and other databases) independently of the disk of the system
+* [**Store data in a secondary disk**](broken-reference) - use a different disk to store data (blockchain and other databases) independently of the disk of the system

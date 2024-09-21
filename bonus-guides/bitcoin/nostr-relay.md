@@ -252,7 +252,7 @@ Copying files from `/etc/skel' ...
 sudo su - nostr
 ```
 
-* **(Optional)** If you want to use the MiniBolt [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/favicon.ico) file, download it by entering this command, if not, download your own or skip this step not to provide any (remember to leave the`favicon.ico`commented on the configuration file)
+* **(Optional)** If you want to use the RaMiX [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/favicon.ico) file, download it by entering this command, if not, download your own or skip this step not to provide any (remember to leave the`favicon.ico`commented on the configuration file)
 
 {% code overflow="wrap" %}
 ```bash
@@ -351,7 +351,7 @@ Uncomment and replace only the next line:
 > > [remote\_ip\_header = "cf-connecting-ip"](#user-content-fn-12)[^12]
 
 {% hint style="info" %}
-If you want, use the same [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/nostr-relay-PR/resources/favicon.ico) file downloaded before (the relay's icon of MiniBolt) and the value `relay_icon` parameter (URL -> [https://twofaktor.github.io/logo\_circle%2BB.png](https://twofaktor.github.io/logo\_circle%2BB.png)), or replace it with your own info
+If you want, use the same [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/nostr-relay-PR/resources/favicon.ico) file downloaded before (the relay's icon of RaMiX) and the value `relay_icon` parameter (URL -> [https://twofaktor.github.io/logo\_circle%2BB.png](https://twofaktor.github.io/logo\_circle%2BB.png)), or replace it with your own info
 {% endhint %}
 
 ### **Create systemd service**
@@ -366,7 +366,7 @@ The system needs to run the nostr relay daemon automatically in the background, 
 * Paste the following configuration. Save and exit
 
 ```
-# MiniBolt: systemd unit for nostr relay
+# RaMiX: systemd unit for nostr relay
 # /etc/systemd/system/nostr-relay.service
 
 [Unit]
@@ -407,7 +407,7 @@ journalctl -fu nostr-relay
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 * Start the nostr relay
 
@@ -420,14 +420,14 @@ sudo systemctl start nostr-relay
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu nostr-relay</code> ⬇️</summary>
 
 ```
-Jun 07 10:49:45 minibolt systemd[1]: Started Nostr relay.
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.130712Z  INFO nostr_rs_relay: Starting up from main
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.150378Z  INFO nostr_rs_relay::server: listening on: 127.0.0.1:8880
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.302830Z  INFO sqlx::postgres::notice: relation "migrations" already exists, skipping
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337047Z  INFO nostr_rs_relay::db: Postgres migration completed, at v5
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337902Z  INFO nostr_rs_relay::server: db writer created
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337945Z  INFO nostr_rs_relay::server: control message listener started
-Jun 07 10:49:45 minibolt nostr-rs-relay[2604788]: 2024-06-07T10:49:45.338012Z  INFO nostr_rs_relay::server: reading favicon...
+Jun 07 10:49:45 ramix systemd[1]: Started Nostr relay.
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.130712Z  INFO nostr_rs_relay: Starting up from main
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.150378Z  INFO nostr_rs_relay::server: listening on: 127.0.0.1:8880
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.302830Z  INFO sqlx::postgres::notice: relation "migrations" already exists, skipping
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337047Z  INFO nostr_rs_relay::db: Postgres migration completed, at v5
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337902Z  INFO nostr_rs_relay::server: db writer created
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.337945Z  INFO nostr_rs_relay::server: control message listener started
+Jun 07 10:49:45 ramix nostr-rs-relay[2604788]: 2024-06-07T10:49:45.338012Z  INFO nostr_rs_relay::server: reading favicon...
 [...]
 ```
 
@@ -453,7 +453,7 @@ Follow the [Cloudflare Tunnel bonus guide](nostr-relay.md#cloudflare-tunnel), wh
 nano /home/admin/.cloudflared/config.yml
 ```
 
-<pre><code># MiniBolt: cloudflared configuration
+<pre><code># RaMiX: cloudflared configuration
 # /home/admin/.cloudflared/config.yml
 
 tunnel: &#x3C;UUID>
@@ -667,7 +667,7 @@ Now, you can use Alby to log in to compatible web clients using NIP-07 \[**Login
 {% endhint %}
 
 {% hint style="info" %}
-If you prefer to generate your key pair, you can mine them using the [Rana tool](https://github.com/grunch/rana) and the Minibolt node.
+If you prefer to generate your key pair, you can mine them using the [Rana tool](https://github.com/grunch/rana) and the RaMiX node.
 
 **Be careful when doing this**, as it will use all the available resources of the machine and could render other important applications you are running unusable. Gracefully shutdown them before starting this process
 {% endhint %}
@@ -915,7 +915,7 @@ nano /home/admin/.cloudflared/config.yml
 * Comment or delete the nostr relay associated ingress rule. Save and exit
 
 ```
-# MiniBolt: cloudflared configuration
+# RaMiX: cloudflared configuration
 # /home/admin/.cloudflared/config.yml
 
 tunnel: <UUID>

@@ -48,7 +48,7 @@ VERSION=27.1
 
 {% code overflow="wrap" %}
 ```sh
-wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/bitcoin-$VERSION-x86_64-linux-gnu.tar.gz
+wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
 ```
 {% endcode %}
 
@@ -71,7 +71,7 @@ sha256sum --ignore-missing --check SHA256SUMS
 **Example** of expected output:
 
 ```
-> bitcoin-25.1-x86_64-linux-gnu.tar.gz: OK
+> bitcoin-26.1-aarch64-linux-gnu.tar.gz: OK
 ```
 
 ### Signature check
@@ -127,7 +127,7 @@ The following screenshot is just an **example** of one of the versions:
 * If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Core binaries
 
 ```sh
-tar -xvf bitcoin-$VERSION-x86_64-linux-gnu.tar.gz
+tar -xvf bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
 ```
 
 {% hint style="info" %}
@@ -161,7 +161,7 @@ The following output is just an **example** of one of the versions:
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-x86_64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc SHA256SUMS.ots
+sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc SHA256SUMS.ots
 ```
 {% endcode %}
 
@@ -300,7 +300,7 @@ Remember to accommodate the `"dbcache"` parameter depending on your hardware. Re
 **(Optional)** Modify the `"uacomment"` value to your preference if you want
 {% endhint %}
 
-<pre><code># MiniBolt: bitcoind configuration
+<pre><code># RaMiX: bitcoind configuration
 # /home/bitcoin/.bitcoin/bitcoin.conf
 
 # Bitcoin daemon
@@ -401,7 +401,7 @@ sudo nano /etc/systemd/system/bitcoind.service
 * Enter the complete next configuration. Save and exit
 
 ```
-# MiniBolt: systemd unit for bitcoind
+# RaMiX: systemd unit for bitcoind
 # /etc/systemd/system/bitcoind.service
 
 [Unit]
@@ -899,7 +899,7 @@ VERSION=27.1
 
 {% code overflow="wrap" %}
 ```sh
-wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/bitcoin-$VERSION-x86_64-linux-gnu.tar.gz
+wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
 ```
 {% endcode %}
 
@@ -930,7 +930,7 @@ sha256sum --ignore-missing --check SHA256SUMS
 **Example** of expected output:
 
 ```
-> bitcoin-25.1-x86_64-linux-gnu.tar.gz: OK
+> bitcoin-25.1-aarch64-linux-gnu.tar.gz: OK
 ```
 
 * The next command downloads and automatically imports all signatures from the [Bitcoin Core release attestations (Guix)](https://github.com/bitcoin-core/guix.sigs) repository
@@ -998,15 +998,13 @@ If you obtain this output:
 > Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
 
-
-
 \-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
 
 * If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Core binaries
 
 ```sh
-tar -xvf bitcoin-$VERSION-x86_64-linux-gnu.tar.gz
+tar -xvf bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
 ```
 
 * Install them
@@ -1035,7 +1033,7 @@ The following output is just an **example** of one of the versions:
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm -r bitcoin-$VERSION && sudo rm bitcoin-$VERSION-x86_64-linux-gnu.tar.gz && sudo rm SHA256SUMS && sudo rm SHA256SUMS.asc && sudo rm SHA256SUMS.ots
+sudo rm -r bitcoin-$VERSION && sudo rm bitcoin-$VERSION-aarch64-linux-gnu.tar.gz && sudo rm SHA256SUMS && sudo rm SHA256SUMS.asc && sudo rm SHA256SUMS.ots
 ```
 {% endcode %}
 
@@ -1067,7 +1065,7 @@ sudo systemctl disable bitcoind
 sudo rm /etc/systemd/system/bitcoind.service
 ```
 
-### Delete user & group&#x20;
+### Delete user & group
 
 * Delete bitcoin user's group
 
@@ -1145,7 +1143,7 @@ sudo ufw delete X
 
 [^3]: Replace
 
-[^4]: Accommodate this&#x20;
+[^4]: Accommodate this
 
 [^5]: Symbolic link
 
