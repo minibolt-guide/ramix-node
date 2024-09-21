@@ -308,7 +308,7 @@ server=1
 txindex=1
 
 # Append comment to the user agent string
-uacomment=MiniBolt node
+uacomment=RaMiX node
 
 # Disable integrated wallet
 disablewallet=1

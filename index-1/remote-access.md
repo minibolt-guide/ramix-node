@@ -52,8 +52,8 @@ Install and start the SSH client for your operating system:
 
 * **Windows**, 2 options:
   * Download **Putty** [64-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture. [Source](https://www.chiark.greenend.org.uk/\~sgtatham/putty/latest.html)
-    * Start Putty, to the left tree, select "session", in the "Hostname (or IP address)" box, type `temp@192.168.x.xx`, port `22` to the left box.
-    * Press the button OPEN, when a "PuTTy security alert" banner appears, press the "Accept" button, and finally type your `password [A]`.
+    * Start Putty, to the left tree, select "**session**", in the "Hostname (or IP address)" box, type `temp@192.168.x.xx`, port `22` to the left box.
+    * Press the button **OPEN**, when a "PuTTy security alert" banner appears, press the "Accept" button, and finally type your `password [A]`.
   * [Download](https://mobaxterm.mobatek.net/download-home-edition.html) the **MobaXterm** Portable Edition or Installer Edition version depending on whether you want to install it permanently or not.
     * Start MobaXterm, 2 options:
       * If you want to save the session for later: on the top menu, click on "Session" -> "New session" -> Select "SSH".
@@ -79,7 +79,7 @@ Note, connection details:
 
 We will work on the command line of the PC, which may be new to you. Find some basic information below. It will help you navigate and interact with your PC.
 
-You enter commands and the PC answers by printing the results below your command. The system response is marked with the `>` character.
+You enter commands and the PC answers by printing the results below your command.
 
 Additional comments begin with `#` and must not be entered.
 

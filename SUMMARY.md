@@ -56,3 +56,7 @@
   * [Download the bitcoin whitepaper](bonus/bitcoin/white-paper.md)
   * [MiniBolt on Testnet](bonus/bitcoin/minibolt-on-testnet.md)
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
+
+***
+
+* [Troubleshooting](troubleshooting.md)

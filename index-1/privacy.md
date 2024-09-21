@@ -214,7 +214,7 @@ Not all network traffic is routed over the Tor network, by default some services
 
 I2P client is software used for building and using anonymous I2P networks. Such networks are commonly used for anonymous peer-to-peer applications (filesharing, cryptocurrencies) and anonymous client-server applications (websites, instant messengers, chat-servers).
 
-We are to use [i2pd](https://i2pd.readthedocs.io/en/latest/) (I2P Daemon), a full-featured C++ implementation of the I2P client, as a Tor network complement.
+We will use [i2pd](https://i2pd.readthedocs.io/en/latest/) (I2P Daemon), a full-featured C++ implementation of the I2P client, as a Tor network complement.
 
 ### **I2P installation**
 
@@ -538,7 +538,7 @@ The following packages will be REMOVED:
 
 #### **Tor network issues**
 
-If you have problems with the Tor connection (LN channels offline, excessive delay to the hidden services access, etc...), it is possible that the set of entry guards is overloaded, delete the file called "state" in your Tor directory, and you will be forcing Tor to select an entirely new set of entry guards next time it starts.
+If you have problems with the Tor connection (LN channels offline, excessive delay to the hidden services access, etc...), the set of entry guards may be overloaded, delete the file called "`state`" in your Tor directory, and you will be forcing Tor to select an entirely new set of entry guards next time it starts.
 
 * Stop Tor
 
