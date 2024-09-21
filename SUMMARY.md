@@ -2,7 +2,7 @@
 
 ## Home
 
-* [MiniBolt](README.md)
+* [RaMiX](README.md)
 
 ## 🖥️ System
 

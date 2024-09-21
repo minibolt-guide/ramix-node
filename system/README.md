@@ -17,10 +17,10 @@ layout:
 
 # 1. System
 
-<figure><img src="../.gitbook/assets/system-PC.jpg" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/rpi_optical_illusion.jpg" alt=""><figcaption></figcaption></figure>
 
-## Personal Computer
+## Raspberry Pi
 
-This guide builds on the easily available personal computer.
+This guide builds on the easily available Raspberry Pi.
 
 In the following sections, we will start it up and prepare the operating system for your MiniBolt.

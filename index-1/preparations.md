@@ -18,9 +18,9 @@ Let's get all the necessary hardware parts and prepare some passwords.
 
 <figure><img src="../.gitbook/assets/Starting_MiniBolt.gif" alt=""><figcaption></figcaption></figure>
 
-## Personal computer
+## Raspberry Pi
 
-This guide builds on the readily available personal computer.
+This guide builds on the readily available Raspberry Pi.
 
 While a personal computer is the best choice, this guide works with other computing platforms, cloud servers, or virtual machines.
 
