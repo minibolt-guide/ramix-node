@@ -82,3 +82,41 @@ The Raspberry Pi Imager now writes the operating system to your drive and verifi
 {% endhint %}
 
 ![](https://raspibolt.org/images/gif\_raspberry\_pi\_flash.gif)
+
+## Start your Pi <a href="#start-your-pi" id="start-your-pi"></a>
+
+* Safely eject the external drive from your computer
+* Connect it to your Pi
+* If you did not configure the Wifi settings: connect the Pi to your network with an ethernet cable
+* Start the Pi by connecting it to the power adapter using the USB-C cable
+
+### Does it boot? <a href="#does-it-boot" id="does-it-boot"></a>
+
+The 🔴 red LED on the Pi will indicate that the device is powered on.
+
+The 🟢 green LED should constantly be flickering after a few seconds, indicating activity. If the green LED is lit constantly, without flickering, your Pi is probably not yet configured to boot from USB.
+
+To enable booting from USB, follow these steps:
+
+1. Get your hands on a microSD card (all data will be deleted, but you only need it once)
+2. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), write config bootloader to enable “USB Boot” to the microSD card
+3. With **“No filtering”** selected on the “Raspberry Pi device” section, on the “Operating system” section > Push on “Choose OS” > “Misc utility images > Select Bootloader (Pi 4 or Pi 5) family, depending on your Raspberry Pi version > **USB Boot | NVMe/USB Boot**
+4. Connect the microSD to your regular computer. On the “Storage” section > Push on “Choose storage” > Select your microSD
+5. Click on the **“NEXT”** button
+6. Read the warning banner carefully and make sure you selected the right drive, then click **“YES”**.
+
+{% hint style="info" %}
+The Raspberry Pi Imager now writes on your microSD and verifies it. It should display a “Success” message after
+{% endhint %}
+
+1. Boot your Pi with this microSD card
+2. Once the green LED blinks constantly, you can disconnect the power
+3. Remove the microSD card and start your Pi again with the SSD connected
+
+{% hint style="info" %}
+Your Raspberry Pi should now boot from the SSD attached via USB
+{% endhint %}
+
+## Fallback: if you can’t boot from your external drive <a href="#fallback-if-you-cant-boot-from-your-external-drive" id="fallback-if-you-cant-boot-from-your-external-drive"></a>
+
+We assume that you can boot directly from the external drive. This method works for most modern drives, but if it doesn’t work in your case, please follow the fallback instructions [Boot from microSD card instead of external drive](https://raspibolt.org/guide/bonus/raspberry-pi/boot-from-microsd-card.html).

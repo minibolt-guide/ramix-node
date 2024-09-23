@@ -45,6 +45,7 @@
   * [Cloudflare tunnel](bonus-guides/system/cloudflare-tunnel.md)
   * [Tor obfs4 bridge](index-4/index/tor-bridge.md)
   * [NYM mixnet](bonus-guides/system/nym-mixnet.md)
+  * [Boot from microSD instead of external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)
 * [🟠 ₿itcoin](bonus/bitcoin/README.md)
   * [Electrs](bonus/bitcoin/electrs.md)
   * [Electrum Wallet Desktop](bonus/bitcoin/electrum-wallet-desktop.md)
@@ -59,4 +60,4 @@
 
 ***
 
-* [Troubleshooting](troubleshooting.md)
+* [🔧 Troubleshooting](troubleshooting.md)

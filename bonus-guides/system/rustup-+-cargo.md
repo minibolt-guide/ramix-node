@@ -77,7 +77,7 @@ these changes will be reverted.
 Current installation options:
 
 
-   default host triple: x86_64-unknown-linux-gnu
+   default host triple: aarch64-unknown-linux-gnu
      default toolchain: stable (default)
                profile: default
   modify PATH variable: yes
@@ -92,12 +92,12 @@ Current installation options:
 
 <details>
 
-<summary>Example of installation expected output 🔽</summary>
+<summary><strong>Example</strong> of installation expected output 🔽</summary>
 
 ```
 info: profile set to 'default'
-info: default host triple is x86_64-unknown-linux-gnu
-info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: default host triple is aarch64-unknown-linux-gnu
+info: syncing channel updates for 'stable-aarch64-unknown-linux-gnu'
 info: latest update on 2023-07-13, rust version 1.71.0 (8ede3aae2 2023-07-12)
 info: downloading component 'cargo'
   7.0 MiB /   7.0 MiB (100 %)   4.5 MiB/s in  1s ETA:  0s
@@ -118,9 +118,9 @@ info: installing component 'rust-std'
 info: installing component 'rustc'
  64.0 MiB /  64.0 MiB (100 %)  13.9 MiB/s in  4s ETA:  0s
 info: installing component 'rustfmt'
-info: default toolchain set to 'stable-x86_64-unknown-linux-gnu'
+info: default toolchain set to 'stable-aarch64-unknown-linux-gnu'
 
-  stable-x86_64-unknown-linux-gnu installed - rustc 1.71.0 (8ede3aae2 2023-07-12)
+  stable-aarch64-unknown-linux-gnu installed - rustc 1.71.0 (8ede3aae2 2023-07-12)
 
 
 Rust is installed now. Great!

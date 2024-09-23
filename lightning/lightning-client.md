@@ -219,12 +219,12 @@ ots --no-cache verify manifest-roasbeef-v$VERSION-beta.sig.ots -f manifest-roasb
 
 **Example** of expected output:
 
-<pre><code>> Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
-> Got 1 attestation(s) from https://btc.calendar.catallaxy.com
-> Got 1 attestation(s) from https://finney.calendar.eternitywall.com
-> Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
-> <a data-footnote-ref href="#user-content-fn-5">Success!</a> Bitcoin block <a data-footnote-ref href="#user-content-fn-6">765521 attests existence as of 2022-12-01 UTC</a>
-</code></pre>
+<pre><code>Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
+Got 1 attestation(s) from https://btc.calendar.catallaxy.com
+Got 1 attestation(s) from https://finney.calendar.eternitywall.com
+Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
+<strong><a data-footnote-ref href="#user-content-fn-5">Success!</a> Bitcoin block <a data-footnote-ref href="#user-content-fn-6">765521 attests existence as of 2022-12-01 UTC</a>
+</strong></code></pre>
 
 {% code overflow="wrap" %}
 ```bash
@@ -234,11 +234,11 @@ ots --no-cache verify manifest-v$VERSION-beta.txt.ots -f manifest-v$VERSION-beta
 
 **Example** of expected output:
 
-<pre><code>> Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
-> Got 1 attestation(s) from https://btc.calendar.catallaxy.com
-> Got 1 attestation(s) from https://finney.calendar.eternitywall.com
-> Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
-> <a data-footnote-ref href="#user-content-fn-7">Success!</a> Bitcoin block <a data-footnote-ref href="#user-content-fn-8">829257 attests existence as of 2024-02-06 UTC</a>
+<pre><code>Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
+Got 1 attestation(s) from https://btc.calendar.catallaxy.com
+Got 1 attestation(s) from https://finney.calendar.eternitywall.com
+Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
+<a data-footnote-ref href="#user-content-fn-7">Success!</a> Bitcoin block <a data-footnote-ref href="#user-content-fn-8">829257 attests existence as of 2024-02-06 UTC</a>
 </code></pre>
 
 {% hint style="info" %}
@@ -248,15 +248,15 @@ Check that the date of the timestamp is close to the [release date](https://gith
 * Having verified the integrity and authenticity of the release binary, we can safely
 
 ```sh
-tar -xvf lnd-linux-arm64-v$VERSION-beta.tar.gz
+tar -xzvf lnd-linux-arm64-v$VERSION-beta.tar.gz
 ```
 
 **Example** of expected output:
 
 ```
-> lnd-linux-arm64-v0.17.1-beta/lnd
-> lnd-linux-arm64-v0.17.1-beta/lncli
-> lnd-linux-arm64-v0.17.1-beta/
+lnd-linux-arm64-v0.17.1-beta/lnd
+lnd-linux-arm64-v0.17.1-beta/lncli
+lnd-linux-arm64-v0.17.1-beta/
 ```
 
 ### Binaries installation

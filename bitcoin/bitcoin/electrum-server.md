@@ -159,12 +159,12 @@ curl https://raw.githubusercontent.com/Electron-Cash/keys-n-hashes/master/pubkey
 Expected output:
 
 <pre><code><strong>[...]
-</strong><strong>>     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-</strong>>                                 Dload  Upload   Total   Spent    Left  Speed
-> 100  2328  100  2328    0     0  16043      0 --:--:-- --:--:-- --:--:-- 15945
-> gpg: key 21810A542031C02C: "Calin Culianu (NilacTheGrim) &#x3C;calin.culianu@gmail.com>" <a data-footnote-ref href="#user-content-fn-2">imported</a>
-> gpg: Total number processed: 1
-> gpg:              unchanged: 1
+</strong>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2328  100  2328    0     0   8449      0 --:--:-- --:--:-- --:--:--  8434
+gpg: key 21810A542031C02C: "Calin Culianu (NilacTheGrim) &#x3C;calin.culianu@gmail.com>" imported
+gpg: Total number processed: 1
+gpg:              unchanged: 1
 [...]
 </code></pre>
 
@@ -177,10 +177,10 @@ gpg --verify Fulcrum-$VERSION-shasums.txt.asc
 Expected output:
 
 <pre data-overflow="wrap"><code>[...]
-> gpg: <a data-footnote-ref href="#user-content-fn-3">Good signature</a> from "Calin Culianu (NilacTheGrim) &#x3C;calin.culianu@gmail.com>" [unknown]
-> gpg: WARNING: This key is not certified with a trusted signature!
-> gpg: There is no indication that the signature belongs to the owner.
-> Primary key fingerprint: D465 135F 97D0 047E 18E9  9DC3 2181 0A54 2031 C02C
+gpg: <a data-footnote-ref href="#user-content-fn-2">Good signature</a> from "Calin Culianu (NilacTheGrim) &#x3C;calin.culianu@gmail.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg: There is no indication that the signature belongs to the owner.
+Primary key fingerprint: D465 135F 97D0 047E 18E9  9DC3 2181 0A54 2031 C02C
 [...]
 </code></pre>
 
@@ -200,7 +200,7 @@ grep 'arm64-linux.tar.gz' Fulcrum-$VERSION-shasums.txt | sha256sum --check
 * Extract
 
 ```sh
-tar -xvf Fulcrum-$VERSION-arm64-linux.tar.gz
+tar -xzvf Fulcrum-$VERSION-arm64-linux.tar.gz
 ```
 
 **Example** of expected output:
@@ -236,8 +236,8 @@ Fulcrum --version
 **Example** of expected output:
 
 ```
-> Fulcrum 1.9.1 (Release 713d2d7)
-> compiled: gcc 8.4.0
+Fulcrum 1.9.1 (Release 713d2d7)
+compiled: gcc 8.4.0
 [...]
 ```
 
@@ -307,7 +307,7 @@ drwxr-xr-x 6 root    root    4096 Jul 15 07:56 ..
 -rw------- 1 fulcrum fulcrum   24 Jul 15 07:59 .bash_history
 -rw-r--r-- 1 fulcrum fulcrum  220 Jul 15 07:56 .bash_logout
 -rw-r--r-- 1 fulcrum fulcrum 3771 Jul 15 07:56 .bashrc
-lrwxrwxrwx 1 fulcrum fulcrum   13 Jul 15 07:59 <a data-footnote-ref href="#user-content-fn-4">.fulcrum -> /data/fulcrum</a>
+lrwxrwxrwx 1 fulcrum fulcrum   13 Jul 15 07:59 <a data-footnote-ref href="#user-content-fn-3">.fulcrum -> /data/fulcrum</a>
 -rw-r--r-- 1 fulcrum fulcrum  807 Jul 15 07:56 .profile
 </code></pre>
 
@@ -379,7 +379,7 @@ peering = false
 
 # Set utxo-cache according to your device performance,
 # recommended: utxo-cache=1/2 x RAM available e.g: 4GB RAM -> utxo-cache=2000
-utxo-cache = <a data-footnote-ref href="#user-content-fn-5">2000</a>
+utxo-cache = <a data-footnote-ref href="#user-content-fn-4">2000</a>
 
 # Banner
 banner = /data/fulcrum/fulcrum-banner.txt
@@ -847,8 +847,6 @@ Filename            Type                Size           Used    Priority
 
 [^2]: Check this
 
-[^3]: Check this
+[^3]: Symbolic link
 
-[^4]: Symbolic link
-
-[^5]: Accommodate this
+[^4]: Accommodate this
