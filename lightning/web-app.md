@@ -367,7 +367,7 @@ cp .env .env.local
 nano .env.local
 ```
 
-* Edit the following line to match with the next. Save and exit
+* Uncomment and edit the following line to match with the next. Save and exit
 
 ```
 ACCOUNT_CONFIG_PATH='/home/thunderhub/thunderhub/thubConfig.yaml'
@@ -383,7 +383,7 @@ nano thubConfig.yaml
 
 <pre><code>masterPassword: '<a data-footnote-ref href="#user-content-fn-1">PASSWORD</a>'
 accounts:
-  - name: 'MiniBolt'
+  - name: 'RaMiX'
     serverUrl: '127.0.0.1:10009'
     macaroonPath: '/data/lnd/data/chain/bitcoin/mainnet/admin.macaroon'
     certificatePath: '/data/lnd/tls.cert'
@@ -478,7 +478,7 @@ journalctl -fu thunderhub
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) straight forward (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) straight forward (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
 
 * Start the service
 
@@ -596,7 +596,7 @@ Jun 28 23:35:54 ramix npm[513313]: (Use `node --trace-deprecation ...` to show w
 {% hint style="info" %}
 > Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the ThunderHub web interface
 
-> Now point your browser to `https://minibolt.local:4002` or the IP address (e.g. `https://192.168.x.xxx:4002`). You should see the home page of ThunderHub
+> Now point your browser to `https://ramix.local:4002` or the IP address (e.g. `https://192.168.x.xxx:4002`). You should see the home page of ThunderHub
 {% endhint %}
 
 * Ensure the service is working and listening at the default `3000` port and the HTTPS `4002` port

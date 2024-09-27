@@ -29,7 +29,7 @@ Run your private blockchain explorer with [BTC RPC Explorer](https://github.com/
 
 ## Introduction
 
-After the MiniBolt runs your own fully validated node, and even acts as a backend for your hardware wallet with [Fulcrum](electrum-server.md), the last important puzzle piece to improve privacy and financial sovereignty is your own Blockchain Explorer. It lets you query transactions, addresses, and blocks of your choice. You no longer need to leak information by querying a third-party blockchain explorer that can be used to get your location and cluster addresses.
+After the RaMiX runs your own fully validated node, and even acts as a backend for your hardware wallet with [Fulcrum](electrum-server.md), the last important puzzle piece to improve privacy and financial sovereignty is your own Blockchain Explorer. It lets you query transactions, addresses, and blocks of your choice. You no longer need to leak information by querying a third-party blockchain explorer that can be used to get your location and cluster addresses.
 
 [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) provides a lightweight and easy to use web interface to accomplish just that. It's a database-free, self-hosted Bitcoin blockchain explorer, querying [Bitcoin Core](bitcoin-client.md) and [Fulcrum](electrum-server.md) via RPC.
 
@@ -120,8 +120,8 @@ sudo nginx -t
 Expected output:
 
 ```
-> nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-> nginx: configuration file /etc/nginx/nginx.conf test is successful
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
 * Reload the Nginx configuration to apply changes
@@ -209,14 +209,14 @@ Installation can take some time, be patient. There might be a lot of confusing o
 **Example** of expected output:
 
 ```
-> Installed to /home/btcrpcexplorer/btc-rpc-explorer/node_modules/node-sass/vendor/linux-amd64-83/binding.node
-> added 480 packages from 307 contributors and audited 482 packages in 570.14s
->
-> 43 packages are looking for funding
->   run `npm fund` for details
->
-> found 12 vulnerabilities (8 moderate, 4 high)
->   run `npm audit fix` to fix them, or `npm audit` for details
+Installed to /home/btcrpcexplorer/btc-rpc-explorer/node_modules/node-sass/vendor/linux-arm64/binding.node
+added 480 packages from 307 contributors and audited 482 packages in 570.14s
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 12 vulnerabilities (8 moderate, 4 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
 ```
 
 * Check the correct installation by requesting the version
@@ -282,7 +282,7 @@ exit
 
 ### Create systemd service
 
-Now we'll make sure our blockchain explorer starts as a service on the PC so that it's always running.
+Now we'll make sure our blockchain explorer starts as a service on the Raspberry Pi so that it's always running.
 
 * As user `admin`, create the service file
 
@@ -325,7 +325,7 @@ WantedBy=multi-user.target
 sudo systemctl enable btcrpcexplorer
 ```
 
-* Prepare "btcrpcexplorer" monitoring by the systemd journal and check log logging output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare "btcrpcexplorer" monitoring by the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl-C`
 
 ```sh
 journalctl -fu btcrpcexplorer
@@ -333,7 +333,7 @@ journalctl -fu btcrpcexplorer
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
 
 * Start the service
 
@@ -346,71 +346,71 @@ sudo systemctl start btcrpcexplorer
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu btcrpcexplorer</code> ⬇️</summary>
 
 ```
-Jul 18 11:08:29 minibolt systemd[1]: Started BTC RPC Explorer.
-Jul 18 11:08:30 minibolt npm[140449]: > btc-rpc-explorer@3.4.0 start
-Jul 18 11:08:30 minibolt npm[140449]: > node ./bin/www
-Jul 18 11:08:30 minibolt npm[140461]: 2023-07-18T11:08:30.765Z btcexp:app Searching for config files...
-Jul 18 11:08:30 minibolt npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file not found at /home/btcrpcexplorer/.config/btc-rpc-explorer.env, continuing...
-Jul 18 11:08:30 minibolt npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file not found at /etc/btc-rpc-explorer/.env, continuing...
-Jul 18 11:08:30 minibolt npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file found at /home/btcrpcexplorer/btc-rpc-explorer/.env, loading...
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.086Z btcexp:app Default cacheId '3.4.0'
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.122Z btcexp:app Enabling view caching (performance will be improved but template edits will not be reflected)
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.133Z btcexp:app Session config: {"secret":"*****","resave":false,"saveUninitialized":true,"cookie":{"secure":false}}
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.142Z btcexp:app Environment(development) - Node: v18.16.1, Platform: linux, Versions: {"node":"18.16.1","acorn":"8.8.2","ada":"1.0.4","ares":"1.19.1","brotli":"1.0.9","cldr":"42.0","icu":"72.1","llhttp":"6.0.11","modules":"108","napi":"8","nghttp2":"1.52.0","nghttp3":"0.7.0","ngtcp2":"0.8.1","openssl":"3.0.9+quic","simdutf":"3.2.2","tz":"2022g","undici":"5.21.0","unicode":"15.0","uv":"1.44.2","uvwasi":"0.0.15","v8":"10.2.154.26-node.26","zlib":"1.2.13"}
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.193Z btcexp:app Using sourcecode metadata as cacheId: '2023-06-14-bfc9f97715'
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.193Z btcexp:app Starting BTC RPC Explorer, v3.4.0 (commit: 'bfc9f97715', date: 2023-06-14) at http://127.0.0.1:3002/
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.194Z btcexp:app RPC Credentials: {
-Jul 18 11:08:33 minibolt npm[140461]:     "host": "127.0.0.1",
-Jul 18 11:08:33 minibolt npm[140461]:     "port": "8332",
-Jul 18 11:08:33 minibolt npm[140461]:     "authType": "cookie",
-Jul 18 11:08:33 minibolt npm[140461]:     "username": "__cookie__",
-Jul 18 11:08:33 minibolt npm[140461]:     "password": "*****",
-Jul 18 11:08:33 minibolt npm[140461]:     "authCookieFilepath": "/data/bitcoin/.cookie",
-Jul 18 11:08:33 minibolt npm[140461]:     "timeout": 5000
-Jul 18 11:08:33 minibolt npm[140461]: }
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.194Z btcexp:app Connecting to RPC node at [127.0.0.1]:8332
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.195Z btcexp:app RPC Connection properties: {
-Jul 18 11:08:33 minibolt npm[140461]:     "host": "127.0.0.1",
-Jul 18 11:08:33 minibolt npm[140461]:     "port": "8332",
-Jul 18 11:08:33 minibolt npm[140461]:     "username": "__cookie__",
-Jul 18 11:08:33 minibolt npm[140461]:     "password": "*****",
-Jul 18 11:08:33 minibolt npm[140461]:     "timeout": 5000
-Jul 18 11:08:33 minibolt npm[140461]: }
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.196Z btcexp:app RPC authentication is cookie based; watching for changes to the auth cookie file...
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.198Z btcexp:app Verifying RPC connection...
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.201Z btcexp:app Loading mining pools config
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app RPC Connected: version=250000 subversion=/Satoshi:25.0.0/, parsedVersion(used for RPC versioning)=25.0.0, protocolversion=70016, chain=main, services=[NETWORK, BLOOM, WITNESS, COMPACT_FILTERS, NETWORK_LIMITED]
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app Loading historical data for chain=main
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app Loading holiday data
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.370Z btcexp:app txindex check: trying getindexinfo
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.371Z btcexp:app ATH difficulty: 53911173001054.59
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.376Z btcexp:app txindex check: getindexinfo={"txindex":{"synced":true,"best_block_height":799232},"coinstatsindex":{"synced":true,"best_block_height":799232},"basic block filter index":{"synced":true,"best_block_height":799232}}
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.377Z btcexp:app txindex check: available!
-Jul 18 11:08:33 minibolt npm[140461]: 2023-07-18T11:08:33.426Z btcexp:app Refreshed utxo summary: {"height":799232,"bestblock":"00000000000000000000882023825176273fb8ae3ba10ab5e7bccb3f1d7e7a49","txouts":110323290,"bogosize":8350852748,"muhash":"a4a8e5dd85de604fe5c05ef0018b4eec06f5cf475ed565fd7334828759f365b5","total_amount":19432486.84621219,"total_unspendable_amount":219.40378781,"block_info":{"prevout_spent":4444.44336697,"coinbase":6.32505263,"new_outputs_ex_coinbase":4444.36831434,"unspendable":0,"unspendables":{"genesis_block":0,"bip30":0,"scripts":0,"unclaimed_rewards":0}},"usingCoinStatsIndex":true,"lastUpdated":1689678513425}
-Jul 18 11:08:35 minibolt npm[140461]: 2023-07-18T11:08:35.135Z btcexp:app Network volume: {"d1":{"amt":"947555.33623057","blocks":159,"startBlock":799232,"endBlock":799074,"startTime":1689678236,"endTime":1689592319}}
+Jul 18 11:08:29 ramix systemd[1]: Started BTC RPC Explorer.
+Jul 18 11:08:30 ramix npm[140449]: > btc-rpc-explorer@3.4.0 start
+Jul 18 11:08:30 ramix npm[140449]: > node ./bin/www
+Jul 18 11:08:30 ramix npm[140461]: 2023-07-18T11:08:30.765Z btcexp:app Searching for config files...
+Jul 18 11:08:30 ramix npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file not found at /home/btcrpcexplorer/.config/btc-rpc-explorer.env, continuing...
+Jul 18 11:08:30 ramix npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file not found at /etc/btc-rpc-explorer/.env, continuing...
+Jul 18 11:08:30 ramix npm[140461]: 2023-07-18T11:08:30.767Z btcexp:app Config file found at /home/btcrpcexplorer/btc-rpc-explorer/.env, loading...
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.086Z btcexp:app Default cacheId '3.4.0'
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.122Z btcexp:app Enabling view caching (performance will be improved but template edits will not be reflected)
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.133Z btcexp:app Session config: {"secret":"*****","resave":false,"saveUninitialized":true,"cookie":{"secure":false}}
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.142Z btcexp:app Environment(development) - Node: v18.16.1, Platform: linux, Versions: {"node":"18.16.1","acorn":"8.8.2","ada":"1.0.4","ares":"1.19.1","brotli":"1.0.9","cldr":"42.0","icu":"72.1","llhttp":"6.0.11","modules":"108","napi":"8","nghttp2":"1.52.0","nghttp3":"0.7.0","ngtcp2":"0.8.1","openssl":"3.0.9+quic","simdutf":"3.2.2","tz":"2022g","undici":"5.21.0","unicode":"15.0","uv":"1.44.2","uvwasi":"0.0.15","v8":"10.2.154.26-node.26","zlib":"1.2.13"}
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.193Z btcexp:app Using sourcecode metadata as cacheId: '2023-06-14-bfc9f97715'
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.193Z btcexp:app Starting BTC RPC Explorer, v3.4.0 (commit: 'bfc9f97715', date: 2023-06-14) at http://127.0.0.1:3002/
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.194Z btcexp:app RPC Credentials: {
+Jul 18 11:08:33 ramix npm[140461]:     "host": "127.0.0.1",
+Jul 18 11:08:33 ramix npm[140461]:     "port": "8332",
+Jul 18 11:08:33 ramix npm[140461]:     "authType": "cookie",
+Jul 18 11:08:33 ramix npm[140461]:     "username": "__cookie__",
+Jul 18 11:08:33 ramix npm[140461]:     "password": "*****",
+Jul 18 11:08:33 ramix npm[140461]:     "authCookieFilepath": "/data/bitcoin/.cookie",
+Jul 18 11:08:33 ramix npm[140461]:     "timeout": 5000
+Jul 18 11:08:33 ramix npm[140461]: }
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.194Z btcexp:app Connecting to RPC node at [127.0.0.1]:8332
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.195Z btcexp:app RPC Connection properties: {
+Jul 18 11:08:33 ramix npm[140461]:     "host": "127.0.0.1",
+Jul 18 11:08:33 ramix npm[140461]:     "port": "8332",
+Jul 18 11:08:33 ramix npm[140461]:     "username": "__cookie__",
+Jul 18 11:08:33 ramix npm[140461]:     "password": "*****",
+Jul 18 11:08:33 ramix npm[140461]:     "timeout": 5000
+Jul 18 11:08:33 ramix npm[140461]: }
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.196Z btcexp:app RPC authentication is cookie based; watching for changes to the auth cookie file...
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.198Z btcexp:app Verifying RPC connection...
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.201Z btcexp:app Loading mining pools config
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app RPC Connected: version=250000 subversion=/Satoshi:25.0.0/, parsedVersion(used for RPC versioning)=25.0.0, protocolversion=70016, chain=main, services=[NETWORK, BLOOM, WITNESS, COMPACT_FILTERS, NETWORK_LIMITED]
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app Loading historical data for chain=main
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.365Z btcexp:app Loading holiday data
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.370Z btcexp:app txindex check: trying getindexinfo
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.371Z btcexp:app ATH difficulty: 53911173001054.59
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.376Z btcexp:app txindex check: getindexinfo={"txindex":{"synced":true,"best_block_height":799232},"coinstatsindex":{"synced":true,"best_block_height":799232},"basic block filter index":{"synced":true,"best_block_height":799232}}
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.377Z btcexp:app txindex check: available!
+Jul 18 11:08:33 ramix npm[140461]: 2023-07-18T11:08:33.426Z btcexp:app Refreshed utxo summary: {"height":799232,"bestblock":"00000000000000000000882023825176273fb8ae3ba10ab5e7bccb3f1d7e7a49","txouts":110323290,"bogosize":8350852748,"muhash":"a4a8e5dd85de604fe5c05ef0018b4eec06f5cf475ed565fd7334828759f365b5","total_amount":19432486.84621219,"total_unspendable_amount":219.40378781,"block_info":{"prevout_spent":4444.44336697,"coinbase":6.32505263,"new_outputs_ex_coinbase":4444.36831434,"unspendable":0,"unspendables":{"genesis_block":0,"bip30":0,"scripts":0,"unclaimed_rewards":0}},"usingCoinStatsIndex":true,"lastUpdated":1689678513425}
+Jul 18 11:08:35 ramix npm[140461]: 2023-07-18T11:08:35.135Z btcexp:app Network volume: {"d1":{"amt":"947555.33623057","blocks":159,"startBlock":799232,"endBlock":799074,"startTime":1689678236,"endTime":1689592319}}
 ```
 
 </details>
 
 {% hint style="info" %}
-> Now point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://minibolt.local:4000"` (or your node IP address) like `"https://192.168.x.xxx:4000"`. You should see the home page of BTC RPC Explorer
+> Now point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:4000"` (or your node IP address) like `"https://192.168.x.xxx:4000"`. You should see the home page of BTC RPC Explorer
 
 > Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g. https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the Block Explorer web interface
 
-> If you see a lot of errors on the MiniBolt command line, then Bitcoin Core might still be indexing the blockchain. You need to wait until reindexing is done before using the BTC RPC Explorer
+> If you see a lot of errors on the RaMiX command line, then Bitcoin Core might still be indexing the blockchain. You need to wait until reindexing is done before using the BTC RPC Explorer
 {% endhint %}
 
 * Ensure the service is working and listening at the default `3002` port and the HTTPS `4000` port
 
 ```bash
-sudo ss -tulpn | grep 'LISTEN.*\(4000\|3002\)'
+sudo ss -tulpn | grep -E '(:4000|:3002)'
 ```
 
 Expected output:
 
 ```
-> tcp   LISTEN 0      511          0.0.0.0:4000       0.0.0.0:*    users:(("nginx",pid=992796,fd=6),("nginx",pid=992795,fd=6),("nginx",pid=992794,fd=6),("nginx",pid=992793,fd=6),("nginx",pid=992792,fd=6))
-> tcp   LISTEN 0      511        127.0.0.1:3002       0.0.0.0:*    users:(("node",pid=1241652,fd=26))
+tcp   LISTEN 0      511          0.0.0.0:4000       0.0.0.0:*    users:(("nginx",pid=992796,fd=6),("nginx",pid=992795,fd=6),("nginx",pid=992794,fd=6),("nginx",pid=992793,fd=6),("nginx",pid=992792,fd=6))
+tcp   LISTEN 0      511        127.0.0.1:3002       0.0.0.0:*    users:(("node",pid=1241652,fd=26))
 ```
 
 {% hint style="success" %}
@@ -527,7 +527,7 @@ RPC Terminal / Browser require authentication. Set an authentication password vi
 ```
 {% endcode %}
 
-\--> Remember to give them the **`password [D]`** if you added password protection in the reference step
+\-> Remember to give them the **`password [D]`** if you added password protection in the reference step
 {% endhint %}
 
 {% hint style="info" %}
@@ -540,7 +540,7 @@ With DEMO mode enabled, the user will see the next message:
 
 ### Remote access over Tor
 
-Do you want to access your personal blockchain explorer remotely? You can easily do so by adding a Tor hidden service on the MiniBolt and accessing the BTC RPC Explorer with the Tor browser from any device.
+Do you want to access your personal blockchain explorer remotely? You can easily do so by adding a Tor hidden service on the RaMiX and accessing the BTC RPC Explorer with the Tor browser from any device.
 
 * With the user `admin` , edit the `torrc` file
 
@@ -573,7 +573,7 @@ sudo cat /var/lib/tor/hidden_service_btcrpcexplorer/hostname
 **Example** of expected output:
 
 ```
-> abcdefg..............xyz.onion
+abcdefg..............xyz.onion
 ```
 
 * With the [Tor browser](https://www.torproject.org), you can access this onion address from any device
@@ -719,8 +719,8 @@ sudo nginx -t
 Expected output:
 
 ```
-> nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-> nginx: configuration file /etc/nginx/nginx.conf test is successful
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
 * Reload the Nginx configuration to apply changes
@@ -738,7 +738,7 @@ sudo ufw status numbered
 Expected output:
 
 ```
-> [Y] 4000       ALLOW IN    Anywhere      # allow BTC RPC Explorer SSL from anywhere
+[Y] 4000       ALLOW IN    Anywhere      # allow BTC RPC Explorer SSL from anywhere
 ```
 
 * Delete the rule with the correct number and confirm with "`yes`"

@@ -176,7 +176,7 @@ The `channel.backup` file is very small in size (<<1 MB) so even the smallest US
 ### Formatting
 
 * To ensure that the storage device does not contain malicious code, we will format it on our local computer (select a name easy to recognize like "SCB backup" and choose the FAT filesystem). The following external guides explain how to format your USB thumbdrive or microSD card on [Windows](https://www.techsolutions.support.com/how-to/how-to-format-a-usb-drive-in-windows-12893), [macOS](https://www.techsolutions.support.com/how-to/how-to-format-a-usb-drive-on-a-mac-12899), or [Linux](https://phoenixnap.com/kb/linux-format-usb).
-* Once formatted, plug the storage device into your MiniBolt.
+* Once formatted, plug the storage device into your RaMiX.
 
 ### Set up a mounting point for the storage device
 
@@ -300,23 +300,23 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 ```
-> ssh-rsa 1234abcd... lnd@minibolt
+> ssh-rsa 1234abcd... lnd@ramix
 ```
 
 * Go back to the GitHub repository webpage
   * Click on "Settings", then "Deploy keys", then "Add deploy key"
   * Type a title (e.g. "SCB")
-  * In the "Key" box, copy/paste the string generated above starting (e.g. `ssh-rsa 1234abcd... lnd@minibolt`)
+  * In the "Key" box, copy/paste the string generated above starting (e.g. `ssh-rsa 1234abcd... lnd@ramix`)
   * Tick the box "`Allow write access`" to enable this key to push changes to the repository
   * Click "Add key"
 * Set up global Git configuration values (the name and email are required but can be dummy values)
 
 ```sh
-git config user.name "MiniBolt"
+git config user.name "RaMiX"
 ```
 
 ```bash
-git config user.email "minibolt@dummyemail.com"
+git config user.email "ramix@dummyemail.com"
 ```
 
 * **(Optional)** Add this step if you want to preserve your privacy with GitHub servers if not, jump to the next step directly -> (`cd ~/.lnd`)
@@ -416,7 +416,7 @@ journalctl -fu scb-backup
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
 
 * Start the service
 
@@ -427,8 +427,8 @@ sudo systemctl start scb-backup
 **Example** of expected output on the first SSH session with `journalctl -fu scb-backup` ⬇️
 
 ```
-Jul 25 17:31:54 minibolt systemd[1]: Started SCB Backup.
-Jul 25 17:31:54 minibolt scb-backup[401705]: Watches established.
+Jul 25 17:31:54 ramix systemd[1]: Started SCB Backup.
+Jul 25 17:31:54 ramix scb-backup[401705]: Watches established.
 ```
 
 * The automated backup is now up and running. To test if everything works, we now cause the default `channel.backup` file to change. Then we check if a copy gets stored at the intended backup location(s). Simulate a `channel.backup` file change with the `touch` command (don't worry! It simply updates the timestamp of the file but not its content)
@@ -469,12 +469,26 @@ Jul 25 17:32:34 minibolt scb-backup[401749]: Watches established.
 If you get the next error:
 
 ```
-Nov 05 23:18:43 minibolt scb-backup[1710686]: Pushing changes to remote repository...
-Nov 05 23:18:43 minibolt scb-backup[1711268]: error: src refspec main does not match any
-Nov 05 23:18:43 minibolt scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
+Nov 05 23:18:43 ramix scb-backup[1710686]: Pushing changes to remote repository...
+Nov 05 23:18:43 ramix scb-backup[1711268]: error: src refspec main does not match any
+Nov 05 23:18:43 ramix scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
 ```
 
-\-> Replace the line 41 ` git push "--set-upstream origin`` `` `**`main"`** to "` git push --set-upstream origin`` `` `**`master"`** [in the script](channel-backup.md#create-script) , and try again
+\-> Edit line 41  [in the script](channel-backup.md#create-script) with the following command:&#x20;
+
+```bash
+sudo nano +41 /usr/local/bin/scb-backup --linenumbers
+```
+
+Replace the content: `"git push --set-upstream origin`**`main`**`"`
+
+To:`"git push --set-upstream origin`**`master`**`"`
+
+And finaly try again with the following command:&#x20;
+
+```bash
+sudo touch /data/lnd/data/chain/bitcoin/mainnet/channel.backup
+```
 {% endhint %}
 
 * **If you enabled the local backup**, check the content of your local storage device. It should now contain a backup file with the date/time corresponding to the test made just above

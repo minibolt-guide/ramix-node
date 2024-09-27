@@ -193,7 +193,7 @@ lndconnect --host=10.0.0.1 --port=8080 --nocert
 {% endtab %}
 
 {% tab title="Local network connection" %}
-Set the `--host` parameter with the IP address of MiniBolt. e.g 192.168.1.10
+Set the `--host` parameter with the IP address of RaMiX. e.g 192.168.1.10
 
 ```bash
 lndconnect --host=192.168.X.XXX --port=8080
@@ -217,7 +217,7 @@ On Android, you can get Zeus from [Google Play](https://play.google.com/store/ap
 
 * Open Zeus and tap on **"SCAN LNDCONNECT CONFIG"** and, if prompted, allow Zeus to use the camera
 * Scan the QR code generated earlier
-* Enter a Nickname for your node (e.g. "MiniBolt LN")
+* Enter a Nickname for your node (e.g. "RaMiX LN")
 
 {% hint style="info" %}
 If you will use the Tor connection hit on the switch **"Use Tor"**

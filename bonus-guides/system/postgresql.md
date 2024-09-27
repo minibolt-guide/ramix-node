@@ -98,7 +98,7 @@ journalctl -fu postgresql
 **Example** of expected output:
 
 ```
-May 31 13:51:11 minibolt systemd[1]: Finished PostgreSQL RDBMS.
+May 31 13:51:11 ramix systemd[1]: Finished PostgreSQL RDBMS.
 ```
 
 * And the sub-instance and specific cluster logs. You can exit monitoring at any time with `Ctrl-C`
@@ -110,8 +110,8 @@ journalctl -fu postgresql@16-main
 **Example** of expected output:
 
 ```
-May 31 13:51:18 minibolt systemd[1]: Starting PostgreSQL Cluster 16-main...
-May 31 13:51:21 minibolt systemd[1]: Started PostgreSQL Cluster 16-main.
+May 31 13:51:18 ramix systemd[1]: Starting PostgreSQL Cluster 16-main...
+May 31 13:51:21 ramix systemd[1]: Started PostgreSQL Cluster 16-main.
 ```
 
 ### Create data folder
@@ -198,10 +198,10 @@ journalctl -fu postgresql
 Expected output:
 
 ```
-Nov 08 11:51:10 minibolt systemd[1]: Stopped PostgreSQL RDBMS.
-Nov 08 11:51:10 minibolt systemd[1]: Stopping PostgreSQL RDBMS...
-Nov 08 11:51:13 minibolt systemd[1]: Starting PostgreSQL RDBMS...
-Nov 08 11:51:13 minibolt systemd[1]: Finished PostgreSQL RDBMS.
+Nov 08 11:51:10 ramix systemd[1]: Stopped PostgreSQL RDBMS.
+Nov 08 11:51:10 ramix systemd[1]: Stopping PostgreSQL RDBMS...
+Nov 08 11:51:13 ramix systemd[1]: Starting PostgreSQL RDBMS...
+Nov 08 11:51:13 ramix systemd[1]: Finished PostgreSQL RDBMS.
 ```
 
 * You can monitor the PostgreSQL sub-instance by the systemd journal and check log output. You can exit monitoring at any time with `Ctrl-C`
@@ -213,12 +213,12 @@ journalctl -fu postgresql@16-main
 **Example** of the expected output:
 
 ```
-Nov 08 11:51:10 minibolt systemd[1]: Stopping PostgreSQL Cluster 16-main...
-Nov 08 11:51:11 minibolt systemd[1]: postgresql@16-main.service: Succeeded.
-Nov 08 11:51:11 minibolt systemd[1]: Stopped PostgreSQL Cluster 16-main.
-Nov 08 11:51:11 minibolt systemd[1]: postgresql@16-main.service: Consumed 1h 10min 8.677s CPU time.
-Nov 08 11:51:11 minibolt systemd[1]: Starting PostgreSQL Cluster 16-main...
-Nov 08 11:51:13 minibolt systemd[1]: Started PostgreSQL Cluster 16-main.
+Nov 08 11:51:10 ramix systemd[1]: Stopping PostgreSQL Cluster 16-main...
+Nov 08 11:51:11 ramix systemd[1]: postgresql@16-main.service: Succeeded.
+Nov 08 11:51:11 ramix systemd[1]: Stopped PostgreSQL Cluster 16-main.
+Nov 08 11:51:11 ramix systemd[1]: postgresql@16-main.service: Consumed 1h 10min 8.677s CPU time.
+Nov 08 11:51:11 ramix systemd[1]: Starting PostgreSQL Cluster 16-main...
+Nov 08 11:51:13 ramix systemd[1]: Started PostgreSQL Cluster 16-main.
 ```
 
 {% hint style="info" %}

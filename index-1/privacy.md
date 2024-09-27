@@ -131,7 +131,7 @@ sudo systemctl reload tor
 * Ensure that the Tor service is working and listening at the default ports `9050` and `9051` on the localhost (127.0.0.1)
 
 ```sh
-sudo ss -tulpn | grep LISTEN | grep tor
+sudo ss -tulpn | grep tor
 ```
 
 <details>
@@ -156,28 +156,28 @@ journalctl -fu tor@default
 <summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
-Dec 11 10:47:04 minibolt Tor[1065]: Tor 0.4.7.11 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Dec 11 10:47:04 minibolt Tor[1065]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Dec 11 10:47:04 minibolt Tor[1065]: Read configuration file "/usr/share/tor/tor-service-defaults-torrc".
-Dec 11 10:47:04 minibolt Tor[1065]: Read configuration file "/etc/tor/torrc".
-Dec 11 10:47:04 minibolt Tor[1065]: Based on detected system memory, MaxMemInQueues is set to 2751 MB. You can override this by setting MaxMemInQueues by hand.
-Dec 11 10:47:04 minibolt Tor[1065]: Opening Socks listener on 127.0.0.1:9050
-Dec 11 10:47:04 minibolt Tor[1065]: Opened Socks listener connection (ready) on 127.0.0.1:9050
-Dec 11 10:47:04 minibolt Tor[1065]: Opening Control listener on 127.0.0.1:9051
-Dec 11 10:47:04 minibolt Tor[1065]: Opened Control listener connection (ready) on 127.0.0.1:9051
+Dec 11 10:47:04 ramix Tor[1065]: Tor 0.4.7.11 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Dec 11 10:47:04 ramix Tor[1065]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Dec 11 10:47:04 ramix Tor[1065]: Read configuration file "/usr/share/tor/tor-service-defaults-torrc".
+Dec 11 10:47:04 ramix Tor[1065]: Read configuration file "/etc/tor/torrc".
+Dec 11 10:47:04 ramix Tor[1065]: Based on detected system memory, MaxMemInQueues is set to 2751 MB. You can override this by setting MaxMemInQueues by hand.
+Dec 11 10:47:04 ramix Tor[1065]: Opening Socks listener on 127.0.0.1:9050
+Dec 11 10:47:04 ramix Tor[1065]: Opened Socks listener connection (ready) on 127.0.0.1:9050
+Dec 11 10:47:04 ramix Tor[1065]: Opening Control listener on 127.0.0.1:9051
+Dec 11 10:47:04 ramix Tor[1065]: Opened Control listener connection (ready) on 127.0.0.1:9051
 [...]
-Dec 11 10:47:36 minibolt Tor[1065]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
-Dec 11 10:47:37 minibolt Tor[1065]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
-Dec 11 10:47:37 minibolt Tor[1065]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
-Dec 11 10:47:37 minibolt Tor[1065]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
-Dec 11 10:47:37 minibolt Tor[1065]: Bootstrapped 100% (done): Done
-Nov 13 23:19:20 minibolt systemd[1]: Reloading tor@default.service - Anonymizing overlay network for TCP...
-Nov 13 23:19:20 minibolt Tor[27155]: Received reload signal (hup). Reloading config and resetting internal state.
-Nov 13 23:19:20 minibolt Tor[27155]: Read configuration file "/usr/share/tor/tor-service-defaults-torrc".
-Nov 13 23:19:20 minibolt Tor[27155]: Read configuration file "/etc/tor/torrc".
-Nov 13 23:19:20 minibolt Tor[27155]: Opening Control listener on 127.0.0.1:9051
-Nov 13 23:19:20 minibolt Tor[27155]: Opened Control listener connection (ready) on 127.0.0.1:9051
-Nov 13 23:19:20 minibolt systemd[1]: Reloaded tor@default.service - Anonymizing overlay network for TCP.
+Dec 11 10:47:36 ramix Tor[1065]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
+Dec 11 10:47:37 ramix Tor[1065]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
+Dec 11 10:47:37 ramix Tor[1065]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
+Dec 11 10:47:37 ramix Tor[1065]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
+Dec 11 10:47:37 ramix Tor[1065]: Bootstrapped 100% (done): Done
+Nov 13 23:19:20 ramix systemd[1]: Reloading tor@default.service - Anonymizing overlay network for TCP...
+Nov 13 23:19:20 ramix Tor[27155]: Received reload signal (hup). Reloading config and resetting internal state.
+Nov 13 23:19:20 ramix Tor[27155]: Read configuration file "/usr/share/tor/tor-service-defaults-torrc".
+Nov 13 23:19:20 ramix Tor[27155]: Read configuration file "/etc/tor/torrc".
+Nov 13 23:19:20 ramix Tor[27155]: Opening Control listener on 127.0.0.1:9051
+Nov 13 23:19:20 ramix Tor[27155]: Opened Control listener connection (ready) on 127.0.0.1:9051
+Nov 13 23:19:20 ramix systemd[1]: Reloaded tor@default.service - Anonymizing overlay network for TCP.
 
 ```
 
@@ -252,7 +252,7 @@ i2pd --version
 * Ensure that the i2pd service is working and listening at the default ports
 
 ```sh
-sudo ss -tulpn | grep LISTEN | grep i2pd
+sudo ss -tulpn | grep i2pd
 ```
 
 <details>
@@ -260,12 +260,14 @@ sudo ss -tulpn | grep LISTEN | grep i2pd
 <summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
-tcp   LISTEN 0      4096       127.0.0.1:4444       0.0.0.0:*    users:(("i2pd",pid=17781,fd=32))
-tcp   LISTEN 0      4096       127.0.0.1:7070       0.0.0.0:*    users:(("i2pd",pid=17781,fd=22))
-tcp   LISTEN 0      4096       127.0.0.1:4447       0.0.0.0:*    users:(("i2pd",pid=17781,fd=33))
-tcp   LISTEN 0      4096        0.0.0.0:22848       0.0.0.0:*    users:(("i2pd",pid=17781,fd=17))
-tcp   LISTEN 0      4096       127.0.0.1:7656       0.0.0.0:*    users:(("i2pd",pid=17781,fd=41))
-tcp   LISTEN 0      4096       127.0.0.1:6668       0.0.0.0:*    users:(("i2pd",pid=17781,fd=37))
+udp   UNCONN 0      0              127.0.0.1:7655       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=45))
+udp   UNCONN 0      0                0.0.0.0:20003      0.0.0.0:*    users:(("i2pd",pid=1305094,fd=21))
+tcp   LISTEN 0      4096             0.0.0.0:20003      0.0.0.0:*    users:(("i2pd",pid=1305094,fd=20))
+tcp   LISTEN 0      4096           127.0.0.1:7656       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=44))
+tcp   LISTEN 0      4096           127.0.0.1:6668       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=40))
+tcp   LISTEN 0      4096           127.0.0.1:7070       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=25))
+tcp   LISTEN 0      4096           127.0.0.1:4444       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=35))
+tcp   LISTEN 0      4096           127.0.0.1:4447       0.0.0.0:*    users:(("i2pd",pid=1305094,fd=36))
 ```
 
 </details>
@@ -315,7 +317,7 @@ sudo systemctl disable i2pd
 
 ### **SSH remote access through Tor**
 
-If you want to log into your MiniBolt with SSH when you're away, you can easily do so by adding a Tor hidden service. This makes "calling home" very easy, without the need to configure anything on your internet router.
+If you want to log into your RaMiX with SSH when you're away, you can easily do so by adding a Tor hidden service. This makes "calling home" very easy, without the need to configure anything on your internet router.
 
 #### **SSH server**
 
@@ -463,17 +465,19 @@ sudo ufw allow 9050/tcp comment 'allow Tor socks5 from anywhere'
 * Ensure that the Tor service is working and listening at the default ports `9050` on the `0.0.0.0`
 
 ```bash
-sudo ss -tulpn | grep LISTEN | grep tor
+sudo ss -tulpn | grep tor
 ```
 
 Expected output:
 
 ```
-> tcp   LISTEN 0      4096         0.0.0.0:9050       0.0.0.0:*    users:(("tor",pid=2162,fd=6))
-> tcp   LISTEN 0      4096       127.0.0.1:9051       0.0.0.0:*    users:(("tor",pid=2162,fd=7))
+tcp   LISTEN 0      4096         0.0.0.0:9050       0.0.0.0:*    users:(("tor",pid=2162,fd=6))
+tcp   LISTEN 0      4096       127.0.0.1:9051       0.0.0.0:*    users:(("tor",pid=2162,fd=7))
 ```
 
-You can use this connection from another device in the same local network for example to navigate using a standard browser, without using the Tor browser.
+{% hint style="info" %}
+You can use this connection from another device in the same local network for example to navigate using a standard browser, without using the Tor browser
+{% endhint %}
 
 **Example from Firefox:**
 
@@ -483,10 +487,13 @@ Edit the screen to match with this, replacing SOCKS Host, with your node local I
 
 <figure><img src="../.gitbook/assets/tor-proxy-browser.png" alt="" width="563"><figcaption></figcaption></figure>
 
-Click on the OK button, and try to navigate to some clearnet domain like [https://minibolt.info](https://minibolt.info), if it resolves, you are OK.\
-Or simply go to this [website](https://check.torproject.org/), and you should see "_Congratulations. This browser is configured to use Tor."_
+Click on the OK button, and try to navigate to some clearnet domain like [https://minibolt.info](https://minibolt.info), if it resolves, you are OK.
+
+{% hint style="info" %}
+You can also go to this [website](https://check.torproject.org/) and see "_Congratulations. This browser is configured to use Tor."_
 
 Also, you can use the Tor proxy connection to reach clearnet or third-party address connection on Sparrow wallet. Check out the [Desktop wallet: Sparrow wallet](../bitcoin/bitcoin/desktop-wallet.md) guide to get instructions.
+{% endhint %}
 
 ## Upgrade Tor and I2P
 

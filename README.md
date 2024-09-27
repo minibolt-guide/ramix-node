@@ -1,10 +1,14 @@
 ---
 description: >-
-  Build your own "DIY" Bitcoin & Lightning full node on a Raspberry Pi. No need
-  to trust anyone else.
+  Build your own "DIY" Bitcoin & Lightning full node, and other stuff on a
+  Raspberry Pi. No need to trust anyone else.
 ---
 
 # RaMiX
+
+{% hint style="danger" %}
+**Attention: this guide is in the WIP (work in progress) state. Many steps may be incorrect. Act behind your responsibility**
+{% endhint %}
 
 Build your own "do-everything-yourself" Bitcoin full node, Lightning, and other stuff on a Raspberry Pi, making you sovereign.
 

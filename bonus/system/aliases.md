@@ -33,7 +33,7 @@ The following list of aliases was derived from contributions by [RobClark56](htt
 
 ## Installation
 
-* With user `admin`, ensure you are on `home` folder and download the aliases list provided for a MiniBolt environment
+* With user `admin`, ensure you are on `home` folder and download the aliases list provided for a RaMiX environment
 
 {% code overflow="wrap" %}
 ```bash
@@ -43,7 +43,7 @@ cd /home/admin
 
 {% code overflow="wrap" %}
 ```bash
-wget https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/.bash_aliases -O .bash_aliases
+wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/resources/.bash_aliases -O .bash_aliases
 ```
 {% endcode %}
 

@@ -384,16 +384,28 @@ chmod 600 /data/lnd/password.txt
 nano /data/lnd/lnd.conf
 ```
 
-* Paste the following content (set your alias `"<YOUR_FANCY_ALIAS>"`, your preferred color `"<#ff9900>"`, your minimum channel size **`"minchansize"`** , and fees). Save and exit
+* Paste the following content. Save and exit
+
+{% hint style="warning" %}
+\-> Replace `<YOUR_FANCY_ALIAS>` with your preferred alias e.g: `SatoshiLNnode`⚡. Up to 32 UTF-8 characters, accepts emojis i.e ⚡🧡​ [https://emojikeyboard.top/](https://emojikeyboard.top/)
+
+\-> Replace `#ff9900` with your preferred color. You can choose the color you want at [https://www.color-hex.com/](https://www.color-hex.com/)
+
+\-> Uncomment and replace #minchansize=20000[^11] with your preferred minimum incoming channel size
+
+\-> Uncomment and replace #bitcoin.feerate=1[^12] / #bitcoin.basefee=1000[^13] with your preferred channels fees
+{% endhint %}
 
 <pre><code># RaMiX: lnd configuration
 # /data/lnd/lnd.conf
 
 [Application Options]
-# Up to 32 UTF-8 characters, accepts emojis i.e ⚡🧡​ https://emojikeyboard.top/
-alias=<a data-footnote-ref href="#user-content-fn-11">&#x3C;YOUR_FANCY_ALIAS></a>
-# You can choose the color you want at https://www.color-hex.com/
-color=#ff9900
+# The alias your node will use, which can be up to 32 UTF-8 characters in length
+alias=<a data-footnote-ref href="#user-content-fn-14">&#x3C;YOUR_FANCY_ALIAS></a>
+
+# The color of the node in hex format, used to customize node appearance in 
+# intelligence services
+color=<a data-footnote-ref href="#user-content-fn-15">#ff9900</a>
 
 # Automatically unlock wallet with the password in this file
 wallet-unlock-password-file=/data/lnd/password.txt
@@ -411,11 +423,11 @@ tlsdisableautofill=true
 ## Channel settings
 # (Optional) Minimum channel size. Uncomment and set whatever you want
 # (default: 20000 sats)
-<a data-footnote-ref href="#user-content-fn-12">#minchansize=20000</a>
+<a data-footnote-ref href="#user-content-fn-16">#minchansize=20000</a>
 
 ## (Optional) High fee environment settings
-<a data-footnote-ref href="#user-content-fn-13">#max-commit-fee-rate-anchors=</a><a data-footnote-ref href="#user-content-fn-14">10</a>
-<a data-footnote-ref href="#user-content-fn-15">#max-channel-fee-allocation=</a><a data-footnote-ref href="#user-content-fn-16">0.5</a>
+<a data-footnote-ref href="#user-content-fn-17">#max-commit-fee-rate-anchors=</a><a data-footnote-ref href="#user-content-fn-18">10</a>
+<a data-footnote-ref href="#user-content-fn-19">#max-channel-fee-allocation=</a><a data-footnote-ref href="#user-content-fn-20">0.5</a>
 
 ## Communication
 accept-keysend=true
@@ -435,12 +447,12 @@ bitcoin.node=bitcoind
 
 # Fee settings - default LND base fee = 1000 (mSat), fee rate = 1 (ppm)
 # You can choose whatever you want e.g ZeroFeeRouting (0,0) or ZeroBaseFee (0,X)
-<a data-footnote-ref href="#user-content-fn-17">#bitcoin.basefee=1000</a>
-<a data-footnote-ref href="#user-content-fn-18">#bitcoin.feerate=1</a>
+<a data-footnote-ref href="#user-content-fn-21">#bitcoin.basefee=1000</a>
+<a data-footnote-ref href="#user-content-fn-22">#bitcoin.feerate=1</a>
 
 # (Optional) Specify the CLTV delta we will subtract from a forwarded HTLC's timelock value
 # (default: 80)
-<a data-footnote-ref href="#user-content-fn-19">#bitcoin.timelockdelta=8</a><a data-footnote-ref href="#user-content-fn-20">0</a>
+<a data-footnote-ref href="#user-content-fn-23">#bitcoin.timelockdelta=8</a><a data-footnote-ref href="#user-content-fn-24">0</a>
 
 [protocol]
 protocol.wumbo-channels=true
@@ -453,7 +465,7 @@ wtclient.active=true
 
 # (Optional) Specify the fee rate with which justice transactions will be signed
 # (default: 10 sat/byte)
-<a data-footnote-ref href="#user-content-fn-21">#wtclient.sweep-fee-rate=10</a>
+<a data-footnote-ref href="#user-content-fn-25">#wtclient.sweep-fee-rate=10</a>
 
 [watchtower]
 ## Watchtower server settings
@@ -470,10 +482,10 @@ db.backend=postgres
 db.postgres.dsn=postgresql://admin:admin@127.0.0.1:5432/lndb?sslmode=disable
 db.postgres.timeout=0
 
-## High fee environment (Optional)
+## High fee environment setting (Optional)
 # (default: CONSERVATIVE) Uncomment the next 2 lines
 #[Bitcoind]
-<a data-footnote-ref href="#user-content-fn-22">#bitcoind.estimatemode=ECONOMICAL</a>
+<a data-footnote-ref href="#user-content-fn-26">#bitcoind.estimatemode=ECONOMICAL</a>
 
 [tor]
 tor.active=true
@@ -557,7 +569,7 @@ journalctl -fu lnd
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 * Start the service
 
@@ -570,22 +582,22 @@ sudo systemctl start lnd
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu lnd</code> ⬇️</summary>
 
 ```
-Jun 05 14:58:50 minibolt systemd[1]: Starting Lightning Network Daemon...
-Jun 05 14:58:50 minibolt lnd[124224]: Attempting automatic RPC configuration to bitcoind
-Jun 05 14:58:50 minibolt lnd[124224]: Automatically obtained bitcoind's RPC credentials
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.368 [INF] LTND: Version: 0.18.0-beta commit=v0.18.0-beta, build=production, logging=default, debuglevel=info
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.369 [INF] LTND: Active chain: Bitcoin (network=mainnet)
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.369 [INF] RPCS: Generating ephemeral TLS certificates...
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.370 [INF] RPCS: Done generating ephemeral TLS certificates
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.372 [INF] RPCS: RPC server listening on 127.0.0.1:10009
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.394 [INF] RPCS: gRPC proxy started at 127.0.0.1:8080
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.395 [INF] LTND: Opening the main database, this might take a few minutes...
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.615 [INF] LTND: Using remote postgres database! Creating graph and channel state DB instances
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.667 [INF] CHDB: Checking for schema update: latest_version=31, db_version=31
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.669 [INF] CHDB: Checking for optional update: prune_revocation_log=false, db_version=empty
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.700 [INF] LTND: Database(s) now open (time_to_open=305.162267ms)!
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.703 [INF] LTND: Systemd was notified about our readiness
-Jun 05 14:58:50 minibolt lnd[124224]: 2024-06-05 14:58:50.703 [INF] LTND: Waiting for wallet encryption password. Use `lncli create` to create a wallet, `lncli unlock` to unlock an existing wallet, or `lncli changepassword` to change the password of an existing wallet and unlock it.
+Jun 05 14:58:50 ramix systemd[1]: Starting Lightning Network Daemon...
+Jun 05 14:58:50 ramix lnd[124224]: Attempting automatic RPC configuration to bitcoind
+Jun 05 14:58:50 ramix lnd[124224]: Automatically obtained bitcoind's RPC credentials
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.368 [INF] LTND: Version: 0.18.0-beta commit=v0.18.0-beta, build=production, logging=default, debuglevel=info
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.369 [INF] LTND: Active chain: Bitcoin (network=mainnet)
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.369 [INF] RPCS: Generating ephemeral TLS certificates...
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.370 [INF] RPCS: Done generating ephemeral TLS certificates
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.372 [INF] RPCS: RPC server listening on 127.0.0.1:10009
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.394 [INF] RPCS: gRPC proxy started at 127.0.0.1:8080
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.395 [INF] LTND: Opening the main database, this might take a few minutes...
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.615 [INF] LTND: Using remote postgres database! Creating graph and channel state DB instances
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.667 [INF] CHDB: Checking for schema update: latest_version=31, db_version=31
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.669 [INF] CHDB: Checking for optional update: prune_revocation_log=false, db_version=empty
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.700 [INF] LTND: Database(s) now open (time_to_open=305.162267ms)!
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.703 [INF] LTND: Systemd was notified about our readiness
+Jun 05 14:58:50 ramix lnd[124224]: 2024-06-05 14:58:50.703 [INF] LTND: Waiting for wallet encryption password. Use `lncli create` to create a wallet, `lncli unlock` to unlock an existing wallet, or `lncli changepassword` to change the password of an existing wallet and unlock it.
 ```
 
 </details>
@@ -844,7 +856,7 @@ drwxrwxr-x  5 admin admin  4096 Jul 12 07:57 .cargo
 drwxrwxr-x  3 admin admin  4096 Jul 11 20:32 .config
 drwx------  3 admin admin  4096 Jul 15 20:54 .gnupg
 -rw-------  1 admin admin    20 Jul 11 22:09 .lesshst
-lrwxrwxrwx  1 admin admin     9 Jul 18 07:10 <a data-footnote-ref href="#user-content-fn-23">.lnd -> /data/lnd</a>
+lrwxrwxrwx  1 admin admin     9 Jul 18 07:10 <a data-footnote-ref href="#user-content-fn-27">.lnd -> /data/lnd</a>
 drwxrwxr-x  3 admin admin  4096 Jul 12 09:15 .local
 drwxrwxr-x  3 admin admin  4096 Jul 16 09:23 .npm
 -rw-r--r--  1 admin admin   828 Jul 12 07:56 .profile
@@ -872,7 +884,7 @@ lncli getinfo
 ## LND in action
 
 {% hint style="success" %}
-Now your Lightning node is ready. This is also the point of no return. Up until now, you can just start over. Once you send real Bitcoin to your MiniBolt, you have "skin in the game"
+Now your Lightning node is ready. This is also the point of no return. Up until now, you can just start over. Once you send real Bitcoin to your RaMiX, you have "skin in the game"
 {% endhint %}
 
 {% hint style="info" %}
@@ -881,7 +893,7 @@ The next commands can be entered in any new session without keeping a specific t
 
 ### Watchtower client
 
-Lightning channels need to be monitored to prevent malicious behavior by your channel peers. If your MiniBolt goes down for a longer time, for instance, due to a hardware problem, a node on the other side of one of your channels might try to close the channel with an earlier channel balance that is better for them.
+Lightning channels need to be monitored to prevent malicious behavior by your channel peers. If your RaMiX goes down for a longer time, for instance, due to a hardware problem, a node on the other side of one of your channels might try to close the channel with an earlier channel balance that is better for them.
 
 Watchtowers are other Lightning nodes that can monitor your channels for you. If they detect such bad behavior, they can react on your behalf, and send a punishing transaction to close this channel. In this case, all channel funds will be sent to your LND on-chain wallet.
 
@@ -1117,22 +1129,23 @@ journalctl -fu lnd
 
 Expected output:
 
-<pre><code>May 30 20:44:36 minibolt lnd[314082]: 2024-05-30 20:44:36.840 [INF] INVC: Cancelling invoice subscription for client=1
-May 30 20:44:36 minibolt lnd[314082]: 2024-05-30 20:44:36.855 [ERR] RPCS: [/routerrpc.Router/SubscribeHtlcEvents]: context canceled
-May 30 20:44:36 minibolt lnd[314082]: 2024-05-30 20:44:36.861 [ERR] RPCS: [/routerrpc.Router/SubscribeHtlcEvents]: context canceled
-May 30 20:44:48 minibolt lnd[314082]: 2024-05-30 20:44:48.927 [INF] CRTR: Processed channels=0 updates=21 nodes=0 in last 1m0.000123683s
-May 30 20:45:02 minibolt systemd[1]: Stopping Lightning Network Daemon...
-May 30 20:45:02 minibolt lnd[314082]: 2024-05-30 20:45:02.606 [INF] LTND: Received shutdown request.
-May 30 20:45:02 minibolt lnd[314082]: 2024-05-30 20:45:02.609 [INF] LTND: Shutting down...
-May 30 20:45:02 minibolt lnd[314082]: 2024-05-30 20:45:02.612 [INF] LTND: Systemd was notified about stopping
-May 30 20:45:02 minibolt lnd[314082]: 2024-05-30 20:45:02.612 [INF] LTND: Gracefully shutting down.
-May 30 20:45:02 minibolt lnd[314082]: 2024-05-30 20:45:02.615 [INF] WTWR: Stopping watchtower
-May 30 20:45:02 minibolt systemd[1]: lnd.service: Succeeded.
-May 30 20:45:02 minibolt systemd[1]: <a data-footnote-ref href="#user-content-fn-24">Stopped Lightning Network Daemon.</a>
-May 30 20:45:02 minibolt systemd[1]: lnd.service: Consumed 12h 11min 606ms CPU time.
-</code></pre>
+```
+May 30 20:44:36 ramix lnd[314082]: 2024-05-30 20:44:36.840 [INF] INVC: Cancelling invoice subscription for client=1
+May 30 20:44:36 ramix lnd[314082]: 2024-05-30 20:44:36.855 [ERR] RPCS: [/routerrpc.Router/SubscribeHtlcEvents]: context canceled
+May 30 20:44:36 ramix lnd[314082]: 2024-05-30 20:44:36.861 [ERR] RPCS: [/routerrpc.Router/SubscribeHtlcEvents]: context canceled
+May 30 20:44:48 ramix lnd[314082]: 2024-05-30 20:44:48.927 [INF] CRTR: Processed channels=0 updates=21 nodes=0 in last 1m0.000123683s
+May 30 20:45:02 ramix systemd[1]: Stopping Lightning Network Daemon...
+May 30 20:45:02 ramix lnd[314082]: 2024-05-30 20:45:02.606 [INF] LTND: Received shutdown request.
+May 30 20:45:02 ramix lnd[314082]: 2024-05-30 20:45:02.609 [INF] LTND: Shutting down...
+May 30 20:45:02 ramix lnd[314082]: 2024-05-30 20:45:02.612 [INF] LTND: Systemd was notified about stopping
+May 30 20:45:02 ramix lnd[314082]: 2024-05-30 20:45:02.612 [INF] LTND: Gracefully shutting down.
+May 30 20:45:02 ramix lnd[314082]: 2024-05-30 20:45:02.615 [INF] WTWR: Stopping watchtower
+May 30 20:45:02 ramix systemd[1]: lnd.service: Succeeded.
+May 30 20:45:02 ramix systemd[1]: Stopped Lightning Network Daemon.
+May 30 20:45:02 ramix systemd[1]: lnd.service: Consumed 12h 11min 606ms CPU time.
+```
 
-* a Previously followed:
+* Previously followed:
   1. [Install PostgreSQL section](lightning-client.md#install-postgresql)
   2. [Create PostgreSQL database section](lightning-client.md#create-postgresql-database)
 * Exec the migration and wait to finish it
@@ -1462,12 +1475,12 @@ lncli wallet accounts list | grep -B 3 "m/84"
 Example of expected output:
 
 <pre><code>            "address_type":  "TAPROOT_PUBKEY",
-            "extended_public_key":  "<a data-footnote-ref href="#user-content-fn-25">xpub........</a>",
+            "extended_public_key":  "<a data-footnote-ref href="#user-content-fn-28">xpub........</a>",
             "master_key_fingerprint":  "",
             "derivation_path":  "m/86'/0'/0'",
 ------------------------
             "address_type":  "WITNESS_PUBKEY_HASH",
-            "extended_public_key":  "<a data-footnote-ref href="#user-content-fn-26">zpub.........</a>",
+            "extended_public_key":  "<a data-footnote-ref href="#user-content-fn-29">zpub.........</a>",
             "master_key_fingerprint":  "",
             "derivation_path":  "m/84'/0'/0'",
 </code></pre>
@@ -1585,34 +1598,40 @@ sudo rm /usr/local/bin/lnd && sudo rm /usr/local/bin/lncli
 
 [^10]: Symbolic link
 
-[^11]: (Customize)
+[^11]: (Uncomment and customize the value)
 
 [^12]: (Uncomment and customize the value)
 
-[^13]: This is the maximum fee rate in sat/vbyte that will be used for commitments of channels of the anchors type. Increasing your commit fee for anchor channels can help get these transactions propagated. While it is always possible to bump the transaction fees of such commitment transactions later using CPFP, a low maximum commit fee may prevent these transactions from being propagated in the first place. **Uncomment and adjust to your criteria** (default: 10 sat/byte)
+[^13]: (Uncomment and customize the value)
 
-[^14]: This is the maximum fee rate in sat/vbyte that will be used for commitments of channels of the anchors type. Increasing your commit fee for anchor channels can help get these transactions propagated. While it is always possible to bump the transaction fees of such commitment transactions later using CPFP, a low maximum commit fee may prevent these transactions from being propagated in the first place. **Uncomment and adjust to your criteria** (default: 10 sat/byte)
+[^14]: (Customize)
 
-[^15]: The maximum percentage of total funds that can be allocated to a channel's commitment fee. This only applies for the initiator of the channel. Valid values are within \[0.1, 1]. **Uncomment and adjust to your criteria** (default 0.5)
+[^15]: (Customize)
 
-[^16]: The maximum percentage of total funds that can be allocated to a channel's commitment fee. This only applies for the initiator of the channel. Valid values are within \[0.1, 1]. **Uncomment and adjust to your criteria** (default 0.5)
+[^16]: (Uncomment and customize the value)
 
-[^17]: (Uncomment and customize the value)
+[^17]: This is the maximum fee rate in sat/vbyte that will be used for commitments of channels of the anchors type. Increasing your commit fee for anchor channels can help get these transactions propagated. While it is always possible to bump the transaction fees of such commitment transactions later using CPFP, a low maximum commit fee may prevent these transactions from being propagated in the first place. **Uncomment and adjust to your criteria** (default: 10 sat/byte)
 
-[^18]: (Uncomment and customize the value)
+[^18]: This is the maximum fee rate in sat/vbyte that will be used for commitments of channels of the anchors type. Increasing your commit fee for anchor channels can help get these transactions propagated. While it is always possible to bump the transaction fees of such commitment transactions later using CPFP, a low maximum commit fee may prevent these transactions from being propagated in the first place. **Uncomment and adjust to your criteria** (default: 10 sat/byte)
 
-[^19]: Set this to 144, allows you up to 24h to resolve issues related to your node before HTLCs are resolved on chain. Allowing for fewer HTLCs per channel can mitigate the potential fallout of a force closure, but can also cause the channel to be unusable when all HTLC slots are used up. **Adjust to your convenience** (default 80)
+[^19]: The maximum percentage of total funds that can be allocated to a channel's commitment fee. This only applies for the initiator of the channel. Valid values are within \[0.1, 1]. **Uncomment and adjust to your criteria** (default 0.5)
 
-[^20]: Set this to 144, allows you up to 24h to resolve issues related to your node before HTLCs are resolved onchain. Allowing for fewer HTLCs per channel can mitigate the potential fallout of a force closure, but can also cause the channel to be unusable when all HTLC slots are used up. **Adjust to your convenience** (default 80)
+[^20]: The maximum percentage of total funds that can be allocated to a channel's commitment fee. This only applies for the initiator of the channel. Valid values are within \[0.1, 1]. **Uncomment and adjust to your criteria** (default 0.5)
 
 [^21]: (Uncomment and customize the value)
 
-[^22]: Setting the fee estimate mode to ECONOMICAL and increasing the target confirmations for onchain transactions can also help save on fees, but with the risk that some transactions may not confirm in time, requiring more manual monitoring and eventual intervention. **Uncomment and customize the value**
+[^22]: (Uncomment and customize the value)
 
-[^23]: Symbolic link
+[^23]: Set this to 144, allows you up to 24h to resolve issues related to your node before HTLCs are resolved on chain. Allowing for fewer HTLCs per channel can mitigate the potential fallout of a force closure, but can also cause the channel to be unusable when all HTLC slots are used up. **Adjust to your convenience** (default 80)
 
-[^24]: Check this
+[^24]: Set this to 144, allows you up to 24h to resolve issues related to your node before HTLCs are resolved onchain. Allowing for fewer HTLCs per channel can mitigate the potential fallout of a force closure, but can also cause the channel to be unusable when all HTLC slots are used up. **Adjust to your convenience** (default 80)
 
-[^25]: Your Taproot master public key
+[^25]: (Uncomment and customize the value)
 
-[^26]: Your SegWit master public key
+[^26]: Setting the fee estimate mode to ECONOMICAL and increasing the target confirmations for onchain transactions can also help save on fees, but with the risk that some transactions may not confirm in time, requiring more manual monitoring and eventual intervention. **Uncomment and customize the value** (default: CONSERVATIVE)
+
+[^27]: Symbolic link
+
+[^28]: Your Taproot master public key
+
+[^29]: Your SegWit master public key
