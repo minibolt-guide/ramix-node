@@ -78,7 +78,7 @@ Current installation options:
                profile: default
   modify PATH variable: yes
 
-1) Proceed with installation (default)
+1) Proceed with installation (default - just press enter)
 2) Customize installation
 3) Cancel installation
 ><a data-footnote-ref href="#user-content-fn-1">1</a>
@@ -150,7 +150,7 @@ rustc --version
 **Example** of expected output:
 
 ```
-> rustc 1.71.0 (8ede3aae2 2023-07-12)
+rustc 1.71.0 (8ede3aae2 2023-07-12)
 ```
 
 * And cargo
@@ -162,7 +162,7 @@ cargo -V
 **Example** of expected output:
 
 ```
-> cargo 1.71.0 (cfd3bbd8f 2023-06-08)
+cargo 1.71.0 (cfd3bbd8f 2023-06-08)
 ```
 
 ## Upgrade

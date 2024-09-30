@@ -44,7 +44,7 @@ But paper is easily destroyed by water, fire, or even a pet that loves chewing t
 
 While great, most of these techniques have one major downside... they require you to buy from a company a ready-made item whose sole use case is as a bitcoin mnemonics backup. This means that the seller will know that you probably have some bitcoin... and worst, if their customer database gets hacked, anyone could quickly know that you probably have some bitcoins.
 
-Instead, it is more private and ultimately secure to build this steel mnemonics backup from off-the-shelf components that have not been designed for Bitcoin usage. Like you did with the MiniBolt node vs buying a plug-and-play node!
+Instead, it is more private and ultimately secure to build this steel mnemonics backup from off-the-shelf components that have not been designed for Bitcoin usage. Like you did with the RaMiX node vs buying a plug-and-play node!
 
 For example, a popular DIY method relies on standard steel washers stacked and locked on a bolt. The mnemonic words and ordering numbers are punched on the washers using a metal stamp set. All the components can be found easily in a hardware shop or online and none are associated with Bitcoin usage. Simple and private.
 

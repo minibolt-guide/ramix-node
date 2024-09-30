@@ -21,7 +21,7 @@ layout:
 
 The following guide was derived from contributions by [Pantamis](https://github.com/Pantamis)
 
-[WireGuard](https://www.wireguard.com) is a VPN you can set up to access your MiniBolt from the outside. It makes it easier to run services on your node without exposing its ports to the public Internet. It has support on all major computer OS; and apps for Android and iOS. The only requirement is to forward a UDP port from your home router to the MiniBolt node.
+[WireGuard](https://www.wireguard.com) is a VPN you can set up to access your RaMiX from the outside. It makes it easier to run services on your node without exposing its ports to the public Internet. It has support on all major computer OS; and apps for Android and iOS. The only requirement is to forward a UDP port from your home router to the RaMiX node.
 
 {% hint style="danger" %}
 Difficulty: Hard
@@ -33,13 +33,13 @@ Difficulty: Hard
 
 ## Why use WireGuard and trade-off
 
-A VPN is an encrypted tunnel between two computers over the internet. In our case, MiniBolt will play the role of the server, and you will be able to access your home network from outside with configured client devices. Several trade-offs are using a VPN versus using Tor.
+A VPN is an encrypted tunnel between two computers over the internet. In our case, RaMiX will play the role of the server, and you will be able to access your home network from outside with configured client devices. Several trade-offs are using a VPN versus using Tor.
 
 **Advantages:**
 
 * The connection with the VPN is a lot faster than using Tor (Bitcoin Core and LND will still use Tor)
 * WireGuard has an incredibly low resource usage.
-* The attack surface on your home network and MiniBolt is reduced as fewer ports are open on your router.
+* The attack surface on your home network and RaMiX is reduced as fewer ports are open on your router.
 
 **Disadvantages:**
 
@@ -55,7 +55,7 @@ Before starting with the installation proper, you need to:
 
 1. Figure out if your Internet Service Provider (ISP) uses [Carrier-Grade NAT](https://superuser.com/questions/713422/how-would-i-test-to-see-if-im-behind-carrier-grade-or-regular-nat). If that's the case **you have no way of doing port forwarding**, and you'll need to contact them asking to **put you out of CG-NAT** (this means giving your router a dedicated public IP). Most ISPs simply do this on request or charge a small fee to allocate a public IP just for you
 2. Figure out the public IP of your home network. If you have a **static public IP** it'll simplify the setup, but it's not mandatory. There are plenty of websites that show you your public IP. One such site is [https://whatismyipaddress.com](https://whatismyipaddress.com/)
-3. Forward the `"51820"` port and `"UDP"` protocol of your router to the local IP of your MiniBolt. This procedure changes from router to router so we can't be very specific, but involves logging into your router's administrative web interface (usually at [http://192.168.1.1](http://192.168.1.1) or [http://192.168.0.1](http://192.168.0.1)) and finding the relevant settings page. See [portforward.com](https://portforward.com) for directions on how to port forward with your NAT/router device. The configuration procedure will depend on the specific type of router which is why we can't provide a tutorial for all of them. However, in the extra [Port forwarding section](wireguard-vpn.md#port-forwarding), you can show a few instructions to do this for the most common cases
+3. Forward the `"51820"` port and `"UDP"` protocol of your router to the local IP of your RaMiX. This procedure changes from router to router so we can't be very specific, but involves logging into your router's administrative web interface (usually at [http://192.168.1.1](http://192.168.1.1) or [http://192.168.0.1](http://192.168.0.1)) and finding the relevant settings page. See [portforward.com](https://portforward.com) for directions on how to port forward with your NAT/router device. The configuration procedure will depend on the specific type of router which is why we can't provide a tutorial for all of them. However, in the extra [Port forwarding section](wireguard-vpn.md#port-forwarding), you can show a few instructions to do this for the most common cases
 
 📝 In the next steps, we will create different keys, IDs, passwords, and others, remember to take note of all of those in your preferred password manager (Bitwarden, Keypass) or an offline document paper:
 
@@ -84,10 +84,10 @@ Unless you have a static IP (unlikely if it is a residential IP) your ISP can ch
 
 To fix this, we can maintain a DNS record that always points to your latest IP, and the WireGuard clients can use that instead of the IP.
 
-Now we are going to execute a universal way of configuring our IP by updating it to the dynamic DNS provider using the MiniBolt node via a script, but this job can be done by your router, especially if we are not sure that we are going to have MiniBolt running 24/7. Go to the [Use your router’s DDNS preconfigured provider](wireguard-vpn.md#use-your-routers-ddns-preconfigured-provider) extra section.
+Now we are going to execute a universal way of configuring our IP by updating it to the dynamic DNS provider using the RaMiX node via a script, but this job can be done by your router, especially if we are not sure that we are going to have RaMiX running 24/7. Go to the [Use your router’s DDNS preconfigured provider](wireguard-vpn.md#use-your-routers-ddns-preconfigured-provider) extra section.
 
 {% hint style="info" %}
-If you have a contracted static IP on your ISP, you can log in to the MiniBolt directly, go to the [configure firewall](wireguard-vpn.md#configure-firewall) section, and continue with the guide from there.
+If you have a contracted static IP on your ISP, you can log in to the RaMiX directly, go to the [configure firewall](wireguard-vpn.md#configure-firewall) section, and continue with the guide from there.
 {% endhint %}
 
 ### Desec registration
@@ -136,9 +136,9 @@ Keep **this dashboard open,** you'll need to come back here later.
 
 ### Dynamic IP script
 
-Now we'll write a Bash script for MiniBolt that will periodically poll its own IP and send it to deSEC. We'll need the **`"<YOUR_SECRET_TOKEN>"`** and **`"<yoursubdomain.dedyn.io>"`** from the deSEC registration step.
+Now we'll write a Bash script for RaMiX that will periodically poll its own IP and send it to deSEC. We'll need the **`"<YOUR_SECRET_TOKEN>"`** and **`"<yoursubdomain.dedyn.io>"`** from the deSEC registration step.
 
-* As `admin` user, [log in](../../index-1/remote-access.md#access-with-secure-shell) to MiniBolt, and create the following script
+* As `admin` user, [log in](../../index-1/remote-access.md#access-with-secure-shell) to RaMiX , and create the following script
 
 ```sh
 sudo nano /opt/dynamic-ip-refresh.sh
@@ -180,7 +180,7 @@ sudo crontab -e
 ```
 
 {% hint style="info" %}
-Keep the MiniBolt SSH session on the terminal opened to go back later, return to [deSEC web page](https://desec.io/domains), ensure you are on the **"DOMAIN MANAGEMENT"** tab, and **click on your domain**
+Keep the RaMiX SSH session on the terminal opened to go back later, return to [deSEC web page](https://desec.io/domains), ensure you are on the **"DOMAIN MANAGEMENT"** tab, and **click on your domain**
 {% endhint %}
 
 ![](../../images/desec\_io3.png)
@@ -195,14 +195,14 @@ You now have a free domain that always points to your existing public IP address
 
 ### Configure Firewall
 
-* Return to the MiniBolt SSH session to continue configuring it. Allow incoming Wireguard requests from outside the Firewall
+* Return to the RaMiX SSH session to continue configuring it. Allow incoming Wireguard requests from outside the Firewall
 
 ```sh
 sudo ufw allow 51820/udp comment 'allow WireGuard VPN from anywhere'
 ```
 
 {% hint style="danger" %}
-Remember to have forwarded the **`"51820"`** port and the **`"UDP"`** protocol of your router to the local IP of your MiniBolt, previously indicated in the [prerequisites](wireguard-vpn.md#prerequisites) section and following the [Port Forwarding](wireguard-vpn.md#port-forwarding) extra section
+Remember to have forwarded the **`"51820"`** port and the **`"UDP"`** protocol of your router to the local IP of your RaMiX , previously indicated in the [prerequisites](wireguard-vpn.md#prerequisites) section and following the [Port Forwarding](wireguard-vpn.md#port-forwarding) extra section
 {% endhint %}
 
 ### Install WireGuard VPN on server
@@ -258,10 +258,10 @@ sudo nano /etc/wireguard/wg0.conf
 * Write the following content and replace only **`<Your_Server_Private_Key>`** with the data previously obtained. **`<Your_Client_Public_Key>`** will be replaced later when we get the public key from our client, keep alert to replace it later in [part 2 of the server configuration](wireguard-vpn.md#server-configuration-part-2)
 
 ```
-# MiniBolt: Wireguard configuration
+# RaMiX: Wireguard configuration
 # /etc/wireguard/wg0.conf
 
-## Server configuration (Minibolt node)
+## Server configuration (RaMiX node)
 [Interface]
 PrivateKey = <Your_Server_Private_Key>
 Address = 10.0.0.1/24
@@ -284,7 +284,7 @@ sudo systemctl enable wg-quick@wg0.service
 ```
 
 {% hint style="info" %}
-This will **turn it on permanently**, and also **start it automatically** when MiniBolt reboots. We won't do this on the client because we want it to be able to connect to the VPN selectively
+This will **turn it on permanently**, and also **start it automatically** when RaMiX reboots. We won't do this on the client because we want it to be able to connect to the VPN selectively
 {% endhint %}
 
 * Delete the `private_key` and `public_key` files, but ensure before you take note of the server's keys in your preferred password manager
@@ -294,7 +294,7 @@ sudo rm /home/admin/private_key && rm /home/admin/public_key
 ```
 
 {% hint style="info" %}
-Keep the MiniBolt SSH session open in the terminal to come back later
+Keep the RaMiX SSH session open in the terminal to come back later
 {% endhint %}
 
 ## Install WireGuard VPN on Client
@@ -353,7 +353,7 @@ sudo nano /etc/wireguard/wg0.conf
 PrivateKey = <Your_Client_Private_Key>
 Address = 10.0.0.2/32
 
-## Server configuration (MiniBolt node)
+## Server configuration (RaMiX node)
 [Peer]
 PublicKey = <Your_Server_Public_Key>
 AllowedIPs = 10.0.0.1/32
@@ -364,7 +364,7 @@ Endpoint = <yoursubdomain.dedyn.io>:51820
 
 > Replace `"PrivateKey"` parameter designed as **`"Your_Client_Private_Key"`** by created previous step.
 
-> Replace `"PublicKey"` parameter designed as **`"Your_Server_Public_Key"`** by the public key of MiniBolt created on the [generate key pair](wireguard-vpn.md#generate-server-key-pair) section.
+> Replace `"PublicKey"` parameter designed as **`"Your_Server_Public_Key"`** by the public key of RaMiX created on the [generate key pair](wireguard-vpn.md#generate-server-key-pair) section.
 
 > Replace `"Endpoint"` parameter designed as **`"yoursubdomain.dedyn.io"**`** by created in [Desec registration](wireguard-vpn.md#desec-registration) section.
 
@@ -380,7 +380,7 @@ Keep this terminal open to come back later
 
 ## Server configuration (part 2)
 
-Now return to the MiniBolt node to allow access to the newly created Wireguard VPN client.
+Now return to the RaMiX node to allow access to the newly created Wireguard VPN client.
 
 * Ensure you are logged in as `admin` user, and edit the `"wg0.conf"` file
 
@@ -393,7 +393,7 @@ Now we are going to complete the previous parameter **`<Your_Client_Public_Key>`
 * Replace the existing **`<Your_Client_Public_Key>`** parameter with your one
 
 ```
-# MiniBolt: Wireguard configuration
+# RaMiX: Wireguard configuration
 # /etc/wireguard/wg0.conf
 
 ## Client configuration
@@ -402,7 +402,7 @@ PublicKey = <Your_Client_Public_Key>
 AllowedIPs = 10.0.0.2/32
 ```
 
-* Start Wireguard VPN on MiniBolt
+* Start Wireguard VPN on RaMiX
 
 ```bash
 sudo systemctl start wg-quick@wg0.service
@@ -454,7 +454,7 @@ Now the server is ready to allow connection from the Wireguard VPN client
 
 ## Client configuration (part 2)
 
-* Return to the Linux client to finally test the VPN MiniBolt connection running this command
+* Return to the Linux client to finally test the VPN RaMiX connection running this command
 
 ```sh
 wg-quick up wg0
@@ -471,7 +471,7 @@ Expected output:
 ```
 
 {% hint style="info" %}
-Try to create a [new SSH session](broken-reference/) to the MiniBolt, using this time the VPN IP instead of the local IP address
+Try to create a [new SSH session](broken-reference/) to the RaMiX, using this time the VPN IP instead of the local IP address
 {% endhint %}
 
 ```sh
@@ -550,7 +550,7 @@ exit
 ```
 
 {% hint style="info" %}
-Keep the MiniBolt SSH session open in the terminal to come back later and scan the Qr code.
+Keep the RaMiX SSH session open in the terminal to come back later and scan the Qr code.
 {% endhint %}
 
 * Install the Wireguard VPN client for the mobile version and start it
@@ -560,7 +560,7 @@ Link to [iOS](https://apps.apple.com/us/app/wireguard/id1441195209) | Link to [A
 1. Hit on **(+)** button
 2. Select the **"SCAN FROM QR CODE"** option. It will ask for camera permission, then you should be able to scan your code. Press `ALLOW`
 3. Scan the QR code generated previously
-4. Type a **name** for the tunnel, e.g. "MiniBolt\_WG", and hit on **"Create tunnel"**
+4. Type a **name** for the tunnel, e.g. "RaMiX\_WG", and hit on **"Create tunnel"**
 5. Press on the **switch at the right** to activate the Wireguard tunnel. Press **OK** to accept the connection request
 
 {% hint style="info" %}
@@ -576,7 +576,7 @@ You could create a Wireguard VPN client connection manually from scratch filling
 
 * Paste the entire content of the client configuration `"wg0.conf"` file in the big text box and push on **"Save"**
 * Click on the **"Activate"** button to enable the VPN connection
-* Test it by creating a [new SSH connection](broken-reference/) to MiniBolt for example, this time with the VPN IP address
+* Test it by creating a [new SSH connection](broken-reference/) to RaMiX for example, this time with the VPN IP address
 
 ### Configure additional clients
 
@@ -584,14 +584,14 @@ For each additional client, you must install the WireGuard software in each of t
 
 ### Configure additional servers
 
-At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where MiniBolt is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private\_network#Private\_IPv4\_addresses).
+At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where RaMiX is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private\_network#Private\_IPv4\_addresses).
 
 * Another additional server would define it for example as `10.0.1.1/24` where `10.0.1.1` would be the additional server and `10.0.1.2` for the clients in this case
 * If you want to set additional servers on the same LAN, you also have to define a different external port on [port forwarding](wireguard-vpn.md#port-forwarding) of the router, e.g **51821**, and point your Wireguard VPN Client to the **51821** port on the endpoint configuration: **`Endpoint = <yoursubdomain.dedyn.io>:51821`**
 
 ### Use your router’s DDNS preconfigured provider
 
-Some routers have support for Dynamic DNS providers like NO-IP or deSEC, out of the box, and you just need to select the right option (deSEC, desec.io, dedyn, NoIP, dynDNS, or similar). It would be a great idea if your MiniBolt server won't be running 24/7, but it's probably your router yes.
+Some routers have support for Dynamic DNS providers like NO-IP or deSEC, out of the box, and you just need to select the right option (deSEC, desec.io, dedyn, NoIP, dynDNS, or similar). It would be a great idea if your RaMiX server won't be running 24/7, but it's probably your router yes.
 
 If your router does not have your DDNS provider preconfigured, the configuration procedure will depend on the specific type of router which is why we can't provide a tutorial for all of them. However, most of the time it boils down to entering the following details in your router configuration.
 
@@ -612,11 +612,11 @@ Port forwarding, allows you to direct incoming traffic from the WAN side (identi
 
 🔍 Search for some section called NAT/PAT, Virtual Servers, Port forwarding, or similar and set these parameters:
 
-* **Server name/Rule name:** e.g MiniBolt\_WG
+* **Server name/Rule name:** e.g RaMiX\_WG
 * **External port:** 51820 (this parameter should be different if different external ports need to be converted to the same port number used by the server on the LAN side), e.g: different Wireguard servers on the same LAN
 * **Internal port** _**(optional in some cases):**_ 51820
 * **Protocol:** UDP
-* **Server IP address:** MiniBolt IP address, e.g: 192.168.X.XXX
+* **Server IP address:** RaMiX IP address, e.g: 192.168.X.XXX
 * **WAN interface** _**(some cases):**_ ppp0.1 or similar
 
 {% hint style="success" %}

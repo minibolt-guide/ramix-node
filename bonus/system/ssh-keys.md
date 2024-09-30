@@ -35,8 +35,8 @@ Difficulty: Medium
 * Click on the "Generate" button and move the mouse over the window until the progress is finished
 * Assign a key passphrase (recommended), to encrypt the private key locally, use `password [A]` for example
 * Click on:
-  * "Save public key", and give it a name, eg. `minibolt_SSH_pubkey.txt`
-  * "Save private key", and give it a name, eg. `minibolt_SSH_privkey` (Keep this safe!)
+  * "Save public key", and give it a name, eg. `ramix_SSH_pubkey.txt`
+  * "Save private key", and give it a name, eg. `ramix_SSH_privkey` (Keep this safe!)
 
 ### Generate SSH keys on Linux or macOS
 
@@ -60,20 +60,22 @@ When you're prompted to "Enter a file in which to save the key", press Enter to 
     Use the command `ssh-copy-id`, which stores your public key on the remote machine (and creates files and directories, if needed). You will be prompted for your SSH login password once. If fails you can try `admin@192.168.x.xxx` instead
 
 ```sh
-ssh-copy-id admin@minibolt
+ssh-copy-id admin@ramix
 ```
 
-💡 If you are on macOS and encounter an error, you might need to install `ssh-copy-id` first by running the following command on your Mac's command line
+{% hint style="info" %}
+If you are on macOS and encounter an error, you might need to install `ssh-copy-id` first by running the following command on your Mac's command line
+{% endhint %}
 
 ```sh
 brew install ssh-copy-id
 ```
 
-## Import SSH pubkey to MiniBolt node
+## Import SSH pubkey to RaMiX node
 
 ### From your regular Windows PC
 
-* Login with the `admin` user on MiniBolt and create a new folder at home called ".ssh". If already exists, skip the next step
+* Login with the `admin` user on RaMiX and create a new folder at home called ".ssh". If already exists, skip the next step
 
 ```sh
 mkdir .ssh
@@ -85,7 +87,7 @@ mkdir .ssh
 chmod 700 .ssh
 ```
 
-* Create a file called "authorized\_keys" and paste the content information of the "minibolt\_SSH\_pubkey.txt" file generated in the [Windows step before](ssh-keys.md#generate-ssh-keys-on-windows)
+* Create a file called "authorized\_keys" and paste the content information of the "ramix\_SSH\_pubkey.txt" file generated in the [Windows step before](ssh-keys.md#generate-ssh-keys-on-windows)
 
 ```sh
 nano .ssh/authorized_keys
@@ -138,8 +140,8 @@ chmod 600 .ssh/authorized_keys
 ### From GitHub keyserver
 
 * On your regular computer, access to "GPG and SSH keys" section of your [GitHub account](https://github.com/settings/keys), if you don't have an account [create one](https://github.com/signup)
-* Click on the "new SSH key" button, type a title e.g SSH\_keys\_MiniBolt, select Key type "Authentication key", and paste on the "Key" section the SSH pub key generated in the preparations [section](ssh-keys.md#preparations) depending on the regular computer OS
-* Login with the `admin` user on MiniBolt and create a new folder at home called ".ssh". If already exists, skip the next step
+* Click on the "new SSH key" button, type a title e.g SSH\_keys\_RaMiX, select Key type "Authentication key", and paste on the "Key" section the SSH pub key generated in the preparations [section](ssh-keys.md#preparations) depending on the regular computer OS
+* Login with the `admin` user on RaMiX and create a new folder at home called ".ssh". If already exists, skip the next step
 
 ```sh
 mkdir .ssh
@@ -157,6 +159,14 @@ chmod 700 .ssh
 curl https://github.com/<username>.keys >> .ssh/authorized_keys
 ```
 
+Expected output:
+
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   725  100   725    0     0   1984      0 --:--:-- --:--:-- --:--:--  1986
+```
+
 * Ensure that your SSH keys have been imported correctly in "authorized\_keys" file, and press `Ctrl-X` to exit
 
 ```sh
@@ -169,14 +179,14 @@ nano .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 ```
 
-## Connect to MiniBolt through SSH keys
+## Connect to RaMiX through SSH keys
 
 ### Linux or macOS command line
 
 * From the Terminal, use the native command
 
 ```sh
-ssh -i /home/<user>/.ssh/id_rsa admin@minibolt.local
+ssh -i /home/<user>/.ssh/id_rsa admin@ramix.local
 ```
 
 {% hint style="warning" %}
@@ -187,19 +197,19 @@ Attention: This command only works if you generated the SSH keys [on Linux or ma
 
 * On your regular computer, download Putty [64-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture, and start it
 * To automatically connect and log in to your server you need to add the Private Key to the Putty client. Then go to the left Category menu, select SSH –> Auth -> Credentials, on "Private key file for authentication" hit the "Browse" button, search and add your Private Key file
-* To the left tree, select "session", in the "Hostname (or IP address)" box, and type `admin@minibolt.local` or `admin@192.168.x.xx`, left port `22` to the right box. Click on `Open`. If you selected a key passphrase in the [preparations](ssh-keys.md#preparations) section, enter it. That’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the Open button without the need to enter passwords
+* To the left tree, select "session", in the "Hostname (or IP address)" box, and type `admin@ramix.local` or `admin@192.168.x.xx`, left port `22` to the right box. Click on `Open`. If you selected a key passphrase in the [preparations](ssh-keys.md#preparations) section, enter it. That’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the Open button without the need to enter passwords
 
 ### MobaXterm Windows
 
 * On your regular computer, download MobaXterm [Portable edition](https://download.mobatek.net/2232022120824733/MobaXterm\_Portable\_v22.3.zip) or [Installer edition](https://download.mobatek.net/2232022120824733/MobaXterm\_Installer\_v22.3.zip) version depending of you want to install it permanently or not
 * Start MobaXterm, on the top menu, click on Session -> New session -> Select SSH
-* Enter in remote host, "minibolt.local" or your MiniBolt IP address (192.168.x.xx), check to "specify username" and enter to the right "admin", keep port "22" selected to the right
+* Enter in remote host, "ramix.local" or your RaMiX IP address (192.168.x.xx), check to "specify username" and enter to the right "admin", keep port "22" selected to the right
 * To automatically connect and login to your server you need to add the Private Key to the MobaXterm client, select the "Advanced SSH settings" tab, check "Use private key" and click on the icon to the right form shaped like a document and select your Private Key file
 * Click on the "OK" button and that’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the "Open" button without the need to enter passwords
 
 ## Disable password login (optional)
 
-* Log in to the MiniBolt as `admin` using SSH with your SSH key. You shouldn't be prompted for the admin's password anymore
+* Log in to the RaMiX as `admin` using SSH with your SSH key. You shouldn't be prompted for the admin's password anymore
 * Edit the ssh configuration file `/etc/ssh/sshd_config` by uncommenting the following options and setting their value to `no`
 
 ```sh

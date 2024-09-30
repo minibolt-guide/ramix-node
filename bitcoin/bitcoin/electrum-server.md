@@ -38,7 +38,7 @@ Fulcrum is a replacement for [Electrs](../../bonus/bitcoin/electrs.md), these tw
 
 The best way to safely keep your bitcoin (meaning the best combination of security and usability) is to use a hardware wallet (like [BitBox](https://bitbox.swiss/bitbox02/), [Coldcard](https://coldcard.com/), [Ledger](https://www.ledger.com), or [Trezor](https://trezor.io)) in combination with your own Bitcoin node. This gives you security, privacy and eliminates the need to trust a third party to verify transactions.
 
-Bitcoin Core on the MiniBolt itself is not meant to hold funds.
+Bitcoin Core on the RaMiX itself is not meant to hold funds.
 
 One possibility to use Bitcoin Core with your Bitcoin wallets is to use an Electrum server as middleware. It imports data from Bitcoin Core and provides it to software wallets supporting the Electrum protocol. Desktop wallets like [Sparrow](https://sparrowwallet.com/), the [BitBoxApp](https://shiftcrypto.ch/app/), [Electrum](https://electrum.org/), or [Specter Desktop](https://specter.solutions/desktop/) that support hardware wallets can then be used with your own sovereign Bitcoin node.
 
@@ -105,7 +105,7 @@ sudo ss -tulpn | grep LISTEN | grep bitcoind | grep 8433
 
 Expected output:
 
-<pre><code>> tcp   LISTEN 0      100        127.0.0.1:<a data-footnote-ref href="#user-content-fn-1">8433</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=18))
+<pre><code>tcp   LISTEN 0      100        127.0.0.1:<a data-footnote-ref href="#user-content-fn-1">8433</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=18))
 </code></pre>
 
 ## Installation
@@ -194,7 +194,7 @@ grep 'arm64-linux.tar.gz' Fulcrum-$VERSION-shasums.txt | sha256sum --check
 
 **Example** of expected output:
 
-<pre><code><strong>> Fulcrum-1.9.4-arm64-linux.tar.gz: OK
+<pre><code><strong>Fulcrum-1.9.4-arm64-linux.tar.gz: OK
 </strong></code></pre>
 
 * Extract
@@ -296,19 +296,12 @@ ln -s /data/fulcrum /home/fulcrum/.fulcrum
 * Check symbolic link has been created correctly
 
 ```bash
-ls -la
+ls -la .fulcrum
 ```
 
 Expected output:
 
-<pre><code>total 24
-drwxr-x--- 2 fulcrum fulcrum 4096 Jul 15 07:59 .
-drwxr-xr-x 6 root    root    4096 Jul 15 07:56 ..
--rw------- 1 fulcrum fulcrum   24 Jul 15 07:59 .bash_history
--rw-r--r-- 1 fulcrum fulcrum  220 Jul 15 07:56 .bash_logout
--rw-r--r-- 1 fulcrum fulcrum 3771 Jul 15 07:56 .bashrc
-lrwxrwxrwx 1 fulcrum fulcrum   13 Jul 15 07:59 <a data-footnote-ref href="#user-content-fn-3">.fulcrum -> /data/fulcrum</a>
--rw-r--r-- 1 fulcrum fulcrum  807 Jul 15 07:56 .profile
+<pre><code>lrwxrwxrwx 1 fulcrum fulcrum 13 Jul 27 17:06 <a data-footnote-ref href="#user-content-fn-3">.fulcrum -> /data/fulcrum</a>
 </code></pre>
 
 * Change to the fulcrum data folder
@@ -345,7 +338,7 @@ wget https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/fu
 
 ## Configuration
 
-MiniBolt uses SSL as default for Fulcrum, but some wallets like BlueWallet do not support SSL over Tor. That's why we use TCP in configurations as well to let the user choose what he needs. You may as well need to use TCP for other reasons.
+RaMiX uses SSL as default for Fulcrum, but some wallets like BlueWallet do not support SSL over Tor. That's why we use TCP in configurations as well to let the user choose what he needs. You may as well need to use TCP for other reasons.
 
 * Create a Fulcrum configuration file
 
@@ -450,7 +443,7 @@ journalctl -fu fulcrum
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
 
 * Start the service
 
@@ -847,6 +840,6 @@ Filename            Type                Size           Used    Priority
 
 [^2]: Check this
 
-[^3]: Symbolic link
+[^3]: Check this
 
 [^4]: Accommodate this

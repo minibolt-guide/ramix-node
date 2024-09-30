@@ -56,7 +56,7 @@ echo "$SHA256 go$VERSION.linux-arm64.tar.gz" | sha256sum --check
 
 **Example** of expected output:
 
-<pre><code><strong>> go1.21.10.linux-arm64.tar.gz: OK
+<pre><code><strong>go1.21.10.linux-arm64.tar.gz: OK
 </strong></code></pre>
 
 * Extract and install Go in the `/usr/local` directory
@@ -92,7 +92,7 @@ go version
 **Example** of expected output:
 
 ```
-> go version go1.21.10 linux/arm64
+go version go1.21.10 linux/arm64
 ```
 
 * **(Optional)** Delete the file of the temporary folder to be immediately ready for the next update
@@ -142,7 +142,7 @@ echo "$SHA256 go$VERSION.linux-amd64.tar.gz" | sha256sum --check
 **Example** of expected output:
 
 ```
-> go1.22.3.linux-arm64.tar.gz: OK
+go1.22.3.linux-arm64.tar.gz: OK
 ```
 
 * Extract and install Go in the `/usr/local` directory
@@ -198,7 +198,7 @@ go version
 Expected output:
 
 ```
-> -bash: /usr/local/go/bin/go: No such file or directory
+-bash: /usr/local/go/bin/go: No such file or directory
 ```
 
 Next new session you will obtain this command when you try `go version` command:

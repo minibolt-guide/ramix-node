@@ -120,11 +120,11 @@ ots --no-cache verify SHA256SUMS.ots -f SHA256SUMS
 The following output is just an **example** of one of the versions:
 
 ```
-> Got 1 attestation(s) from https://btc.calendar.catallaxy.com
-> Got 1 attestation(s) from https://finney.calendar.eternitywall.com
-> Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
-> Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
-> Success! Bitcoin block 766964 attests existence as of 2022-12-11 UTC
+Got 1 attestation(s) from https://btc.calendar.catallaxy.com
+Got 1 attestation(s) from https://finney.calendar.eternitywall.com
+Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
+Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
+Success! Bitcoin block 766964 attests existence as of 2022-12-11 UTC
 ```
 
 {% hint style="info" %}
@@ -133,13 +133,11 @@ Now, check that the timestamp date is close to the [release](https://github.com/
 If you obtain this output:
 
 ```
-> Calendar https://btc.calendar.catallaxy.com: Pending confirmation in Bitcoin blockchain
-> Calendar https://finney.calendar.eternitywall.com: Pending confirmation in Bitcoin blockchain
-> Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
-> Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
+Calendar https://btc.calendar.catallaxy.com: Pending confirmation in Bitcoin blockchain
+Calendar https://finney.calendar.eternitywall.com: Pending confirmation in Bitcoin blockchain
+Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
+Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
-
-
 
 \-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
@@ -154,8 +152,8 @@ sha256sum --ignore-missing --check SHA256SUMS
 
 **Example** of expected output:
 
-```sh
-> bitcoin-26.0.tar.gz: OK
+```
+bitcoin-26.0.tar.gz: OK
 ```
 
 ### **Signature check**
@@ -174,12 +172,12 @@ curl -s "https://api.github.com/repositories/355107265/contents/builder-keys" | 
 
 ```
 [...]
-> gpg: key 17565732E08E5E41: 29 signatures not checked due to missing keys
-> gpg: /home/admin/.gnupg/trustdb.gpg: trustdb created
-> gpg: key 17565732E08E5E41: public key "Andrew Chow <andrew@achow101.com>" imported
-> gpg: Total number processed: 1
-> gpg:               imported: 1
-> gpg: no ultimately trusted keys found
+gpg: key 17565732E08E5E41: 29 signatures not checked due to missing keys
+gpg: /home/admin/.gnupg/trustdb.gpg: trustdb created
+gpg: key 17565732E08E5E41: public key "Andrew Chow <andrew@achow101.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
 [...]
 ```
 
@@ -194,8 +192,8 @@ gpg --verify SHA256SUMS.asc
 Expected output:
 
 ```
-> gpg: Good signature from ...
-> Primary key fingerprint: ...
+gpg: Good signature from ...
+Primary key fingerprint: ...
 [...]
 ```
 
@@ -365,9 +363,9 @@ bitcoin-cli --version
 The following output is just an **example** of one of the versions:
 
 ```
-> Bitcoin Core version v24.1.0
-> Copyright (C) 2009-2022 The Bitcoin Core developers
-> [...]
+Bitcoin Core version v24.1.0
+Copyright (C) 2009-2022 The Bitcoin Core developers
+[...]
 ```
 
 {% hint style="info" %}
@@ -431,7 +429,7 @@ After starting Bitcoin Core, wait a few minutes for Bitcoin Core to load the mem
 
 ### **Check the Ordisrespector filter working on your mempool**
 
-* Click on the "copy to the clipboard" icon to copy the transaction ID `(<txid>)`, and paste this on your own Bitcoin Explorer (BTC RPC Explorer / Mempool), in a BTC RPC Explorer running on a MiniBolt environment, go to [https://minibolt.local:4000](https://minibolt.local:4000)
+* Click on the "copy to the clipboard" icon to copy the transaction ID `(<txid>)`, and paste this on your own Bitcoin Explorer (BTC RPC Explorer / Mempool), in a BTC RPC Explorer running on a RaMiX environment, go to [https://ramix.local:4000](https://minibolt.local:4000)
 * Search the `"<txid>"` on the browser of your own Bitcoin Explorer
 
 _**Mempool space**_ expected output:

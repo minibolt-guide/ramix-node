@@ -52,11 +52,11 @@ On the **“General”** tab:
     Note: if you want to change this later, you can adjust the hostname later by replacing it in the file `/etc/hostname` and adding it at the end of the first line in `/etc/hosts`
 *   **Set username and password**: activate the checkbox and enter `admin` together with your `password [A]`
 
-    This will create the user `admin` which we will use primarily in this guide, making it more universal.
-*   **Configure WiFi**: if you will run the RaMiX connected to your wireless network, simply enter the WiFi name (“SSID”) and password. Also, change “Wifi country” to the two-letter [ISO2 code](https://www.iso.org/obp/ui/#search) of your country (e.g. `es`)
+    This will create the user `admin` which we will use primarily in this guide to make it more universal.
+*   **Configure WiFi**: if you will run the RaMiX connected to your wireless network, enter the WiFi name (“SSID”) and password. Also, change “Wifi country” to the two-letter [ISO2 code](https://www.iso.org/obp/ui/#search) of your country (e.g. `es`)
 
     If you’ll connect your RaMiX with a network cable, simply skip this setting
-* **Set locale settings**: activate the checkbox, select your timezone and keyboard layout
+* **Set locale settings**: activate the checkbox, select your timezone and keyboard layout ("es" recomended for Spanish speakers)
 
 On the **“Services”** tab:
 
@@ -78,17 +78,17 @@ This will allow you to connect to the Raspberry Pi remotely using “**S**ecure 
 * Read the warning banner carefully and make sure you selected the right drive, then click **“YES” again**
 
 {% hint style="info" %}
-The Raspberry Pi Imager now writes the operating system to your drive and verifies it. It should display a “**Success**” message after
+The Raspberry Pi Imager now writes and verifies the operating system on your drive. It should display a “**Success**” message after
 {% endhint %}
 
-![](https://raspibolt.org/images/gif\_raspberry\_pi\_flash.gif)
+![](../.gitbook/assets/rpi\_os\_bookworm\_install.gif)
 
-## Start your Pi <a href="#start-your-pi" id="start-your-pi"></a>
+## Start your Raspberry Pi <a href="#start-your-pi" id="start-your-pi"></a>
 
 * Safely eject the external drive from your computer
-* Connect it to your Pi
-* If you did not configure the Wifi settings: connect the Pi to your network with an ethernet cable
-* Start the Pi by connecting it to the power adapter using the USB-C cable
+* Connect it to your Raspberry Pi
+* If you did not configure the Wifi settings: connect the Raspberry Pi to your network with an ethernet cable
+* Start the Raspberry Pi by connecting it to the power adapter using the USB-C cable
 
 ### Does it boot? <a href="#does-it-boot" id="does-it-boot"></a>
 
@@ -119,4 +119,4 @@ Your Raspberry Pi should now boot from the SSD attached via USB
 
 ## Fallback: if you can’t boot from your external drive <a href="#fallback-if-you-cant-boot-from-your-external-drive" id="fallback-if-you-cant-boot-from-your-external-drive"></a>
 
-We assume that you can boot directly from the external drive. This method works for most modern drives, but if it doesn’t work in your case, please follow the fallback instructions [Boot from microSD card instead of external drive](https://raspibolt.org/guide/bonus/raspberry-pi/boot-from-microsd-card.html).
+We assume that you can boot directly from the external drive. This method works for most modern drives, but if it doesn’t work in your case, please follow the fallback instructions [Boot from microSD card instead of external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md).

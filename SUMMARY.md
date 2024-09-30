@@ -55,7 +55,7 @@
   * [Ordisrespector spam filter](bonus/bitcoin/ordisrespector.md)
   * [Nostr relay](bonus-guides/bitcoin/nostr-relay.md)
   * [Download the bitcoin whitepaper](bonus/bitcoin/white-paper.md)
-  * [MiniBolt on Testnet](bonus/bitcoin/minibolt-on-testnet.md)
+  * [RaMiX on Testnet](bonus/bitcoin/minibolt-on-testnet.md)
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
 
 ***

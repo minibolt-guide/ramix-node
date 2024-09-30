@@ -46,7 +46,7 @@ node -v
 **Example** of expected output:
 
 ```
-> v18.16.0
+v18.16.0
 ```
 
 * Check if you have already installed NPM
@@ -58,7 +58,7 @@ npm -v
 **Example** of expected output:
 
 ```
-> 9.5.1
+9.5.1
 ```
 
 {% hint style="info" %}
@@ -226,9 +226,8 @@ found 12 vulnerabilities (8 moderate, 4 high)
 
 **Example** of expected output:
 
-```
-> "version": "3.4.0",
-```
+<pre><code><strong>"version": "3.4.0",
+</strong></code></pre>
 
 ## Configuration
 

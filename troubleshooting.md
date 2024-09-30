@@ -18,7 +18,7 @@ layout:
 
 If the speed of your USB3 drive tested with `hdparm` in the [Check drive performance](index-1/configuration.md#check-drive-performance) section, is not acceptable, we need to configure the USB driver to ignore the UAS interface.
 
-* Get the Vendor and Product ID for your USB3 drive. Run the following command and look for the name of your drive or adapter. The relevant data is printed as `idVendor:idProduct` (`0bda:9210` in this example). Make a note of these values.
+* With user `admin`, get the `Vendor` and `Product ID` for your USB3 drive. Run the following command and look for the name of your drive or adapter. The relevant data is printed as `idVendor:idProduct` (`0bda:9210` in this example). Make a note of these values.
 
 ```bash
 lsusb
@@ -48,7 +48,7 @@ usb-storage.quirks=0bda:9210:u ..............
 ```
 
 {% hint style="info" %}
-_Note:_ if you have multiple drives that need these “quirks”, add them all to the single directive, separated by commas
+If you have multiple drives that need these “quirks”, add them all to the single directive, separated by commas
 
 ```
 usb-storage.quirks=0bda:9210:u,152d:0578:u ..............
@@ -61,7 +61,7 @@ usb-storage.quirks=0bda:9210:u,152d:0578:u ..............
 sudo reboot
 ```
 
-* Log in again as “`admin`” and test the USB3 drive performance again
+* Log in again as `admin` and test the USB3 drive performance again
 
 ```bash
 sudo hdparm -t --direct /dev/sda

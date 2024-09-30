@@ -71,9 +71,8 @@ ls -la bitcoin.pdf
 
 Expected output:
 
-```
-> -rw-rw-r-- 1 admin admin 184292 Jul 25 21:08 bitcoin.pdf
-```
+<pre><code><strong>-rw-rw-r-- 1 admin admin 184292 Jul 25 21:08 bitcoin.pdf
+</strong></code></pre>
 
 ### How does this work?
 
@@ -107,7 +106,7 @@ To be read, the PDF can now be sent from the remote node to your local computer 
 
 *   **macOS or Linux**
 
-    On your local computer, open a terminal window and type the following command. Replace YourNodeIP with the MiniBolt IP address (or `minibolt.local` if it works) and do not forget the dot at the end of the line (representing the destination of the file, here the 'Home' folder of your local computer)
+    On your local computer, open a terminal window and type the following command. Replace YourNodeIP with the RaMiX IP address (or `ramix.local` if it works) and do not forget the dot at the end of the line (representing the destination of the file, here the 'Home' folder of your local computer)
 
 ```sh
 scp admin@YourNodeIP:/tmp/bitcoin.pdf .
@@ -129,7 +128,7 @@ The BTC RPC Explorer has also a functionality to extract the data from the node 
 
 ![](../../images/white-paper-transac.png)
 
-* Open your Explorer at [https://minibolt.local:4000](https://miniboltt.local:4000/) or replace "minibolt.local" with your node IP address if needed)
+* Open your Explorer at [https://ramix.local:4000](https://miniboltt.local:4000/) or replace "ramix.local" with your node IP address if needed)
 * Look up the transaction ID in explorer: `54e48e5f5c656b26c3bca14a8c95aa583d07ebe84dde3b7dd4a78f4e4186e713`
 * Click on the link "bitcoin whitepaper" in the top box, this will generate the PDF from the node blockchain and display it as a PDF file in the browser
-* Alternatively, use the following direct URL: [https://minibolt.local:4000/bitcoin-whitepaper](https://minibolt.local:4000/bitcoin-whitepaper)
+* Alternatively, use the following direct URL: [https://ramix.local:4000/bitcoin-whitepaper](https://minibolt.local:4000/bitcoin-whitepaper)

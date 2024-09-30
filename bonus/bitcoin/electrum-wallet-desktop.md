@@ -47,7 +47,7 @@ Using the instructions on [this page](https://electrum.org/#download):
 
 ### Force single server Electrum connection to only your node
 
-To preserve privacy, we will constrain Electrum to only connect to a single server (your MiniBolt). How to do this depends on whether you are connecting via Local Area Network or via Tor and the operating system that you use on your regular computer.
+To preserve privacy, we will constrain Electrum to only connect to a single server (your RaMiX). How to do this depends on whether you are connecting via Local Area Network or via Tor and the operating system that you use on your regular computer.
 
 #### Local connection
 
@@ -56,7 +56,7 @@ If you plan to use Electrum from only within your own secured local area network
 * **Linux**
   * Execute this command in your Linux terminal to -1 (connect to single server only) -s (server address)
 
-<pre class="language-sh"><code class="lang-sh"><strong>./electrum -1 -s minibolt.local:50002:s
+<pre class="language-sh"><code class="lang-sh"><strong>./electrum -1 -s ramix.local:50002:s
 </strong></code></pre>
 
 {% hint style="info" %}
@@ -64,10 +64,10 @@ You can also use the local IP address of your node, i.e: 192.168.1.10:50002:s
 {% endhint %}
 
 * **Windows**
-  * Find the new Electrum desktop shortcut, right-click it, go to "Properties", and click the shortcut tab at the top bar, in the box named target, put "`-1 -s minibolt.local:50002:s`" after "electrum.exe"
+  * Find the new Electrum desktop shortcut, right-click it, go to "Properties", and click the shortcut tab at the top bar, in the box named target, put "`-1 -s ramix.local:50002:s`" after "electrum.exe"
 
 ```sh
-"C:\Program Files (x86)\Electrum\electrum.exe" -1 -s minibolt.local:50002:s
+"C:\Program Files (x86)\Electrum\electrum.exe" -1 -s ramix.local:50002:s
 ```
 
 {% hint style="info" %}
@@ -83,7 +83,7 @@ You can use the local IP address of your node, i.e: 192.168.1.10:50002:s
 
 {% code overflow="wrap" %}
 ```sh
-/Applications/Electrum.app/Contents/MacOS/run_electrum -1 -s minibolt.local:50002:s
+/Applications/Electrum.app/Contents/MacOS/run_electrum -1 -s ramix.local:50002:s
 ```
 {% endcode %}
 
@@ -102,7 +102,7 @@ nano /Users/<YOUR_PERSONAL_COMPUTER_USERNAME>/.electrum/config
 ```sh
 "auto_connect": false,
 "oneserver": true,
-"server": "minibolt.local:50002:s",
+"server": "ramix.local:50002:s",
 ```
 
 {% hint style="info" %}
@@ -127,12 +127,12 @@ By OS:
 * **Linux**: only need to execute (`sudo apt install tor`) on the command line and ensure that the Tor service is working and listening at the default ports `9050` and `9150`
 
 ```sh
-sudo ss -tulpn | grep tor | grep LISTEN
+sudo ss -tulpn | grep tor
 ```
 
 Expected output:
 
-```sh
+```
 tcp   LISTEN 0  4096   127.0.0.1:9050   0.0.0.0:*    users:(("tor",pid=1847,fd=6))
 tcp   LISTEN 0  4096   127.0.0.1:9051   0.0.0.0:*    users:(("tor",pid=1847,fd=7))
 ```
@@ -143,7 +143,7 @@ tcp   LISTEN 0  4096   127.0.0.1:9051   0.0.0.0:*    users:(("tor",pid=1847,fd=7
 
 Now we need to specify the Tor address for the Electrum Server and the local Tor proxy port in the Electrum Wallet configuration.
 
-First, get the onion address of your Electrum server directly on the MiniBolt, depending on whether you chose the Electrs or Fulcrum service
+First, get the onion address of your Electrum server directly on the RaMiX, depending on whether you chose the Electrs or Fulcrum service
 
 * For Electrs
 
@@ -154,7 +154,7 @@ sudo cat /var/lib/tor/hidden_service_electrs/hostname
 **Example** of expected output:
 
 ```
-> ab...yz.onion
+ab...yz.onion
 ```
 
 * For Fulcrum
@@ -166,7 +166,7 @@ sudo cat /var/lib/tor/hidden_service_fulcrum/hostname
 **Example** of expected output:
 
 ```
-> ab...yz.onion.onion
+ab...yz.onion.onion
 ```
 
 Now, execute Electrum Wallet choosing the correct way depending on your OS (replace "9050" with "9150" if you choose to run the Tor Browser)

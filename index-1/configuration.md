@@ -61,7 +61,7 @@ sudo hdparm -t --direct /dev/sda
 **Example** of expected output:
 
 ```
-> Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
+Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
 ```
 
 {% hint style="success" %}
@@ -71,7 +71,7 @@ If the measured speeds are more than 150 MB/s, you're good. If the measured spee
 {% hint style="info" %}
 If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface.
 
-Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the Troubleshooting guide to learn how.
+Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how.
 {% endhint %}
 
 ## Data directory
@@ -84,7 +84,7 @@ We'll store all application data in the dedicated directory `/data`. This allows
 sudo mkdir /data
 ```
 
-* Assing to the `admin` user as the owner of the **`(/data)`** folder
+* Assing to the `admin` user as the owner of the **`/data`** folder
 
 ```sh
 sudo chown admin:admin /data

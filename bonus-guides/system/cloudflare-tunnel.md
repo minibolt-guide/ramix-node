@@ -108,7 +108,7 @@ VERSION=2024.9.1
 * Use the deb package manager to install it
 
 ```bash
-sudo dpkg -i cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared-linux-arm64.deb
 ```
 
 * Check the correct installation
@@ -120,13 +120,13 @@ cloudflared --version
 **Example** of expected output:
 
 ```
-> cloudflared version 2023.6.1 (built 2023-06-20-0926 UTC)
+cloudflared version 2023.6.1 (built 2023-06-20-0926 UTC)
 ```
 
 * Remove the package installation file
 
 ```bash
-sudo rm cloudflared-linux-amd64.deb
+sudo rm cloudflared-linux-arm64.deb
 ```
 
 {% hint style="info" %}
@@ -168,14 +168,14 @@ Leave Cloudflared running to download the cert automatically while you complete 
 
 <figure><img src="../../.gitbook/assets/cloudflared-auth-3.PNG" alt=""><figcaption></figcaption></figure>
 
-* Go back to the MiniBolt terminal session, and you will see this:
+* Go back to the RaMiX terminal session, and you will see this:
 
 Expected output:
 
 ```
-> You have successfully logged in.
-> If you wish to copy your credentials to a server, they have been saved to:
-> /home/admin/.cloudflared/cert.pem
+You have successfully logged in.
+If you wish to copy your credentials to a server, they have been saved to:
+/home/admin/.cloudflared/cert.pem
 ```
 
 ### Create a tunnel and give it a name <a href="#id-3-create-a-tunnel-and-give-it-a-name" id="id-3-create-a-tunnel-and-give-it-a-name"></a>
@@ -247,7 +247,7 @@ CONNECTOR ID                         CREATED              ARCHITECTURE VERSION  
 **Example** of expected output:
 
 ```
-> 2023-07-09T18:01:07Z INF Added CNAME explorer.domain.com which will route to this tunnel tunnelID=8666c35d-6ac3-4b39-9324-12ae32ce64a7
+2023-07-09T18:01:07Z INF Added CNAME explorer.domain.com which will route to this tunnel tunnelID=8666c35d-6ac3-4b39-9324-12ae32ce64a7
 ```
 
 ## Configuration
@@ -384,7 +384,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run <a href="#id-6-run-the-tunnel" id="id-6-run-the-tunnel"></a>
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
 
 * Start the service
 
@@ -426,12 +426,12 @@ You should see the service properly running as if it were a local connection
 
 Ensure Cloudflared is listening on the random port assigned:
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo ss -tulpn | grep LISTEN | grep cloudflared
+<pre class="language-bash"><code class="lang-bash"><strong>sudo ss -tulpn | grep cloudflared
 </strong></code></pre>
 
 **Example** of expected output:
 
-<pre><code>> tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-1">37599</a>      0.0.0.0:*    users:(("cloudflared",pid=311164,fd=3))
+<pre><code>tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-1">37599</a>      0.0.0.0:*    users:(("cloudflared",pid=311164,fd=3))
 </code></pre>
 
 ## Upgrade
@@ -476,9 +476,9 @@ sudo dpkg -r cloudflared
 **Example** of expected output:
 
 ```
-> (Reading database ... 74004 files and directories currently installed.)
-> Removing cloudflared (2023.7.2) ...
-> Processing triggers for man-db (2.10.2-1) ...
+(Reading database ... 74004 files and directories currently installed.)
+Removing cloudflared (2023.7.2) ...
+Processing triggers for man-db (2.10.2-1) ...
 ```
 
 ## Port reference

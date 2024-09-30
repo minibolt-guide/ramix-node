@@ -201,11 +201,11 @@ lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
 * Copy the `UUID` of your backup device into a text editor on your local computer (e.g. here `123456`)
 
 ```
-> NAME   MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL      MODEL
-> sda                                                           931.5G            SSD_PLUS_1000GB
-> |-sda1 /boot      DBF3-0E3A                            vfat     256M boot
-> `-sda2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4   931.3G rootfs
-> sdb               123456                               vfat     1.9G SCB backup UDisk
+NAME   MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL      MODEL
+sda                                                           931.5G            SSD_PLUS_1000GB
+|-sda1 /boot      DBF3-0E3A                            vfat     256M boot
+`-sda2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4   931.3G rootfs
+sdb               123456                               vfat     1.9G SCB backup UDisk
 ```
 
 * Get the "lnd" user identifier (UID) and the "lnd" group identifier (GID) from the `/etc/passwd` database of all user accounts
@@ -244,8 +244,8 @@ df -h /mnt/static-channel-backup-external
 ```
 
 ```
-> Filesystem      Size  Used Avail Use% Mounted on
-> /dev/sdb        1.9G  4.0K  1.9G   1% /mnt/static-channel-backup-external
+Filesystem      Size  Used Avail Use% Mounted on
+ev/sdb        1.9G  4.0K  1.9G   1% /mnt/static-channel-backup-external
 ```
 
 ### Enable the local backup function in the script
@@ -288,10 +288,9 @@ ssh-keygen -t rsa -b 4096
 
 * When prompted, press "Enter" to confirm the default SSH directory and press "Enter" again to not set up a passphrase
 
-```
-> Generating public/private rsa key pair.
-> [...]
-```
+<pre><code><strong>Generating public/private rsa key pair.
+</strong>[...]
+</code></pre>
 
 * Display the public key and take note
 
@@ -299,9 +298,8 @@ ssh-keygen -t rsa -b 4096
 cat ~/.ssh/id_rsa.pub
 ```
 
-```
-> ssh-rsa 1234abcd... lnd@ramix
-```
+<pre><code><strong>ssh-rsa 1234abcd... lnd@ramix
+</strong></code></pre>
 
 * Go back to the GitHub repository webpage
   * Click on "Settings", then "Deploy keys", then "Add deploy key"
@@ -339,13 +337,13 @@ git clone git@github.com:<YourGitHubUsername>/remote-lnd-backup.git
 **Example** of expected output:
 
 ```
-> Cloning into 'remote-lnd-backup'...
-> The authenticity of host 'github.com (140.82.121.3)' can't be established.
-> ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-> This key is not known by any other names
-> Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-> Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
-> warning: You appear to have cloned an empty repository.
+Cloning into 'remote-lnd-backup'...
+The authenticity of host 'github.com (140.82.121.3)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+warning: You appear to have cloned an empty repository.
 [...]
 ```
 
@@ -444,23 +442,23 @@ sudo touch /data/lnd/data/chain/bitcoin/mainnet/channel.backup
 <summary><strong>Example</strong> of the expected output with <code>journalctl -fu scb-backup</code> ⬇️</summary>
 
 ```
-Jul 25 17:32:32 minibolt scb-backup[401705]: /data/lnd/data/chain/bitcoin/mainnet/channel.backup OPEN
-Jul 25 17:32:32 minibolt scb-backup[401704]: channel.backup has been changed!
-Jul 25 17:32:32 minibolt scb-backup[401704]: Remote backup is enabled
-Jul 25 17:32:32 minibolt scb-backup[401704]: Entering Git repository...
-Jul 25 17:32:32 minibolt scb-backup[401704]: Making a timestamped copy of channel.backup...
-Jul 25 17:32:32 minibolt scb-backup[401704]: /data/lnd/remote-lnd-backup/channel-20230725-173232.backup
-Jul 25 17:32:32 minibolt scb-backup[401704]: Committing changes and adding a message
-Jul 25 17:32:32 minibolt scb-backup[401740]: [main (root-commit) 927ac24] Static Channel Backup 20230725-173232
-Jul 25 17:32:32 minibolt scb-backup[401740]:  1 file changed, 0 insertions(+), 0 deletions(-)
-Jul 25 17:32:32 minibolt scb-backup[401740]:  create mode 100644 channel-20230725-173232.backup
-Jul 25 17:32:32 minibolt scb-backup[401704]: Pushing changes to remote repository...
-Jul 25 17:32:34 minibolt scb-backup[401742]: To github.com:minibolt/remote-lnd-backup.git
-Jul 25 17:32:34 minibolt scb-backup[401742]:  * [new branch]      main -> main
-Jul 25 17:32:34 minibolt scb-backup[401742]: Branch 'main' set up to track remote branch 'main' from 'origin'.
-Jul 25 17:32:34 minibolt scb-backup[401704]: Success! The file is now remotely backed up!
-Jul 25 17:32:34 minibolt scb-backup[401749]: Setting up watches.
-Jul 25 17:32:34 minibolt scb-backup[401749]: Watches established.
+Jul 25 17:32:32 ramix scb-backup[401705]: /data/lnd/data/chain/bitcoin/mainnet/channel.backup OPEN
+Jul 25 17:32:32 ramix scb-backup[401704]: channel.backup has been changed!
+Jul 25 17:32:32 ramix scb-backup[401704]: Remote backup is enabled
+Jul 25 17:32:32 ramix scb-backup[401704]: Entering Git repository...
+Jul 25 17:32:32 ramix scb-backup[401704]: Making a timestamped copy of channel.backup...
+Jul 25 17:32:32 ramix scb-backup[401704]: /data/lnd/remote-lnd-backup/channel-20230725-173232.backup
+Jul 25 17:32:32 ramix scb-backup[401704]: Committing changes and adding a message
+Jul 25 17:32:32 ramix scb-backup[401740]: [main (root-commit) 927ac24] Static Channel Backup 20230725-173232
+Jul 25 17:32:32 ramix scb-backup[401740]:  1 file changed, 0 insertions(+), 0 deletions(-)
+Jul 25 17:32:32 ramix scb-backup[401740]:  create mode 100644 channel-20230725-173232.backup
+Jul 25 17:32:32 ramix scb-backup[401704]: Pushing changes to remote repository...
+Jul 25 17:32:34 ramix scb-backup[401742]: To github.com:ramix/remote-lnd-backup.git
+Jul 25 17:32:34 ramix scb-backup[401742]:  * [new branch]      main -> main
+Jul 25 17:32:34 ramix scb-backup[401742]: Branch 'main' set up to track remote branch 'main' from 'origin'.
+Jul 25 17:32:34 ramix scb-backup[401704]: Success! The file is now remotely backed up!
+Jul 25 17:32:34 ramix scb-backup[401749]: Setting up watches.
+Jul 25 17:32:34 ramix scb-backup[401749]: Watches established.
 ```
 
 </details>
@@ -500,7 +498,7 @@ ls -la /mnt/static-channel-backup-external
 **Example** of expected output:
 
 ```
-> -rwxr-xr-x 1 lnd  lnd  14011 Feb  5 10:59 channel-20220205-105949.backup
+-rwxr-xr-x 1 lnd  lnd  14011 Feb  5 10:59 channel-20220205-105949.backup
 ```
 
 * **If you enabled the remote backup**, check your GitHub repository (in the `[ <> Code ]` tab). It should now contain the latest timestamped backup file

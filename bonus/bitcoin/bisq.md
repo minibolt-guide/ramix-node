@@ -80,7 +80,7 @@ bitcoin-cli getnetworkinfo | grep address.*onion
 **Example** of expected output:
 
 ```
-> "address": "123...abc.onion:8333"
+"address": "123...abc.onion:8333"
 ```
 
 ### Configure Firewall
@@ -168,9 +168,9 @@ For the national currency account and trading configuration options, please refe
 * Click on "Settings" > "Preferences"
 * Click on the three dots in the "Bitcoin Explorer" section
 * Use the following information:
-  * Name: Choose a name (e.g., `MiniBolt`)
-  * Transaction URL: `https://minibolt.local:4000/tx/` (replace minibolt.local with your node IP address if required)
-  * Address URL: `https://minibolt.local:4000/address/` (replace minibolt.local with your node IP address if required)
+  * Name: Choose a name (e.g., `RaMiX`)
+  * Transaction URL: `https://ramix.local:4000/tx/` (replace ramix.local with your node IP address if required)
+  * Address URL: `https://ramix.local:4000/address/` (replace ramix.local with your node IP address if required)
 * Click "Save"
 
 ### Wallet seed

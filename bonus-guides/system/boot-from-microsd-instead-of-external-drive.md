@@ -61,12 +61,12 @@ lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
 Example of expected output:
 
 ```
-> NAME        MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL  MODEL
-> sda                                                                931.5G        Ext_SSD
-> └─sda1                 3aab0952-3ed4-4652-b203-d994c4fdff20 ext4   931.5G
-> mmcblk0                                                             14.8G
-> |-mmcblk0p1 /boot      DBF3-0E3A                            vfat     256M boot
-> `-mmcblk0p2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4    14.6G rootfs
+NAME        MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL  MODEL
+sda                                                                931.5G        Ext_SSD
+└─sda1                 3aab0952-3ed4-4652-b203-d994c4fdff20 ext4   931.5G
+mmcblk0                                                             14.8G
+|-mmcblk0p1 /boot      DBF3-0E3A                            vfat     256M boot
+`-mmcblk0p2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4    14.6G rootfs
 ```
 
 * If your drive does not contain any partitions, follow this [How to Create a Disk Partitions in Linux](https://www.tecmint.com/create-disk-partitions-in-linux/) guide first.
@@ -94,12 +94,12 @@ lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
 Example of expected output:
 
 ```
-> NAME        MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL  MODEL
-> sda                                                                931.5G        Ext_SSD
-> └─sda1                 3aab0952-3ed4-4652-b203-d994c4fdff20 ext4   931.5G
-> mmcblk0                                                             14.8G
-> |-mmcblk0p1 /boot      DBF3-0E3A                            vfat     256M boot
-> `-mmcblk0p2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4    14.6G rootfs
+NAME        MOUNTPOINT UUID                                 FSTYPE   SIZE LABEL  MODEL
+sda                                                                931.5G        Ext_SSD
+└─sda1                 3aab0952-3ed4-4652-b203-d994c4fdff20 ext4   931.5G
+mmcblk0                                                             14.8G
+|-mmcblk0p1 /boot      DBF3-0E3A                            vfat     256M boot
+`-mmcblk0p2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4    14.6G rootfs
 ```
 
 * Edit the `fstab` file
@@ -157,17 +157,22 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 The swap file acts as slower memory and is essential for system stability. MicroSD cards are not very performant and degrade over time under constant read/write activity. Therefore, we move the swap file to the external drive and increase its size as well.
 
-* Edit the configuration file, add the `CONF_SWAPFILE` line, and comment the entry `CONF_SWAPSIZE` out by placing a `#` in front of it. Save and exit
+* Edit the `dphys-swapfile` configuration file
 
 ```bash
-sudo nano /etc/dphys-swapfile
+sudo nano -l +12 /etc/dphys-swapfile
 ```
+
+* Uncomment the entry `CONF_SWAPSIZE` by deleting the `#` in front of it, and editing to match this
 
 ```
 CONF_SWAPFILE=/data/swapfile
+```
 
-# comment or delete the CONF_SWAPSIZE line. It will then be created dynamically
-#CONF_SWAPSIZE=100
+* Comment the  `CONF_SWAPSIZE` by placing a `#` in front of it
+
+```
+#CONF_SWAPSIZE=200
 ```
 
 * Recreate and activate new swapfile
@@ -180,6 +185,6 @@ sudo systemctl restart dphys-swapfile
 
 ## &#x20;Continue with the guide <a href="#continue-with-the-guide" id="continue-with-the-guide"></a>
 
-That’s it: your Raspberry Pi now boots from the microSD card while the data directory `/data/` is located on the external drive.
+That’s it: your Raspberry Pi now boots from the microSD card while the data directory `/data` is located on the external drive.
 
 You can now continue with the [Remote access](../../index-1/remote-access.md) section

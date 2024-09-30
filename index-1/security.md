@@ -14,9 +14,9 @@ layout:
 
 # 1.5 Security
 
-We make sure that your MiniBolt is secured against unauthorized remote access.
+We make sure that your RaMiX is secured against unauthorized remote access.
 
-The MiniBolt needs to be secured against online attacks using various methods.
+The RaMiX needs to be secured against online attacks using various methods.
 
 <figure><img src="../.gitbook/assets/security.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -145,7 +145,7 @@ sudo tail -f /var/log/auth.log
 sudo tail --lines 500 /var/log/auth.log | grep sshd
 ```
 
-* With this command, you can show a listing of the last satisfactory logged-in users in your MiniBolt since 7 days ago. Change `-7days` option to do whatever you want
+* With this command, you can show a listing of the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-7days` option to do whatever you want
 
 ```sh
 last -s -7days -t today
@@ -186,7 +186,7 @@ nginx -v
 **Example** of expected output:
 
 ```
-> nginx version: nginx/1.18.0 (Ubuntu)
+nginx version: nginx/1.18.0 (Ubuntu)
 ```
 
 * Create a self-signed SSL/TLS certificate (valid for 10 years)
@@ -200,7 +200,7 @@ sudo openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/nginx-se
 **Example** of expected output:
 
 ```
-> .......+......+...+..+....+.....+......++++++........
+.......+......+...+..+....+.....+......++++++........
 ```
 
 ### Configuration
@@ -279,8 +279,8 @@ sudo nginx -t
 Expected output:
 
 ```
-> nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-> nginx: configuration file /etc/nginx/nginx.conf test is successful
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
 * Reload Nginx to apply the configuration
@@ -299,10 +299,10 @@ journalctl -fu nginx
 
 Expected output:
 
-<pre><code><strong>> Jun 04 18:21:09 minibolt systemd[1]: Starting A high performance web server and a reverse proxy server...
-</strong>> Jun 04 18:21:09 minibolt systemd[1]: Started A high performance web server and a reverse proxy server.
-> Jun 04 18:25:18 minibolt systemd[1]: Reloading A high performance web server and a reverse proxy server...
-> Jun 04 18:25:18 minibol systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+<pre><code><strong>Jun 04 18:21:09 ramix systemd[1]: Starting A high performance web server and a reverse proxy server...
+</strong>Jun 04 18:21:09 ramix systemd[1]: Started A high performance web server and a reverse proxy server.
+Jun 04 18:25:18 ramix systemd[1]: Reloading A high performance web server and a reverse proxy server...
+Jun 04 18:25:18 ramix systemd[1]: Reloaded A high performance web server and a reverse proxy server.
 </code></pre>
 
 {% hint style="info" %}

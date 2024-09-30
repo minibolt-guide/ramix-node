@@ -71,7 +71,7 @@ sha256sum --ignore-missing --check SHA256SUMS
 **Example** of expected output:
 
 ```
-> bitcoin-26.1-aarch64-linux-gnu.tar.gz: OK
+bitcoin-26.1-aarch64-linux-gnu.tar.gz: OK
 ```
 
 ### Signature check
@@ -89,12 +89,12 @@ curl -s "https://api.github.com/repositories/355107265/contents/builder-keys" | 
 Expected output:
 
 ```
-> gpg: key 17565732E08E5E41: 29 signatures not checked due to missing keys
-> gpg: /home/admin/.gnupg/trustdb.gpg: trustdb created
-> gpg: key 17565732E08E5E41: public key "Andrew Chow <andrew@achow101.com>" imported
-> gpg: Total number processed: 1
-> gpg:               imported: 1
-> gpg: no ultimately trusted keys found
+gpg: key 17565732E08E5E41: 29 signatures not checked due to missing keys
+gpg: /home/admin/.gnupg/trustdb.gpg: trustdb created
+gpg: key 17565732E08E5E41: public key "Andrew Chow <andrew@achow101.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
 [...]
 ```
 
@@ -106,8 +106,8 @@ gpg --verify SHA256SUMS.asc
 
 * Check that at least a few signatures show the following text
 
-<pre><code>> gpg: <a data-footnote-ref href="#user-content-fn-1">Good signature from</a>...
-> Primary key fingerprint:...
+<pre><code>gpg: <a data-footnote-ref href="#user-content-fn-1">Good signature from</a>...
+Primary key fingerprint:...
 </code></pre>
 
 ### Timestamp check
@@ -190,9 +190,9 @@ bitcoind --version
 The following output is just an **example** of one of the versions:
 
 ```
-> Bitcoin Core version v24.1.0
-> Copyright (C) 2009-2022 The Bitcoin Core developers
-> [...]
+Bitcoin Core version v24.1.0
+Copyright (C) 2009-2022 The Bitcoin Core developers
+[...]
 ```
 
 * **(Optional)** Delete installation files of the `tmp` folder to be ready for the next installation
@@ -211,6 +211,18 @@ The Bitcoin Core application will run in the background as a daemon and use the 
 
 ```bash
 sudo adduser --gecos "" --disabled-password bitcoin
+```
+
+**Example** of expected output:
+
+```
+Adding user `bitcoin' ...
+Adding new group `bitcoin' (1004) ...
+Adding new user `bitcoin' (1004) with group `bitcoin(1004)' ...
+Creating home directory `/home/bitcoin' ...
+Copying files from `/etc/skel' ...
+Adding new user `bitcoin' to supplemental / extra groups `users' ...
+Adding user `bitcoin' to group `users' ...
 ```
 
 * Add the user `admin` to the group "bitcoin" as well
@@ -256,21 +268,12 @@ ln -s /data/bitcoin /home/bitcoin/.bitcoin
 * Check the symbolic link has been created correctly
 
 ```bash
-ls -la
+ls -la .bitcoin
 ```
 
 Expected output:
 
-<pre><code>total 32
-drwxr-xr-x 3 bitcoin bitcoin 4096 Nov  7 19:33 .
-drwxr-xr-x 4 root    root    4096 Nov  7 19:32 ..
--rw------- 1 bitcoin bitcoin  135 Nov  7 19:33 .bash_history
--rw-r--r-- 1 bitcoin bitcoin  220 Nov  7 19:32 .bash_logout
--rw-r--r-- 1 bitcoin bitcoin 3523 Nov  7 19:32 .bashrc
-lrwxrwxrwx 1 bitcoin bitcoin   13 Nov  7 19:32 <a data-footnote-ref href="#user-content-fn-2">.bitcoin -> /data/bitcoin</a>
-drwxr-xr-x 3 bitcoin bitcoin 4096 Nov  7 19:33 .local
--rw-r--r-- 1 bitcoin bitcoin 1670 Nov  7 19:32 .mkshrc
--rw-r--r-- 1 bitcoin bitcoin  807 Nov  7 19:32 .profile
+<pre><code>lrwxrwxrwx 1 bitcoin bitcoin   13 Nov  7 19:32 <a data-footnote-ref href="#user-content-fn-2">.bitcoin -> /data/bitcoin</a>
 </code></pre>
 
 ### Generate access credentials
@@ -295,21 +298,21 @@ wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpca
 ```
 {% endcode %}
 
-* Run the script with the Python3 interpreter, providing the username (`minibolt`) and your `"password [B]"` arguments
+* Run the script with the Python3 interpreter, providing the username (`ramix`) and your `"password [B]"` arguments
 
 {% hint style="warning" %}
 All commands entered are stored in the bash history. But we don't want the password to be stored where anyone can find it. For this, put a space `( )` in front of the command shown below
 {% endhint %}
 
 ```sh
- python3 rpcauth.py minibolt YourPasswordB
+ python3 rpcauth.py ramix YourPasswordB
 ```
 
 **Example** of expected output:
 
 ```
 String to be appended to bitcoin.conf:
-rpcauth=minibolt:00d8682ce66c9ef3dd9d0c0a6516b10e$c31da4929b3d0e092ba1b2755834889f888445923ac8fd69d8eb73efe0699afa
+rpcauth=ramix:00d8682ce66c9ef3dd9d0c0a6516b10e$c31da4929b3d0e092ba1b2755834889f888445923ac8fd69d8eb73efe0699afa
 ```
 
 * Copy the `rpcauth` line, we'll need to paste it into the Bitcoin config file
@@ -500,7 +503,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 * Start the service
 
@@ -513,27 +516,27 @@ sudo systemctl start bitcoind
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu bitcoind</code> ⬇️</summary>
 
 ```
-> 2022-11-24T18:08:04Z Bitcoin Core version v24.0.1.0 (release build)
-> 2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -upnp=0
-> 2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -natpmp=0
-> 2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -discover=0
-> 2022-11-24T18:08:04Z Using the 'sse4(1way),sse41(4way),avx2(8way)' SHA256 implementation
-> 2022-11-24T18:08:04Z Using RdRand as an additional entropy source
-> 2022-11-24T18:08:04Z Default data directory /home/bitcoin/.bitcoin
-> 2022-11-24T18:08:04Z Using data directory /home/bitcoin/.bitcoin
-> 2022-11-24T18:08:04Z Config file: /home/bitcoin/.bitcoin/bitcoin.conf
-> 2022-11-24T18:08:04Z Config file arg: blockfilterindex="1"
-> 2022-11-24T18:08:04Z Config file arg: coinstatsindex="1"
-> 2022-11-24T18:08:04Z Config file arg: i2pacceptincoming="1"
-> 2022-11-24T18:08:04Z Config file arg: i2psam="127.0.0.1:7656"
-> 2022-11-24T18:08:04Z Config file arg: listen="1"
-> 2022-11-24T18:08:04Z Config file arg: listenonion="1"
-> 2022-11-24T18:08:04Z Config file arg: peerblockfilters="1"
-> 2022-11-24T18:08:04Z Config file arg: peerbloomfilters="1"
-> 2022-11-24T18:08:04Z Config file arg: proxy="127.0.0.1:9050"
-> 2022-11-24T18:08:04Z Config file arg: rpcauth=****
-> 2022-11-24T18:08:04Z Config file arg: server="1"
-> 2022-11-24T18:08:04Z Config file arg: txindex="1"
+2022-11-24T18:08:04Z Bitcoin Core version v24.0.1.0 (release build)
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -upnp=0
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -natpmp=0
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -discover=0
+2022-11-24T18:08:04Z Using the 'sse4(1way),sse41(4way),avx2(8way)' SHA256 implementation
+2022-11-24T18:08:04Z Using RdRand as an additional entropy source
+2022-11-24T18:08:04Z Default data directory /home/bitcoin/.bitcoin
+2022-11-24T18:08:04Z Using data directory /home/bitcoin/.bitcoin
+2022-11-24T18:08:04Z Config file: /home/bitcoin/.bitcoin/bitcoin.conf
+2022-11-24T18:08:04Z Config file arg: blockfilterindex="1"
+2022-11-24T18:08:04Z Config file arg: coinstatsindex="1"
+2022-11-24T18:08:04Z Config file arg: i2pacceptincoming="1"
+2022-11-24T18:08:04Z Config file arg: i2psam="127.0.0.1:7656"
+2022-11-24T18:08:04Z Config file arg: listen="1"
+2022-11-24T18:08:04Z Config file arg: listenonion="1"
+2022-11-24T18:08:04Z Config file arg: peerblockfilters="1"
+2022-11-24T18:08:04Z Config file arg: peerbloomfilters="1"
+2022-11-24T18:08:04Z Config file arg: proxy="127.0.0.1:9050"
+2022-11-24T18:08:04Z Config file arg: rpcauth=****
+2022-11-24T18:08:04Z Config file arg: server="1"
+2022-11-24T18:08:04Z Config file arg: txindex="1"
 [...]
 > 2022-11-24T18:09:04Z Synchronizing blockheaders, height: 4000 (~0.56%)
 [...]
@@ -570,21 +573,12 @@ exit
 * Check symbolic link have been created correctly
 
 ```bash
-ls -la
+ls -la .bitcoin
 ```
 
 Expected output:
 
-<pre><code>drwxr-xr-x 11 root  root   4096 Oct 26 19:19 ..
-<strong>-rw-rw-r-- 1 admin admin 12020 Nov  7 09:51 .bash_aliases
-</strong>-rw------- 1 admin admin 51959 Nov  7 12:19 .bash_history
--rw-r--r-- 1 admin admin   220 Nov  7 20:25 .bash_logout
--rw-r--r-- 1 admin admin  3792 Nov  7 07:56 .bashrc
-lrwxrwxrwx 1 admin admin    13 Nov  7 10:41 <a data-footnote-ref href="#user-content-fn-5">.bitcoin -> /data/bitcoin</a>
--rw-r--r-- 1 admin admin   807 Nov  7  2023 .profile
-drwx------ 2 admin admin  4096 Nov  7  2023 .ssh
--rw-r--r-- 1 admin admin   208 Nov  7 19:32 .wget-hsts
--rw------- 1 admin admin   116 Nov  7 19:41 .Xauthority
+<pre><code>lrwxrwxrwx 1 admin admin    13 Nov  7 10:41 <a data-footnote-ref href="#user-content-fn-5">.bitcoin -> /data/bitcoin</a>
 </code></pre>
 
 {% hint style="warning" %}
@@ -607,8 +601,13 @@ ln -s /data/bitcoin /home/admin/.bitcoin
 3. Check the symbolic link has been created correctly this time and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-7)[^7]
 
 ```bash
-ls -la
+ls -la .bitcoin
 ```
+
+Expected output:
+
+<pre><code>lrwxrwxrwx 1 admin admin    13 Nov  7 10:41 <a data-footnote-ref href="#user-content-fn-8">.bitcoin -> /data/bitcoin</a>
+</code></pre>
 {% endhint %}
 
 * Wait a few minutes until Bitcoin Core starts, and enter the next command to obtain your Tor and I2P addresses. Take note of them, later you might need it
@@ -621,10 +620,9 @@ bitcoin-cli getnetworkinfo | grep address.*onion && bitcoin-cli getnetworkinfo |
 
 **Example** of expected output:
 
-```
-> "address": "vctk9tie5srguvz262xpyukkd7g4z2xxxy5xx5ccyg4f12fzop8hoiad.onion",
-> "address": "sesehks6xyh31nyjldpyeckk3ttpanivqhrzhsoracwqjxtk3apgq.b32.i2p",
-```
+<pre><code><strong>"address": "vctk9tie5srguvz262xpyukkd7g4z2xxxy5xx5ccyg4f12fzop8hoiad.onion",
+</strong>"address": "sesehks6xyh31nyjldpyeckk3ttpanivqhrzhsoracwqjxtk3apgq.b32.i2p",
+</code></pre>
 
 * Check the correct enablement of the I2P and Tor networks
 
@@ -654,9 +652,9 @@ sudo ss -tulpn | grep bitcoind
 
 Expected output:
 
-<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-8">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-9">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-10">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
+<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-9">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-10">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-11">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
 tcp   LISTEN 0      128            [::1]:8332          [::]:*    users:(("bitcoind",pid=773834,fd=10))
 </code></pre>
 
@@ -722,10 +720,22 @@ When we installed Bitcoin Core, we verified the timestamp of the checksum file u
 sudo apt install python3-dev python3-pip python3-wheel
 ```
 
+* Create a new virtual environment
+
+```bash
+python3 -m venv myenv
+```
+
+* Activate the virtual environment
+
+```bash
+source myenv/bin/activate
+```
+
 * Install the OpenTimestamp client
 
 ```sh
-sudo pip3 install opentimestamps-client
+pip install opentimestamps-client
 ```
 
 * Display the OpenTimestamps client version to check that it is properly installed
@@ -736,7 +746,7 @@ ots --version
 
 **Example** of expected output:
 
-<pre><code><strong>> v0.7.1
+<pre><code><strong>v0.7.1
 </strong></code></pre>
 
 {% hint style="info" %}
@@ -822,8 +832,8 @@ bitcoin-cli getnetworkinfo | grep address.*onion && bitcoin-cli getnetworkinfo |
 **Example** of expected output:
 
 ```
-> "address": "vctk9tie5srguvz262xpyukkd7g4z2xxxy5xx5ccyg4f12fzop8hoiad.onion",
-> "address": "sesehks6xyh31nyjldpyeckk3ttpanivqhrzhsoracwqjxtk3apgq.b32.i2p",
+"address": "vctk9tie5srguvz262xpyukkd7g4z2xxxy5xx5ccyg4f12fzop8hoiad.onion",
+"address": "sesehks6xyh31nyjldpyeckk3ttpanivqhrzhsoracwqjxtk3apgq.b32.i2p",
 ```
 
 ### The manual page for bitcoin-cli
@@ -1175,20 +1185,22 @@ sudo ufw delete X
 
 [^1]: Check this
 
-[^2]: Symbolic link
+[^2]: Check this
 
 [^3]: Replace
 
 [^4]: Accommodate this
 
-[^5]: Symbolic link
+[^5]: Check this
 
 [^6]: Symbolic link
 
 [^7]: Symbolic link
 
-[^8]: RPC port
+[^8]: Check this
 
-[^9]: P2P main port
+[^9]: RPC port
 
-[^10]: P2P secondary port
+[^10]: P2P main port
+
+[^11]: P2P secondary port
