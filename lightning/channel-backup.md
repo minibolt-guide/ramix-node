@@ -250,11 +250,13 @@ ev/sdb        1.9G  4.0K  1.9G   1% /mnt/static-channel-backup-external
 
 ### Enable the local backup function in the script
 
-* Enable the local backup in the script by changing the variable value for `LOCAL_BACKUP_ENABLED` at line 14 to `true`. Save and exit
+* With user `admin`, edit the script
 
 ```sh
-sudo nano /usr/local/bin/scb-backup --linenumbers
+sudo nano +14 /usr/local/bin/scb-backup --linenumbers
 ```
+
+* Enable the local backup in the script by changing the variable value for `LOCAL_BACKUP_ENABLED` at line 14 to `true`. Save and exit
 
 ```
 LOCAL_BACKUP_ENABLED=true
@@ -298,6 +300,8 @@ ssh-keygen -t rsa -b 4096
 cat ~/.ssh/id_rsa.pub
 ```
 
+Example of expected output:
+
 <pre><code><strong>ssh-rsa 1234abcd... lnd@ramix
 </strong></code></pre>
 
@@ -310,11 +314,11 @@ cat ~/.ssh/id_rsa.pub
 * Set up global Git configuration values (the name and email are required but can be dummy values)
 
 ```sh
-git config user.name "RaMiX"
+git config --global user.name "RaMiX"
 ```
 
 ```bash
-git config user.email "ramix@dummyemail.com"
+git config --global user.email "ramix@dummyemail.com"
 ```
 
 * **(Optional)** Add this step if you want to preserve your privacy with GitHub servers if not, jump to the next step directly -> (`cd ~/.lnd`)
@@ -355,11 +359,13 @@ exit
 
 ### Enable the remote backup function in the script
 
-* Enable the remote backup in the script by changing the variable value for `REMOTE_BACKUP_ENABLED` line 15 to `true`. Save and exit
+* With user `admin`, edit the script
 
 ```sh
-sudo nano /usr/local/bin/scb-backup --linenumbers
+sudo nano +15 /usr/local/bin/scb-backup --linenumbers
 ```
+
+* Enable the local backup in the script by changing the variable value for `REMOTE_BACKUP_ENABLED` at line 15 to `true`. Save and exit
 
 ```
 REMOTE_BACKUP_ENABLED=true
@@ -464,7 +470,7 @@ Jul 25 17:32:34 ramix scb-backup[401749]: Watches established.
 </details>
 
 {% hint style="warning" %}
-If you get the next error:
+Finally, you get the next error:
 
 ```
 Nov 05 23:18:43 ramix scb-backup[1710686]: Pushing changes to remote repository...
@@ -482,7 +488,7 @@ Replace the content: `"git push --set-upstream origin`**`main`**`"`
 
 To:`"git push --set-upstream origin`**`master`**`"`
 
-And finaly try again with the following command:&#x20;
+And finally, try again with the following command:&#x20;
 
 ```bash
 sudo touch /data/lnd/data/chain/bitcoin/mainnet/channel.backup
