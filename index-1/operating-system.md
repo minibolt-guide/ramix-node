@@ -92,9 +92,9 @@ The Raspberry Pi Imager now writes and verifies the operating system on your dri
 
 ### Does it boot? <a href="#does-it-boot" id="does-it-boot"></a>
 
-The 🔴 red LED on the Pi will indicate that the device is powered on.
+The 🔴 **red LED** on the Raspberry Pi will indicate that the device is powered on.
 
-The 🟢 green LED should constantly be flickering after a few seconds, indicating activity. If the green LED is lit constantly, without flickering, your Pi is probably not yet configured to boot from USB.
+The 🟢 **green LED** should constantly be flickering after a few seconds, indicating activity. If the green LED is lit constantly, without flickering, your Raspberry Pi is probably not yet configured to boot from USB.
 
 To enable booting from USB, follow these steps:
 
@@ -109,9 +109,9 @@ To enable booting from USB, follow these steps:
 The Raspberry Pi Imager now writes on your microSD and verifies it. It should display a “Success” message after
 {% endhint %}
 
-1. Boot your Pi with this microSD card
-2. Once the green LED blinks constantly, you can disconnect the power
-3. Remove the microSD card and start your Pi again with the SSD connected
+1. Boot your Raspberry Pi with this microSD card
+2. Once the 🟢 **green LED** blinks constantly, you can disconnect the power
+3. Remove the microSD card and start your Raspberry Pi again with the SSD connected
 
 {% hint style="info" %}
 Your Raspberry Pi should now boot from the SSD attached via USB

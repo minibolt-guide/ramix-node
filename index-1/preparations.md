@@ -42,7 +42,7 @@ You need the following hardware:
 * Official Raspberry Pi power adapter: other adapters are a common cause of reliability issues
 * Storage:
   * Option 1: External storage: SSD with USB3 (2+ TB is recommended)
-  * Option 2 (only Raspberry Pi 5): Internal storage: Raspberry Pi M.2 HAT + M.2 2230 or 2242 form factor NVMe SSD (2+ TB is recommended) or with compatible shield 2260 or 2282 form factor
+  * Option 2 (only Raspberry Pi 5): Internal storage - Raspberry Pi M.2 HAT + M.2 2230 or 2242 form factor NVMe SSD (2+ TB is recommended) or with compatible shield, 2260 or 2282 form factor
 * A regular computer (laptop, PC, etc)
 
 You might also want to get this optional hardware:
