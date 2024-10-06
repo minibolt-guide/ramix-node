@@ -106,8 +106,10 @@ To enable booting from USB, follow these steps:
 6. Read the warning banner carefully and make sure you selected the right drive, then click **“YES”**.
 
 {% hint style="info" %}
-The Raspberry Pi Imager now writes on your microSD and verifies it. It should display a “Success” message after
+The Raspberry Pi Imager now writes on your microSD and verifies it. It should display a “**Success**” message after
 {% endhint %}
+
+<figure><img src="../.gitbook/assets/boot_from_nvme_USB.gif" alt=""><figcaption></figcaption></figure>
 
 1. Boot your Raspberry Pi with this microSD card
 2. Once the 🟢 **green LED** blinks constantly, you can disconnect the power
