@@ -50,7 +50,7 @@ layout:
 
 ### Testnet
 
-* [**Running a Testnet MiniBolt Node**](minibolt-on-testnet.md) - configure your MiniBolt for use on testnet
+* [**Running a Testnet RaMiX Node**](ramix-on-testnet.md) - configure your RaMiX for use on testnet
 
 ### Payment processors
 
