@@ -148,11 +148,19 @@ sudo -u postgres createdb -O admin nostrelay
 cd /tmp
 ```
 
-* Clone the source code directly from the GitHub repository, and then build a release version of the relay and go to the `nostr-rs-relay` folder
+* Set a temporary version environment variable to the installation
 
 ```bash
-git clone https://github.com/scsibug/nostr-rs-relay.git && cd nostr-rs-relay
+VERSION=0.9.0
 ```
+
+* Clone the source code directly from the GitHub repository, and then build a release version of the relay and go to the `nostr-rs-relay` folder
+
+{% code overflow="wrap" %}
+```bash
+git clone --branch $VERSION https://github.com/scsibug/nostr-rs-relay.git && cd nostr-rs-relay
+```
+{% endcode %}
 
 * Build a release version of the relay
 
@@ -208,15 +216,15 @@ cargo build --release
 </details>
 
 {% hint style="info" %}
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+{% endhint %}
+
+{% hint style="info" %}
 If the prompt shows you this error:
 
 `error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured. help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.`
 
 You need to type **`rustup default stable`** and wait for the process to finish, then try again the command before
-{% endhint %}
-
-{% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
 {% endhint %}
 
 * Install it
@@ -543,6 +551,12 @@ sudo apt install sqlite3 libsqlite3-dev
 mkdir -p /data/nostr/rs-relay/db
 ```
 
+* Copy-paste the configuration file template to the before-created folder
+
+```bash
+sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr/rs-relay/db
+```
+
 * Assign as the owner to the `nostr` user
 
 ```bash
@@ -827,18 +841,52 @@ Find the top relays of those who follow you or you follow.
 sudo systemctl stop nostr-relay
 ```
 
-* Follow the complete [Installation](nostr-relay.md#installation) section
+* Follow the complete [Installation](nostr-relay.md#installation) section with the new VERSION number changed to match the [latest tag release](https://github.com/scsibug/nostr-rs-relay/tags)
 * Replace the `config.toml` file with the new one of the new version **(if needed)**
 
 {% hint style="warning" %}
-**This step is only necessary if you see changes on the config file template from your current version until the current release (not common)**, you can display this on this [history link](https://github.com/scsibug/nostr-rs-relay/commits/master/config.toml). If there are no changes, jump directly to the next **"Start `nostr-rs-relay` service again" >**`sudo systemctl start nostr-relay`
+**This step is only necessary if you see changes on the config file template from your current version until the current release (not common)**, you can display this on this [history link](https://github.com/scsibug/nostr-rs-relay/commits/master/config.toml). If there are no changes, jump directly to the next **"Start `nostr-rs-relay` service again" >**`sudo systemctl start nostr-relay` step
 {% endhint %}
 
+Here 2 cases depending on your chosen database backend:
+
+{% tabs %}
+{% tab title="Case 1: PostgreSQL database backend" %}
 * Backup the `config.toml` file to keep a copy of your old configuration
 
+{% code overflow="wrap" %}
+```bash
+sudo cp /home/nostr/rs-relay/config.toml /home/nostr/rs-relay/config.toml.backup
+```
+{% endcode %}
+
+* Assign the owner of the backup file to the `nostr` user
+
+```bash
+sudo chown nostr:nostr /home/nostr/rs-relay/config.toml.backup
+```
+
+* Replace the `config.toml` file with the new version
+
+```bash
+sudo cp /tmp/nostr-rs-relay/config.toml /home/nostr/rs-relay/
+```
+
+* Edit the config file and replace it with the same old information as the file you had. Save and exit
+
+```bash
+sudo nano /home/nostr/rs-relay/config.toml
+```
+{% endtab %}
+
+{% tab title="Case 2: SQLite database backend" %}
+* Backup the `config.toml` file to keep a copy of your old configuration
+
+{% code overflow="wrap" %}
 ```bash
 sudo cp /data/nostr/rs-relay/config.toml /data/nostr/rs-relay/config.toml.backup
 ```
+{% endcode %}
 
 * Assign the owner of the backup file to the `nostr` user
 
@@ -846,7 +894,7 @@ sudo cp /data/nostr/rs-relay/config.toml /data/nostr/rs-relay/config.toml.backup
 sudo chown nostr:nostr /data/nostr/rs-relay/config.toml.backup
 ```
 
-* Replace the new `config.toml` file of the new release
+* Replace the `config.toml` file with the new version
 
 ```bash
 sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr/rs-relay/
@@ -857,6 +905,8 @@ sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr/rs-relay/
 ```bash
 sudo nano /data/nostr/rs-relay/config.toml
 ```
+{% endtab %}
+{% endtabs %}
 
 * Start `nostr-rs-relay` service again
 

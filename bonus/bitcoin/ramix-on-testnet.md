@@ -173,7 +173,7 @@ sudo ufw allow 40002/tcp comment 'allow Fulcrum Testnet4 SSL from anywhere'
 
 {% code overflow="wrap" %}
 ```bash
-wget https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/fulcrum-banner-testnet4.txt
+wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/fulcrum-banner-testnet4.txt
 ```
 {% endcode %}
 

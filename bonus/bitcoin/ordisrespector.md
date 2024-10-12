@@ -341,7 +341,7 @@ Skip this step if you want only to build Bitcoin Core from the source code but n
 
 {% code overflow="wrap" %}
 ```bash
-wget https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/ordisrespector.patch
+wget https://github.com/minibolt-guide/ramix-node/blob/main/resources/ordisrespector.patch
 ```
 {% endcode %}
 

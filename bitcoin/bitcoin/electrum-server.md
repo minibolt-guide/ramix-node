@@ -330,7 +330,7 @@ writing new private key to 'key.pem'
 
 {% code overflow="wrap" %}
 ```bash
-wget https://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/fulcrum-banner.txt
+wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/fulcrum-banner.txt
 ```
 {% endcode %}
 

@@ -38,16 +38,14 @@ We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
 
 * Start the **Raspberry Pi Imager**
 * On the “**Raspberry Pi device**” section > Push on “**Choose device**” > Select **“No filtering”**
-* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“Raspberry Pi OS Lite (64 bit)” -** _A port of Debian Bookworm with no desktop environment (Compatible with Raspberry Pi 3/4/400/5)_ and have the relevant image flashed to your drive
+* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“**<mark style="color:red;">**Raspberry Pi OS Lite (64 bit)**</mark>**” -** _A port of Debian Bookworm with no desktop environment (Compatible with Raspberry Pi 3/4/400/5)_ and have the relevant image flashed to your drive
 * Connect the external drive to your regular computer. On the “**Storage**” section > Push on “**Choose storage**” > Select your external drive
 * Click on the **“NEXT”** button
 * On the “Use OS customisation” banner > Click on the **“EDIT SETTINGS”** button
 
 ### &#x20;Configure boot options <a href="#configure-boot-options" id="configure-boot-options"></a>
 
-You can now pre-configure the operating system even before it’s started for the first time.
-
-Configure the advanced options as follows.
+You can now pre-configure the operating system even before it’s started for the first time. Configure the advanced options as follows.
 
 On the **“General”** tab:
 
@@ -98,9 +96,9 @@ The Raspberry Pi Imager now writes and verifies the operating system on your dri
 
 The 🔴 **red LED** on the Raspberry Pi will indicate that the device is powered on.
 
-The 🟢 **green LED** should constantly be flickering after a few seconds, indicating activity. If the green LED is lit constantly, without flickering, your Raspberry Pi is probably not yet configured to boot from USB.
+The 🟢 **green LED** should constantly be flickering after a few seconds, indicating activity. If the green LED is lit constantly, without flickering, your Raspberry Pi is probably not yet configured to boot from USB/NVMe.
 
-To enable booting from USB, follow these steps:
+To enable booting from USB/NVMe, follow these steps:
 
 1. Get your hands on a microSD card (all data will be deleted, but you only need it once)
 2. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), write config bootloader to enable “**USB Boot | NVMe Boot**” to the microSD card

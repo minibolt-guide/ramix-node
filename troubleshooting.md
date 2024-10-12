@@ -68,7 +68,7 @@ sudo hdparm -t --direct /dev/sda
 ```
 
 {% hint style="info" %}
-You should see a significant increase in performance. If the test still shows a very slow read speed, your drive or USB3 adapter might not be compatible with the Raspberry Pi. In that case we recommend visiting the [Raspberry Pi Troubleshooting forum](https://forums.raspberrypi.com/viewforum.php?f=28) or simply trying out hardware alternatives
+You should see a significant increase in performance. If the test still shows a very slow read speed, your drive or USB3 adapter might not be compatible with the Raspberry Pi. In that case, we recommend visiting the [Raspberry Pi Troubleshooting forum](https://forums.raspberrypi.com/viewforum.php?f=28) or simply trying out hardware alternatives
 {% endhint %}
 
 {% hint style="info" %}

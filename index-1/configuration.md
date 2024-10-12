@@ -123,7 +123,7 @@ sudo apt install hdparm
 lsblk -pli
 ```
 
-#### Measure the speed of your drive depending on your case
+#### Measure the speed of your drive depending on your case:
 
 {% tabs %}
 {% tab title="Case USB SSD (more common)" %}

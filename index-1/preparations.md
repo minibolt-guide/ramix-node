@@ -54,7 +54,7 @@ You might also want to get this optional hardware:
 
 * UPS (uninterruptible power supply)
 * Raspberry Pi case to protect it
-* A small USB thumbdrive or microSD card to create regular local backups of your Lightning channels
+* A temporary small microSD card to [modify the bootloader](operating-system.md#does-it-boot) or a final thumb drive to [create regular local backups of your Lightning channels](../lightning/channel-backup.md)
 
 ## Write down your passwords
 

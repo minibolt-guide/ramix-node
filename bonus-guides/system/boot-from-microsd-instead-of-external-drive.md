@@ -36,13 +36,9 @@ To boot from a microSD card and store the data on an external drive, there are a
    * format the drive
    * mount the drive to `/data`
 
-***
-
 #### Operating system <a href="#operating-system" id="operating-system"></a>
 
 When writing Raspberry Pi OS to the boot medium, use a high-quality microSD card of 8+ GB instead of the external drive.
-
-***
 
 ## System configuration <a href="#system-configuration" id="system-configuration"></a>
 
@@ -85,11 +81,17 @@ mmcblk0                                                             14.8G
 sudo mkfs.ext4 /dev/[NAME]
 ```
 
-### &#x20;**Mount external drive**
+**Example:**
+
+```bash
+sudo mkfs.ext4 /dev/sda1
+```
+
+### **Mount external drive**
 
 The external drive is then attached to the file system and becomes available as a regular folder (this is called “mounting”).
 
-* List the block devices once more and copy the new partition’s `UUID` into a text editor on your main machine
+* List the block devices once more
 
 ```bash
 lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
@@ -106,17 +108,25 @@ mmcblk0                                                             14.8G
 `-mmcblk0p2 /          b73b1dc9-6e12-4e68-9d06-1a1892663226 ext4    14.6G rootfs
 ```
 
+{% hint style="info" %}
+Copy the new partition’s `UUID` into a text editor on your main machine
+{% endhint %}
+
 * Edit the `fstab` file
 
 ```bash
 sudo nano /etc/fstab
 ```
 
-* Add the following as a new line at the end, replacing `123456` with your own `UUID`
+* Add the following as a new line at the end of the file
 
 ```
 UUID=123456 /data ext4 rw,nosuid,dev,noexec,noatime,nodiratime,auto,nouser,async,nofail 0 2
 ```
+
+{% hint style="info" %}
+Replace`123456` with your own `UUID`
+{% endhint %}
 
 {% hint style="info" %}
 _more:_ [_complete fstab guide_](https://linuxconfig.org/how-fstab-works-introduction-to-the-etc-fstab-file-on-linux)
@@ -128,7 +138,7 @@ _more:_ [_complete fstab guide_](https://linuxconfig.org/how-fstab-works-introdu
 sudo mkdir /data
 ```
 
-* Assing to the `admin` user as the owner of the **`(/data)`** folder
+* Assing to the `admin` user as the owner of the **`/data`** folder
 
 ```bash
 sudo chown admin:admin /data
@@ -157,9 +167,9 @@ Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda1       938G   77M  891G   1% /data
 ```
 
-### **Move swap file to New Drive**
+### **Move the swap file to the new drive**
 
-The swap file acts as slower memory and is essential for system stability. MicroSD cards are not very performant and degrade over time under constant read/write activity. Therefore, we move the swap file to the external drive and increase its size as well.
+The swap file acts as slower memory and is essential for system stability. microSD cards are not very performant and degrade over time under constant read/write activity. Therefore, we move the swap file to the external drive and increase its size as well.
 
 * Edit the `dphys-swapfile` configuration file
 
@@ -184,8 +194,6 @@ CONF_SWAPFILE=/data/swapfile
 ```bash
 sudo systemctl restart dphys-swapfile
 ```
-
-***
 
 ## &#x20;Continue with the guide <a href="#continue-with-the-guide" id="continue-with-the-guide"></a>
 
