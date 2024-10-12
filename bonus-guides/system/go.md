@@ -16,6 +16,10 @@ layout:
 
 [Go](https://github.com/golang/go)[!](https://github.com/golang/go) is an agent-based programming language in the tradition of logic-based programming languages like Prolog designed at Google.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}
@@ -62,7 +66,7 @@ echo "$SHA256 go$VERSION.linux-arm64.tar.gz" | sha256sum --check
 * Extract and install Go in the `/usr/local` directory
 
 ```bash
-sudo tar -C /usr/local -xvzf go$VERSION.linux-arm64.tar.gz
+sudo tar -C /usr/local -xzvf go$VERSION.linux-arm64.tar.gz
 ```
 
 * Add the next line at the end of the `/etc/profile` file
@@ -148,7 +152,7 @@ go1.22.3.linux-arm64.tar.gz: OK
 * Extract and install Go in the `/usr/local` directory
 
 ```bash
-sudo tar -C /usr/local -xvzf go$VERSION.linux-arm64.tar.gz
+sudo tar -C /usr/local -xzvf go$VERSION.linux-arm64.tar.gz
 ```
 
 * Verify that you've updated Go by typing the following command

@@ -17,6 +17,10 @@ layout:
 
 # 3.4 Mobile app: Zeus
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We install [Zeus](https://zeusln.app/), a cross-platform mobile app that connects to your Lightning network node. Make payments with lightning or on-chain and manage your channels while you're on the go.
 
 <figure><img src="../.gitbook/assets/zeus_logo.png" alt="" width="563"><figcaption></figcaption></figure>
@@ -52,7 +56,7 @@ sudo systemctl restart lnd
 * Ensure the gRPC proxy port is now binding to the `0.0.0.0` host instead of `127.0.0.1`
 
 ```bash
-sudo ss -tulpn | grep LISTEN | grep lnd | grep 8080
+sudo ss -tulpn | grep lnd | grep 8080
 ```
 
 Expected output:
@@ -97,7 +101,7 @@ wget https://github.com/LN-Zap/lndconnect/releases/download/v$VERSION/lndconnect
 * Extract
 
 ```sh
-tar -xvf lndconnect-linux-amd64-v$VERSION.tar.gz
+tar -xzvf lndconnect-linux-amd64-v$VERSION.tar.gz
 ```
 
 * Install it

@@ -21,6 +21,10 @@ layout:
 
 Aliases are shortcuts for commands that can save time and make it easier to execute common and frequent commands. The following aliases do not display information in a fancy way, but they make it easier to execute commands.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

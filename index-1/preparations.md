@@ -14,6 +14,10 @@ layout:
 
 # 1.1 Preparations
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 Let's get all the necessary hardware parts and prepare some passwords.
 
 <figure><img src="../.gitbook/assets/Starting_MiniBolt.gif" alt=""><figcaption></figcaption></figure>
@@ -38,8 +42,9 @@ While a personal computer is the best choice, this guide works with other comput
 
 You need the following hardware:
 
-* Raspberry Pi 4B/5B (recommended) - with 4GB/8GB (recommended) RAM
+* Raspberry Pi 4B/5  - with 4GB/8GB RAM
 * Official Raspberry Pi power adapter: other adapters are a common cause of reliability issues
+* Passive/active cooling
 * Storage:
   * Option 1: External storage: SSD with USB3 (2+ TB is recommended)
   * Option 2 (only Raspberry Pi 5): Internal storage - Raspberry Pi M.2 HAT + M.2 2230 or 2242 form factor NVMe SSD (2+ TB is recommended) or with compatible shield, 2260 or 2282 form factor
@@ -48,7 +53,7 @@ You need the following hardware:
 You might also want to get this optional hardware:
 
 * UPS (uninterruptible power supply)
-* Raspberry Pi case to protect your Pi and cool it down
+* Raspberry Pi case to protect it
 * A small USB thumbdrive or microSD card to create regular local backups of your Lightning channels
 
 ## Write down your passwords

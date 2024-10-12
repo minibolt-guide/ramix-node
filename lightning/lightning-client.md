@@ -17,6 +17,10 @@ layout:
 
 # 3.1 Lightning client: LND
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We set up [LND](https://github.com/lightningnetwork/lnd), the Lightning Network Daemon by [Lightning Labs](https://lightning.engineering/).
 
 <div align="center">

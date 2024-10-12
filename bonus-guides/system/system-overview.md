@@ -16,6 +16,10 @@ layout:
 
 To get a quick overview of the system status, you can use [a shell script](https://github.com/minibolt-guide/system\_overview) that gathers the most relevant data about the service on the main guide.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

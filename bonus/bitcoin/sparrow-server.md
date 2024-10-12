@@ -22,6 +22,10 @@ layout:
 
 Sparrow Server is a stripped down version of Sparrow that can be run on systems without displays. It's primarily intended as a configuration utility for running Sparrow as a server daemon.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}

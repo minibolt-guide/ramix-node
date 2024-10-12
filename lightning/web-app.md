@@ -17,6 +17,10 @@ layout:
 
 # 3.3 Web app: ThunderHub
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 [ThunderHub](https://thunderhub.io/) is an open-source LND node manager where you can manage and monitor your node on any device or browser. It allows you to take control of the lightning network with a simple and intuitive UX and the most up-to-date tech stack.
 
 <figure><img src="../.gitbook/assets/thunderhub_logo.png" alt=""><figcaption></figcaption></figure>
@@ -340,6 +344,10 @@ Route (pages)                              Size     First Load JS
 ```
 
 </details>
+
+{% hint style="info" %}
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+{% endhint %}
 
 * Check the correct installation by requesting the version
 

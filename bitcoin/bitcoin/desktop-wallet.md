@@ -17,6 +17,10 @@ layout:
 
 # 2.4 Desktop wallet: Sparrow wallet
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We install [Sparrow wallet](https://github.com/sparrowwallet/sparrow) on a computer and connect it to your Electrum server on your node for private Bitcoin on-chain transactions.
 
 <figure><img src="../../.gitbook/assets/sparrow_wallet_logo.png" alt=""><figcaption></figcaption></figure>

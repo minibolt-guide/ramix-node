@@ -14,6 +14,10 @@ layout:
 
 # 1.3 Remote access
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We connect to your personal computer by using the Secure Shell.
 
 <figure><img src="../.gitbook/assets/remote-access.png" alt="" width="375"><figcaption></figcaption></figure>
@@ -41,8 +45,8 @@ PING 192.168.1.147 (192.168.1.147) 56(84) bytes of data.
 64 bytes from 192.168.1.147: icmp_seq=4 ttl=64 time=1.58 ms
 ```
 
-* If `ping` command fails or does not return anything, you need to manually look for your Raspberry Pi
-* You should now be able to reach your Raspberry Pi , with the IP address like `192.168.x.xxx`
+* If the `ping` command fails or does not return anything, you need to manually look for your Raspberry Pi
+* You should now be able to reach your Raspberry Pi with the IP address like `192.168.x.xxx`
 
 ## Access with Secure Shell
 
@@ -52,26 +56,26 @@ Install and start the SSH client for your operating system:
 
 * **Windows**, 2 options:
   * Download **Putty** [64-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture. [Source](https://www.chiark.greenend.org.uk/\~sgtatham/putty/latest.html)
-    * Start Putty, to the left tree, select "**session**", in the "Hostname (or IP address)" box, type `temp@192.168.x.xx`, port `22` to the left box.
+    * Start Putty, to the left tree, select "**session**", in the "Hostname (or IP address)" box, type `admin@192.168.x.xx`, port `22` to the left box.
     * Press the button **OPEN**, when a "PuTTy security alert" banner appears, press the "Accept" button, and finally type your `password [A]`.
   * [Download](https://mobaxterm.mobatek.net/download-home-edition.html) the **MobaXterm** Portable Edition or Installer Edition version depending on whether you want to install it permanently or not.
     * Start MobaXterm, 2 options:
       * If you want to save the session for later: on the top menu, click on "Session" -> "New session" -> Select "SSH".
-        * Enter RaMiX IP address (192.168.x.xx), check "specify username" and enter to the right "temp", keep port "22" selected to the right.
+        * Enter RaMiX IP address (192.168.x.xx), check "specify username" and enter to the right "admin", keep port "22" selected to the right.
         * Press the button OK, when a "Connexion to..." banner appears, press the "Accept" button, and finally type your `password [A]`.
-      * Otherwise, select on the dashboard the "Start local terminal" button and type directly on the terminal `ssh temp@192.168.x.xxx`.
+      * Otherwise, select on the dashboard the "Start local terminal" button and type directly on the terminal `ssh admin@192.168.x.xxx`.
 * **MacOS** and **Linux**:
-  * From the native terminal, type: `ssh temp@192.168.x.xxx`
+  * From the native terminal, type: `ssh admin@192.168.x.xxx`
   * Use Putty, simply from the native terminal type `sudo apt install putty` and start it by typing `putty`, follow the same Putty instructions as before for Windows.
 
 {% hint style="info" %}
 Note, connection details:
 
 ```
-> hostname: your RaMiX IP address like: 192.168.x.xxx
-> port: 22
-> username: temp
-> password: password [A]
+hostname: your RaMiX IP address like: 192.168.x.xxx
+port: 22
+username: admin
+password: password [A]
 ```
 {% endhint %}
 
@@ -90,7 +94,6 @@ ls -la
 ```
 
 ```
-> example system response
 # This is a comment, don't enter this on the command line
 ```
 

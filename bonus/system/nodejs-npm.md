@@ -21,6 +21,10 @@ layout:
 
 [Node.js](https://nodejs.org) is an open-source, cross-platform JavaScript runtime environment. Node.js includes NPM in the installation package as well.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

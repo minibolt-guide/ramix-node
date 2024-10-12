@@ -16,6 +16,10 @@ layout:
 
 Exposing your local server on the Internet (clearnet) has various solutions, but the Cloudflare Tunnel stands out as the easiest and most cost-effective option. Traditionally, configuring Firewalls, using Tor, or setting up an SSH reverse tunnel to a public VPS were common approaches, each with its challenges and costs. Cloudflare Tunnel offers an alternative, though it acts as a middleman and can access or modify your traffic.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Cost: Paid service
 {% endhint %}

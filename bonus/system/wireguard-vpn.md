@@ -24,6 +24,10 @@ The following guide was derived from contributions by [Pantamis](https://github.
 [WireGuard](https://www.wireguard.com) is a VPN you can set up to access your RaMiX from the outside. It makes it easier to run services on your node without exposing its ports to the public Internet. It has support on all major computer OS; and apps for Android and iOS. The only requirement is to forward a UDP port from your home router to the RaMiX node.
 
 {% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
+{% hint style="danger" %}
 Difficulty: Hard
 {% endhint %}
 

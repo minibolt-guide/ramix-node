@@ -17,6 +17,10 @@ layout:
 
 # 3.2 Channel backup for LND
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We set up a local or remote "Static Channel Backup" for Lightning. A monitoring script keeps it up-to-date to enable the recovery of your Lightning funds in case of hardware failure.
 
 ![](../.gitbook/assets/channel\_backup\_screen.png)

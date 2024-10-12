@@ -22,6 +22,10 @@ layout:
 
 [Electrs](https://github.com/romanz/electrs/) is an efficient re-implementation of Electrum Server in Rust, inspired by [ElectrumX](https://github.com/kyuupichan/electrumx), [Electrum Personal Server](https://github.com/chris-belcher/electrum-personal-server), and [bitcoincore-indexd](https://github.com/jonasschnelli/bitcoincore-indexd).
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
@@ -254,6 +258,10 @@ info: installing component 'rustfmt'
 ```
 
 </details>
+
+{% hint style="info" %}
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+{% endhint %}
 
 * Install it
 

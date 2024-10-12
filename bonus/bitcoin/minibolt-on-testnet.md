@@ -16,6 +16,10 @@ layout:
 
 You can run your RaMiX node on testnet to develop and experiment with new applications, without putting real money at risk. This bonus guide highlights all configuration changes compared to the main guide.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
@@ -40,13 +44,18 @@ The great news is that most of the RaMiX guide can be used as-is. The small adju
 
 ### [Bitcoin client: Bitcoin Core](../../bitcoin/bitcoin/bitcoin-client.md)
 
-* Follow the complete RaMiX guide from the beginning [(Bitcoin client included)](../../bitcoin/bitcoin/bitcoin-client.md), when you arrive at the ["Configuration section"](../../bitcoin/bitcoin/bitcoin-client.md#configuration), stay tuned to replace and add the next lines on the `"bitcoin.conf"` file
+* Follow the complete RaMiX guide from the beginning [(Bitcoin client included)](../../bitcoin/bitcoin/bitcoin-client.md), when you arrive at the ["Configuration section"](../../bitcoin/bitcoin/bitcoin-client.md#configuration)
 
 ```bash
 nano /home/bitcoin/.bitcoin/bitcoin.conf
 ```
 
+* Stay tuned to replace and add the next lines on the `"bitcoin.conf"` file
+
 ```
+## Replace the parameter
+uacomment=RaMiX Testnet node
+
 ## Replace the parameter
 startupnotify=chmod g+r /home/bitcoin/.bitcoin/testnet3/.cookie
 
@@ -56,19 +65,19 @@ testnet=1
 ## Delete the parameter
 bind=127.0.0.1
 
-## Add the parameter (at the end of the file)...
+## Add the next 2 lines at the end of the file
 [test]
 bind=127.0.0.1
 ```
 
-* When you finish the [Running Bitcoin](../../bitcoin/bitcoin/bitcoin-client.md#running-bitcoind) section, with the user `admin` provide read and execute permissions to the Bitcoin group for the testnet folder
+* When you finish the [Run](../../bitcoin/bitcoin/bitcoin-client.md#run) section, with the user `admin` provide read and execute permissions to the Bitcoin group for the testnet folder
 
 ```bash
 sudo chmod g+rx /data/bitcoin/testnet3
 ```
 
 {% hint style="warning" %}
-**Attention:** the step before is critical\*\*!\*\* to allow the Bitcoin Core dependencies to access the `.cookie` file and startup without problems
+**Attention:** the step before is critical to allow the Bitcoin Core dependencies to access the `.cookie` file and startup without problems
 {% endhint %}
 
 {% hint style="success" %}

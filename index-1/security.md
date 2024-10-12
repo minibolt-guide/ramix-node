@@ -14,6 +14,10 @@ layout:
 
 # 1.5 Security
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We make sure that your RaMiX is secured against unauthorized remote access.
 
 The RaMiX needs to be secured against online attacks using various methods.
@@ -50,11 +54,52 @@ If you obtain the `"OK."` output, you have IPv6 availability, additionally, you 
 
 ### Installation
 
-* With user `admin` install UFW (Uncomplicated Firewall)
+* With user `admin` install UFW (Uncomplicated Firewall). Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install ufw
 ```
+
+<details>
+
+<summary>Example of expected output ⬇️</summary>
+
+```
+Fetched 538 kB in 0s (1,544 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package libip6tc2:arm64.
+(Reading database ... 56165 files and directories currently installed.)
+Preparing to unpack .../libip6tc2_1.8.9-2_arm64.deb ...
+Unpacking libip6tc2:arm64 (1.8.9-2) ...
+Selecting previously unselected package iptables.
+Preparing to unpack .../iptables_1.8.9-2_arm64.deb ...
+Unpacking iptables (1.8.9-2) ...
+Selecting previously unselected package ufw.
+Preparing to unpack .../archives/ufw_0.36.2-1_all.deb ...
+Unpacking ufw (0.36.2-1) ...
+Setting up libip6tc2:arm64 (1.8.9-2) ...
+Setting up iptables (1.8.9-2) ...
+update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+Setting up ufw (0.36.2-1) ...
+
+Creating config file /etc/ufw/before.rules with new version
+
+Creating config file /etc/ufw/before6.rules with new version
+
+Creating config file /etc/ufw/after.rules with new version
+
+Creating config file /etc/ufw/after6.rules with new version
+Created symlink /etc/systemd/system/multi-user.target.wants/ufw.service → /lib/systemd/system/ufw.service.
+Processing triggers for libc-bin (2.36-9+rpt2+deb12u7) ...
+Processing triggers for man-db (2.11.2-2) …
+```
+
+</details>
 
 ### Configuration
 
@@ -99,7 +144,7 @@ sudo ufw enable
 Expected output:
 
 ```
-> Firewall is active and enabled on system startup
+Firewall is active and enabled on system startup
 ```
 
 * Check if the UFW is properly configured and active
@@ -171,7 +216,7 @@ We use Ngnix to encrypt the communication with SSL/TLS (Transport Layer Security
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Install Ngnix
+* Install Ngnix and dependencies. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install nginx libnginx-mod-stream

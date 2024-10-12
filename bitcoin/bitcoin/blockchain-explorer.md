@@ -17,6 +17,10 @@ layout:
 
 # 2.3 Blockchain explorer: BTC RPC Explorer
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 Run your private blockchain explorer with [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer). Trust your node, not some external services.
 
 <figure><img src="../../.gitbook/assets/btc_rpc_explorer_logo.png" alt=""><figcaption></figcaption></figure>

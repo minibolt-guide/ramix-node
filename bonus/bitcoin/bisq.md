@@ -22,6 +22,10 @@ layout:
 
 [Bisq](https://bisq.network/) is a decentralized bitcoin exchange. It is a desktop application that aims at providing a secure, private, and censorship-resistant way of exchanging bitcoin for national currencies and other cryptocurrencies over the internet.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

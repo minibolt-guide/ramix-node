@@ -16,6 +16,10 @@ layout:
 
 If the Raspberry Pi is not able to boot from your external drive, you can boot from a microSD card and use the external drive to store all the application data.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

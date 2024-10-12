@@ -14,21 +14,25 @@ layout:
 
 # 1.2 Operating system
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 We configure the Raspberry Pi and install the official operating system.
 
 <figure><img src="../.gitbook/assets/operating-system.gif" alt="" width="295"><figcaption></figcaption></figure>
 
 ## Which operating system to use?
 
-We use **Raspberry Pi OS Bookworm Lite (Debian 12 based)**, without a graphical user interface. This provides the best stability for the PC and makes the initial setup a breeze.
+We use **Raspberry Pi OS Bookworm Lite (Debian 12 based)**, without a graphical user interface. This provides the best stability for the system and makes the initial setup a breeze.
 
-Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribution, which is available for most hardware platforms. To make this guide as universal as possible, it uses only standard Debian-based commands.
+Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribution, available for most hardware platforms. To make this guide as universal as possible, it uses only standard Debian-based commands.
 
 ## Raspberry Pi Imager and Raspberry Pi OS
 
 ### Get Raspberry Pi Imager
 
-We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) application v1.8+. Download [from here](https://www.raspberrypi.com/software/) the proper version depending on the OS platform are you using on your regular computer. If you use a Linux Debian-based distro, you can enter only the next command on the terminal: `sudo apt install rpi-imager`
+We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) application **v1.8+**. Download [from here](https://www.raspberrypi.com/software/) the proper version depending on the OS platform are you using on your regular computer. If you use a Linux Debian-based distro, you can enter only the next command on the terminal: `sudo apt install rpi-imager`
 
 ### Get Raspberry Pi OS <a href="#get-raspberry-pi-os" id="get-raspberry-pi-os"></a>
 
@@ -56,7 +60,7 @@ On the **“General”** tab:
 *   **Configure WiFi**: if you will run the RaMiX connected to your wireless network, enter the WiFi name (“SSID”) and password. Also, change “Wifi country” to the two-letter [ISO2 code](https://www.iso.org/obp/ui/#search) of your country (e.g. `es`)
 
     If you’ll connect your RaMiX with a network cable, simply skip this setting
-* **Set locale settings**: activate the checkbox, select your timezone and keyboard layout ("es" recomended for Spanish speakers)
+* **Set locale settings**: activate the checkbox, select your timezone and keyboard layout ("es" recommended for Spanish speakers)
 
 On the **“Services”** tab:
 
@@ -88,7 +92,7 @@ The Raspberry Pi Imager now writes and verifies the operating system on your dri
 * Safely eject the external drive from your computer
 * Connect it to your Raspberry Pi
 * If you did not configure the Wifi settings: connect the Raspberry Pi to your network with an ethernet cable
-* Start the Raspberry Pi by connecting it to the power adapter using the USB-C cable
+* Start the Raspberry Pi by connecting it to the power adapter or pushing the ON/OFF button (only on Raspberry Pi 5)
 
 ### Does it boot? <a href="#does-it-boot" id="does-it-boot"></a>
 
@@ -99,7 +103,7 @@ The 🟢 **green LED** should constantly be flickering after a few seconds, indi
 To enable booting from USB, follow these steps:
 
 1. Get your hands on a microSD card (all data will be deleted, but you only need it once)
-2. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), write config bootloader to enable “USB Boot” to the microSD card
+2. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), write config bootloader to enable “**USB Boot | NVMe Boot**” to the microSD card
 3. With **“No filtering”** selected on the “Raspberry Pi device” section, on the “Operating system” section > Push on “Choose OS” > “Misc utility images > Select Bootloader (Pi 4 or Pi 5) family, depending on your Raspberry Pi version > **USB Boot | NVMe/USB Boot**
 4. Connect the microSD to your regular computer. On the “Storage” section > Push on “Choose storage” > Select your microSD
 5. Click on the **“NEXT”** button
@@ -113,10 +117,10 @@ The Raspberry Pi Imager now writes on your microSD and verifies it. It should di
 
 1. Boot your Raspberry Pi with this microSD card
 2. Once the 🟢 **green LED** blinks constantly, you can disconnect the power
-3. Remove the microSD card and start your Raspberry Pi again with the SSD connected
+3. Remove the microSD card and start your Raspberry Pi again with the USB SSD/NVMe connected
 
 {% hint style="info" %}
-Your Raspberry Pi should now boot from the SSD attached via USB
+Your Raspberry Pi should now boot from the SSD attached via USB/PCIe
 {% endhint %}
 
 ## Fallback: if you can’t boot from your external drive <a href="#fallback-if-you-cant-boot-from-your-external-drive" id="fallback-if-you-cant-boot-from-your-external-drive"></a>

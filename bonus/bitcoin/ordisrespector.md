@@ -22,6 +22,10 @@ layout:
 
 [Ordinals](https://ordinals.com/) is a project created to number sats. It also has a feature called inscriptions, which is the problematic part and what is mainly being touched on in this guide. An inscription is data stored onchain associated with a sat.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}

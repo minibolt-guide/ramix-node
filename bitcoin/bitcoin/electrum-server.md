@@ -17,6 +17,10 @@ layout:
 
 # 2.2 Electrum Server: Fulcrum
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 [Fulcrum](https://github.com/cculianu/Fulcrum) is a fast & nimble SPV server for Bitcoin created by [Calin Culianu](https://github.com/cculianu). It can be used as an alternative to Electrs because of its performance, as we can see in Craig Raw's [comparison](https://www.sparrowwallet.com/docs/server-performance.html) of servers.
 
 <div data-full-width="false">
@@ -56,7 +60,7 @@ Make sure that you have [reduced the database cache of Bitcoin Core](bitcoin-cli
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Make sure that all necessary software packages are installed
+* Make sure that all necessary software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install libssl-dev
@@ -100,7 +104,7 @@ sudo systemctl restart bitcoind
 * Check Bitcoin Core is enabled `zmqpubhashblock` on the `8433` port
 
 ```bash
-sudo ss -tulpn | grep LISTEN | grep bitcoind | grep 8433
+sudo ss -tulpn | grep bitcoind | grep 8433
 ```
 
 Expected output:

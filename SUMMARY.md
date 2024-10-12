@@ -53,10 +53,11 @@
   * [Bisq](bonus/bitcoin/bisq.md)
   * [Safu Ninja, a DIY steel mnemonic backup](bonus/bitcoin/safu-ninja.md)
   * [Ordisrespector spam filter](bonus/bitcoin/ordisrespector.md)
-  * [Nostr relay](bonus-guides/bitcoin/nostr-relay.md)
   * [Download the bitcoin whitepaper](bonus/bitcoin/white-paper.md)
   * [RaMiX on Testnet](bonus/bitcoin/minibolt-on-testnet.md)
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
+* [🟣 Nostr](bonus-guides/nostr/README.md)
+  * [Nostr relay](bonus-guides/nostr/nostr-relay.md)
 
 ***
 

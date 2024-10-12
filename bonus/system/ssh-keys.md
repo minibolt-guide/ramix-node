@@ -21,6 +21,10 @@ layout:
 
 One of the best options to secure the sensitive SSH login is to disable passwords altogether and require an SSH key certificate. Only someone with physical possession of the private certificate key can log in.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
