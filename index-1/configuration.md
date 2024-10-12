@@ -22,25 +22,13 @@ You are now on the command line of your own Bitcoin node. Let's start with the c
 
 <figure><img src="../.gitbook/assets/configuration.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
-## System update
-
-* Update the operating system and all installed software packages
-
-```sh
-sudo apt update && sudo apt full-upgrade
-```
+## Enable PCIe (only Raspberry Pi 5 + NVMe case)
 
 {% hint style="info" %}
-Do this regularly every few months for security-related updates
+If you connected the SSD directly to the USB (**more common**), and you won't use M.2 NVMe drive, you can skip these steps and go to the [Install general dependency packages](configuration.md#install-general-dependency-packages) section
 {% endhint %}
 
-## Enable PCIe (only Raspberry Pi 5)
-
-{% hint style="info" %}
-If you connected the SSD directly to the USB (more common), and you won't use M.2 NVMe drive, you can skip these steps and go to the [Install general dependency packages](configuration.md#install-general-dependency-packages) section
-{% endhint %}
-
-By default, the PCIe connector is not enabled unless connected to a HAT+ device. To enable the connector, follow these steps
+By default, the PCIe connector is not enabled **unless connected to a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/). To enable the connector, follow these steps. If you connected **a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/), skip this step and go directly to the next [PCIe Gen 3.0 section](configuration.md#pcie-gen-3.0).
 
 * With the user `admin`, edit the `config.txt` file
 
@@ -48,7 +36,7 @@ By default, the PCIe connector is not enabled unless connected to a HAT+ device.
 sudo nano /boot/firmware/config.txt
 ```
 
-* Add the following line at the end of the file behind `[all]` section. Save and exit if you will not use PCIe Gen 3.0, if yes, continue with the next step without exiting the editor
+* Add the following line at the end of the file behind `[all]` section. Save and exit if you will not use PCIe Gen 3.0, if yes, continue with the next step without exiting the editor (you must choose via `config.txt` option in the next step)
 
 ```
 dtparam=pciex1
@@ -60,17 +48,56 @@ dtparam=pciex1
 The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections may be unstable
 {% endhint %}
 
-Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Add the next line at the end of the file to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support, more common)
+Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support (more common)). 2 different options:
+
+{% tabs %}
+{% tab title="via config.txt" %}
+* Edit the `config.txt` file
+
+```bash
+sudo nano /boot/firmware/config.txt
+```
+
+* Add the following line at the end of the file behind the `[all]` section. Save and exit if you will not use PCIe Gen 3.0, if yes, continue with the next step without exiting the editor
 
 ```
 dtparam=pciex1_gen=3
 ```
+{% endtab %}
+
+{% tab title="via raspi-config" %}
+* Run the following command to open the Raspberry Pi Configuration CLI
+
+```bash
+sudo raspi-config
+```
+
+Complete the following steps to enable PCIe Gen 3.0 speeds:
+
+1. Select `Advanced Options`
+2. Select `PCIe Speed`
+3. Choose `Yes` to enable PCIe Gen 3 mode
+4. Select `Finish` to exit
+{% endtab %}
+{% endtabs %}
 
 * Reboot for the configuration changes to take effect
 
 ```bash
 sudo reboot
 ```
+
+## System update
+
+* Update the operating system and all installed software packages
+
+```sh
+sudo apt update && sudo apt full-upgrade
+```
+
+{% hint style="info" %}
+Do this regularly for security-related updates
+{% endhint %}
 
 ## Install general dependency packages
 
@@ -111,6 +138,12 @@ sudo hdparm -t --direct /dev/sda
 ```
 Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
 ```
+
+{% hint style="info" %}
+If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface.
+
+Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how.
+{% endhint %}
 {% endtab %}
 
 {% tab title="Case NVMe" %}
@@ -130,12 +163,6 @@ Timing O_DIRECT disk reads: 2422 MB in 3.00 seconds = 806.86 MB/sec
 
 {% hint style="success" %}
 If the measured speeds are more than 150 MB/s, you're good but it is recommended more for a better experience
-{% endhint %}
-
-{% hint style="info" %}
-If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface.
-
-Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how.
 {% endhint %}
 
 ## Data directory
