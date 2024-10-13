@@ -74,9 +74,18 @@ sudo raspi-config
 
 Complete the following steps to enable PCIe Gen 3.0 speeds:
 
-1. Select `Advanced Options`
-2. Select `PCIe Speed`
+1. Select `6 Advanced Options`
+
+<figure><img src="../.gitbook/assets/rapi-config_6_Advanced_options.png" alt=""><figcaption></figcaption></figure>
+
+2. Select `A8 PCIe Speed`
+
+<figure><img src="../.gitbook/assets/rapi-config_A8_PCIe_Speed.png" alt=""><figcaption></figcaption></figure>
+
 3. Choose `Yes` to enable PCIe Gen 3 mode
+
+<figure><img src="../.gitbook/assets/pcie_gen3_confirmation.png" alt=""><figcaption></figcaption></figure>
+
 4. Select `Finish` to exit
 {% endtab %}
 {% endtabs %}

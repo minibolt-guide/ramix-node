@@ -48,4 +48,8 @@ layout:
 
 ### Resilience
 
-* [**Tor Obfs4 Bridge**](../../index-4/index/tor-bridge.md) - run an obfs4 bridge to help censored users connect to the Tor network
+* [**Tor obfs4 bridge**](../../index-4/index/tor-bridge.md) - run an obfs4 bridge to help censored users connect to the Tor network
+
+### Hardware
+
+* [**Boot from microSD card**](../../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) - if your Raspberry Pi is not able to boot directly from the external drive, these instructions explain how to boot from a microSD card and attach the external drive for data storage
