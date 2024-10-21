@@ -117,7 +117,7 @@ Bitcoin Core will communicate directly with the Tor daemon to route all traffic 
 * Edit the Tor configuration
 
 ```sh
-sudo nano +56 /etc/tor/torrc --linenumbers
+sudo nano +56 -l /etc/tor/torrc
 ```
 
 * Uncomment **line 56** to enable the control port by deleting `#` at the beginning of the line. Save and exit
@@ -204,6 +204,12 @@ Synchronizing state of tor.service with SysV service script with /lib/systemd/sy
 Executing: /lib/systemd/systemd-sysv-install disable tor
 Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 ```
+{% endhint %}
+
+{% hint style="info" %}
+\-> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../index-4/index/tor-bridge.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
+
+\-> You can host [**your Tor obfs4 bridge**](../index-4/index/tor-bridge.md#obsf4-bridge) or connect to an external one as mentioned before
 {% endhint %}
 
 ## I2P Project
@@ -547,7 +553,7 @@ It's possible to use the Tor proxy of the node from another device in the same l
 * With `admin` user, edit the Tor file
 
 ```bash
-sudo nano /etc/tor/torrc --linenumbers
+sudo nano -l /etc/tor/torrc
 ```
 
 * Replace the existing line 18 to this
