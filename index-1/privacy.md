@@ -107,7 +107,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-Please note that the before version number might change in your case, this is just an example of when the guide was made.
+Please note that the before version number might change in your case, this is just an example of when the guide was made
 {% endhint %}
 
 ### **Tor configuration**
@@ -152,7 +152,7 @@ tcp     LISTEN 0    4096     127.0.0.1:9051   0.0.0.0:*    users:(("tor",pid=795
 * **(Optional)** Check the systemd journal to see Tor in real time updates output logs. Ctrl + C to exit
 
 ```sh
-journalctl -fu tor@default
+journalctl -fu tor@default --since='1 hour ago'
 ```
 
 <details>
@@ -188,7 +188,7 @@ Nov 13 23:19:20 ramix systemd[1]: Reloaded tor@default.service - Anonymizing ove
 </details>
 
 {% hint style="info" %}
-Not all network traffic is routed over the Tor network, by default some services don't include a proxy socks5 configuration to use. Anyway, we now have the base to configure sensitive applications to use it
+Not all network traffic is routed over the Tor network, by default some services don't include a proxy socks5 configuration. Anyway, we now have the base to configure sensitive applications to use it
 {% endhint %}
 
 {% hint style="info" %}
@@ -200,9 +200,9 @@ Not all network traffic is routed over the Tor network, by default some services
 **Expected output:**
 
 ```
-> Synchronizing state of tor.service with SysV service script with /lib/systemd/systemd-sysv-install.
-> Executing: /lib/systemd/systemd-sysv-install disable tor
-> Removed /etc/systemd/system/multi-user.target.wants/tor.service.
+Synchronizing state of tor.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable tor
+Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 ```
 {% endhint %}
 
@@ -311,13 +311,115 @@ sudo systemctl disable i2pd
 **Expected output:**
 
 ```
-> Synchronizing state of i2pd.service with SysV service script with /lib/systemd/systemd-sysv-install.
-> Executing: /lib/systemd/systemd-sysv-install disable i2pd
-> Removed /etc/systemd/system/multi-user.target.wants/i2pd.service.
+Synchronizing state of i2pd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable i2pd
+Removed /etc/systemd/system/multi-user.target.wants/i2pd.service.
 ```
 {% endhint %}
 
 ## Extras (optional)
+
+### Access to the i2pd webconsole
+
+I2P by default creates an HTTP web service that makes it easy to view node statistics such as tunnels, bandwidth, active connections, and network configuration. If you want to use that the only one have to do is secure the connection, configure the auth method, reverse proxy, and open the UFW. Follow the next steps
+
+{% hint style="info" %}
+Realize that if you modify the config file, you will need to select "Keep" or reconfigure the i2p config file again when the prompt asks you in the next update process
+{% endhint %}
+
+* With user `admin`, create the reverse proxy configuration
+
+```bash
+sudo nano /etc/nginx/sites-available/i2pd-webconsole-reverse-proxy.conf
+```
+
+* Paste the complete following configuration. Save and exit
+
+```nginx
+server {
+  listen 7071 ssl;
+  error_page 497 =301 https://$host:$server_port$request_uri;
+  location / {
+    proxy_pass http://127.0.0.1:7070;
+  }
+}
+```
+
+* Create the symbolic link that points to the directory `sites-enabled`
+
+{% code overflow="wrap" %}
+```bash
+sudo ln -s /etc/nginx/sites-available/i2pd-webconsole-reverse-proxy.conf /etc/nginx/sites-enabled/
+```
+{% endcode %}
+
+* Test Nginx configuration
+
+```sh
+sudo nginx -t
+```
+
+Expected output:
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+* Reload the Nginx configuration to apply changes
+
+```sh
+sudo systemctl reload nginx
+```
+
+* Configure the firewall to allow incoming HTTPS requests
+
+```bash
+sudo ufw allow 7071/tcp comment 'allow i2pd webconsole SSL from anywhere'
+```
+
+* Enable i2pd webconsole authentication
+
+```bash
+sudo nano +130 -l /etc/i2pd/i2pd.conf
+```
+
+* Uncomment (delete "#" at the first of the lines) and replace "`changeme`" with your "`[ F ] i2pd webconsole password`". Save and exit
+
+```
+auth = true
+user = i2p
+pass = [ F ] i2pd webconsole password
+```
+
+* Restart i2pd to apply changes
+
+```bash
+sudo systemctl restart i2pd
+```
+
+#### Validation
+
+* Ensure that the i2pd service is working and listening at the webconsole HTTP & HTTPS ports
+
+```bash
+sudo ss -tulpn | grep -E '(:7070|:7071)'
+```
+
+Expected output:
+
+```
+tcp   LISTEN 0      511          0.0.0.0:7071       0.0.0.0:*    users:(("nginx",pid=916,fd=4),("nginx",pid=915,fd=4),("nginx",pid=914,fd=4),("nginx",pid=913,fd=4),("nginx",pid=912,fd=4))
+tcp   LISTEN 0      4096       127.0.0.1:7070       0.0.0.0:*    users:(("i2pd",pid=566214,fd=25))
+```
+
+{% hint style="info" %}
+Now point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:7071"` (or your node IP address) like `"https://192.168.x.xxx:7071"`. Type the before credentials configurated (`user: i2p; password: [ F ] i2pd webconsole password`). After that, you should see something similar to the next screenshot
+
+This access is only available from the local network, no Tor or Wireguard VPN is allowed
+{% endhint %}
+
+<figure><img src="../.gitbook/assets/i2pd_webconsole.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **SSH remote access through Tor**
 

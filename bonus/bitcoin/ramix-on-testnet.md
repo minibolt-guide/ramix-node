@@ -183,7 +183,7 @@ wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main
 
 [Configuration](../../bitcoin/bitcoin/electrum-server.md#configuration)
 
-* In the next [Configuration](../../bitcoin/bitcoin/electrum-server.md#configuration) step, stay tuned to replace the next lines on the `fulcrum.conf` file, to match with the testnet mode
+* In the next [Configuration](../../bitcoin/bitcoin/electrum-server.md#configuration) step, stay tuned to **replace** the next lines on the `fulcrum.conf` file, to match with the testnet mode
 
 ```sh
 nano /data/fulcrum/fulcrum.conf
@@ -200,6 +200,19 @@ tcp = 0.0.0.0:40001
 
 # Banner
 banner = /data/fulcrum/fulcrum-banner-testnet4.txt
+```
+
+[Create systemd service](../../bitcoin/bitcoin/electrum-server.md#create-systemd-service)
+
+* When you arrive at the [Create systemd service](../../bitcoin/bitcoin/blockchain-explorer.md#create-systemd-service) section, stay tuned to replace the next lines on the `fulcrum.service` file, to match the Bitcoin Core on Testnet mode dependency. Save and exit
+
+```bash
+sudo nano +6 -l /etc/systemd/system/fulcrum.service
+```
+
+```
+Requires=bitcoind-testnet4.service
+After=bitcoind-testnet4.service
 ```
 
 [Remote access over Tor](../../bitcoin/bitcoin/electrum-server.md#remote-access-over-tor)
@@ -222,11 +235,13 @@ HiddenServicePort 40001 127.0.0.1:40001
 HiddenServicePort 40002 127.0.0.1:40002
 ```
 
-* Reload the Tor configuration and get your connection addresses
+* Reload the Tor configuration
 
 ```sh
 sudo systemctl reload tor
 ```
+
+* Get your connection addresses
 
 ```sh
 sudo cat /var/lib/tor/hidden_service_fulcrum_testnet4_tcp_ssl/hostname

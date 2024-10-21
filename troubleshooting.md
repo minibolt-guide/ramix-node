@@ -38,10 +38,10 @@ The additional configuration parameters (called “quirks”) for the USB driver
 * Open the bootloader configuration file
 
 ```bash
-sudo nano /boot/cmdline.txt
+sudo nano /boot/firmware/cmdline.txt
 ```
 
-* **At the start of the line of parameters**, add the text `usb-storage.quirks=aaaa:bbbb:u` where `aaaa:bbbb` are the values you noted down from the `lsusb` command above. Make sure that there is **a single space character** ( ) between our addition and the next parameter. Save and exit.
+* **At the start of the line of parameters**, add the text `usb-storage.quirks=aaaa:bbbb:u` where `aaaa:bbbb` are the values you noted in the `lsusb` command above. Make sure that there is **a single space character** ( ) between our addition and the next parameter. Save and exit.
 
 ```
 usb-storage.quirks=0bda:9210:u ..............
@@ -68,7 +68,7 @@ sudo hdparm -t --direct /dev/sda
 ```
 
 {% hint style="info" %}
-You should see a significant increase in performance. If the test still shows a very slow read speed, your drive or USB3 adapter might not be compatible with the Raspberry Pi. In that case, we recommend visiting the [Raspberry Pi Troubleshooting forum](https://forums.raspberrypi.com/viewforum.php?f=28) or simply trying out hardware alternatives
+You should see a significant increase in performance (+200MB/s). If the test still shows a very slow read speed, your drive or USB3 adapter might not be compatible with the Raspberry Pi. In that case, we recommend visiting the [Raspberry Pi Troubleshooting forum](https://forums.raspberrypi.com/viewforum.php?f=28) or simply trying out hardware alternatives
 {% endhint %}
 
 {% hint style="info" %}

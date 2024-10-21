@@ -22,33 +22,21 @@ You are now on the command line of your own Bitcoin node. Let's start with the c
 
 <figure><img src="../.gitbook/assets/configuration.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
-## Enable PCIe (only Raspberry Pi 5 + NVMe case)
+## Enable PCIe and Gen 3.0 (only Raspberry Pi 5 + NVMe case)
 
 {% hint style="info" %}
 If you connected the SSD directly to the USB (**more common**), and you won't use M.2 NVMe drive, you can skip these steps and go to the [Install general dependency packages](configuration.md#install-general-dependency-packages) section
 {% endhint %}
 
-By default, the PCIe connector is not enabled **unless connected to a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/). To enable the connector, follow these steps. If you connected **a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/), skip this step and go directly to the next [PCIe Gen 3.0 section](configuration.md#pcie-gen-3.0).
+By default, the PCIe connector is not enabled **unless connected to a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/). To enable the connector, follow these steps.
 
-* With the user `admin`, edit the `config.txt` file
-
-```bash
-sudo nano /boot/firmware/config.txt
-```
-
-* Add the following line at the end of the file behind `[all]` section. Save and exit if you will not use PCIe Gen 3.0, if yes, continue with the next step without exiting the editor (you must choose via `config.txt` option in the next step)
-
-```
-dtparam=pciex1
-```
-
-### PCIe Gen 3.0
-
-{% hint style="danger" %}
-The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections may be unstable
+{% hint style="info" %}
+If you connected **a** [HAT+ device](https://www.raspberrypi.com/products/m2-hat-plus/), skip this step and go directly to the next [PCIe Gen 3.0](configuration.md#pcie-gen-3.0) section
 {% endhint %}
 
-Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support (more common)). 2 different options:
+Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support (more common)) and enable the PCIe port.&#x20;
+
+\-> 2 different methods:
 
 {% tabs %}
 {% tab title="via config.txt" %}
@@ -96,6 +84,15 @@ Complete the following steps to enable PCIe Gen 3.0 speeds:
 sudo reboot
 ```
 
+{% hint style="danger" %}
+The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections may be unstable. If you have problems, follow the next [Fallback Gen 3.0](configuration.md#fallback-gen-3.0) section
+{% endhint %}
+
+#### Fallback Gen 3.0
+
+* If you followed the before `"via config.txt"` method, replace `dtparam=pciex1_gen=3` to `dtparam=pciex1` and reboot again with `sudo reboot`
+* If you followed the before `"via raspi-config"` method, when you arrive to the step number 3, choose `No`and finally reboot again with `sudo reboot`
+
 ## System update
 
 * Update the operating system and all installed software packages
@@ -110,7 +107,7 @@ Do this regularly for security-related updates
 
 ## Install general dependency packages
 
-* Make sure that all necessary software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Make sure that all necessary global software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install git

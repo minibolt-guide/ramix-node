@@ -26,6 +26,12 @@ We configure the Raspberry Pi and install the official operating system.
 
 We use **Raspberry Pi OS Bookworm Lite (Debian 12 based)**, without a graphical user interface. This provides the best stability for the system and makes the initial setup a breeze.
 
+{% hint style="warning" %}
+**Attention!!** If you use Raspberry Pi 5, avoid installing incompatible OS versions like Raspberry Pi OS Bullseye. Due to hardware changes, the Raspberry Pi 5 requires Raspberry Pi OS Bookworm for proper support and functionality.
+
+Likewise, if you have a Raspberry Pi 4, **avoid installing systems other than Raspberry Pi OS Bookworm**. The steps may differ from the guide, and **support won’t be facilitated in the provided groups.**
+{% endhint %}
+
 Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribution, available for most hardware platforms. To make this guide as universal as possible, it uses only standard Debian-based commands.
 
 ## Raspberry Pi Imager and Raspberry Pi OS
@@ -38,7 +44,7 @@ We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
 
 * Start the **Raspberry Pi Imager**
 * On the “**Raspberry Pi device**” section > Push on “**Choose device**” > Select **“No filtering”**
-* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“**<mark style="color:red;">**Raspberry Pi OS Lite (64 bit)**</mark>**” -** _A port of Debian Bookworm with no desktop environment (Compatible with Raspberry Pi 3/4/400/5)_ and have the relevant image flashed to your drive
+* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“**<mark style="color:red;">**Raspberry Pi OS Lite (64 bit)**</mark>**” -** _A port of Debian **Bookworm** with no desktop environment (Compatible with Raspberry Pi 3/4/400/5)_ and have the relevant image flashed to your drive
 * Connect the external drive to your regular computer. On the “**Storage**” section > Push on “**Choose storage**” > Select your external drive
 * Click on the **“NEXT”** button
 * On the “Use OS customisation” banner > Click on the **“EDIT SETTINGS”** button

@@ -504,6 +504,8 @@ Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.707] <Controller> S
 [...]
 ```
 
+### Validation
+
 * Ensure the service is working and listening at the default `50002` & `50001` ports and the `8000` admin port
 
 ```sh

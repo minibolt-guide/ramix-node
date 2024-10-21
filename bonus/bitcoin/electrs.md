@@ -463,6 +463,8 @@ sudo systemctl start electrs
 Electrs will now index the Bitcoin blockchain to provide all necessary information to wallets. With this, the wallets you use no longer need to connect to any third-party server to communicate with the Bitcoin peer-to-peer network
 {% endhint %}
 
+### Validation
+
 * Ensure electrs service is working and listening at the default TCP `50021` port and the monitoring `14224` port (not used on RaMiX)
 
 ```sh
@@ -533,7 +535,9 @@ Expected output:
 abcdefg..............xyz.onion
 ```
 
-* You should now be able to connect to your Electrs server remotely via Tor using your hostname and port `50022 (SSL)` or `50021 (TCP)`
+{% hint style="info" %}
+You should now be able to connect to your Electrs server remotely via Tor using your hostname and port `50022 (SSL)` or `50021 (TCP)`
+{% endhint %}
 
 ### Migrate BTC RPC Explorer to Electrs API connection
 
@@ -545,10 +549,11 @@ To get address balances, either an Electrum server or an external service is nec
 sudo nano /etc/systemd/system/btcrpcexplorer.service
 ```
 
-* Replace the `"After=fulcrum.service"` with the `"After=electrs.service"` parameter. Save and exit
+* Replace the `fulcrum.service` with the `electrs.service`. Save and exit
 
 ```sh
-After=electrs.service
+Requires=bitcoind.service electrs.service
+After=bitcoind.service electrs.service
 ```
 
 * Restart the BTC RPC Explorer service to apply the changes

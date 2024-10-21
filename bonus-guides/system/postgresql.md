@@ -255,6 +255,8 @@ Removed /etc/systemd/system/multi-user.target.wants/postgresql.service.
 ```
 {% endhint %}
 
+#### Validation
+
 * Ensure PostgreSQL is listening on the default relational database port
 
 ```bash

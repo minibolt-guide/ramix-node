@@ -44,7 +44,7 @@ Difficulty: Medium
 
 [obfs4](https://gitlab.com/yawning/obfs4) makes Tor traffic look random and also prevents censors from finding bridges by Internet scanning. One of the most important things to keep your relay secure is to install security updates timely and ideally automatically so we can configure all.
 
-* Ensure you are logged in with the user `admin` and install obfs4 proxy
+* Ensure you are logged in with the user `admin` and install obfs4 proxy. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install obfs4proxy
@@ -248,6 +248,8 @@ Performing bandwidth self-test...done
 About **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname or IP address and monitor your obfs4 bridge's usage on Relay Search. Just enter your bridge's **"HASHED FINGERPRINT"** in the form and click on "Search"
 {% endhint %}
 
+### Validation
+
 * Ensure that the Tor port related to the bridge and the Obfs4proxy service are working and listening at the the ports selected
 
 ```bash
@@ -415,7 +417,7 @@ journalctl -fu tor@default
 
 **Example** output:
 
-![](../../images/tor-bridge-running.png)
+![](broken-reference)
 
 ## Upgrade
 
