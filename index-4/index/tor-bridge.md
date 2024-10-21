@@ -26,7 +26,7 @@ Difficulty: Medium
 
 <div data-full-width="false">
 
-<img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt="" width="563">
+<img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt="">
 
 </div>
 
@@ -60,7 +60,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on MiniBolt and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 #### Install obfs4 proxy
@@ -173,7 +173,7 @@ sudo nano /etc/tor/instances/obfs4bridge/torrc
 
 * Add the next lines. We will use 2 ports: `<TODO1>` and `<TODO2>`**, m**ake sure you replace them in addition to `<address@email.com>` & `<PickANickname>`, rest left the same. Save and exit
 
-<pre><code># MiniBolt: obfs4 bridge configuration
+<pre><code># RaMiX: obfs4 bridge configuration
 # /etc/tor/instances/obfs4bridge/torrc
 
 <strong>## Control port selected for the obfs4 bridge
@@ -275,7 +275,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run obfs4 bridge
 
-* To keep an eye on the software movements, [start your SSH program](https://minibolt.minibolt.info/system/system/remote-access#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+* To keep an eye on the software movements, [start your SSH program](https://minibolt.minibolt.info/system/system/remote-access#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 ```sh
 sudo systemctl start tor@obfs4bridge
@@ -285,92 +285,93 @@ sudo systemctl start tor@obfs4bridge
 
 <summary>Example of expected output on <code>journalctl -fu tor@obfs4bridge</code> ⬇️</summary>
 
-<pre><code>Oct 20 14:42:36 minibolt systemd[1]: Starting Anonymizing overlay network for TCP (instance obfs4bridge)...
-Oct 20 14:42:37 minibolt sed[15620]: DataDirectory /var/lib/tor-instances/obfs4bridge
-Oct 20 14:42:37 minibolt sed[15620]: PidFile /run/tor-instances/obfs4bridge/tor.pid
-Oct 20 14:42:37 minibolt sed[15620]: RunAsDaemon 0
-Oct 20 14:42:37 minibolt sed[15620]: User _tor-obfs4bridge
-Oct 20 14:42:37 minibolt sed[15620]: SyslogIdentityTag obfs4bridge
-Oct 20 14:42:37 minibolt sed[15620]: ControlSocket /run/tor-instances/obfs4bridge/control GroupWritable RelaxDirModeCheck
-Oct 20 14:42:37 minibolt sed[15620]: SocksPort unix:/run/tor-instances/obfs4bridge/socks WorldWritable
-Oct 20 14:42:37 minibolt sed[15620]: CookieAuthentication 1
-Oct 20 14:42:37 minibolt sed[15620]: CookieAuthFileGroupReadable 1
-Oct 20 14:42:37 minibolt sed[15620]: CookieAuthFile /run/tor-instances/obfs4bridge/control.authcookie
-Oct 20 14:42:37 minibolt sed[15620]: Log notice syslog
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.009 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as l                       ibc.
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.009 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.009 [notice] Read configuration file "/run/tor-instances/obfs4bridge.defaults".
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.009 [notice] Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.010 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:42:37 minibolt tor[15623]: Oct 20 14:42:37.010 [warn] Fixing permissions on directory /var/lib/tor-instances/obfs4bridge
-Oct 20 14:42:37 minibolt tor[15623]: Configuration was valid
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.028 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as l                       ibc.
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.028 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.028 [notice] Read configuration file "/run/tor-instances/obfs4bridge.defaults".
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.028 [notice] Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.029 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opening Control listener on 127.0.0.1:9052
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opened Control listener connection (ready) on 127.0.0.1:9052
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opening OR listener on 0.0.0.0:2222
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opened OR listener connection (ready) on 0.0.0.0:2222
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opening Extended OR listener on 127.0.0.1:0
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Extended OR listener listening on port 45073.
-Oct 20 14:42:37 minibolt tor[15624]: Oct 20 14:42:37.030 [notice] Opened Extended OR listener connection (ready) on 127.0.0.1:45073
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compat                       ible.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Read configuration file "/run/tor-instances/obfs4bridge.defaults".
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opening Control listener on 127.0.0.1:9052
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opened Control listener connection (ready) on 127.0.0.1:9052
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opening OR listener on 0.0.0.0:2222
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opened OR listener connection (ready) on 0.0.0.0:2222
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opening Extended OR listener on 127.0.0.1:0
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Extended OR listener listening on port 45073.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Opened Extended OR listener connection (ready) on 127.0.0.1:45073
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a                        look at https://blog.torproject.org/lifecycle-of-a-new-relay
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent                        master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor                        --keygen' to do it manually.
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Your Tor server's identity key fingerprint is 'Ofbs4bridge 2F40A126FA438E01F44D628557A216A2EF7EB5F7'
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Your Tor bridge's hashed identity key fingerprint is 'Ofbs4bridge <a data-footnote-ref href="#user-content-fn-3">29CA77BDCA7C00A7079CDDC0258A4DE0F1170157</a>'
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Your Tor server's identity key ed25519 fingerprint is 'Ofbs4bridge aCFadrH6GzZuFUG-YjmMw1EsMTKevx7ZJaZA4usbUWA'
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: You can check the status of your bridge relay at https://bridges.torproject.org/status?id=29CA77BDCA7C00A7079CDDC0258A4DE0F1170157
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Bootstrapped 0% (starting): Starting
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Starting with guard context "default"
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Signaled readiness to systemd
-Oct 20 14:42:37 minibolt systemd[1]: Started Anonymizing overlay network for TCP (instance obfs4bridge).
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Registered server transport 'obfs4' at '[::]:2008'
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Opening Socks listener on /run/tor-instances/obfs4bridge/socks
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Opened Socks listener connection (ready) on /run/tor-instances/obfs4bridge/socks
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Opening Control listener on /run/tor-instances/obfs4bridge/control
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Opened Control listener connection (ready) on /run/tor-instances/obfs4bridge/control
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Unable to find IPv4 address for ORPort 2222. You might want to specify IPv6Only to it or set an explicit address or set Address.
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Bootstrapped 5% (conn): Connecting to a relay
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Problem bootstrapping. Stuck at 5% (conn): Connecting to a relay. (No route to host; NOROUTE; count 1; recommendation warn; host 89B4597169A9DBB171F0B4629C73C0FD55D767C7 at 81.106.105.234:443)
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Bootstrapped 10% (conn_done): Connected to a relay
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Bootstrapped 14% (handshake): Handshaking with a relay
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Bootstrapped 15% (handshake_done): Handshake with a relay done
-Oct 20 14:42:38 minibolt Tor-obfs4bridge[15624]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
-Oct 20 14:42:39 minibolt Tor-obfs4bridge[15624]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
-Oct 20 14:42:39 minibolt Tor-obfs4bridge[15624]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: Bootstrapped 40% (loading_keys): Loading authority key certs
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
-Oct 20 14:42:40 minibolt Tor-obfs4bridge[15624]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
-Oct 20 14:42:41 minibolt Tor-obfs4bridge[15624]: The current consensus contains exit nodes. Tor can build exit and internal paths.
-Oct 20 14:42:42 minibolt Tor-obfs4bridge[15624]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 63% (loading_descriptors): Loading relay descriptors
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 72% (loading_descriptors): Loading relay descriptors
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
-Oct 20 14:42:44 minibolt Tor-obfs4bridge[15624]: Bootstrapped 100% (done): Done
-</code></pre>
+```
+Oct 20 14:42:36 ramix systemd[1]: Starting Anonymizing overlay network for TCP (instance obfs4bridge)...
+Oct 20 14:42:37 ramix sed[15620]: DataDirectory /var/lib/tor-instances/obfs4bridge
+Oct 20 14:42:37 ramix sed[15620]: PidFile /run/tor-instances/obfs4bridge/tor.pid
+Oct 20 14:42:37 ramix sed[15620]: RunAsDaemon 0
+Oct 20 14:42:37 ramix sed[15620]: User _tor-obfs4bridge
+Oct 20 14:42:37 ramix sed[15620]: SyslogIdentityTag obfs4bridge
+Oct 20 14:42:37 ramix sed[15620]: ControlSocket /run/tor-instances/obfs4bridge/control GroupWritable RelaxDirModeCheck
+Oct 20 14:42:37 ramix sed[15620]: SocksPort unix:/run/tor-instances/obfs4bridge/socks WorldWritable
+Oct 20 14:42:37 ramix sed[15620]: CookieAuthentication 1
+Oct 20 14:42:37 ramix sed[15620]: CookieAuthFileGroupReadable 1
+Oct 20 14:42:37 ramix sed[15620]: CookieAuthFile /run/tor-instances/obfs4bridge/control.authcookie
+Oct 20 14:42:37 ramix sed[15620]: Log notice syslog
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.009 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as l                       ibc.
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.009 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.009 [notice] Read configuration file "/run/tor-instances/obfs4bridge.defaults".
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.009 [notice] Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.010 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:42:37 ramix tor[15623]: Oct 20 14:42:37.010 [warn] Fixing permissions on directory /var/lib/tor-instances/obfs4bridge
+Oct 20 14:42:37 ramix tor[15623]: Configuration was valid
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.028 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as l                       ibc.
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.028 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.028 [notice] Read configuration file "/run/tor-instances/obfs4bridge.defaults".
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.028 [notice] Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.029 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opening Control listener on 127.0.0.1:9052
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opened Control listener connection (ready) on 127.0.0.1:9052
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opening OR listener on 0.0.0.0:2222
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opened OR listener connection (ready) on 0.0.0.0:2222
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opening Extended OR listener on 127.0.0.1:0
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Extended OR listener listening on port 45073.
+Oct 20 14:42:37 ramix tor[15624]: Oct 20 14:42:37.030 [notice] Opened Extended OR listener connection (ready) on 127.0.0.1:45073
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compat                       ible.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Read configuration file "/run/tor-instances/obfs4bridge.defaults".
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Read configuration file "/etc/tor/instances/obfs4bridge/torrc".
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opening Control listener on 127.0.0.1:9052
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opened Control listener connection (ready) on 127.0.0.1:9052
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opening OR listener on 0.0.0.0:2222
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opened OR listener connection (ready) on 0.0.0.0:2222
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opening Extended OR listener on 127.0.0.1:0
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Extended OR listener listening on port 45073.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Opened Extended OR listener connection (ready) on 127.0.0.1:45073
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a                        look at https://blog.torproject.org/lifecycle-of-a-new-relay
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent                        master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor                        --keygen' to do it manually.
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Your Tor server's identity key fingerprint is 'Ofbs4bridge 2F40A126FA438E01F44D628557A216A2EF7EB5F7'
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Your Tor bridge's hashed identity key fingerprint is 'Ofbs4bridge 29CA77BDCA7C00A7079CDDC0258A4DE0F1170157'
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Your Tor server's identity key ed25519 fingerprint is 'Ofbs4bridge aCFadrH6GzZuFUG-YjmMw1EsMTKevx7ZJaZA4usbUWA'
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: You can check the status of your bridge relay at https://bridges.torproject.org/status?id=29CA77BDCA7C00A7079CDDC0258A4DE0F1170157
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Bootstrapped 0% (starting): Starting
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Starting with guard context "default"
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Signaled readiness to systemd
+Oct 20 14:42:37 ramix systemd[1]: Started Anonymizing overlay network for TCP (instance obfs4bridge).
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Registered server transport 'obfs4' at '[::]:2008'
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Opening Socks listener on /run/tor-instances/obfs4bridge/socks
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Opened Socks listener connection (ready) on /run/tor-instances/obfs4bridge/socks
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Opening Control listener on /run/tor-instances/obfs4bridge/control
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Opened Control listener connection (ready) on /run/tor-instances/obfs4bridge/control
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Unable to find IPv4 address for ORPort 2222. You might want to specify IPv6Only to it or set an explicit address or set Address.
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Bootstrapped 5% (conn): Connecting to a relay
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Problem bootstrapping. Stuck at 5% (conn): Connecting to a relay. (No route to host; NOROUTE; count 1; recommendation warn; host 89B4597169A9DBB171F0B4629C73C0FD55D767C7 at 81.106.105.234:443)
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Bootstrapped 10% (conn_done): Connected to a relay
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Bootstrapped 14% (handshake): Handshaking with a relay
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Bootstrapped 15% (handshake_done): Handshake with a relay done
+Oct 20 14:42:38 ramix Tor-obfs4bridge[15624]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
+Oct 20 14:42:39 ramix Tor-obfs4bridge[15624]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
+Oct 20 14:42:39 ramix Tor-obfs4bridge[15624]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: Bootstrapped 40% (loading_keys): Loading authority key certs
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
+Oct 20 14:42:40 ramix Tor-obfs4bridge[15624]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
+Oct 20 14:42:41 ramix Tor-obfs4bridge[15624]: The current consensus contains exit nodes. Tor can build exit and internal paths.
+Oct 20 14:42:42 ramix Tor-obfs4bridge[15624]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 63% (loading_descriptors): Loading relay descriptors
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 72% (loading_descriptors): Loading relay descriptors
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
+Oct 20 14:42:44 ramix Tor-obfs4bridge[15624]: Bootstrapped 100% (done): Done
+```
 
 </details>
 
@@ -385,7 +386,7 @@ journalctl -u tor@obfs4bridge --since='1 hour ago' | grep "hashed identity key f
 Example of expected output:
 
 ```
-Oct 20 14:42:37 minibolt Tor-obfs4bridge[15624]: Your Tor bridge's hashed identity key fingerprint is 'Testbridge 29CA77BDCA7C00A7079CDDC0258A4DE0F1170157'
+Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Your Tor bridge's hashed identity key fingerprint is 'Testbridge 29CA77BDCA7C00A7079CDDC0258A4DE0F1170157'
 ```
 
 {% hint style="info" %}
@@ -426,10 +427,10 @@ sudo ss -tulpn | grep '\(tor\|obfs4proxy\)'
 <pre><code>tcp   LISTEN 0      4096         0.0.0.0:9050       0.0.0.0:*    users:(("tor",pid=975075,fd=6))
 tcp   LISTEN 0      4096       127.0.0.1:39149      0.0.0.0:*    users:(("tor",pid=206525,fd=8))
 tcp   LISTEN 0      4096       127.0.0.1:9051       0.0.0.0:*    users:(("tor",pid=975075,fd=7))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-4">9052</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=6))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-3">9052</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=6))
 tcp   LISTEN 0      4096       127.0.0.1:44105      0.0.0.0:*    users:(("obfs4proxy",pid=975077,fd=7))
-tcp   LISTEN 0      4096         0.0.0.0:<a data-footnote-ref href="#user-content-fn-5">2016</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=7))
-tcp   LISTEN 0      4096               *:<a data-footnote-ref href="#user-content-fn-6">2008</a>             *:*    users:(("obfs4proxy",pid=206526,fd=7))
+tcp   LISTEN 0      4096         0.0.0.0:<a data-footnote-ref href="#user-content-fn-4">2016</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=7))
+tcp   LISTEN 0      4096               *:<a data-footnote-ref href="#user-content-fn-5">2008</a>             *:*    users:(("obfs4proxy",pid=206526,fd=7))
 </code></pre>
 
 * If you want to connect to your bridge manually, you will need to know the bridge's obfs4 certificate
@@ -570,7 +571,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on MiniBolt and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 ## Preparations Guard/Middle relay
@@ -643,10 +644,10 @@ sudo nano /etc/tor/instances/guardmidrelay/torrc
 
 * Add the next lines. Make sure you replace `<address@email.com>` & `<PickANickname>`, rest left the same. Save and exit
 
-<pre><code># MiniBolt: Guard/Middle configuration
+<pre><code># RaMiX: Guard/Middle configuration
 # /etc/tor/instances/guardmidrelay/torrc
-<strong>
-</strong><strong>## Control port selected for Guard/Middle relay
+
+<strong>## Control port selected for Guard/Middle relay
 </strong>ControlPort 9053
 
 ## Guard/Middle relay conf
@@ -701,7 +702,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run Guard/Middle relay
 
-* To keep an eye on the software movements, [start your SSH program](https://minibolt.minibolt.info/system/system/remote-access#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+* To keep an eye on the software movements, [start your SSH program](https://minibolt.minibolt.info/system/system/remote-access#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 ```sh
 sudo systemctl start tor@guardmidrelay
@@ -711,162 +712,163 @@ sudo systemctl start tor@guardmidrelay
 
 <summary>Example of expected output on <code>journalctl -fu tor@guardmidrelay</code> ⬇️</summary>
 
-<pre><code>Oct 20 14:03:48 minibolt systemd[1]: Starting Anonymizing overlay network for TCP (instance guardmidrelay)...
-Oct 20 14:03:48 minibolt sed[15076]: DataDirectory /var/lib/tor-instances/guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: PidFile /run/tor-instances/guardmidrelay/tor.pid
-Oct 20 14:03:48 minibolt sed[15076]: RunAsDaemon 0
-Oct 20 14:03:48 minibolt sed[15076]: User _tor-guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: SyslogIdentityTag guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: ControlSocket /run/tor-instances/guardmidrelay/control GroupWritable RelaxDirModeCheck
-Oct 20 14:03:48 minibolt sed[15076]: SocksPort unix:/run/tor-instances/guardmidrelay/socks WorldWritable
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthentication 1
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthFileGroupReadable 1
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthFile /run/tor-instances/guardmidrelay/control.authcookie
-Oct 20 14:03:48 minibolt sed[15076]: Log notice syslog
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.607 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.609 [warn] Fixing permissions on directory /var/lib/tor-instances/guardmidrelay
-Oct 20 14:03:48 minibolt tor[15078]: Configuration was valid
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opening Control listener on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opened Control listener connection (ready) on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opening OR listener on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opened OR listener connection (ready) on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compatible.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opening Control listener on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opening OR listener on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opened OR listener connection (ready) on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a look at https://blog.torproject.org/lifecycle-of-a-new-relay
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor --keygen' to do it manually.
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'GuardMidRelay 8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389'
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Your Tor server's identity key ed25519 fingerprint is 'GuardMidRelay 70zFbIVtdMeyHOilWab5GyXRAxxnsepchNZE7StSp2k'
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Bootstrapped 0% (starting): Starting
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Starting with guard context "default"
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Signaled readiness to systemd
-Oct 20 14:03:49 minibolt systemd[1]: Started Anonymizing overlay network for TCP (instance guardmidrelay).
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Opening Control listener on /run/tor-instances/guardmidrelay/control
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on /run/tor-instances/guardmidrelay/control
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Unable to find IPv4 address for ORPort 9001. You might want to specify IPv6Only to it or set an explicit address or set Address.
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 5% (conn): Connecting to a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 10% (conn_done): Connected to a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 14% (handshake): Handshaking with a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 15% (handshake_done): Handshake with a relay done
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: Bootstrapped 40% (loading_keys): Loading authority key certs
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: We'd like to launch a circuit to handle a connection, but we already have 32 general-purpose client circuits pending. Waiting until some finish.
-Oct 20 14:03:52 minibolt Tor-guardmidrelay[15079]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:52 minibolt Tor-guardmidrelay[15079]: The current consensus contains exit nodes. Tor can build exit and internal paths.
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 60% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 65% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 70% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 80% (ap_conn): Connecting to a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 85% (ap_conn_done): Connected to a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 100% (done): DoneOct 20 14:03:48 minibolt systemd[1]: Starting Anonymizing overlay network for TCP (instance guardmidrelay)...
-Oct 20 14:03:48 minibolt sed[15076]: DataDirectory /var/lib/tor-instances/guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: PidFile /run/tor-instances/guardmidrelay/tor.pid
-Oct 20 14:03:48 minibolt sed[15076]: RunAsDaemon 0
-Oct 20 14:03:48 minibolt sed[15076]: User _tor-guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: SyslogIdentityTag guardmidrelay
-Oct 20 14:03:48 minibolt sed[15076]: ControlSocket /run/tor-instances/guardmidrelay/control GroupWritable RelaxDirModeCheck
-Oct 20 14:03:48 minibolt sed[15076]: SocksPort unix:/run/tor-instances/guardmidrelay/socks WorldWritable
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthentication 1
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthFileGroupReadable 1
-Oct 20 14:03:48 minibolt sed[15076]: CookieAuthFile /run/tor-instances/guardmidrelay/control.authcookie
-Oct 20 14:03:48 minibolt sed[15076]: Log notice syslog
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.607 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.608 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt tor[15078]: Oct 20 14:03:48.609 [warn] Fixing permissions on directory /var/lib/tor-instances/guardmidrelay
-Oct 20 14:03:48 minibolt tor[15078]: Configuration was valid
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.628 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opening Control listener on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opened Control listener connection (ready) on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opening OR listener on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt tor[15079]: Oct 20 14:03:48.629 [notice] Opened OR listener connection (ready) on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compatible.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Read configuration file "/run/tor-instances/guardmidrelay.defaults".
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opening Control listener on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on 127.0.0.1:9053
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opening OR listener on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Opened OR listener connection (ready) on 0.0.0.0:9001
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a look at https://blog.torproject.org/lifecycle-of-a-new-relay
-Oct 20 14:03:48 minibolt Tor-guardmidrelay[15079]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor --keygen' to do it manually.
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'Guard/Mid_Relay <a data-footnote-ref href="#user-content-fn-7">8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389</a>'
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Your Tor server's identity key ed25519 fingerprint is 'Guard/Mid_Relay 70zFBIVtdMEyHOilWfb5GyXRAxxnsepchNZE7StSp2k'
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Bootstrapped 0% (starting): Starting
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Starting with guard context "default"
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Signaled readiness to systemd
-Oct 20 14:03:49 minibolt systemd[1]: Started Anonymizing overlay network for TCP (instance guardmidrelay).
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Opening Control listener on /run/tor-instances/guardmidrelay/control
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on /run/tor-instances/guardmidrelay/control
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Unable to find IPv4 address for ORPort 9001. You might want to specify IPv6Only to it or set an explicit address or set Address.
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 5% (conn): Connecting to a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 10% (conn_done): Connected to a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 14% (handshake): Handshaking with a relay
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 15% (handshake_done): Handshake with a relay done
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
-Oct 20 14:03:50 minibolt Tor-guardmidrelay[15079]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: Bootstrapped 40% (loading_keys): Loading authority key certs
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
-Oct 20 14:03:51 minibolt Tor-guardmidrelay[15079]: We'd like to launch a circuit to handle a connection, but we already have 32 general-purpose client circuits pending. Waiting until some finish.
-Oct 20 14:03:52 minibolt Tor-guardmidrelay[15079]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:52 minibolt Tor-guardmidrelay[15079]: The current consensus contains exit nodes. Tor can build exit and internal paths.
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 60% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 65% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 70% (loading_descriptors): Loading relay descriptors
-Oct 20 14:03:53 minibolt Tor-guardmidrelay[15079]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 80% (ap_conn): Connecting to a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 85% (ap_conn_done): Connected to a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
-Oct 20 14:03:54 minibolt Tor-guardmidrelay[15079]: Bootstrapped 100% (done): Done
-</code></pre>
+```
+Oct 20 14:03:48 ramix systemd[1]: Starting Anonymizing overlay network for TCP (instance guardmidrelay)...
+Oct 20 14:03:48 ramix sed[15076]: DataDirectory /var/lib/tor-instances/guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: PidFile /run/tor-instances/guardmidrelay/tor.pid
+Oct 20 14:03:48 ramix sed[15076]: RunAsDaemon 0
+Oct 20 14:03:48 ramix sed[15076]: User _tor-guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: SyslogIdentityTag guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: ControlSocket /run/tor-instances/guardmidrelay/control GroupWritable RelaxDirModeCheck
+Oct 20 14:03:48 ramix sed[15076]: SocksPort unix:/run/tor-instances/guardmidrelay/socks WorldWritable
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthentication 1
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthFileGroupReadable 1
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthFile /run/tor-instances/guardmidrelay/control.authcookie
+Oct 20 14:03:48 ramix sed[15076]: Log notice syslog
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.607 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.609 [warn] Fixing permissions on directory /var/lib/tor-instances/guardmidrelay
+Oct 20 14:03:48 ramix tor[15078]: Configuration was valid
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opening Control listener on 127.0.0.1:9053
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opened Control listener connection (ready) on 127.0.0.1:9053
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opening OR listener on 0.0.0.0:9001
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opened OR listener connection (ready) on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compatible.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opening Control listener on 127.0.0.1:9053
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on 127.0.0.1:9053
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opening OR listener on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opened OR listener connection (ready) on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a look at https://blog.torproject.org/lifecycle-of-a-new-relay
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor --keygen' to do it manually.
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'GuardMidRelay 8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389'
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key ed25519 fingerprint is 'GuardMidRelay 70zFbIVtdMeyHOilWab5GyXRAxxnsepchNZE7StSp2k'
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Bootstrapped 0% (starting): Starting
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Starting with guard context "default"
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Signaled readiness to systemd
+Oct 20 14:03:49 ramix systemd[1]: Started Anonymizing overlay network for TCP (instance guardmidrelay).
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Opening Control listener on /run/tor-instances/guardmidrelay/control
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on /run/tor-instances/guardmidrelay/control
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Unable to find IPv4 address for ORPort 9001. You might want to specify IPv6Only to it or set an explicit address or set Address.
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 5% (conn): Connecting to a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 10% (conn_done): Connected to a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 14% (handshake): Handshaking with a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 15% (handshake_done): Handshake with a relay done
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: Bootstrapped 40% (loading_keys): Loading authority key certs
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: We'd like to launch a circuit to handle a connection, but we already have 32 general-purpose client circuits pending. Waiting until some finish.
+Oct 20 14:03:52 ramix Tor-guardmidrelay[15079]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:52 ramix Tor-guardmidrelay[15079]: The current consensus contains exit nodes. Tor can build exit and internal paths.
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 60% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 65% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 70% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 80% (ap_conn): Connecting to a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 85% (ap_conn_done): Connected to a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 100% (done): DoneOct 20 14:03:48 ramix systemd[1]: Starting Anonymizing overlay network for TCP (instance guardmidrelay)...
+Oct 20 14:03:48 ramix sed[15076]: DataDirectory /var/lib/tor-instances/guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: PidFile /run/tor-instances/guardmidrelay/tor.pid
+Oct 20 14:03:48 ramix sed[15076]: RunAsDaemon 0
+Oct 20 14:03:48 ramix sed[15076]: User _tor-guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: SyslogIdentityTag guardmidrelay
+Oct 20 14:03:48 ramix sed[15076]: ControlSocket /run/tor-instances/guardmidrelay/control GroupWritable RelaxDirModeCheck
+Oct 20 14:03:48 ramix sed[15076]: SocksPort unix:/run/tor-instances/guardmidrelay/socks WorldWritable
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthentication 1
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthFileGroupReadable 1
+Oct 20 14:03:48 ramix sed[15076]: CookieAuthFile /run/tor-instances/guardmidrelay/control.authcookie
+Oct 20 14:03:48 ramix sed[15076]: Log notice syslog
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.607 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.608 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix tor[15078]: Oct 20 14:03:48.609 [warn] Fixing permissions on directory /var/lib/tor-instances/guardmidrelay
+Oct 20 14:03:48 ramix tor[15078]: Configuration was valid
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.628 [notice] Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opening Control listener on 127.0.0.1:9053
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opened Control listener connection (ready) on 127.0.0.1:9053
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opening OR listener on 0.0.0.0:9001
+Oct 20 14:03:48 ramix tor[15079]: Oct 20 14:03:48.629 [notice] Opened OR listener connection (ready) on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: We compiled with OpenSSL 30000020: OpenSSL 3.0.2 15 Mar 2022 and we are running with OpenSSL 30000020: 3.0.2. These two versions should be binary compatible.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Tor 0.4.8.12 running on Linux with Libevent 2.1.12-stable, OpenSSL 3.0.2, Zlib 1.2.11, Liblzma 5.2.5, Libzstd 1.4.8 and Glibc 2.35 as libc.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Read configuration file "/run/tor-instances/guardmidrelay.defaults".
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Read configuration file "/etc/tor/instances/guardmidrelay/torrc".
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Based on detected system memory, MaxMemInQueues is set to 2906 MB. You can override this by setting MaxMemInQueues by hand.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opening Control listener on 127.0.0.1:9053
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on 127.0.0.1:9053
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opening OR listener on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Opened OR listener connection (ready) on 0.0.0.0:9001
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Parsing GEOIP IPv4 file /usr/share/tor/geoip.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Parsing GEOIP IPv6 file /usr/share/tor/geoip6.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: Configured to measure statistics. Look for the *-stats files that will first be written to the data directory in 24 hours from now.
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: You are running a new relay. Thanks for helping the Tor network! If you wish to know what will happen in the upcoming weeks regarding its usage, have a look at https://blog.torproject.org/lifecycle-of-a-new-relay
+Oct 20 14:03:48 ramix Tor-guardmidrelay[15079]: It looks like I need to generate and sign a new medium-term signing key, because I don't have one. To do that, I need to load (or create) the permanent master identity key. If the master identity key was not moved or encrypted with a passphrase, this will be done automatically and no further action is required. Otherwise, provide the necessary data using 'tor --keygen' to do it manually.
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'Guard/Mid_Relay 8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389'
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key ed25519 fingerprint is 'Guard/Mid_Relay 70zFBIVtdMEyHOilWfb5GyXRAxxnsepchNZE7StSp2k'
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Bootstrapped 0% (starting): Starting
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Starting with guard context "default"
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Signaled readiness to systemd
+Oct 20 14:03:49 ramix systemd[1]: Started Anonymizing overlay network for TCP (instance guardmidrelay).
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Opening Control listener on /run/tor-instances/guardmidrelay/control
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Opened Control listener connection (ready) on /run/tor-instances/guardmidrelay/control
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Unable to find IPv4 address for ORPort 9001. You might want to specify IPv6Only to it or set an explicit address or set Address.
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 5% (conn): Connecting to a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 10% (conn_done): Connected to a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 14% (handshake): Handshaking with a relay
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 15% (handshake_done): Handshake with a relay done
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 20% (onehop_create): Establishing an encrypted directory connection
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 25% (requesting_status): Asking for networkstatus consensus
+Oct 20 14:03:50 ramix Tor-guardmidrelay[15079]: Bootstrapped 30% (loading_status): Loading networkstatus consensus
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: Bootstrapped 40% (loading_keys): Loading authority key certs
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: The current consensus has no exit nodes. Tor can only build internal paths, such as paths to onion services.
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: Bootstrapped 45% (requesting_descriptors): Asking for relay descriptors
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/8103, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of end bw (no exits in consensus, using mid) = 0% of path bw.)
+Oct 20 14:03:51 ramix Tor-guardmidrelay[15079]: We'd like to launch a circuit to handle a connection, but we already have 32 general-purpose client circuits pending. Waiting until some finish.
+Oct 20 14:03:52 ramix Tor-guardmidrelay[15079]: Bootstrapped 50% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:52 ramix Tor-guardmidrelay[15079]: The current consensus contains exit nodes. Tor can build exit and internal paths.
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 55% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 60% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 65% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 70% (loading_descriptors): Loading relay descriptors
+Oct 20 14:03:53 ramix Tor-guardmidrelay[15079]: Bootstrapped 75% (enough_dirinfo): Loaded enough directory info to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 80% (ap_conn): Connecting to a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 85% (ap_conn_done): Connected to a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 89% (ap_handshake): Finishing handshake with a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 90% (ap_handshake_done): Handshake finished with a relay to build circuits
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 95% (circuit_create): Establishing a Tor circuit
+Oct 20 14:03:54 ramix Tor-guardmidrelay[15079]: Bootstrapped 100% (done): Done
+```
 
 </details>
 
@@ -879,7 +881,7 @@ journalctl -u tor@guardmidrelay --since='1 hour ago' | grep "key fingerprint"
 Example of expected output:
 
 ```
-Oct 20 14:03:49 minibolt Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'GuardMidRelay 8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389'
+Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key fingerprint is 'GuardMidRelay 8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389'
 ```
 
 {% hint style="info" %}
@@ -898,8 +900,8 @@ sudo ss -tulpn | grep tor
 
 **Example** of expected output:
 
-<pre><code>tcp   LISTEN 0      4096              0.0.0.0:<a data-footnote-ref href="#user-content-fn-8">9001</a>      0.0.0.0:*    users:(("tor",pid=15332,fd=7))
-tcp   LISTEN 0      4096            127.0.0.1:<a data-footnote-ref href="#user-content-fn-9">9051</a>      0.0.0.0:*    users:(("tor",pid=14928,fd=15))
+<pre><code>tcp   LISTEN 0      4096              0.0.0.0:<a data-footnote-ref href="#user-content-fn-6">9001</a>      0.0.0.0:*    users:(("tor",pid=15332,fd=7))
+tcp   LISTEN 0      4096            127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">9051</a>      0.0.0.0:*    users:(("tor",pid=14928,fd=15))
 tcp   LISTEN 0      4096            127.0.0.1:9050      0.0.0.0:*    users:(("tor",pid=14928,fd=6))
 tcp   LISTEN 0      4096            127.0.0.1:9053      0.0.0.0:*    users:(("tor",pid=15332,fd=6))
 </code></pre>
@@ -1009,7 +1011,7 @@ sudo adduser admin debian-tor
 exit
 ```
 
-* Log in as the user `admin` again -> `ssh admin@minibolt.local`
+* Log in as the user `admin` again -> `ssh admin@ramix.local`
 * Execute Nyx, 3 options depending on the instance:
 
 {% tabs %}
@@ -1046,11 +1048,11 @@ nyx -i 9051
 
 ### **Add obfs4 bridge to the default Tor instance**
 
-On some occasions, due to some circumstances, your ISP, the company's network, your country, etc, could be censoring your access to Tor and with it the proper functioning of MiniBolt services **(used on Bitcoin Core / LND + others)**
+On some occasions, due to some circumstances, your ISP, the company's network, your country, etc, could be censoring your access to Tor and with it the proper functioning of RaMiX services **(used on Bitcoin Core / LND + others)**
 
 ![](../../images/tor-failing.jpg)
 
-* On the MiniBolt or external node, with the user `admin`, [install Tor](../../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`.  Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* On the RaMiX or external node, with the user `admin`, [install Tor](../../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install obfs4proxy
@@ -1086,7 +1088,7 @@ Bridge obfs4 <IPADDRESS>:<PORT> <FINGERPRINT> cert=<CERTIFICATE> iat-mode=0
 {% hint style="info" %}
 \-> Add the needed lines with the number of bridges that you wish, replacing <**IPADDRESS>**, <**PORT>**, <**FINGERPRINT>**, and <**CERTIFICATE>** with those obtained before
 
-\-> If you want to connect the Tor default instance to the obfs4bridge in the same host (in the same MiniBolt node) you need to set `127.0.0.1` as the `<IPADDRESS>` parameter instead of the node's public IP address
+\-> If you want to connect the Tor default instance to the obfs4bridge in the same host (in the same RaMiX node) you need to set `127.0.0.1` as the `<IPADDRESS>` parameter instead of the node's public IP address
 
 \-> If you want to connect the Tor default instance to the `obfs4bridge` of another host in the same local network, you need to specify the node IP address of the node that is hosting the obfs4 bridge as the `<IPADDRESS>` parameter instead of the node's public IP address, e.g. `192.168.X.X`
 {% endhint %}
@@ -1109,13 +1111,11 @@ Bridge obfs4 158.91.178.132:3304 34B1F1F5F1632381AFE5C7CAC4C1754AC361B036 cert=I
 Bridge obfs4 81.177.121.63:9471 68E9BE060C7CB1F4958DFFF9B76D64DE4DEABD74 cert=CMBeCEftMpVP1IPefS0uqbDwYvEf4CneC9DyW4/HkigxAu1W99MODbkv5Yv+oXYp5wi2Ig iat-mode=0
 ```
 
-
-
 \-> There are many options to request and use bridges apart from using the "`https`" before explained method:
 
 * Request bridges by emailing [bridges@torproject.org](mailto:bridges@torproject.org)
 * Request bridges from within the Tor Browser:
-  * Tor Browser Desktop: Click on "**Settings**" in the hamburger **menu (≡)** and then on "**Connection**" in the sidebar. In the "**Bridges**" section, from the option "**Find more bridges**" click on the "**Request bridges..**" button, and complete the captcha. Finally, if you wish, you can push the button "**Copy addresses**" to use it on the MiniBolt node or another Tor browser, like the Android version.&#x20;
+  * Tor Browser Desktop: Click on "**Settings**" in the hamburger **menu (≡)** and then on "**Connection**" in the sidebar. In the "**Bridges**" section, from the option "**Find more bridges**" click on the "**Request bridges..**" button, and complete the captcha. Finally, if you wish, you can push the button "**Copy addresses**" to use it on the RaMiX node or another Tor browser, like the Android version.
 * Use bridges from within the Tor Browser:
   * Tor Browser Desktop: Click on "**Settings**" in the hamburger **menu (≡)** and then on "**Connection**" in the sidebar. In the "**Bridges**" section, from the option "**Add bridges**" click on "**Add new bridges**" and enter each bridge address on a separate line.
   * Tor Browser Android: Tap on "**Settings"** (⚙️) and then on "**Config Bridge**". Toggle on "**Use a Bridge**" and select "Provide a Bridge I know'. Enter the bridge address. Note: remember not to add the word: "`Bridge`" before the `obfs4 IP...` line this is not compatible with the Tor browser Android version. Also, you can use random public obfs4 bridges by simply selecting the "**`obfs4`**" bridge option.
@@ -1137,11 +1137,11 @@ journalctl -fu tor@default
 Ensure a similar line of the next appear on Tor logs:
 
 ```
-Oct 18 21:31:35 minibolt Tor[1081477]: new bridge descriptor 'Obfs4Bridge' (fresh): $162CC010CF75411BCD67991C4DA1F166BF669754~Obfs4Bridge [luTt2cQAGji/6Obr+d7gSvpZo1uecd3SUROwCAxlpIk] at 11.11.94.58
+Oct 18 21:31:35 ramix Tor[1081477]: new bridge descriptor 'Obfs4Bridge' (fresh): $162CC010CF75411BCD67991C4DA1F166BF669754~Obfs4Bridge [luTt2cQAGji/6Obr+d7gSvpZo1uecd3SUROwCAxlpIk] at 11.11.94.58
 ```
 
 {% hint style="info" %}
-You can [install Nyx](tor-bridge.md#nyx) too on the MiniBolt or external node, realizing that you must follow the "`For the default instance`" case in all sections where there is a choice
+You can [install Nyx](tor-bridge.md#nyx) too on the RaMiX or external node, realizing that you must follow the "`For the default instance`" case in all sections where there is a choice
 {% endhint %}
 
 * You can monitor obfs4 bridge logs with
@@ -1190,11 +1190,11 @@ sudo nano /etc/tor/torrc
 This is an example for: \~ 30 GB/day \* 30 days = 900 GB for BandwidthMax <1 TB tx+rx, replace with your election
 
 <pre><code>#### Guard/Middle relay limit total sum bandwidth
-<a data-footnote-ref href="#user-content-fn-10">AccountingStart</a> day 12:00
-<a data-footnote-ref href="#user-content-fn-11">AccountingMax</a> 30 GBytes
-<a data-footnote-ref href="#user-content-fn-12">AccountingRule</a> sum
-<a data-footnote-ref href="#user-content-fn-13">RelayBandwidthRate </a>1 MBytes
-<a data-footnote-ref href="#user-content-fn-14">RelayBandwidthBurst</a> 1 MBytes
+<a data-footnote-ref href="#user-content-fn-8">AccountingStart</a> day 12:00
+<a data-footnote-ref href="#user-content-fn-9">AccountingMax</a> 30 GBytes
+<a data-footnote-ref href="#user-content-fn-10">AccountingRule</a> sum
+<a data-footnote-ref href="#user-content-fn-11">RelayBandwidthRate </a>1 MBytes
+<a data-footnote-ref href="#user-content-fn-12">RelayBandwidthBurst</a> 1 MBytes
 </code></pre>
 
 {% hint style="info" %}
@@ -1263,7 +1263,7 @@ journalctl -fu tor@default
 
 [^2]: Replace
 
-[^3]: The obfs4 bridge fingerprint to search on the [Relay search](https://metrics.torproject.org/rs.html) Tor service
+[^3]: Check this
 
 [^4]: Check this
 
@@ -1271,23 +1271,19 @@ journalctl -fu tor@default
 
 [^6]: Check this
 
-[^7]: The Guard/Middle relay fingerprint to search on the [Relay search](https://metrics.torproject.org/rs.html) Tor service
+[^7]: Control port
 
-[^8]: Check this
+[^8]: When the accounting period resets
 
-[^9]: Control port
+[^9]: This specifies the maximum amount of data your relay will send during an accounting period, and the maximum amount of data your relay will receive during an accounting period
 
-[^10]: When the accounting period resets
-
-[^11]: This specifies the maximum amount of data your relay will send during an accounting period, and the maximum amount of data your relay will receive during an accounting period
-
-[^12]: Controls whether Tor tracks only incoming traffic, only outgoing traffic, or both, when applying bandwidth usage limits set with accounting options like `AccountingMax`. (Default: **max**)
+[^10]: Controls whether Tor tracks only incoming traffic, only outgoing traffic, or both, when applying bandwidth usage limits set with accounting options like `AccountingMax`. (Default: **max**)
 
     * **`sum`**: It counts both incoming and outgoing traffic (common on VPS)
     * **`in`**: It only counts incoming traffic.
     * **`out`**: It only counts outgoing traffic.
     * **`max`**: calculate using the higher of either the sent or received bytes.
 
-[^13]: Controls the amount of bandwidth your Tor relay or bridge can consistently use to relay traffic
+[^11]: Controls the amount of bandwidth your Tor relay or bridge can consistently use to relay traffic
 
-[^14]: Lets your Tor relay or bridge use more bandwidth than the sustained limit during brief spikes in traffic, allowing it to handle sudden increases in demand without immediately throttling
+[^12]: Lets your Tor relay or bridge use more bandwidth than the sustained limit during brief spikes in traffic, allowing it to handle sudden increases in demand without immediately throttling
