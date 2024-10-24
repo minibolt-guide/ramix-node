@@ -24,12 +24,12 @@ We configure the Raspberry Pi and install the official operating system.
 
 ## Which operating system to use?
 
-We use **Raspberry Pi OS Bookworm Lite (Debian 12 based)**, without a graphical user interface. This provides the best stability for the system and makes the initial setup a breeze.
+We use <mark style="color:red;">**Raspberry Pi OS Bookworm Lite (Debian 12 based)**</mark>, without a graphical user interface. This provides the best stability for the system and makes the initial setup a breeze.
 
 {% hint style="warning" %}
-**Attention!!** If you use Raspberry Pi 5, avoid installing incompatible OS versions like Raspberry Pi OS Bullseye. Due to hardware changes, the Raspberry Pi 5 requires Raspberry Pi OS Bookworm for proper support and functionality.
+**Attention!!** If you use Raspberry Pi 5, avoid installing incompatible OS versions like Raspberry Pi OS Bullseye (Debian 11 based). Due to hardware changes, the Raspberry Pi 5 requires Raspberry Pi OS Bookworm for proper support and functionality.
 
-Likewise, if you have a Raspberry Pi 4, **avoid installing systems other than Raspberry Pi OS Bookworm**. The steps may differ from the guide, and **support won’t be facilitated in the provided groups.**
+\-> Likewise, if you have a Raspberry Pi 4, **avoid installing systems other than Raspberry Pi OS Bookworm**. The steps may differ from the guide, and **support won’t be facilitated in the provided groups.**
 {% endhint %}
 
 Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribution, available for most hardware platforms. To make this guide as universal as possible, it uses only standard Debian-based commands.
@@ -72,7 +72,7 @@ On the **“Services”** tab:
   * Select **“Use password authentication”** to use the previously configurated "**username and password**"&#x20;
   * Select "**Allow public-key authentication only"** and enter your SSH pub key. Get your SSH key pair and more info in the "[Login with SSH keys](../bonus/system/ssh-keys.md)" bonus guide
 
-This will allow you to connect to the Raspberry Pi remotely using “**S**ecure **SH**ell” without ever connecting it to a keyboard or screen
+This will allow you to connect to the Raspberry Pi remotely using “**S**ecure **SH**ell” without ever connecting it to a keyboard or screen.
 
 {% hint style="info" %}
 **(Optional)** If you want to improve your privacy, you can **uncheck** **“Enable telemetry”** on the **“Options”** tab; or ignore it

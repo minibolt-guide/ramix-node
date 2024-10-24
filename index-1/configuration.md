@@ -43,10 +43,10 @@ Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to
 * Edit the `config.txt` file
 
 ```bash
-sudo nano /boot/firmware/config.txt
+sudo nano +52 /boot/firmware/config.txt
 ```
 
-* Add the following line at the end of the file behind the `[all]` section. Save and exit if you will not use PCIe Gen 3.0, if yes, continue with the next step without exiting the editor
+* Add the following line at the end of the file behind the `[all]` section. Save and exit
 
 ```
 dtparam=pciex1_gen=3
