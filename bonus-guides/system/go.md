@@ -37,13 +37,13 @@ cd /tmp
 * Set a temporary version environment variable to the installation
 
 ```bash
-VERSION=1.23.1
+VERSION=1.23.2
 ```
 
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=faec7f7f8ae53fda0f3d408f52182d942cc89ef5b7d3d9f23ff117437d4b2d2f
+SHA256=f626cdd92fc21a88b31c1251f419c17782933a42903db87a174ce74eeecc66a9
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
@@ -122,13 +122,13 @@ cd /tmp
 * Set a temporary version environment variable with the new value, to the installation
 
 ```bash
-VERSION=1.23.1
+VERSION=1.23.2
 ```
 
 * Set the new temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=faec7f7f8ae53fda0f3d408f52182d942cc89ef5b7d3d9f23ff117437d4b2d2f
+SHA256=f626cdd92fc21a88b31c1251f419c17782933a42903db87a174ce74eeecc66a9
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)

@@ -41,7 +41,7 @@
   * [Go!](bonus-guides/system/go.md)
   * [PostgreSQL](bonus-guides/system/postgresql.md)
   * [Login with SSH keys](bonus/system/ssh-keys.md)
-  * [WireGuard: a simple yet fast VPN](bonus/system/wireguard-vpn.md)
+  * [WireGuard VPN](bonus/system/wireguard-vpn.md)
   * [Cloudflare tunnel](bonus-guides/system/cloudflare-tunnel.md)
   * [Tor services: bridges & relays](bonus-guides/system/tor-services.md)
   * [Boot from microSD instead of external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)
