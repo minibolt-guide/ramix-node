@@ -229,7 +229,7 @@ mkdir src && cd src
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.9
+VERSION=2.5.12
 ```
 
 * Download the NBXplorer source code and enter the folder
@@ -554,7 +554,7 @@ cd src
 * Set variable environment version
 
 ```bash
-VERSION=2.0.0
+VERSION=2.0.3
 ```
 
 * Clone the BTCPay Server official GitHub repository and enter the folder
@@ -1092,10 +1092,10 @@ cd src/NBXplorer
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.5
+VERSION=2.5.12
 ```
 
-* Fetch the changes of the wish latest tag
+* Fetch the changes of the latest wish tag
 
 <pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>git pull https://github.com/dgarage/NBXplorer.git v$VERSION
 </strong></code></pre>
@@ -1124,6 +1124,8 @@ git config user.email "ramix@dummyemail.com"
 ```bash
 git config user.name "RaMiX"
 ```
+
+\-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}
@@ -1226,7 +1228,7 @@ cd src/btcpayserver
 * Set the environment variable version
 
 ```bash
-VERSION=2.0.0
+VERSION=2.0.3
 ```
 
 * Fetch the changes of the latest tag. Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to apply modifications
@@ -1259,6 +1261,8 @@ git config user.email "ramix@dummyemail.com"
 ```bash
 git config user.name "RaMiX"
 ```
+
+\-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}
@@ -1267,6 +1271,8 @@ If the prompt shows you: `fatal: Need to specify how to reconcile divergent bran
 ```bash
 git config pull.rebase false
 ```
+
+\-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}
@@ -1283,7 +1289,7 @@ CONFLICT (content): Merge conflict in BTCPayServer.Abstractions/BTCPayServer.Abs
 sudo rm -r /home/btcpay/src/btcpayserver
 ```
 
-* Follow again the [Install BTCPay Server](btcpay-server.md#install-btcpay-server) section
+* Follow the [Install BTCPay Server](btcpay-server.md#install-btcpay-server) section again
 * Return to the user `admin` and start BTCPay Server
 
 ```bash

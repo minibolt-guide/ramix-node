@@ -22,10 +22,6 @@ layout:
 
 [Electrs](https://github.com/romanz/electrs/) is an efficient re-implementation of Electrum Server in Rust, inspired by [ElectrumX](https://github.com/kyuupichan/electrumx), [Electrum Personal Server](https://github.com/chris-belcher/electrum-personal-server), and [bitcoincore-indexd](https://github.com/jonasschnelli/bitcoincore-indexd).
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
@@ -162,7 +158,7 @@ cd /tmp
 * Set a temporary version environment variable to the installation
 
 ```sh
-VERSION=0.10.6
+VERSION=0.10.7
 ```
 
 * Download the source code and go to the `electrs` folder
@@ -500,7 +496,7 @@ Electrs must first fully index the blockchain and compact its database before yo
 
 To use your Electrum server when you're on the go, you can easily create a Tor hidden service. This way, you can connect the BitBoxApp or Electrum wallet remotely, or even share the connection details with friends and family. Note that the remote device needs to have Tor installed as well.
 
-* Wwith the user `admin`, edit the `torrc` file
+* With the user `admin`, edit the `torrc` file
 
 ```sh
 sudo nano +63 /etc/tor/torrc --linenumbers
@@ -572,7 +568,7 @@ sudo systemctl restart btcrpcexplorer
 sudo systemctl restart electrs
 ```
 
-* Check logs and pay attention to the next log if that attends to the new version installed
+* Check logs and pay attention to the next log if that attends to the new version installed and no error logs
 
 ```bash
 journalctl -fu electrs
@@ -634,7 +630,7 @@ sudo rm /etc/systemd/system/electrs.service
 
 ### Delete user & group
 
-* Ensure you are logged in with the user `admin`. Delete the electrs user.\
+* Ensure you are logged in with the user `admin`. Delete the `electrs` user.\
   Don't worry about `userdel: electrs mail spool (/var/mail/electrs) not found` output, the uninstall has been successful
 
 ```bash

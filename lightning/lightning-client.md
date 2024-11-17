@@ -183,12 +183,13 @@ curl https://raw.githubusercontent.com/lightningnetwork/lnd/master/scripts/keys/
 
 Expected output:
 
-<pre data-full-width="false"><code><strong>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-</strong>                                 Dload  Upload   Total   Spent    Left  Speed
-<strong>100  6900  100  6900    0     0  19676      0 --:--:-- --:--:-- --:--:-- 19714
-</strong>gpg: key 372CBD7633C61696: "Olaoluwa Osuntokun &#x3C;laolu32@gmail.com>" <a data-footnote-ref href="#user-content-fn-3">imported</a>
+<pre data-full-width="false"><code>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1306  100  1306    0     0   2958      0 --:--:-- --:--:-- --:--:--  2961
+gpg: /home/admin/.gnupg/trustdb.gpg: trustdb created
+gpg: key DC42612E89237182: public key "Olaoluwa Osuntokun &#x3C;laolu32@gmail.com>" <a data-footnote-ref href="#user-content-fn-3">imported</a>
 gpg: Total number processed: 1
-gpg:              unchanged: 1
+gpg:               imported: 1
 </code></pre>
 
 * Verify the signature of the text file containing the checksums for the application
@@ -199,13 +200,13 @@ gpg --verify manifest-roasbeef-v$VERSION-beta.sig manifest-v$VERSION-beta.txt
 
 **Example** of expected output:
 
-<pre><code>gpg: Signature made Mon 13 Nov 2023 11:45:38 PM UTC
-gpg:                using RSA key 60A1FA7DA5BFF08BDCBBE7903BBD59E99B280306
+<pre><code>gpg: Signature made Tue 22 Oct 2024 11:30:56 PM UTC
+gpg:                using EDDSA key 296212681AADF05656A2CDEE90525F7DEEE0AD86
 gpg: <a data-footnote-ref href="#user-content-fn-4">Good signature</a> from "Olaoluwa Osuntokun &#x3C;laolu32@gmail.com>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: E4D8 5299 674B 2D31 FAA1  892E 372C BD76 33C6 1696
-     Subkey fingerprint: 60A1 FA7D A5BF F08B DCBB  E790 3BBD 59E9 9B28 0306
+Primary key fingerprint: A5B6 1896 952D 9FDA 83BC  054C DC42 612E 8923 7182
+     Subkey fingerprint: 2962 1268 1AAD F056 56A2  CDEE 9052 5F7D EEE0 AD86
 </code></pre>
 
 ### Timestamp check

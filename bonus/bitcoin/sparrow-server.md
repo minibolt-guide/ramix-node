@@ -5,6 +5,7 @@ grand_parent: Bonus Section
 nav_exclude: true
 has_children: false
 has_toc: false
+hidden: true
 layout:
   title:
     visible: true
@@ -110,7 +111,7 @@ sparrow-server-2.0.0-aarch64.tar.gz: OK
 * If everything is correct, unpack Sparrow
 
 ```sh
-tar -xvf sparrow-server-$VERSION-aarch64.tar.gz
+tar -xzvf sparrow-server-$VERSION-aarch64.tar.gz
 ```
 
 * Move data files to the home `admin` user
@@ -122,11 +123,11 @@ sudo cp -r Sparrow /home/admin/
 * Clean the remaining installation files from the `tmp` folder to avoid problems for the next update
 
 ```sh
-sudo rm -r Sparrow && rm sparrow-server-$VERSION-aarch64.tar.gz
+sudo rm -r Sparrow && sudo rm sparrow-server-$VERSION-aarch64.tar.gz
 ```
 
 {% hint style="info" %}
-If you come to update, this is the final step. Check the correct update by entering the "`Sparrow --version"` command, skip the next step, and jump directly to the [Run Sparrow](sparrow-server.md#run) section to start the Sparrow server again with the new version
+If you come to update, this is the final step. Check the correct update by entering the "`Sparrow --version"` command, skip the next step, and jump directly to the [Run](sparrow-server.md#run) section to start the Sparrow server again with the new version
 {% endhint %}
 
 * Add the Sparrow executable to your PATH by creating a symlink to it within `/usr/local/bin`, which is already part of the PATH

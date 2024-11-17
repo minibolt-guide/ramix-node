@@ -386,6 +386,7 @@ listen=1
 
 ## P2P bind
 bind=127.0.0.1
+bind=127.0.0.1=onion
 
 ## Proxify clearnet outbound connections using Tor SOCKS5 proxy
 proxy=127.0.0.1:9050
@@ -1180,11 +1181,11 @@ sudo ufw delete X
 
 ## Port reference
 
-| Port | Protocolo |             Use            |
-| :--: | :-------: | :------------------------: |
-| 8333 |    TCP    |      Default P2P port      |
-| 8332 |    TCP    |      Default RPC port      |
-| 8334 |    TCP    | Default P2P secondary port |
+| Port | Protocolo |          Use         |
+| :--: | :-------: | :------------------: |
+| 8333 |    TCP    |   Default P2P port   |
+| 8332 |    TCP    |   Default RPC port   |
+| 8334 |    TCP    | Default P2P Tor port |
 
 [^1]: Check this
 
@@ -1210,7 +1211,7 @@ sudo ufw delete X
 
 [^10]: P2P main port
 
-[^11]: P2P secondary port
+[^11]: Default P2P Tor port
 
 [^12]: Default 125 connections to different peers, 11 of which are outbound. You can therefore, have at most 114 inbound connections. Of the 11 outbound peers, there can be 8 full-relay connections, 2 block-relay-only ones and occasionally 1 short-lived feeler or an extra block-relay-only connection.
 

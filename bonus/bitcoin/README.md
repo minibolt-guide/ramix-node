@@ -31,10 +31,6 @@ layout:
 
 * [**Electrum Wallet Desktop**](electrum-wallet-desktop.md) - a feature-rich desktop wallet for power-users
 
-#### CLI wallets
-
-* [**Sparrow Server**](sparrow-server.md) - a stripped down version of Sparrow that can be run on systems without displays
-
 ### Decentralized exchange
 
 * [**Bisq**](bisq.md) - a decentralized exchange desktop app connected to your node to privately buy and sell non-KYC bitcoins

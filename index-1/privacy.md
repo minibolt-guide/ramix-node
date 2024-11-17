@@ -550,16 +550,22 @@ ssh HOSTNICKNAME
 
 It's possible to use the Tor proxy of the node from another device in the same local network (e.g your regular computer)
 
-* With `admin` user, edit the Tor file
+* With `admin` user, edit the torrc file
 
 ```bash
-sudo nano -l /etc/tor/torrc
+sudo nano +18 /etc/tor/torrc -l
 ```
 
 * Replace the existing line 18 to this
 
 ```
 SocksPort 0.0.0.0:9050
+```
+
+* Add down the next line (on line 19). Save and exit
+
+```
+SocksPort unix:/run/tor/socks WorldWritable
 ```
 
 * Reload the Tor configuration to apply changes
@@ -582,10 +588,9 @@ sudo ss -tulpn | grep tor
 
 Expected output:
 
-```
-tcp   LISTEN 0      4096         0.0.0.0:9050       0.0.0.0:*    users:(("tor",pid=2162,fd=6))
+<pre><code>tcp   LISTEN 0      4096        <a data-footnote-ref href="#user-content-fn-1">0.0.0.0</a>:9050       0.0.0.0:*    users:(("tor",pid=2162,fd=6))
 tcp   LISTEN 0      4096       127.0.0.1:9051       0.0.0.0:*    users:(("tor",pid=2162,fd=7))
-```
+</code></pre>
 
 {% hint style="info" %}
 You can use this connection from another device in the same local network for example to navigate using a standard browser, without using the Tor browser
@@ -595,7 +600,7 @@ You can use this connection from another device in the same local network for ex
 
 Go to Settings > General > Network Settings > Push to the "Settings" button
 
-Edit the screen to match with this, replacing SOCKS Host, with your node local IP address:
+Edit the screen to match with this, replacing SOCKS Host, with your node's local IP address:
 
 <figure><img src="../.gitbook/assets/tor-proxy-browser.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -614,6 +619,23 @@ The latest release can be found on the [official Tor web page](https://gitweb.to
 ```sh
 sudo apt update && sudo apt upgrade
 ```
+
+{% hint style="info" %}
+If during the I2P update the prompts show you the next:
+
+```
+apt-listchanges: News
+---------------------
+
+i2pd (2.53.0-1) unstable; urgency=medium
+
+  i2pd binary moved from /usr/sbin to /usr/bin. Please check your scripts if you used the old path.
+
+ -- r4sas <r4sas@i2pmail.org>  Fri, 19 Jul 2024 16:00:00 +0000
+```
+
+Simply press `Ctrl + X` and then the update will continue
+{% endhint %}
 
 ## Uninstall
 
@@ -744,3 +766,5 @@ sudo systemctl restart i2pd
 | 9050 |    TCP   |     Default SOCKS port     |
 | 9051 |    TCP   |    Default control port    |
 | 7656 |    TCP   | Default I2P SAM proxy port |
+
+[^1]: Check this
