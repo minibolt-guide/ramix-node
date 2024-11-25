@@ -24,13 +24,7 @@ The RaMiX needs to be secured against online attacks using various methods.
 
 <figure><img src="../.gitbook/assets/security.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
-## Uncomplicated Firewall
-
-A firewall controls what kind of outside traffic your machine accepts and which applications can send data out. By default, many network ports are open and listening for incoming connections. Closing unnecessary ports can mitigate many potential system vulnerabilities.
-
-For now, only SSH should be reachable from the outside. Bitcoin Core and LND are using Tor and don't need incoming ports. We'll open the port for Fulcrum and web applications later if needed.
-
-### Check IPv6 availability
+## Check IPv6 availability
 
 * With user `admin`, check your IPv6 availability
 
@@ -51,6 +45,12 @@ If you obtain `ping6: connect: Network is unreachable`, you don't have IPv6 avai
 If you obtain the `"OK."` output, you have IPv6 availability, additionally, you can obtain your IPv6 with: `curl -s ipv6.icanhazip.com` you are **OK**, continue the guide without modifications
 {% endtab %}
 {% endtabs %}
+
+## Uncomplicated Firewall
+
+A Firewall controls what kind of outside traffic your machine accepts and which applications can send data out. By default, many network ports are open and listening for incoming connections. Closing unnecessary ports can mitigate many potential system vulnerabilities.
+
+For now, only SSH should be reachable from the outside. Bitcoin Core and LND are using Tor and don't need incoming ports. We'll open the port for Fulcrum and web applications later if needed.
 
 ### Installation
 
