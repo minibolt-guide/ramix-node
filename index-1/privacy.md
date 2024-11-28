@@ -30,11 +30,7 @@ True, it's only your IP address that is revealed, but using services like [iploc
 
 ## Tor Project
 
-<div align="left">
-
-<img src="../images/tor-logo.png" alt="" width="166">
-
-</div>
+<div align="left"><img src="../images/tor-logo.png" alt="" width="166"></div>
 
 We use Tor, a free software built by the [Tor Project](https://www.torproject.org). It allows you to anonymize internet traffic by routing it through a network of nodes, hiding your location and usage profile.
 
@@ -207,18 +203,14 @@ Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 {% endhint %}
 
 {% hint style="info" %}
-\-> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../bonus-guides/system/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
+-> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../bonus-guides/system/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
 
-\-> You can host [**your Tor obfs4 bridge**](../bonus-guides/system/tor-services.md#obsf4-bridge) or connect to an external one as mentioned before
+-> You can host [**your Tor obfs4 bridge**](../bonus-guides/system/tor-services.md#obsf4-bridge) or connect to an external one as mentioned before
 {% endhint %}
 
 ## I2P Project
 
-<div align="left">
-
-<img src="../images/i2pd.png" alt="" width="150">
-
-</div>
+<div align="left"><img src="../images/i2pd.png" alt="" width="150"></div>
 
 [I2P](https://geti2p.net/en/) is a universal anonymous network layer. All communications over I2P are anonymous and end-to-end encrypted, participants don't reveal their real IP addresses. I2P allows people from all around the world to communicate and share information without restrictions.
 
@@ -475,7 +467,7 @@ You also need to have Tor installed on your regular computer where you start the
 
 * **Windows**:
 
-To enable Tor in the background follow the same instructions for the [preparations](../bitcoin/bitcoin/desktop-wallet.md#preparations-on-your-computer) section of the Desktop Wallet guide.
+To enable Tor in the background follow the same instructions for the [preparations](../bitcoin/bitcoin/desktop-signing-app-sparrow.md#preparations-on-your-computer) section of the Desktop Wallet guide.
 
 * PuTTy:
   * Follow the same instructions of the [remote access section](remote-access.md#access-with-secure-shell) for Putty, but this time type the `.onion` address on the hostname.
@@ -609,12 +601,12 @@ Click on the OK button, and try to navigate to some clearnet domain like [https:
 {% hint style="info" %}
 You can also go to this [website](https://check.torproject.org/) and see "_Congratulations. This browser is configured to use Tor."_
 
-Also, you can use the Tor proxy connection to reach clearnet or third-party address connection on Sparrow wallet. Check out the [Desktop wallet: Sparrow wallet](../bitcoin/bitcoin/desktop-wallet.md) guide to get instructions.
+Also, you can use the Tor proxy connection to reach clearnet or third-party address connection on Sparrow wallet. Check out the [Desktop wallet: Sparrow wallet](../bitcoin/bitcoin/desktop-signing-app-sparrow.md) guide to get instructions.
 {% endhint %}
 
 ## Upgrade Tor and I2P
 
-The latest release can be found on the [official Tor web page](https://gitweb.torproject.org/tor.git/plain/ChangeLog) or the [unofficial GitHub page](https://github.com/torproject/tor/tags) and for I2P on the [PPA page](https://launchpad.net/\~purplei2p/+archive/ubuntu/i2pd). To upgrade type this command:
+The latest release can be found on the [official Tor web page](https://gitweb.torproject.org/tor.git/plain/ChangeLog) or the [unofficial GitHub page](https://github.com/torproject/tor/tags) and for I2P on the [PPA page](https://launchpad.net/~purplei2p/+archive/ubuntu/i2pd). To upgrade type this command:
 
 ```sh
 sudo apt update && sudo apt upgrade
@@ -700,9 +692,9 @@ sudo systemctl start tor
 ```
 
 {% hint style="info" %}
-\-> If your new set of entry guards still produces the stream error, try connecting to the internet using a cable if you're using Wireless. If that doesn't help, I'd suggest downloading [Wireshark](https://www.wireshark.org/) and seeing if you're getting drowned in TCP transmission errors for non-Tor traffic. If yes, your ISP is who you need to talk to
+-> If your new set of entry guards still produces the stream error, try connecting to the internet using a cable if you're using Wireless. If that doesn't help, I'd suggest downloading [Wireshark](https://www.wireshark.org/) and seeing if you're getting drowned in TCP transmission errors for non-Tor traffic. If yes, your ISP is who you need to talk to
 
-\-> If not, try using [obfs4 bridges](../bonus-guides/system/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be censoring completely your Tor access, use of obfs4 bridges could help to avoid this censorship
+-> If not, try using [obfs4 bridges](../bonus-guides/system/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be censoring completely your Tor access, use of obfs4 bridges could help to avoid this censorship
 {% endhint %}
 
 **Example** of Tor censorship output:

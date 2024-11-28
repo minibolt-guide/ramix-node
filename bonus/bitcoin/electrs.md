@@ -36,7 +36,7 @@ Difficulty: Medium
 
 ## Preparations
 
-\-> Make sure that you have followed the [Activate mempool & reduce 'dbcache' after a full sync](../../bitcoin/bitcoin/bitcoin-client.md#activate-mempool-and-reduce-dbcache-after-a-full-sync) section.
+-> Make sure that you have followed the [Activate mempool & reduce 'dbcache' after a full sync](../../bitcoin/bitcoin/bitcoin-client.md#activate-mempool-and-reduce-dbcache-after-a-full-sync) section.
 
 ### Install dependencies
 
@@ -456,7 +456,7 @@ sudo systemctl start electrs
 </details>
 
 {% hint style="success" %}
-Electrs will now index the Bitcoin blockchain to provide all necessary information to wallets. With this, the wallets you use no longer need to connect to any third-party server to communicate with the Bitcoin peer-to-peer network
+Congrats! Now you have a self-hosted Electrum Server on your node. Now you can process installing the [Blockchain Explorer: BTC RPC Explorer](../../bitcoin/bitcoin/blockchain-explorer.md) or connect your [Desktop signing app: Sparrow Wallet](../../bitcoin/bitcoin/desktop-signing-app-sparrow.md) or [Electrum Wallet ](electrum-wallet-desktop.md)[Desktop](electrum-wallet-desktop.md)
 {% endhint %}
 
 ### Validation
@@ -487,7 +487,7 @@ tcp   LISTEN 0   511   0.0.0.0:50022   0.0.0.0:*    users:(("nginx",pid=719,fd=5
 ```
 
 {% hint style="info" %}
-Electrs must first fully index the blockchain and compact its database before you can connect to it with your wallets. This can take a few hours. Only proceed with the [next section](../../bitcoin/bitcoin/desktop-wallet.md) once Electrs is ready
+Electrs must first fully index the blockchain and compact its database before you can connect to it with your wallets. This can take a few hours. Only proceed with the [next section](../../bitcoin/bitcoin/desktop-signing-app-sparrow.md) once Electrs is ready
 {% endhint %}
 
 ## Extras (optional)

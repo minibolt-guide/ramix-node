@@ -18,6 +18,10 @@ layout:
 The NYM mixnet technology ensures enhanced privacy and anonymity for online communications. It utilizes a decentralized network to encrypt and route data, ensuring that the origin and destination are concealed. By implementing the NYM mixnet, users can protect their online activities and sensitive information, safeguarding their privacy from surveillance and censorship. This advanced networking technology provides a secure environment for transmitting data and maintaining anonymity.
 
 {% hint style="danger" %}
+Notice: This guide is out of maintenance, the following steps may not be correct
+{% endhint %}
+
+{% hint style="danger" %}
 Status: Not tested on RaMiX
 {% endhint %}
 
@@ -684,7 +688,7 @@ If you have installed the NYM socks5 client installed in a machine inside of you
 
 #### Sparrow desktop
 
-Follow the [Desktop wallet: Sparrow Wallet](../../bitcoin/bitcoin/desktop-wallet.md) until the [(Optional) Set up a Tor proxy for external services](../../bitcoin/bitcoin/desktop-wallet.md#optional-set-up-a-tor-proxy-for-external-services), which could be used for these 2 cases of uses:
+Follow the [Desktop wallet: Sparrow Wallet](../../bitcoin/bitcoin/desktop-signing-app-sparrow.md) until the [(Optional) Set up a Tor proxy for external services](../../bitcoin/bitcoin/desktop-signing-app-sparrow.md#optional-set-up-a-tor-proxy-for-external-services), which could be used for these 2 cases of uses:
 
 1. If you don't have your node and you want to **proxy** all connections (**The Electrum Servers** of the wallet & **third-party server connections**) using the NYM mixnet
 

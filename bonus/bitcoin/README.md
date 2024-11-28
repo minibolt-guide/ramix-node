@@ -25,9 +25,9 @@ layout:
 
 * [**Electrs**](electrs.md) - an efficient re-implementation of Electrum Server in Rust
 
-### Wallets
+### Signing apps
 
-#### Desktop wallets
+#### Desktop
 
 * [**Electrum Wallet Desktop**](electrum-wallet-desktop.md) - a feature-rich desktop wallet for power-users
 
@@ -46,7 +46,7 @@ layout:
 
 ### Testnet
 
-* [**Running a Testnet RaMiX Node**](ramix-on-testnet.md) - configure your RaMiX for use on testnet
+* [**Running a Testnet RaMiX node**](ramix-on-testnet.md) - configure your RaMiX for use on testnet
 
 ### Payment processors
 
