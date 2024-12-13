@@ -24,11 +24,7 @@ _USE WITH CAUTION - For this guide to work properly, you will need to open ports
 Difficulty: Medium
 {% endhint %}
 
-<div data-full-width="false">
-
-<img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt="">
-
-</div>
+<div data-full-width="false"><img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
 
 ## Obsf4 bridge
 
@@ -67,7 +63,7 @@ If you obtain `"command not found"` output, you need to [install Tor](../../inde
 
 [obfs4](https://gitlab.com/yawning/obfs4) makes Tor traffic look random and prevents censors from finding bridges by internet scanning.
 
-* Ensure you are logged in with the user `admin` and install obfs4 proxy. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Ensure you are logged in with the user `admin` and install obfs4 proxy
 
 ```sh
 sudo apt install obfs4proxy
@@ -113,7 +109,7 @@ sudo ufw allow <TODO1>/tcp comment 'allow OR port Tor bridge from anywhere'
 ```
 
 ```sh
-sudo ufw allow <TODO2>/tcp comment 'allow obsf4 port Tor bridge from anywhere'
+sudo ufw allow <TODO2>/tcp comment 'allow obfs4 port Tor bridge from anywhere'
 ```
 
 {% hint style="warning" %}
@@ -390,11 +386,11 @@ Oct 20 14:42:37 ramix Tor-obfs4bridge[15624]: Your Tor bridge's hashed identity 
 ```
 
 {% hint style="info" %}
-\-> In this example, HASHED FINGERPRINT, would be: `29CA77BDCA7C00A7079CDDC0258A4DE0F1170157`
+-> In this example, HASHED FINGERPRINT, would be: `29CA77BDCA7C00A7079CDDC0258A4DE0F1170157`
 
-\-> Take note of this, about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or HASHED FINGERPRINT and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
+-> Take note of this, about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or HASHED FINGERPRINT and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
 
-\-> Also, you can check the status of your bridge relay on this URL: `https://bridges.torproject.org/status?id=<HASHEDFINGERPRINT>`, replacing `<HASHEDFINGERPRINT>` for you one
+-> Also, you can check the status of your bridge relay on this URL: `https://bridges.torproject.org/status?id=<HASHEDFINGERPRINT>`, replacing `<HASHEDFINGERPRINT>` for you one
 {% endhint %}
 
 * You can see the obfs4proxy logs with
@@ -448,13 +444,13 @@ Bridge obfs4 <IPADDRESS>:<PORT> <FINGERPRINT> cert=<CERTIFICATE> iat-mode=0
 ```
 
 {% hint style="info" %}
-\-> You'll need to replace \<IPADDRESS>, \<PORT>, and \<FINGERPRINT> with the actual values, which you can find in the Tor log. Make sure that you use **"PORT"** as the obfs4 port <**TODO2>,** not ~~**\<TODO1>,**~~ and that you chose **"FINGERPRINT",** not ~~**"HASHED FINGERPRINT"**~~
+-> You'll need to replace \<IPADDRESS>, \<PORT>, and \<FINGERPRINT> with the actual values, which you can find in the Tor log. Make sure that you use **"PORT"** as the obfs4 port <**TODO2>,** not ~~**\<TODO1>,**~~ and that you chose **"FINGERPRINT",** not ~~**"HASHED FINGERPRINT"**~~
 
-\-> Remember to exclude the "`Bridge`" word to avoid incompatibility with the Tor Browser Android version
+-> Remember to exclude the "`Bridge`" word to avoid incompatibility with the Tor Browser Android version
 
-\-> More info to connect the Tor browser to your own Tor bridge on this [website](https://tb-manual.torproject.org/bridges/) in the `"ENTERING BRIDGE ADDRESSES"` section
+-> More info to connect the Tor browser to your own Tor bridge on this [website](https://tb-manual.torproject.org/bridges/) in the `"ENTERING BRIDGE ADDRESSES"` section
 
-\-> Take note of your case data, you will need it later
+-> Take note of your case data, you will need it later
 {% endhint %}
 
 ## Upgrade obfs4 bridge
@@ -885,9 +881,9 @@ Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key f
 ```
 
 {% hint style="info" %}
-\-> In this example, HASHED FINGERPRINT, would be: `8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389`
+-> In this example, HASHED FINGERPRINT, would be: `8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389`
 
-\-> Take note of this, about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or `HASHED FINGERPRINT` and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
+-> Take note of this, about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or `HASHED FINGERPRINT` and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
 {% endhint %}
 
 ### Validation
@@ -977,7 +973,7 @@ Reverts router NAT configuration following the same [Configure Firewall & ](tor-
 sudo apt install nyx
 ```
 
-\-> 3 options depending on the instance:
+-> 3 options depending on the instance:
 
 {% tabs %}
 {% tab title="For the obfs4 bridge" %}
@@ -1086,23 +1082,23 @@ Bridge obfs4 <IPADDRESS>:<PORT> <FINGERPRINT> cert=<CERTIFICATE> iat-mode=0
 ```
 
 {% hint style="info" %}
-\-> Add the needed lines with the number of bridges that you wish, replacing <**IPADDRESS>**, <**PORT>**, <**FINGERPRINT>**, and <**CERTIFICATE>** with those obtained before
+-> Add the needed lines with the number of bridges that you wish, replacing <**IPADDRESS>**, <**PORT>**, <**FINGERPRINT>**, and <**CERTIFICATE>** with those obtained before
 
-\-> If you want to connect the Tor default instance to the obfs4bridge in the same host (in the same RaMiX node) you need to set `127.0.0.1` as the `<IPADDRESS>` parameter instead of the node's public IP address
+-> If you want to connect the Tor default instance to the obfs4bridge in the same host (in the same RaMiX node) you need to set `127.0.0.1` as the `<IPADDRESS>` parameter instead of the node's public IP address
 
-\-> If you want to connect the Tor default instance to the `obfs4bridge` of another host in the same local network, you need to specify the node IP address of the node that is hosting the obfs4 bridge as the `<IPADDRESS>` parameter instead of the node's public IP address, e.g. `192.168.X.X`
+-> If you want to connect the Tor default instance to the `obfs4bridge` of another host in the same local network, you need to specify the node IP address of the node that is hosting the obfs4 bridge as the `<IPADDRESS>` parameter instead of the node's public IP address, e.g. `192.168.X.X`
 {% endhint %}
 
 {% hint style="info" %}
-\-> It is recommended to add more obfs4 bridges, you should have at least two for conflux
+-> It is recommended to add more obfs4 bridges, you should have at least two for conflux
 
-\-> Since many bridge addresses aren’t public, you may need to request some from the Tor Project. Visit this website [CLEARNET](https://bridges.torproject.org/options) / [ONION](http://yq5jjvr7drkjrelzhut7kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options), to get bridges. Push the **`Just give me bridges`** button or select obfs4 on the drop down and push the **`Get Bridges`** button. Select one or the 2 offered, and add the content to the `torrc` configuration as a line more similar like `Bridge obfs4 <IPADDRESS>:...`⬇️
+-> Since many bridge addresses aren’t public, you may need to request some from the Tor Project. Visit this website [CLEARNET](https://bridges.torproject.org/options) / [ONION](http://yq5jjvr7drkjrelzhut7kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options), to get bridges. Push the **`Just give me bridges`** button or select obfs4 on the drop down and push the **`Get Bridges`** button. Select one or the 2 offered, and add the content to the `torrc` configuration as a line more similar like `Bridge obfs4 <IPADDRESS>:...`⬇️
 {% endhint %}
 
 <figure><img src="../../images/get-bridge.PNG" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-\-> Remember to add the word "`Bridge`" before the `obfs4 IP...` line got from Tor, if not, Tor daemon will give you an error.
+-> Remember to add the word "`Bridge`" before the `obfs4 IP...` line got from Tor, if not, Tor daemon will give you an error.
 
 Example:
 
@@ -1111,7 +1107,7 @@ Bridge obfs4 158.91.178.132:3304 34B1F1F5F1632381AFE5C7CAC4C1754AC361B036 cert=I
 Bridge obfs4 81.177.121.63:9471 68E9BE060C7CB1F4958DFFF9B76D64DE4DEABD74 cert=CMBeCEftMpVP1IPefS0uqbDwYvEf4CneC9DyW4/HkigxAu1W99MODbkv5Yv+oXYp5wi2Ig iat-mode=0
 ```
 
-\-> There are many options to request and use bridges apart from using the "`https`" before explained method:
+-> There are many options to request and use bridges apart from using the "`https`" before explained method:
 
 * Request bridges by emailing [bridges@torproject.org](mailto:bridges@torproject.org)
 * Request bridges from within the Tor Browser:

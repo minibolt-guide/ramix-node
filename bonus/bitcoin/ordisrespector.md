@@ -22,10 +22,6 @@ layout:
 
 [Ordinals](https://ordinals.com/) is a project created to number sats. It also has a feature called inscriptions, which is the problematic part and what is mainly being touched on in this guide. An inscription is data stored onchain associated with a sat.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
@@ -143,7 +139,7 @@ Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bi
 Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
 
-\-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
+-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
 
 ### **Checksum check**
@@ -483,7 +479,7 @@ The before information indicates that the filter is working properly
 
 ### **Add Ordisrespector node peers (optional)**
 
-Add the [Bitcoin Barcelona node](https://bitcoinbarcelona.xyz/servicios\_bbo) as a peer in your node, or Ordisrespector runners community peers that shared their public addresses, in this way, it is easier to invade the network with Ordisrespector node runners.
+Add the [Bitcoin Barcelona node](https://bitcoinbarcelona.xyz/servicios_bbo) as a peer in your node, or Ordisrespector runners community peers that shared their public addresses, in this way, it is easier to invade the network with Ordisrespector node runners.
 
 * Edit and add to the `bitcoin.conf` file, the next line/s at the end of the file
 

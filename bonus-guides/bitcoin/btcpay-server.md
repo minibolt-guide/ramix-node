@@ -229,7 +229,7 @@ mkdir src && cd src
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.12
+VERSION=2.5.16
 ```
 
 * Download the NBXplorer source code and enter the folder
@@ -554,7 +554,7 @@ cd src
 * Set variable environment version
 
 ```bash
-VERSION=2.0.3
+VERSION=2.0.4
 ```
 
 * Clone the BTCPay Server official GitHub repository and enter the folder
@@ -711,9 +711,9 @@ postgres=User ID=admin;Password=admin;Host=localhost;Port=5432;Database=btcpay;
 </code></pre>
 
 {% hint style="info" %}
-\-> If you want to connect your Lightning LND node to BTCPay Server too, go to the [Connect to your LND internal node](btcpay-server.md#connect-to-your-lnd-internal-node) optional section
+-> If you want to connect your Lightning LND node to BTCPay Server too, go to the [Connect to your LND internal node](btcpay-server.md#connect-to-your-lnd-internal-node) optional section
 
-\-> The `socksendpoint=127.0.0.1:9050` parameter is optional but recommended to increase your privacy, if you want to delete, comment with # before it or delete it directly
+-> The `socksendpoint=127.0.0.1:9050` parameter is optional but recommended to increase your privacy, if you want to delete, comment with # before it or delete it directly
 {% endhint %}
 
 * Go back to the `admin` user
@@ -1092,7 +1092,7 @@ cd src/NBXplorer
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.12
+VERSION=2.5.16
 ```
 
 * Fetch the changes of the latest wish tag
@@ -1125,7 +1125,7 @@ git config user.email "ramix@dummyemail.com"
 git config user.name "RaMiX"
 ```
 
-\-> And try again the last command
+-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}
@@ -1228,7 +1228,7 @@ cd src/btcpayserver
 * Set the environment variable version
 
 ```bash
-VERSION=2.0.3
+VERSION=2.0.4
 ```
 
 * Fetch the changes of the latest tag. Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to apply modifications
@@ -1262,7 +1262,7 @@ git config user.email "ramix@dummyemail.com"
 git config user.name "RaMiX"
 ```
 
-\-> And try again the last command
+-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}
@@ -1272,7 +1272,7 @@ If the prompt shows you: `fatal: Need to specify how to reconcile divergent bran
 git config pull.rebase false
 ```
 
-\-> And try again the last command
+-> And try again the last command
 {% endhint %}
 
 {% hint style="info" %}

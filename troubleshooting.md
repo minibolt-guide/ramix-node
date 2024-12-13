@@ -16,7 +16,7 @@ layout:
 
 ## Fix bad USB3 performance <a href="#fix-bad-usb3-performance" id="fix-bad-usb3-performance"></a>
 
-If the speed of your USB3 drive tested with `hdparm` in the [Check drive performance](index-1/configuration.md#check-drive-performance) section, is not acceptable, we need to configure the USB driver to ignore the UAS interface.
+If the speed of your tested USB3 drive speed with `hdparm` in the [Check drive performance](index-1/configuration.md#check-drive-performance) section is not acceptable, we need to configure the USB driver to ignore the UAS interface.
 
 * With user `admin`, get the `Vendor` and `Product ID` for your USB3 drive. Run the following command and look for the name of your drive or adapter. The relevant data is printed as `idVendor:idProduct` (`0bda:9210` in this example). Make a note of these values.
 

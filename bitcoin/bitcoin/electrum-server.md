@@ -50,7 +50,7 @@ Make sure that you have followed the [Activate mempool & reduce 'dbcache' after 
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Make sure that all necessary software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Make sure that all necessary software packages are installed
 
 ```sh
 sudo apt install libssl-dev
@@ -255,10 +255,30 @@ If you come to update, this is the final step, go back to the [Upgrade section](
 sudo adduser --disabled-password --gecos "" fulcrum
 ```
 
+Expected output:
+
+```
+Adding user `fulcrum' ...
+Adding new group `fulcrum' (1002) ...
+Adding new user `fulcrum' (1002) with group `fulcrum (1002)' ...
+Creating home directory `/home/fulcrum' ...
+Copying files from `/etc/skel' ...
+Adding new user `fulcrum' to supplemental / extra groups `users' ...
+Adding user `fulcrum' to group `users' ...
+```
+
 * Add `fulcrum` user to the "bitcoin" group, allowing him to read the bitcoind `.cookie` file
 
 ```bash
 sudo adduser fulcrum bitcoin
+```
+
+Expected output:
+
+```
+sudo adduser fulcrum bitcoin
+Adding user `fulcrum' to group `bitcoin' ...
+Done.
 ```
 
 ### Create data folder

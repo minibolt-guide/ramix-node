@@ -21,15 +21,11 @@ layout:
 
 [Electrum wallet Desktop](https://electrum.org) is a well-established, feature-rich Bitcoin wallet for power users that supports most hardware wallets.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}
 
-![](../../images/electrum\_wallet\_logo.png)
+![](../../images/electrum_wallet_logo.png)
 
 ## Requirements
 

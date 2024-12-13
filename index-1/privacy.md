@@ -14,10 +14,6 @@ layout:
 
 # 1.6 Privacy
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We configure Tor and I2P to run your node anonymously.
 
 <figure><img src="../.gitbook/assets/privacy.jpg" alt="" width="375"><figcaption></figcaption></figure>
@@ -386,7 +382,7 @@ sudo nano +130 -l /etc/i2pd/i2pd.conf
 
 ```
 auth = true
-user = i2p
+user = i2pd
 pass = [ F ] i2pd webconsole password
 ```
 
@@ -412,7 +408,7 @@ tcp   LISTEN 0      4096       127.0.0.1:7070       0.0.0.0:*    users:(("i2pd",
 ```
 
 {% hint style="info" %}
-Now point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:7071"` (or your node IP address) like `"https://192.168.x.xxx:7071"`. Type the before credentials configurated (`user: i2p; password: [ F ] i2pd webconsole password`). After that, you should see something similar to the next screenshot
+Now point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:7071"` (or your node IP address) like `"https://192.168.x.xxx:7071"`. Type the before credentials configurated (`user: i2pd; password: [ F ] i2pd webconsole password`). After that, you should see something similar to the next screenshot
 
 This access is only available from the local network, no Tor or Wireguard VPN is allowed
 {% endhint %}
@@ -478,7 +474,9 @@ To enable Tor in the background follow the same instructions for the [preparatio
   * Go to the "Network settings" tab, select Proxy type "Socks5" on the host, type "localhost", for login, left empty, port "9050".
   * Press the button OK, when a "Connexion to..." banner appears press the "Accept" button, if the prompt asks you user/password, leave it empty and press ENTER directly, and finally type your `password [A]`.
 
-📝 If you are using PuTTy and fail to connect to your PC by setting port 9050 in the PuTTy proxy settings, try setting port 9150 instead. When Tor runs as an installed application instead of a background process it uses port 9150.
+{% hint style="info" %}
+If you are using PuTTy and fail to connect to your PC by setting port 9050 in the PuTTy proxy settings, try setting port 9150 instead. When Tor runs as an installed application instead of a background process it uses port 9150
+{% endhint %}
 
 * **Linux**:
   * Use `torify` or `torsocks`, both work similarly; just use whatever you have available
@@ -601,7 +599,7 @@ Click on the OK button, and try to navigate to some clearnet domain like [https:
 {% hint style="info" %}
 You can also go to this [website](https://check.torproject.org/) and see "_Congratulations. This browser is configured to use Tor."_
 
-Also, you can use the Tor proxy connection to reach clearnet or third-party address connection on Sparrow wallet. Check out the [Desktop wallet: Sparrow wallet](../bitcoin/bitcoin/desktop-signing-app-sparrow.md) guide to get instructions.
+Also, you can use the Tor proxy connection to reach clearnet or third-party address connection on Sparrow wallet. Check out the [Desktop signing app: Sparrow Wallet](../bitcoin/bitcoin/desktop-signing-app-sparrow.md) guide to get instructions.
 {% endhint %}
 
 ## Upgrade Tor and I2P

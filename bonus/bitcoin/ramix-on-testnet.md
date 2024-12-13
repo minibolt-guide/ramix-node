@@ -67,15 +67,11 @@ bind=127.0.0.1
 bind=127.0.0.1
 ```
 
-* When you finish the [Run](../../bitcoin/bitcoin/bitcoin-client.md#run) section, with the user `admin` provide read and execute permissions to the Bitcoin group for the testnet folder
+* Set permissions for only the user `bitcoin` and members of the `bitcoin` group can read it (needed for LND to read the "`rpcauth`" line)
 
-```bash
-sudo chmod g+rx /data/bitcoin/testnet4
+```sh
+chmod 640 /home/bitcoin/.bitcoin/bitcoin-testnet4.conf
 ```
-
-{% hint style="warning" %}
-**Attention:** the step before is critical to allow the Bitcoin Core dependencies to access the `.cookie` file and startup without problems
-{% endhint %}
 
 * When you arrive at the [Create systemd service](../../bitcoin/bitcoin/bitcoin-client.md#create-systemd-service), create a new systemd file configuration for Testnet4
 
@@ -148,6 +144,16 @@ journalctl -fu bitcoind-testnet4
 ```bash
 sudo systemctl start bitcoind-testnet4
 ```
+
+* When you finish the [Run](../../bitcoin/bitcoin/bitcoin-client.md#run) section, with the user `admin` provide read and execute permissions to the Bitcoin group for the testnet folder
+
+```bash
+sudo chmod g+rx /data/bitcoin/testnet4
+```
+
+{% hint style="warning" %}
+**Attention:** the step before is critical to allow the Bitcoin Core dependencies to access the `.cookie` file and startup without problems
+{% endhint %}
 
 {% hint style="info" %}
 Use the flag `--testnet4` when you use the `bitcoin-cli` commands, e.g `bitcoin-cli --testnet4 -netinfo`
@@ -279,8 +285,8 @@ nano /home/btcrpcexplorer/btc-rpc-explorer/.env
 
 ```
 BTCEXP_BITCOIND_PORT=18332
-BTCEXP_BITCOIND_COOKIE=/data/bitcoin/testnet3/.cookie
-BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:60001
+BTCEXP_BITCOIND_COOKIE=/data/bitcoin/testnet43/.cookie
+BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:40001
 ```
 
 {% hint style="success" %}
@@ -301,14 +307,14 @@ The rest of the **BTC RPC Explorer** guide is the same as the mainnet mode
 nano /data/lnd/lnd.conf
 ```
 
-* Replace the parameter `bitcoin.mainnet=true` with the `bitcoin.testnet=true` to enable LND in testnet mode and add the location of the `bitcoin-testnet3.conf` in the `[Bitcoind]` section
+* Replace the parameter `bitcoin.mainnet=true` with the `bitcoin.testnet=true` to enable LND in testnet mode and add the location of the `bitcoin-testnet4.conf` in the `[Bitcoind]` section
 
 ```
 [Bitcoin]
-bitcoin.testnet=true
+bitcoin.testnet4=true
 
 [Bitcoind]
-bitcoind.config=/data/bitcoin/bitcoin-testnet3.conf
+bitcoind.config=/data/bitcoin/bitcoin-testnet4.conf
 ```
 
 {% hint style="info" %}
@@ -318,7 +324,7 @@ If you use [Ordirespector](ordisrespector.md) on testnet, add the next lines at 
 ```
 [fee]
 # Use external fee estimator
-fee.url=https://nodes.lightning.computer/fees/v1/btctestnet-fee-estimates.json
+fee.url=https://nodes.lightning.computer/fees/v1/btctestnet4-fee-estimates.json
 ```
 
 * When you arrive at the [Create systemd service](../../lightning/lightning-client.md#create-systemd-service) section, edit the `lnd.service` file and replace `ExecStop` parameter to this
@@ -336,7 +342,7 @@ When you arrive at the [Watchtower client](../../lightning/lightning-client.md#w
 * Note that when interacting with the LND daemon, you'll need to use the `"--network testnet"` flag. Example:
 
 ```sh
-lncli --network=testnet --tlscertpath /data/lnd/tls.cert.tmp create
+lncli --network=testnet4 --tlscertpath /data/lnd/tls.cert.tmp create
 ```
 
 {% hint style="info" %}
@@ -362,16 +368,16 @@ sudo nano /usr/local/bin/scb-backup --linenumbers
 * Replace the `line 18` in the script to match with the testnet path
 
 ```
-SCB_SOURCE_FILE="/data/lnd/data/chain/bitcoin/testnet/channel.backup"
+SCB_SOURCE_FILE="/data/lnd/data/chain/bitcoin/testnet4/channel.backup"
 ```
 
 {% hint style="info" %}
 **If you have a mainnet node running on another device** and you want to use the same GitHub account for the testnet channel backups:
 
-* Change this line on the script to this for example: `REMOTE_BACKUP_DIR="/data/lnd/remote-lnd-testnet-backup"`
-* When you arrive at the ["Create a GitHub repository"](../../lightning/channel-backup.md#create-a-github-repository) section, change the name of the GitHub repo to for example: "`remote-lnd-testnet-backup"`
-* When you arrive at the ["Clone the repository to your node"](../../lightning/channel-backup.md#clone-the-repository-to-your-node) section, replace the command with: `git clone git@github.com:<YourGitHubUsername>/remote-lnd-testnet-backup.git`
-* When you arrive at the ["GitHub test"](../../lightning/channel-backup.md#github-test) section, replace the command to: `cd remote-lnd-testnet-backup`
+* Change this line on the script to this for example: `REMOTE_BACKUP_DIR="/data/lnd/remote-lnd-testnet4-backup"`
+* When you arrive at the ["Create a GitHub repository"](../../lightning/channel-backup.md#create-a-github-repository) section, change the name of the GitHub repo to for example: "`remote-lnd-testnet4-backup"`
+* When you arrive at the ["Clone the repository to your node"](../../lightning/channel-backup.md#clone-the-repository-to-your-node) section, replace the command with: `git clone git@github.com:<YourGitHubUsername>/remote-lnd-testnet4-backup.git`
+* When you arrive at the ["GitHub test"](../../lightning/channel-backup.md#github-test) section, replace the command to: `cd remote-lnd-testnet4-backup`
 {% endhint %}
 
 {% hint style="success" %}
@@ -387,13 +393,13 @@ The rest of the **Channel Backup guide** is the same as the mainnet mode
 * Follow the complete guide from the beginning, when you arrive at the [Configuration](../../lightning/web-app.md#configuration) section, replace the next parameter to match with the testnet mode on the `.env.local` file
 
 ```
-MEMPOOL_URL='https://mempool.space/testnet'
+MEMPOOL_URL='https://mempool.space/testnet4'
 ```
 
 * And replace the next parameter on the `thubConfig.yaml` file
 
 ```
-macaroonPath: /data/lnd/data/chain/bitcoin/testnet/admin.macaroon
+macaroonPath: /data/lnd/data/chain/bitcoin/testnet4/admin.macaroon
 ```
 
 {% hint style="success" %}
@@ -412,7 +418,7 @@ For **example**, to generate a QR code for a Wireguard VPN connection, enter thi
 
 {% code overflow="wrap" %}
 ```sh
-lndconnect --host=10.0.1.1 --port=8080 --bitcoin.testnet --adminmacaroonpath=/home/admin/.lnd/data/chain/bitcoin/testnet/admin.macaroon --nocert
+lndconnect --host=10.0.1.1 --port=8080 --bitcoin.testnet4 --adminmacaroonpath=/home/admin/.lnd/data/chain/bitcoin/testnet4/admin.macaroon --nocert
 ```
 {% endcode %}
 

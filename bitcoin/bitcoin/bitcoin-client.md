@@ -112,7 +112,7 @@ Primary key fingerprint:...
 
 ### Timestamp check
 
-* The binary checksum file is also timestamped with the Bitcoin blockchain using the [OpenTimestamps protocol](https://en.wikipedia.org/wiki/Time\_stamp\_protocol), proving that the file existed before some point in time. Let's verify this timestamp. On your local computer, download the checksums file and its timestamp proof:
+* The binary checksum file is also timestamped with the Bitcoin blockchain using the [OpenTimestamps protocol](https://en.wikipedia.org/wiki/Time_stamp_protocol), proving that the file existed before some point in time. Let's verify this timestamp. On your local computer, download the checksums file and its timestamp proof:
   * [Click to download](https://bitcoincore.org/bin/bitcoin-core-28.0/SHA256SUMS.ots) the checksum file
   * [Click to download](https://bitcoincore.org/bin/bitcoin-core-28.0/SHA256SUMS) its timestamp proof
 * In your browser, open the [OpenTimestamps website](https://opentimestamps.org/)
@@ -199,7 +199,7 @@ Copyright (C) 2009-2022 The Bitcoin Core developers
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc SHA256SUMS.ots
+sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc
 ```
 {% endcode %}
 
@@ -231,10 +231,24 @@ Adding user `bitcoin' to group `users' ...
 sudo adduser admin bitcoin
 ```
 
+Expected output:
+
+```
+Adding user `admin' to group `bitcoin' ...
+Done.
+```
+
 * Allow the user `bitcoin` to use the control port and configure Tor directly by adding it to the "`debian-tor`" group
 
 ```bash
 sudo adduser bitcoin debian-tor
+```
+
+Expected output:
+
+```
+Adding user `bitcoin' to group `debian-tor' ...
+Done.
 ```
 
 ### Create data folder
@@ -244,7 +258,7 @@ Bitcoin Core uses by default the folder `.bitcoin` in the user's home. Instead o
 * Create the Bitcoin data folder
 
 ```sh
-mkdir /data/bitcoin
+sudo mkdir /data/bitcoin
 ```
 
 * Assign as the owner to the `bitcoin` user
@@ -389,7 +403,7 @@ bind=127.0.0.1
 bind=127.0.0.1=onion
 
 ## Proxify clearnet outbound connections using Tor SOCKS5 proxy
-proxy=127.0.0.1:9050
+proxy=unix:/run/tor/socks
 
 ## I2P SAM proxy to reach I2P peers and accept I2P connections
 i2psam=127.0.0.1:7656
@@ -413,7 +427,7 @@ onlynet=ipv4
 onlynet=ipv6
 ```
 
-\-> This is a standard configuration. Check this [Bitcoin Core sample bitcoind.conf](https://gist.github.com/twofaktor/af6e2226e2861fa86874340f5315aa01) file with all possible options or generate one yourself following the proper [extra section](bitcoin-client.md#generate-a-full-bitcoin.conf-example-file)
+-> This is a standard configuration. Check this [Bitcoin Core sample bitcoind.conf](https://gist.github.com/twofaktor/af6e2226e2861fa86874340f5315aa01) file with all possible options or generate one yourself following the proper [extra section](bitcoin-client.md#generate-a-full-bitcoin.conf-example-file)
 {% endhint %}
 
 * Set permissions for only the user `bitcoin` and members of the `bitcoin` group can read it (needed for LND to read the "`rpcauth`" line)
@@ -685,7 +699,7 @@ If everything is running smoothly, this is the perfect time to familiarize yours
 
     <figure><img src="../../images/30_mastering_bitcoin_book.jpg" alt=""><figcaption></figcaption></figure>
 * [Learning Bitcoin from the Command Line](https://github.com/ChristopherA/Learning-Bitcoin-from-the-Command-Line/blob/master/README.md) by Christopher Allen gives a thorough deep dive into understanding the technical aspects of Bitcoin
-* Also, check out the [bitcoin-cli reference](https://en.bitcoin.it/wiki/Original\_Bitcoin\_client/API\_calls\_list)
+* Also, check out the [bitcoin-cli reference](https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list)
 
 ## Activate mempool & reduce 'dbcache' after a full sync
 
@@ -1048,7 +1062,7 @@ Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bi
 Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
 
-\-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
+-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
 
 * If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Core binaries
@@ -1193,11 +1207,11 @@ sudo ufw delete X
 
 [^3]: Replace
 
-[^4]: \-> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
+[^4]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
 
-    \-> Recommended: dbcache=1/2 x RAM available e.g: 4GB RAM -> dbcache=2048
+    -> Recommended: dbcache=1/2 x RAM available e.g: 4GB RAM -> dbcache=2048
 
-    \-> Remember to comment or delete this parameter after IBD (Initial Block Download)
+    -> Remember to comment or delete this parameter after IBD (Initial Block Download)
 
 [^5]: Check this
 

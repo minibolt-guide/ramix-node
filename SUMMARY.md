@@ -44,7 +44,7 @@
   * [WireGuard VPN](bonus/system/wireguard-vpn.md)
   * [Cloudflare tunnel](bonus-guides/system/cloudflare-tunnel.md)
   * [Tor services: bridges & relays](bonus-guides/system/tor-services.md)
-  * [Boot from microSD instead of external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)
+  * [Boot from microSD instead of an external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)
   * [NYM mixnet](bonus-guides/system/nym-mixnet.md)
 * [🟠 ₿itcoin](bonus/bitcoin/README.md)
   * [Electrs](bonus/bitcoin/electrs.md)

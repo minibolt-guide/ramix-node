@@ -22,10 +22,6 @@ layout:
 
 Download the Bitcoin white paper PDF directly from the blockchain data on your node and witness the power of a decentralized network to fight censorship.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

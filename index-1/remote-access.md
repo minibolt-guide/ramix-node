@@ -14,10 +14,6 @@ layout:
 
 # 1.3 Remote access
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We connect to your personal computer by using the Secure Shell.
 
 <figure><img src="../.gitbook/assets/remote-access.png" alt="" width="375"><figcaption></figcaption></figure>
@@ -55,7 +51,7 @@ Now it’s time to connect to the RaMiX via Secure Shell (SSH) and get to work. 
 Install and start the SSH client for your operating system:
 
 * **Windows**, 2 options:
-  * Download **Putty** [64-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/\~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture. [Source](https://www.chiark.greenend.org.uk/\~sgtatham/putty/latest.html)
+  * Download **Putty** [64-bit x86](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture. [Source](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
     * Start Putty, to the left tree, select "**session**", in the "Hostname (or IP address)" box, type `admin@192.168.x.xx`, port `22` to the left box.
     * Press the button **OPEN**, when a "PuTTy security alert" banner appears, press the "Accept" button, and finally type your `password [A]`.
   * [Download](https://mobaxterm.mobatek.net/download-home-edition.html) the **MobaXterm** Portable Edition or Installer Edition version depending on whether you want to install it permanently or not.

@@ -14,10 +14,6 @@ layout:
 
 # 1.5 Security
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We make sure that your RaMiX is secured against unauthorized remote access.
 
 The RaMiX needs to be secured against online attacks using various methods.
@@ -108,7 +104,7 @@ If you don't have [IPv6 availability](security.md#check-ipv6-availability), you 
 * Edit the UFW configuration
 
 ```bash
-sudo nano /etc/default/ufw
+sudo nano +7 /etc/default/ufw -l
 ```
 
 * Change `IPV6=yes` to `IPV6=no`. Save and exit

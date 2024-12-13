@@ -14,10 +14,6 @@ layout:
 
 # 1.2 Operating system
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We configure the Raspberry Pi and install the official operating system.
 
 <figure><img src="../.gitbook/assets/operating-system.gif" alt="" width="295"><figcaption></figcaption></figure>
@@ -29,7 +25,7 @@ We use <mark style="color:red;">**Raspberry Pi OS Bookworm Lite (Debian 12 based
 {% hint style="warning" %}
 **Attention!!** If you use Raspberry Pi 5, avoid installing incompatible OS versions like Raspberry Pi OS Bullseye (Debian 11 based). Due to hardware changes, the Raspberry Pi 5 requires Raspberry Pi OS Bookworm for proper support and functionality.
 
-\-> Likewise, if you have a Raspberry Pi 4, **avoid installing systems other than Raspberry Pi OS Bookworm**. The steps may differ from the guide, and **support won’t be facilitated in the provided groups.**
+-> Likewise, if you have a Raspberry Pi 4, **avoid installing systems other than Raspberry Pi OS Bookworm**. The steps may differ from the guide, and **support won’t be facilitated in the provided groups.**
 {% endhint %}
 
 Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribution, available for most hardware platforms. To make this guide as universal as possible, it uses only standard Debian-based commands.
@@ -53,8 +49,8 @@ We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
 
 You can now pre-configure the operating system even before it’s started for the first time. Configure the advanced options as follows.
 
-On the **“General”** tab:
-
+{% tabs %}
+{% tab title=""General" tab" %}
 *   **Set hostname**: choose and enter a local network name for your node, for example, `ramix`.
 
     Note: if you want to change this later, you can adjust the hostname later by replacing it in the file `/etc/hostname` and adding it at the end of the first line in `/etc/hosts`
@@ -63,20 +59,26 @@ On the **“General”** tab:
     This will create the user `admin` which we will use primarily in this guide to make it more universal.
 *   **Configure WiFi**: if you will run the RaMiX connected to your wireless network, enter the WiFi name (“SSID”) and password. Also, change “Wifi country” to the two-letter [ISO2 code](https://www.iso.org/obp/ui/#search) of your country (e.g. `es`)
 
-    If you’ll connect your RaMiX with a network cable, simply skip this setting
+    -> If you’ll connect your RaMiX with a network cable, simply skip this setting
 * **Set locale settings**: activate the checkbox, select your timezone and keyboard layout ("es" recommended for Spanish speakers)
+{% endtab %}
 
-On the **“Services”** tab:
-
+{% tab title=""Services" tab" %}
 * Activate the checkbox "**Enable SSH"  and 2 options**:&#x20;
   * Select **“Use password authentication”** to use the previously configurated "**username and password**"&#x20;
   * Select "**Allow public-key authentication only"** and enter your SSH pub key. Get your SSH key pair and more info in the "[Login with SSH keys](../bonus/system/ssh-keys.md)" bonus guide
 
-This will allow you to connect to the Raspberry Pi remotely using “**S**ecure **SH**ell” without ever connecting it to a keyboard or screen.
-
 {% hint style="info" %}
-**(Optional)** If you want to improve your privacy, you can **uncheck** **“Enable telemetry”** on the **“Options”** tab; or ignore it
+This will allow you to connect to the Raspberry Pi remotely using “**S**ecure **SH**ell” without ever connecting it to a keyboard or screen.
 {% endhint %}
+{% endtab %}
+
+{% tab title=""Options" tab" %}
+{% hint style="info" %}
+If you want to improve your privacy, you can **uncheck** **“Enable telemetry”**
+{% endhint %}
+{% endtab %}
+{% endtabs %}
 
 * Click on **“SAVE”**
 
@@ -89,7 +91,7 @@ This will allow you to connect to the Raspberry Pi remotely using “**S**ecure 
 The Raspberry Pi Imager now writes and verifies the operating system on your drive. It should display a “**Success**” message after
 {% endhint %}
 
-![](../.gitbook/assets/rpi\_os\_bookworm\_install.gif)
+![](../.gitbook/assets/rpi_os_bookworm_install.gif)
 
 ## Start your Raspberry Pi <a href="#start-your-pi" id="start-your-pi"></a>
 

@@ -21,10 +21,6 @@ layout:
 
 In this section, we are going to do instructions for changing the prompt "$" symbol to the Bitcoin symbol "₿" and color and install bash completion scripts for Bitcoin Core and Lightning projects command CLI instructions.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}

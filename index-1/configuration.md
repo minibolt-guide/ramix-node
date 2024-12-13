@@ -14,10 +14,6 @@ layout:
 
 # 1.4 Configuration
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 You are now on the command line of your own Bitcoin node. Let's start with the configuration.
 
 <figure><img src="../.gitbook/assets/configuration.jpg" alt="" width="375"><figcaption></figcaption></figure>
@@ -36,7 +32,7 @@ If you connected **a** [HAT+ device](https://www.raspberrypi.com/products/m2-hat
 
 Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support (more common)) and enable the PCIe port.&#x20;
 
-\-> 2 different methods:
+-> 2 different methods:
 
 {% tabs %}
 {% tab title="via config.txt" %}
@@ -173,6 +169,10 @@ If the measured speeds are more than 150 MB/s, you're good but it is recommended
 
 ## Data directory
 
+{% hint style="info" %}
+If you want to boot from microSD instead of an external drive, here you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly.
+{% endhint %}
+
 We'll store all application data in the dedicated directory `/data`. This allows for better security because it's not inside any user's home directory. Additionally, it's easier to move that directory somewhere else, for instance to a separate drive, as you can just mount any storage option to `/data`
 
 * Create the data folder
@@ -187,22 +187,40 @@ sudo mkdir /data
 sudo chown admin:admin /data
 ```
 
-## Increase swap file size <a href="#increase-swap-file-size" id="increase-swap-file-size"></a>
+## Resize the swap file <a href="#increase-swap-file-size" id="increase-swap-file-size"></a>
 
 The swap file acts as slower memory and is essential for system stability. The standard size of 200M is way too small.
 
-* Edit the configuration file and comment the entry `CONF_SWAPSIZE` by placing a `#` in front of it. Save and exit
+* Edit the configuration file
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /etc/dphys-swapfile
 </strong></code></pre>
 
+* Comment on the entry `CONF_SWAPSIZE` by placing a "`#"` symbol in front of it. Save and exit
+
 ```
-# comment or delete the CONF_SWAPSIZE line. It will then be created dynamically
-#CONF_SWAPSIZE=200
+#CONF_SWAPSIZE=512
 ```
+
+{% hint style="info" %}
+It will then be created dynamically to use ½ of the total RAM size installed
+{% endhint %}
 
 * Recreate new swapfile
 
 ```bash
 sudo systemctl restart dphys-swapfile
+```
+
+* Check the new swap size
+
+```bash
+swapon --show
+```
+
+Example of expected output:
+
+```
+NAME      TYPE SIZE USED PRIO
+/var/swap file   2G   0B   -2
 ```

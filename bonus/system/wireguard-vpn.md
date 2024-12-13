@@ -24,10 +24,6 @@ The following guide was derived from contributions by [Pantamis](https://github.
 [WireGuard](https://www.wireguard.com) is a VPN you can set up to access your RaMiX from the outside. It makes it easier to run services on your node without exposing its ports to the public Internet. It has support on all major computer OS; and apps for Android and iOS. The only requirement is to forward a UDP port from your home router to the RaMiX node.
 
 {% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
-{% hint style="danger" %}
 Difficulty: Hard
 {% endhint %}
 
@@ -104,11 +100,11 @@ If you have a contracted static IP on your ISP, you can log in to the RaMiX dire
 
     **3.** Hit the **"CREATE ACCOUNT"** button
 
-![](../../images/desec\_io0.png)
+![](../../images/desec_io0.png)
 
 **You'll see the following form:**
 
-![](../../images/desec\_io1.png)
+![](../../images/desec_io1.png)
 
 * Ensure to keep selecting the second option **Register a new domain under dedyn.io (dynDNS).**
 * For this demo, I've typed **`yoursubdomain`**, but _**you can use anything memorable**_ to you as long as no one has already taken that name. We'll it call **`"<yoursubdomain.dedyn.io>"`** from now on.
@@ -116,7 +112,7 @@ If you have a contracted static IP on your ISP, you can log in to the RaMiX dire
 
 After this, deSEC will email you to confirm the address. It will contain a **verification link** that will send you to this page:
 
-![](../../images/desec\_io2.png)
+![](../../images/desec_io2.png)
 
 * Take note of the **"Token secret"**, you'll need it later as **`"<YOUR_SECRET_TOKEN>"`**
 
@@ -124,13 +120,13 @@ After this, deSEC will email you to confirm the address. It will contain a **ver
 
 * Type again your email, complete the **"CAPTCHA"** and click on the **"RESET PASSWORD"** button.
 
-![](../../images/desec\_io7.PNG)
+![](../../images/desec_io7.PNG)
 
 This will prompt deSEC to send you another email with another link that will let you **set your account password**.
 
 **6.** After all that is done, click **LOG IN** and use your **email** and the **password** set before.
 
-![](../../images/desec\_io8.png)
+![](../../images/desec_io8.png)
 
 {% hint style="info" %}
 Keep **this dashboard open,** you'll need to come back here later.
@@ -187,11 +183,11 @@ sudo crontab -e
 Keep the RaMiX SSH session on the terminal opened to go back later, return to [deSEC web page](https://desec.io/domains), ensure you are on the **"DOMAIN MANAGEMENT"** tab, and **click on your domain**
 {% endhint %}
 
-![](../../images/desec\_io3.png)
+![](../../images/desec_io3.png)
 
 **Wait 2 minutes**, and refresh the page, you should see a new **"type A"** DNS record entry with your public IP address, created automatically
 
-![](../../images/desec\_io10.png)
+![](../../images/desec_io10.png)
 
 {% hint style="success" %}
 You now have a free domain that always points to your existing public IP address. Now you can log out of the Desec webpage by clicking on the `"LOG OUT"` button on the top right, we won't need it anymore
@@ -217,7 +213,7 @@ Remember to have forwarded the **`"51820"`** port and the **`"UDP"`** protocol o
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Install the WireGuard VPN package
+* Install the WireGuard VPN package. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install wireguard
@@ -588,7 +584,7 @@ For each additional client, you must install the WireGuard software in each of t
 
 ### Configure additional servers
 
-At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where RaMiX is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private\_network#Private\_IPv4\_addresses).
+At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where RaMiX is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private_network#Private_IPv4_addresses).
 
 * Another additional server would define it for example as `10.0.1.1/24` where `10.0.1.1` would be the additional server and `10.0.1.2` for the clients in this case
 * If you want to set additional servers on the same LAN, you also have to define a different external port on [port forwarding](wireguard-vpn.md#port-forwarding) of the router, e.g **51821**, and point your Wireguard VPN Client to the **51821** port on the endpoint configuration: **`Endpoint = <yoursubdomain.dedyn.io>:51821`**
