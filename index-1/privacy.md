@@ -34,7 +34,7 @@ It is called "Tor" for "The Onion Router": information is routed through many ho
 
 ### **Tor installation**
 
-* With user `admin`, update and upgrade the packages to keep up to date with the OS
+* With user `admin`, update and upgrade the packages to keep up to date with the OS. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt update && sudo apt full-upgrade
@@ -97,10 +97,6 @@ tor --version
 Tor version 0.4.7.13.
 [...]
 ```
-
-{% hint style="info" %}
-Please note that the before version number might change in your case, this is just an example of when the guide was made
-{% endhint %}
 
 ### **Tor configuration**
 
@@ -180,11 +176,11 @@ Nov 13 23:19:20 ramix systemd[1]: Reloaded tor@default.service - Anonymizing ove
 </details>
 
 {% hint style="info" %}
-Not all network traffic is routed over the Tor network, by default some services don't include a proxy socks5 configuration. Anyway, we now have the base to configure sensitive applications to use it
+Not all network traffic is routed over the Tor network, by default some services don't include a proxy SOCKS5 configuration. Anyway, we now have the base to configure sensitive applications to use it
 {% endhint %}
 
 {% hint style="info" %}
-**(Optional)** -> If you want, you can **disable the autoboot** option for Tor using:
+**(Optional, but not reccomended)** -> If you want, you can **disable the autoboot** option for Tor using:
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl disable tor
 </strong></code></pre>

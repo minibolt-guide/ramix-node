@@ -365,9 +365,6 @@ txindex=1
 # Append comment to the user agent string
 uacomment=RaMiX node
 
-# Suppress a breaking RPC change that may prevent LND from starting up
-deprecatedrpc=warnings
-
 # Disable integrated wallet
 disablewallet=1
 
@@ -745,7 +742,7 @@ sudo apt install python3-dev python3-pip python3-wheel
 python3 -m venv myenv
 ```
 
-* Activate the virtual environment
+* Activate the virtual environment. You realize that "`(myenv)`" appear before the prompt
 
 ```bash
 source myenv/bin/activate
@@ -768,8 +765,38 @@ ots --version
 <pre><code><strong>v0.7.1
 </strong></code></pre>
 
+* Deactivate the Python virtual environment
+
+```bash
+deactivate
+```
+
 {% hint style="info" %}
-To update the OpenTimestamps client, simply exec `sudo pip3 install --upgrade opentimestamps-client`
+To update the OpenTimestamps client, follow the next steps:
+
+* Activate the Python virtual environment
+
+```bash
+source myenv/bin/activate
+```
+
+* Update the package in the virtual environment
+
+```bash
+pip install --upgrade opentimestamps-client
+```
+
+* Check the correct OTS update
+
+```bash
+ots --version
+```
+
+Example of expected output:
+
+```
+v0.7.1
+```
 {% endhint %}
 
 ## Extras (optional)
@@ -1032,7 +1059,13 @@ gpg: Good signature from ...
 Primary key fingerprint: ...
 ```
 
-* If you completed the IBD (Initial Block Download), now you can verify the timestamp with your node. If the prompt shows you `-bash: ots: command not found`, ensure that you are installing the OTS client correctly in the [proper section](bitcoin-client.md#opentimestamps-client)
+* Activate the Python virtual environment
+
+```bash
+source myenv/bin/activate
+```
+
+* **If you completed the IBD (Initial Block Download)**, now you can verify the timestamp with your node
 
 ```sh
 ots --no-cache verify SHA256SUMS.ots -f SHA256SUMS
@@ -1048,12 +1081,10 @@ Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
 Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
 Success! Bitcoin block 766964 attests existence as of 2022-12-11 UTC
 ```
-{% endhint %}
 
-* Now, just check that the timestamp date is close to the [release](https://github.com/bitcoin/bitcoin/releases) date of the version you're installing
+-> If the prompt shows you `-bash: ots: command not found`, ensure that you are installing the OTS client correctly in the [proper section](bitcoin-client.md#opentimestamps-client)
 
-{% hint style="info" %}
-If you obtain this output:
+-> If you obtain this output:
 
 ```
 Calendar https://btc.calendar.catallaxy.com: Pending confirmation in Bitcoin blockchain
@@ -1064,6 +1095,13 @@ Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in 
 
 -> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
+
+* Now, just check that the timestamp date is close to the [release](https://github.com/bitcoin/bitcoin/releases) date of the version you're installing
+* Deactivate the Python virtual environment
+
+```bash
+deactivate
+```
 
 * If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Core binaries
 

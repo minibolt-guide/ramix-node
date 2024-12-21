@@ -100,11 +100,11 @@ If you have a contracted static IP on your ISP, you can log in to the RaMiX dire
 
     **3.** Hit the **"CREATE ACCOUNT"** button
 
-![](../../images/desec_io0.png)
+![](broken-reference)
 
 **You'll see the following form:**
 
-![](../../images/desec_io1.png)
+![](broken-reference)
 
 * Ensure to keep selecting the second option **Register a new domain under dedyn.io (dynDNS).**
 * For this demo, I've typed **`yoursubdomain`**, but _**you can use anything memorable**_ to you as long as no one has already taken that name. We'll it call **`"<yoursubdomain.dedyn.io>"`** from now on.
@@ -112,7 +112,7 @@ If you have a contracted static IP on your ISP, you can log in to the RaMiX dire
 
 After this, deSEC will email you to confirm the address. It will contain a **verification link** that will send you to this page:
 
-![](../../images/desec_io2.png)
+![](broken-reference)
 
 * Take note of the **"Token secret"**, you'll need it later as **`"<YOUR_SECRET_TOKEN>"`**
 
@@ -120,13 +120,13 @@ After this, deSEC will email you to confirm the address. It will contain a **ver
 
 * Type again your email, complete the **"CAPTCHA"** and click on the **"RESET PASSWORD"** button.
 
-![](../../images/desec_io7.PNG)
+![](broken-reference)
 
 This will prompt deSEC to send you another email with another link that will let you **set your account password**.
 
 **6.** After all that is done, click **LOG IN** and use your **email** and the **password** set before.
 
-![](../../images/desec_io8.png)
+![](broken-reference)
 
 {% hint style="info" %}
 Keep **this dashboard open,** you'll need to come back here later.
@@ -183,11 +183,11 @@ sudo crontab -e
 Keep the RaMiX SSH session on the terminal opened to go back later, return to [deSEC web page](https://desec.io/domains), ensure you are on the **"DOMAIN MANAGEMENT"** tab, and **click on your domain**
 {% endhint %}
 
-![](../../images/desec_io3.png)
+![](broken-reference)
 
 **Wait 2 minutes**, and refresh the page, you should see a new **"type A"** DNS record entry with your public IP address, created automatically
 
-![](../../images/desec_io10.png)
+![](broken-reference)
 
 {% hint style="success" %}
 You now have a free domain that always points to your existing public IP address. Now you can log out of the Desec webpage by clicking on the `"LOG OUT"` button on the top right, we won't need it anymore
@@ -572,7 +572,7 @@ You could create a Wireguard VPN client connection manually from scratch filling
 * Download and install the Wireguard VPN [Windows version](https://download.wireguard.com/windows-client/wireguard-installer.exe)
 * Hit on the little arrow down on the bottom left and select **"Add empty tunnel"**
 
-![](../../images/wireguard-windows.png)
+![](broken-reference)
 
 * Paste the entire content of the client configuration `"wg0.conf"` file in the big text box and push on **"Save"**
 * Click on the **"Activate"** button to enable the VPN connection

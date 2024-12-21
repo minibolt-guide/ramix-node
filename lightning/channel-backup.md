@@ -23,7 +23,7 @@ Status: Not tested on RaMiX
 
 We set up a local or remote "Static Channel Backup" for Lightning. A monitoring script keeps it up-to-date to enable the recovery of your Lightning funds in case of hardware failure.
 
-![](../.gitbook/assets/channel\_backup\_screen.png)
+![](../.gitbook/assets/channel_backup_screen.png)
 
 ## Why are Lightning channel backups important?
 
@@ -42,7 +42,7 @@ You need to set up an automated SCB update mechanism that:
 1. Creates or updates your SCB file each time you open a channel (or close one, although this is less important).
 2. Stores the SCB file in a different backup location to ensure that it is available in case of a failing SSD.
 
-You can read more about SCBs in [this section of Mastering the Lightning Network](https://github.com/lnbook/lnbook/blob/ec806916edd6f4d1b2f9da2fef08684f80acb671/05\_node\_operations.asciidoc#node-and-channel-backups)
+You can read more about SCBs in [this section of Mastering the Lightning Network](https://github.com/lnbook/lnbook/blob/ec806916edd6f4d1b2f9da2fef08684f80acb671/05_node_operations.asciidoc#node-and-channel-backups)
 
 ## Choose your preferred backup method(s)
 
@@ -218,10 +218,12 @@ sdb               123456                               vfat     1.9G SCB backup 
 awk -F ':' '$1=="lnd" {print "GID: "$3" / UID: "$4}'  /etc/passwd
 ```
 
-* Copy these values into a text editor on your local computer (e.g. here GID `XXXX` and UID `YYYY`)
+{% hint style="info" %}
+Copy these values into a text editor on your local computer (e.g. here GID `XXXX` and UID `YYYY`)
 
-<pre><code><strong>> GID: XXXX / UID: YYYY
+<pre><code><strong>GID: XXXX / UID: YYYY
 </strong></code></pre>
+{% endhint %}
 
 * Edit your Filesystem Table configuration file
 
@@ -247,9 +249,11 @@ sudo mount -a
 df -h /mnt/static-channel-backup-external
 ```
 
+Example of expected output:
+
 ```
-Filesystem      Size  Used Avail Use% Mounted on
-ev/sdb        1.9G  4.0K  1.9G   1% /mnt/static-channel-backup-external
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/sdb1        1.9G  4.0K  1.9G   1% /mnt/static-channel-backup-external
 ```
 
 ### Enable the local backup function in the script
@@ -366,7 +370,7 @@ exit
 * With user `admin`, edit the script
 
 ```sh
-sudo nano +15 /usr/local/bin/scb-backup --linenumbers
+sudo nano +15 -l /usr/local/bin/scb-backup
 ```
 
 * Enable the local backup in the script by changing the variable value for `REMOTE_BACKUP_ENABLED` at line 15 to `true`. Save and exit
@@ -473,26 +477,26 @@ Jul 25 17:32:34 ramix scb-backup[401749]: Watches established.
 
 </details>
 
-{% hint style="warning" %}
-Finally, you get the next error:
+{% hint style="info" %}
+If you get the next error:
 
 ```
-Nov 05 23:18:43 ramix scb-backup[1710686]: Pushing changes to remote repository...
-Nov 05 23:18:43 ramix scb-backup[1711268]: error: src refspec main does not match any
-Nov 05 23:18:43 ramix scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
+Nov 05 23:18:43 minibolt scb-backup[1710686]: Pushing changes to remote repository...
+Nov 05 23:18:43 minibolt scb-backup[1711268]: error: src refspec main does not match any
+Nov 05 23:18:43 minibolt scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
 ```
 
-\-> Edit line 41  [in the script](channel-backup.md#create-script) with the following command:&#x20;
+-> Edit line 41  [in the script](channel-backup.md#create-script) with the following command:&#x20;
 
 ```bash
 sudo nano +41 /usr/local/bin/scb-backup --linenumbers
 ```
 
-Replace the content: `"git push --set-upstream origin`**`main`**`"`
+Replace the content:  -> `git push --set-upstream origin`**`main`**
 
-To:`"git push --set-upstream origin`**`master`**`"`
+To: -> `git push --set-upstream origin`**`master`**
 
-And finally, try again with the following command:&#x20;
+-> And finally, try again with the following command:
 
 ```bash
 sudo touch /data/lnd/data/chain/bitcoin/mainnet/channel.backup

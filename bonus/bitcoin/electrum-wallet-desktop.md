@@ -19,7 +19,7 @@ layout:
 
 # Electrum Wallet Desktop
 
-[Electrum wallet Desktop](https://electrum.org) is a well-established, feature-rich Bitcoin wallet for power users that supports most hardware wallets.
+[Electrum Wallet Desktop](https://electrum.org) is a well-established, feature-rich Bitcoin wallet for power users that supports most hardware wallets.
 
 {% hint style="success" %}
 Difficulty: Easy

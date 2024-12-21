@@ -37,7 +37,7 @@ You need the following hardware:
   * Option 1: External storage:
     * SSD enclosure with USB 3.0+
     * SSD SATA (2+ TB is recommended)
-  * **Option 2** (only Raspberry Pi 5): Internal storage (recommended):
+  * Option 2 (only Raspberry Pi 5): Internal storage (**recommended**):
     * Raspberry Pi PCIe to M.2 shield
       * Option 2.1: [Original Raspberry Pi M.2 HAT+](https://www.raspberrypi.com/products/m2-hat-plus/) (2230/2242 form factor)
       * Option 2.2: [Compatible shield](https://geekworm.com/products/x1002) (2230/2242/2260/2280 form factor)&#x20;

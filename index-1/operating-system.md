@@ -47,7 +47,7 @@ We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
 
 ### &#x20;Configure boot options <a href="#configure-boot-options" id="configure-boot-options"></a>
 
-You can now pre-configure the operating system even before it’s started for the first time. Configure the advanced options as follows.
+You can now pre-configure the operating system even before it’s started for the first time. Configure the advanced options as follows:
 
 {% tabs %}
 {% tab title=""General" tab" %}
@@ -64,7 +64,7 @@ You can now pre-configure the operating system even before it’s started for th
 {% endtab %}
 
 {% tab title=""Services" tab" %}
-* Activate the checkbox "**Enable SSH"  and 2 options**:&#x20;
+* Activate the checkbox **"Enable SSH"  and 2 options**:&#x20;
   * Select **“Use password authentication”** to use the previously configurated "**username and password**"&#x20;
   * Select "**Allow public-key authentication only"** and enter your SSH pub key. Get your SSH key pair and more info in the "[Login with SSH keys](../bonus/system/ssh-keys.md)" bonus guide
 
@@ -75,12 +75,12 @@ This will allow you to connect to the Raspberry Pi remotely using “**S**ecure 
 
 {% tab title=""Options" tab" %}
 {% hint style="info" %}
-If you want to improve your privacy, you can **uncheck** **“Enable telemetry”**
+If you want to improve your privacy, you can **uncheck** “Enable telemetry”
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-* Click on **“SAVE”**
+* Finally, click on **“SAVE”**
 
 ### &#x20;Write the operating system to the external drive <a href="#write-the-operating-system-to-the-external-drive" id="write-the-operating-system-to-the-external-drive"></a>
 
@@ -131,4 +131,4 @@ Your Raspberry Pi should now boot from the SSD attached via USB/PCIe
 
 ## Fallback: if you can’t boot from your external drive <a href="#fallback-if-you-cant-boot-from-your-external-drive" id="fallback-if-you-cant-boot-from-your-external-drive"></a>
 
-We assume that you can boot directly from the external drive. This method works for most modern drives, but if it doesn’t work in your case, please follow the fallback instructions [Boot from microSD card instead of external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md).
+We assume that you can boot directly from the external drive. This method works for most modern drives, but if it doesn’t work in your case, please follow the fallback instructions -> [Boot from microSD card instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md).

@@ -82,16 +82,16 @@ sudo reboot
 
 {% hint style="danger" %}
 The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections may be unstable. If you have problems, follow the next [Fallback Gen 3.0](configuration.md#fallback-gen-3.0) section
-{% endhint %}
 
 #### Fallback Gen 3.0
 
 * If you followed the before `"via config.txt"` method, replace `dtparam=pciex1_gen=3` to `dtparam=pciex1` and reboot again with `sudo reboot`
 * If you followed the before `"via raspi-config"` method, when you arrive to the step number 3, choose `No`and finally reboot again with `sudo reboot`
+{% endhint %}
 
 ## System update
 
-* Update the operating system and all installed software packages
+* Update the operating system and all installed software packages. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt update && sudo apt full-upgrade
@@ -142,9 +142,9 @@ Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
 ```
 
 {% hint style="info" %}
-If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface.
+If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface
 
-Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how.
+-> Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how
 {% endhint %}
 {% endtab %}
 
@@ -170,7 +170,7 @@ If the measured speeds are more than 150 MB/s, you're good but it is recommended
 ## Data directory
 
 {% hint style="info" %}
-If you want to boot from microSD instead of an external drive, here you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly.
+If you want to boot from microSD instead of an external drive, here you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly
 {% endhint %}
 
 We'll store all application data in the dedicated directory `/data`. This allows for better security because it's not inside any user's home directory. Additionally, it's easier to move that directory somewhere else, for instance to a separate drive, as you can just mount any storage option to `/data`

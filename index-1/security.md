@@ -50,7 +50,7 @@ For now, only SSH should be reachable from the outside. Bitcoin Core and LND are
 
 ### Installation
 
-* With user `admin` install UFW (Uncomplicated Firewall). Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* With user `admin`, install UFW (Uncomplicated Firewall). Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install ufw
@@ -99,7 +99,7 @@ Processing triggers for man-db (2.11.2-2) …
 
 ### Configuration
 
-If you don't have [IPv6 availability](security.md#check-ipv6-availability), you can disable IPv6 on UFW to avoid the creation of rules related to it:
+If you don't have [IPv6 availability](security.md#check-ipv6-availability), you can disable IPv6 on UFW to avoid the creation of rules related to it.
 
 * Edit the UFW configuration
 
@@ -168,8 +168,6 @@ To                    Action      From
 
 {% hint style="info" %}
 If you find it locked out by mistake, you can connect a keyboard and screen to your PC to log in locally and fix these settings (especially for the SSH port 22)
-
-More info: [UFW Essentials](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
 {% endhint %}
 
 ## Monitoring SSH authentication logs (optional)
@@ -186,7 +184,7 @@ sudo tail -f /var/log/auth.log
 sudo tail --lines 500 /var/log/auth.log | grep sshd
 ```
 
-* With this command, you can show a listing of the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-7days` option to do whatever you want
+* With this command, you can show a listing of the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-"7"days` option to do whatever you want
 
 ```sh
 last -s -7days -t today
@@ -348,8 +346,8 @@ Jun 04 18:25:18 ramix systemd[1]: Reloaded A high performance web server and a r
 
 {% hint style="info" %}
 **(Optional)** You can monitor Nginx error logs by entering the next command. Exit with `Ctrl + C`
-{% endhint %}
 
 ```bash
 sudo tail -f /var/log/nginx/error.log
 ```
+{% endhint %}
