@@ -308,8 +308,6 @@ sudo systemctl reload tor
 
 ## Port reference
 
-| Port | Protocol |      Use      |
-| :--: | :------: | :-----------: |
-| 8080 |    TCP   | LND REST port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="G2c1pkvGjIDl" label="TCP" color="blue"></option><option value="z0Oh8Nc5jSBg" label="SSL" color="blue"></option><option value="ZLUN2p1yWYhN" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">8080</td><td><span data-option="G2c1pkvGjIDl">TCP</span></td><td align="center">LND REST port</td></tr></tbody></table>
 
 [^1]: gRPC proxy port

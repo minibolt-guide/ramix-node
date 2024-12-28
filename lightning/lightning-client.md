@@ -1562,11 +1562,7 @@ sudo rm /usr/local/bin/lnd && sudo rm /usr/local/bin/lncli
 
 ## Port reference
 
-|  Port | Protocol |               Use              |
-| :---: | :------: | :----------------------------: |
-|  9735 |    TCP   |        Default P2P port        |
-| 10009 |    TCP   |        Default gRPC port       |
-|  9911 |    TCP   | Default Watchtower server port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="jdtz75tfSoZi" label="TCP" color="blue"></option><option value="CU2NPW1HT3fq" label="SSL" color="blue"></option><option value="Hj6ZSw0yPxRW" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">9735</td><td><span data-option="jdtz75tfSoZi">TCP</span></td><td align="center">Default P2P port</td></tr><tr><td align="center">10009</td><td><span data-option="jdtz75tfSoZi">TCP</span></td><td align="center">Default gRPC port</td></tr><tr><td align="center">9911</td><td><span data-option="jdtz75tfSoZi">TCP</span></td><td align="center">Default Watchtower server port</td></tr></tbody></table>
 
 [^1]: zmqpubrawblock port
 

@@ -747,10 +747,6 @@ sudo systemctl restart i2pd
 
 ## Port reference
 
-| Port | Protocol |             Use            |
-| :--: | :------: | :------------------------: |
-| 9050 |    TCP   |     Default SOCKS port     |
-| 9051 |    TCP   |    Default control port    |
-| 7656 |    TCP   | Default I2P SAM proxy port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="5U0I9RNQ8d80" label="TCP" color="blue"></option><option value="K6yy0FPGUD7X" label="SSL" color="blue"></option><option value="sVu1SoktXmP1" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">9050</td><td><span data-option="5U0I9RNQ8d80">TCP</span></td><td align="center">Default SOCKS port</td></tr><tr><td align="center">9051</td><td><span data-option="5U0I9RNQ8d80">TCP</span></td><td align="center">Default control port</td></tr><tr><td align="center">7656</td><td><span data-option="5U0I9RNQ8d80">TCP</span></td><td align="center">Default I2P SAM proxy port</td></tr></tbody></table>
 
 [^1]: Check this

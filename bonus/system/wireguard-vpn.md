@@ -763,9 +763,7 @@ Save and apply changes
 
 ## Port reference
 
-|  Port | Protocol |      Use     |
-| :---: | :------: | :----------: |
-| 51820 |    UDP   | Default port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="HEQeSL09kNvF" label="TCP" color="blue"></option><option value="0jQzIsNRyztI" label="SSL" color="blue"></option><option value="KUkCN5UrrcWO" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">51820</td><td><span data-option="KUkCN5UrrcWO">UDP</span></td><td align="center">Default port</td></tr></tbody></table>
 
 [^1]: `<YOUR_SECRET_TOKEN>`
 

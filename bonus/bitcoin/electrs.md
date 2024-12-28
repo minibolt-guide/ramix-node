@@ -724,10 +724,7 @@ sudo ufw delete X
 
 ## Port reference
 
-|  Port |  Protocol |       Use      |
-| :---: | :-------: | :------------: |
-| 50021 |    TCP    |  Default port  |
-| 50022 | TCP (SSL) | Encrypted port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="BvPuCm5NrTM6" label="TCP" color="blue"></option><option value="XVjll0RfczdO" label="SSL" color="blue"></option><option value="Ig95gZ9swPoI" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">50021</td><td><span data-option="BvPuCm5NrTM6">TCP</span></td><td align="center">Default port</td></tr><tr><td align="center">50022</td><td><span data-option="XVjll0RfczdO">SSL</span></td><td align="center">Encrypted port</td></tr></tbody></table>
 
 [^1]: Check this
 

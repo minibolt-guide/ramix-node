@@ -598,6 +598,4 @@ sudo rm -rf /data/postgresdb
 
 ## Port reference
 
-| Port | Protocol |             Use            |
-| :--: | :------: | :------------------------: |
-| 5432 |    TCP   | Default relational DB port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="LjEORAGqFfCk" label="TCP" color="blue"></option><option value="0Q37zvNddYdf" label="SSL" color="blue"></option><option value="vDkMZIWjORx7" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">5432</td><td><span data-option="LjEORAGqFfCk">TCP</span></td><td align="center">Default relational DB port</td></tr></tbody></table>

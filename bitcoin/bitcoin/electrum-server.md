@@ -842,11 +842,7 @@ Filename            Type                Size           Used    Priority
 
 ## Port reference
 
-|  Port |  Protocol |     Use    |
-| :---: | :-------: | :--------: |
-| 50001 |    TCP    |  TCP port  |
-| 50002 | TCP (SSL) |  SSL port  |
-|  8000 |    TCP    | Admin port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ESW2LhGEFGnv" label="TCP" color="blue"></option><option value="ORbzG4GXTaNj" label="SSL" color="blue"></option><option value="QRJ6XTYwH8lD" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">50001</td><td><span data-option="ESW2LhGEFGnv">TCP</span></td><td align="center">TCP port</td></tr><tr><td align="center">50002</td><td><span data-option="ORbzG4GXTaNj">SSL</span></td><td align="center">SSL port</td></tr><tr><td align="center">8000</td><td><span data-option="ESW2LhGEFGnv">TCP</span></td><td align="center">Admin port</td></tr></tbody></table>
 
 [^1]: zmqpubhashblock port
 

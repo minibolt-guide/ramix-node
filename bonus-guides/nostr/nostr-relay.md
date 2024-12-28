@@ -991,9 +991,7 @@ sudo rm /usr/local/bin/nostr-rs-relay
 
 ## Port reference
 
-| Port | Protocol |      Use     |
-| :--: | :------: | :----------: |
-| 8880 |    TCP   | Default port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="num77UwJ0B8y" label="TCP" color="blue"></option><option value="XSh7sPgg6lAG" label="SSL" color="blue"></option><option value="Mg3W3cBvH33R" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">8880</td><td><span data-option="num77UwJ0B8y">TCP</span></td><td align="center">Default port</td></tr></tbody></table>
 
 [^1]: **\<Edit>** This information will be get later on the [Cloudflare tunnel](nostr-relay.md#cloudflare-tunnel) section
 

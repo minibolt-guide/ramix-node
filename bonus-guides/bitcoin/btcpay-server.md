@@ -1454,10 +1454,6 @@ sudo -u postgres psql -c "DROP DATABASE nbxplorer;" && sudo -u postgres psql -c 
 
 ## Port reference
 
-|  Port | Protocol |             Use            |
-| :---: | :------: | :------------------------: |
-|  5432 |    TCP   |   PostgreSQL default port  |
-| 24444 |    TCP   |   NBXplorer default port   |
-| 23000 |    TCP   | BTCPay Server default port |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="dR2RimIjbg1Q" label="TCP" color="blue"></option><option value="itmj67rFv2Hi" label="SSL" color="blue"></option><option value="l1OwCjXfqAZy" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">24444</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">NBXplorer default port</td></tr><tr><td align="center">23000</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">BTCPay Server default port</td></tr></tbody></table>
 
 [^1]: \<Optional>

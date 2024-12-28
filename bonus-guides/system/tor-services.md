@@ -1249,11 +1249,7 @@ journalctl -fu tor@default
 
 ## Port reference
 
-|   Port   | Protocol |             Use            |
-| :------: | :------: | :------------------------: |
-| \<TODO1> |    TCP   |    OR port obfs4 bridge    |
-| \<TODO2> |    TCP   |         obfs4 port         |
-|   9001   |    TCP   | OR port Guard/Middle relay |
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="oIbENiKlzHZH" label="TCP" color="blue"></option><option value="HdITAd2lBgDN" label="SSL" color="blue"></option><option value="M5cQ27LnumQ1" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">&#x3C;TODO1></td><td><span data-option="oIbENiKlzHZH">TCP</span></td><td align="center">OR port obfs4 bridge</td></tr><tr><td align="center">&#x3C;TODO2></td><td><span data-option="oIbENiKlzHZH">TCP</span></td><td align="center">obfs4 port</td></tr><tr><td align="center">9001</td><td><span data-option="oIbENiKlzHZH">TCP</span></td><td align="center">OR port Guard/Middle relay</td></tr><tr><td align="center">9052</td><td><span data-option="oIbENiKlzHZH">TCP</span></td><td align="center">Tor obfs4 bridge control port</td></tr><tr><td align="center">9053</td><td><span data-option="oIbENiKlzHZH">TCP</span></td><td align="center">Tor Guard/Middle relay control port</td></tr></tbody></table>
 
 [^1]: Replace
 
