@@ -244,7 +244,7 @@ sudo rm -r Fulcrum-$VERSION-arm64-linux Fulcrum-$VERSION-arm64-linux.tar.gz Fulc
 {% endcode %}
 
 {% hint style="info" %}
-If you come to update, this is the final step, go back to the [Upgrade section](electrum-server.md#for-the-future-fulcrum-upgrade) to continue
+If you come to update, this is the final step, go back to the [Upgrade section](electrum-server.md#upgrade) to continue
 {% endhint %}
 
 ### Create the fulcrum user & group
