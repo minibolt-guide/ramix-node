@@ -37,13 +37,13 @@ cd /tmp
 * Set a temporary version environment variable to the installation
 
 ```bash
-VERSION=1.23.2
+VERSION=1.23.5
 ```
 
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=f626cdd92fc21a88b31c1251f419c17782933a42903db87a174ce74eeecc66a9
+SHA256=47c84d332123883653b70da2db7dd57d2a865921ba4724efcdf56b5da7021db0
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
@@ -122,13 +122,13 @@ cd /tmp
 * Set a temporary version environment variable with the new value, to the installation
 
 ```bash
-VERSION=1.23.2
+VERSION=1.23.5
 ```
 
 * Set the new temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=f626cdd92fc21a88b31c1251f419c17782933a42903db87a174ce74eeecc66a9
+SHA256=47c84d332123883653b70da2db7dd57d2a865921ba4724efcdf56b5da7021db0
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
@@ -140,7 +140,7 @@ wget https://go.dev/dl/go$VERSION.linux-arm64.tar.gz
 * Check the checksum of the file
 
 ```bash
-echo "$SHA256 go$VERSION.linux-amd64.tar.gz" | sha256sum --check
+echo "$SHA256 go$VERSION.linux-arm64.tar.gz" | sha256sum --check
 ```
 
 **Example** of expected output:
