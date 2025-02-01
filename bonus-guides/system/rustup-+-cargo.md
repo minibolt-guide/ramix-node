@@ -180,7 +180,7 @@ rustup update
 Expected output:
 
 ```
-info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: syncing channel updates for 'stable-aarch64-unknown-linux-gnu'
 info: checking for self-update
 [...]
 ```
@@ -204,7 +204,7 @@ Continue? (y/N)
 ```
 
 {% hint style="info" %}
-Press "`y"` and enter
+Press "`y`" and enter
 {% endhint %}
 
 Expected output:
