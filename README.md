@@ -112,11 +112,11 @@ ssl://bnfpvanrc2g7r5o5kaabbbyjv6ddh46jmasfatrvbbsvjb7cdik5n7ad.onion:40002
 {% endtab %}
 
 {% tab title="Explorer" %}
-BTC RPC Explore**r** - **mainnet** (🚾clearnet):
+BTC RPC Explorer - **mainnet** (🚾clearnet):
 
 -> CLICK to access -> [https://explorer.minibolt.info](https://explorer.minibolt.info) <-
 
-BTC RPC Explorer - **mainnet** (🧅onion - Use [Tor browser](https://www.torproject.org/es/download/)):
+BTC RPC Explorer - **mainnet** (🧅onion - Use [Tor browser](https://www.torproject.org/download/)):
 
 ```url
 http://rzcj4r2p6wterkto5prigsplq6iva5bqhcxr7y3d6w4hoc3uwizpp5qd.onion
@@ -141,6 +141,20 @@ Lightning Watchtower server - **mainnet** (🧅onion):
 02ad47b4e41cfce258e2db8d7eb9a194570ca29beba2897970d1ecc7d1c9a2726b@zm32w2qs2lf6xljnvqnmv6o2xlufsf4g6vfjihyydg4yhxph4fnqcvyd.onion:9911
 ```
 {% endcode %}
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Keyserver" %}
+Hockeypuck OpenPGP Public Keyserver (🚾clearnet):
+
+-> CLICK to access -> [https://keyserver.minibolt.info](https://keyserver.minibolt.info) <-
+
+Hockeypuck OpenPGP Public Keyserver (🧅onion - Use [Tor browser](https://www.torproject.org/download/)):
+
+```
+http://fr2bbk7gitvpielymw7jmbkmm7glrzs2avxyxsh3rqbszkwavmqkklid.onion
+```
 {% endtab %}
 {% endtabs %}
 
