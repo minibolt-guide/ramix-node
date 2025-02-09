@@ -476,6 +476,44 @@ sudo systemctl start fulcrum
 {% endhint %}
 
 {% hint style="warning" %}
+IF you are getting errors when start fulcrum service like as `<jemalloc>: Unsupported system page size`, you need modify the PAGE_SIZE on Raspberry Pi kernel:
+
+* With user `root` run command `getconf PAGE_SIZE` to check the value:
+
+```bash
+sudo su
+getconf PAGE_SIZE
+```
+
+**Example** of expected output:
+
+```
+16384
+```
+
+* The return should be `4096`. If this value it's more than `4096` you need modify some kernel parameters of Raspberry Pi:
+
+```bash
+echo "[pi5]" | sudo tee -a /boot/firmware/config.txt
+echo "kernel=kernel8.img" | sudo tee -a /boot/firmware/config.txt
+```
+
+* Now Reboot your Raspberry Pi `reboot`, and with user `root` run command `getconf PAGE_SIZE`:
+
+**Example** of expected output:
+
+```
+4096
+```
+
+* Start fulcrum again
+
+```bash
+sudo systemctl start fulcrum
+```
+{% endhint %}
+
+{% hint style="warning" %}
 DO NOT REBOOT OR STOP THE SERVICE DURING THE DB CREATION PROCESS. YOU MAY CORRUPT THE FILES - in case that happens, start the sync from scratch by deleting the content of `fulcrum_db` folder, follow the next steps:
 
 * With user `admin`, stop `fulcrum`
