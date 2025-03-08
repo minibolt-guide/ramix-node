@@ -172,19 +172,13 @@ If you find it locked out by mistake, you can connect a keyboard and screen to y
 
 ## Monitoring SSH authentication logs (optional)
 
-* You can monitor authentication general logs in your system in real-time
+* You can monitor authentication general logs in your system in real-time using `systemd‑journald`
 
 ```sh
-sudo tail -f /var/log/auth.log
+journalctl -fu ssh
 ```
 
-* Or filtering only by SSH authentication logs in the last 500 lines
-
-```sh
-sudo tail --lines 500 /var/log/auth.log | grep sshd
-```
-
-* With this command, you can show a listing of the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-"7"days` option to do whatever you want
+* With this command, you can list the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-"7"days` option to do whatever you want
 
 ```sh
 last -s -7days -t today
