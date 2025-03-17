@@ -12,10 +12,6 @@ description: >-
 
 <figure><img src=".gitbook/assets/home_screen.webp" alt=""><figcaption></figcaption></figure>
 
-Build your own "do-everything-yourself" Bitcoin & Lightning node, and other stuff on a Raspberry Pi, making you sovereign.
-
-No need to trust anyone else. Don't trust, verify!
-
 ## What is the RaMiX?
 
 With this guide, you can set up a Bitcoin, Lightning node, and other stuff on a Raspberry Pi, doing everything yourself. You will learn about Linux, Bitcoin, Lightning, and much more.
