@@ -51,11 +51,7 @@ There is no mention of data storage on the chain and only financial transactions
 
 ## Preparations
 
-{% hint style="info" %}
-You enter commands and the PC answers by printing the results below your command. The system response is marked with the `">"` character
-{% endhint %}
-
-* With `admin` user, update and upgrade your OS
+* With `admin` user, update and upgrade your OS. Press "y" and enter or directly enter when the prompt asks you
 
 ```sh
 sudo apt update && sudo apt full-upgrade
@@ -65,7 +61,7 @@ sudo apt update && sudo apt full-upgrade
 
 {% code overflow="wrap" %}
 ```shell
-sudo apt install automake autotools-dev bison bsdmainutils build-essential cmake libtool pkg-config --no-install-recommends
+sudo apt install autoconf automake build-essential libboost-filesystem-dev libboost-system-dev libboost-thread-dev libevent-dev libsqlite3-dev libtool pkg-config libzmq3-dev cmake --no-install-recommends
 ```
 {% endcode %}
 
@@ -138,8 +134,6 @@ Calendar https://finney.calendar.eternitywall.com: Pending confirmation in Bitco
 Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
-
-
 
 -> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next ones
 {% endhint %}
@@ -329,14 +323,12 @@ fatal: not a git repository (or any of the parent directories): .git
 Expected output:
 
 ```
-configure: loading site script depends/aarch64-linux-gnu/share/config.site
-checking for aarch64-linux-gnu-pkg-config... /usr/bin/pkg-config --static
+checking for pkg-config... /usr/bin/pkg-config
 checking pkg-config is at least version 0.9.0... yes
-checking build system type... aarch64-linux-gnu
-checking host system type... aarch64-linux-gnu
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
 checking for a BSD-compatible install... /usr/bin/install -c
 checking whether build environment is sane... yes
-checking for aarch64-linux-gnu-strip... strip
 checking for a race-free mkdir -p... /usr/bin/mkdir -p
 checking for gawk... no
 checking for mawk... mawk
@@ -344,25 +336,22 @@ checking whether make sets $(MAKE)... yes
 checking whether make supports nested variables... yes
 checking whether to enable maintainer-specific portions of Makefiles... no
 checking whether make supports nested variables... (cached) yes
+checking for g++... g++
 checking whether the C++ compiler works... yes
 checking for C++ compiler default output file name... a.out
-checking for suffix of executables... 
+checking for suffix of executables...
 checking whether we are cross compiling... no
 checking for suffix of object files... o
 checking whether the compiler supports GNU C++... yes
-checking whether g++ -m64 accepts -g... yes
-checking for g++ -m64 option to enable C++11 features... none needed
+checking whether g++ accepts -g... yes
+checking for g++ option to enable C++11 features... none needed
 checking whether make supports the include directive... yes (GNU style)
-checking dependency style of g++ -m64... gcc3
-checking whether g++ -m64 supports C++20 features with -std=c++20... yes
-checking for aarch64-linux-gnu-g++... g++ -m64 -std=c++20
+checking dependency style of g++... gcc3
+checking whether g++ supports C++20 features with -std=c++20... yes
 checking whether the compiler supports GNU Objective C++... no
-checking whether g++ -m64 -std=c++20 accepts -g... no
-checking dependency style of g++ -m64 -std=c++20... gcc3
+checking whether g++ -std=c++20 accepts -g... no
+checking dependency style of g++ -std=c++20... gcc3
 checking how to print strings... printf
-checking for aarch64-linux-gnu-gcc... gcc -m64
-checking whether the compiler supports GNU C... yes
-checking whether gcc -m64 accepts -g... yes
 [...]
 ```
 
