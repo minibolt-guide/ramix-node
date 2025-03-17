@@ -61,7 +61,7 @@ sudo apt update && sudo apt full-upgrade
 
 {% code overflow="wrap" %}
 ```shell
-sudo apt install autoconf automake build-essential libboost-filesystem-dev libboost-system-dev libboost-thread-dev libevent-dev libsqlite3-dev libtool pkg-config libzmq3-dev cmake --no-install-recommends
+sudo apt install automake autotools-dev bison bsdmainutils build-essential cmake curl libtool patch pkg-config python3 xz-utils --no-install-recommends
 ```
 {% endcode %}
 
@@ -220,16 +220,10 @@ bitcoin-28.1/.github/workflows/
 
 ### **Build it from the source code**
 
-* Enter to the Bitcoin Core source code folder
+* Enter the Bitcoin Core source code folder and execute the `autogen.sh` script
 
 ```sh
-cd bitcoin-$VERSION
-```
-
-* Execute the `autogen.sh` script
-
-```sh
-./autogen.sh
+cd bitcoin-$VERSION && ./autogen.sh
 ```
 
 Expected output:
@@ -311,7 +305,7 @@ fatal: not a git repository (or any of the parent directories): .git
 
 ```sh
 ./configure \
-  CONFIG_SITE=depends/aarch64-linux-gnu/share/config.site \
+  CONFIG_SITE=depends/aarch64-unknown-linux-gnu/share/config.site \
   --disable-bench \
   --disable-fuzz-binary \
   --disable-gui-tests \
