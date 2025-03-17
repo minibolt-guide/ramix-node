@@ -103,7 +103,7 @@ wget https://github.com/LN-Zap/lndconnect/releases/download/v$VERSION/lndconnect
 * Extract
 
 ```sh
-tar -xzvf lndconnect-linux-amd64-v$VERSION.tar.gz
+tar -xzvf lndconnect-linux-arm64-v$VERSION.tar.gz
 ```
 
 * Install it

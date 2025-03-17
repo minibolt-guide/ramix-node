@@ -1045,7 +1045,7 @@ go version
 **Example** of expected output:
 
 ```
-go version go1.21.10 linux/amd64
+go version go1.21.10 linux/arm64
 ```
 
 {% hint style="info" %}
