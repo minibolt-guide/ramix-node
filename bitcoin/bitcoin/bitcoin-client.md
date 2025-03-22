@@ -606,13 +606,13 @@ If you don't obtain the before-expected output ([`.bitcoin -> /data/bitcoin`](#u
 sudo rm -r .bitcoin
 ```
 
-2. Try to create the symbolic link again
+2. Create the symbolic link again
 
 ```bash
 ln -s /data/bitcoin /home/admin/.bitcoin
 ```
 
-3. Check the symbolic link has been created correctly this time and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-4)[^4]
+3. Check the symbolic link has been created correctly this time and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-4)[^4]. If yes, continue with the guide, if not, try again
 
 ```bash
 ls -la .bitcoin
@@ -924,10 +924,16 @@ This extra section is valid if you compiled it from the source code using the [O
 cd /tmp
 ```
 
+* Set a temporary version environment variable to the installation
+
+```bash
+VERSION=28.1
+```
+
 * Clone the source code from GitHub
 
 ```bash
-git clone https://github.com/bitcoin/bitcoin.git
+git clone --branch v$VERSION https://github.com/bitcoin/bitcoin.git
 ```
 
 * Copy-paste the bitcoind binary file existing on your OS to the source code folder
@@ -1049,7 +1055,7 @@ gpg: no ultimately trusted keys found
 * Verify the checksums file is cryptographically signed using the release signing keys. The following command prints signature checks for each of the public keys that signed the checksums
 
 ```sh
-gpg --verify SHA256SUMS.asc
+gpg --verify SHA256SUMS.asc SHA256SUMS
 ```
 
 * Check that at least a few signatures show the following text
