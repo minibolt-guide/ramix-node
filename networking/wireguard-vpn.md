@@ -27,7 +27,7 @@ The following guide was derived from contributions by [Pantamis](https://github.
 Difficulty: Hard
 {% endhint %}
 
-![](../../images/wireguard.png)
+![](../images/wireguard.png)
 
 ## Acknowledgments
 
@@ -47,7 +47,7 @@ A VPN is an encrypted tunnel between two computers over the internet. In our cas
 * WireGuard is not censorship-resistant. The encrypted byte headers contain identifiable data which reveals you are using WireGuard VPN.
 * You need to open one port on your router.
 
-![](../../images/wireguard-VPN.png)
+![](../images/wireguard-VPN.png)
 
 ## Prerequisites
 
@@ -96,15 +96,15 @@ If you have a contracted static IP with your ISP, log in to the RaMiX directly, 
 * Go to freemyip.com (Free dynamic DNS provider) by clicking here -> [https://freemyip.com](https://freemyip.com/)
 * This provider does not require registration - enter your desired domain name in this box and click on the "**`CHECK AVAILABILITY`**" button, i.e. `myfreedns`.freemyip.com
 
-<figure><img src="../../.gitbook/assets/freemyip_start.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/freemyip_start.png" alt=""><figcaption></figcaption></figure>
 
 * If the domain is available, a screen like below will appear. Click on the "**`CLAIM IT!`**" button. If not, a message "**This domain name is not available :(**" will appear - try again with another one, going again to -> [https://freemyip.com](https://freemyip.com/main)
 
-<figure><img src="../../.gitbook/assets/freemyip_available.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/freemyip_available.png" alt=""><figcaption></figcaption></figure>
 
 * If all is good a new screen with "**Domain was added :)**" will appear
 
-<figure><img src="../../.gitbook/assets/freemyip_domain_added.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/freemyip_domain_added.png" alt=""><figcaption></figcaption></figure>
 
 * Take note of the URL that appears under "**Use this URL to update your IP:**" - you will need this for the next steps
 
@@ -127,7 +127,7 @@ In this case:
 
 Now we'll write a Bash script for RaMiX that will periodically poll its IP and send it to the DDNS service. We'll need the **`"<YOUR_SECRET_TOKEN>"`** and **`"<yourdomain>"`** from the previous [freemyip.com setup](wireguard-vpn.md#freemyip.com-setup) step.
 
-* As `admin` user, [log in](../../index-1/remote-access.md#access-with-secure-shell) to RaMiX
+* As `admin` user, [log in](../index-1/remote-access.md#access-with-secure-shell) to RaMiX
 * Create the next folder to locate the script
 
 ```bash
@@ -309,7 +309,7 @@ sudo nano /etc/wireguard/wg0.conf
 
 ## Server configuration (RaMiX node)
 [Interface]
-PrivateKey = <a data-footnote-ref href="#user-content-fn-4">&#x3C;Your_Server_Private_Key></a>
+PrivateKey = <a data-footnote-ref href="#user-content-fn-3">&#x3C;Your_Server_Private_Key></a>
 Address = 10.0.0.1/24
 ListenPort = 51820
 </code></pre>
@@ -397,14 +397,14 @@ sudo nano /etc/wireguard/wg0.conf
 
 ## Client configuration
 [Interface]
-PrivateKey = <a data-footnote-ref href="#user-content-fn-5">&#x3C;Your_Client_Private_Key></a>
+PrivateKey = <a data-footnote-ref href="#user-content-fn-3">&#x3C;Your_Client_Private_Key></a>
 Address = 10.0.0.2/32
 
 ## Server configuration (RaMiX node)
 [Peer]
-PublicKey = <a data-footnote-ref href="#user-content-fn-6">&#x3C;Your_Server_Public_Key></a>
+PublicKey = <a data-footnote-ref href="#user-content-fn-3">&#x3C;Your_Server_Public_Key></a>
 AllowedIPs = 10.0.0.1/32
-Endpoint = <a data-footnote-ref href="#user-content-fn-7">&#x3C;yourdomain></a>:51820
+Endpoint = <a data-footnote-ref href="#user-content-fn-3">&#x3C;yourdomain></a>:51820
 </code></pre>
 
 {% hint style="info" %}
@@ -446,13 +446,13 @@ sudo nano /etc/wireguard/wg0.conf
 
 ## Server configuration (RaMiX node)
 [Interface]
-PrivateKey = <a data-footnote-ref href="#user-content-fn-8">&#x3C;Your_Server_Private_Key></a>
+PrivateKey = <a data-footnote-ref href="#user-content-fn-3">&#x3C;Your_Server_Private_Key></a>
 Address = 10.0.0.1/24
 ListenPort = 51820
 
-<a data-footnote-ref href="#user-content-fn-9">## Client configuration</a>
+<a data-footnote-ref href="#user-content-fn-4">## Client configuration</a>
 [Peer]
-PublicKey = <a data-footnote-ref href="#user-content-fn-10">&#x3C;Your_Client_Public_Key></a>
+PublicKey = <a data-footnote-ref href="#user-content-fn-3">&#x3C;Your_Client_Public_Key></a>
 AllowedIPs = 10.0.0.2/32
 </code></pre>
 
@@ -525,7 +525,7 @@ Expected output:
 ```
 
 {% hint style="info" %}
-Try to create a [new SSH session](../../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address
+Try to create a [new SSH session](../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address
 {% endhint %}
 
 ```sh
@@ -533,7 +533,7 @@ ssh admin@10.0.0.1
 ```
 
 {% hint style="info" %}
-Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
+Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
 {% endhint %}
 
 * Check the VPN client status using
@@ -636,18 +636,18 @@ Link to [Google Play Store](https://play.google.com/store/apps/details?id=com.wi
 * Download and install the [Wireguard VPN Windows version](https://download.wireguard.com/windows-client/wireguard-installer.exe)
 * Click on the little down-arrow on the bottom left and select **"Add empty tunnel"**
 
-![](../../.gitbook/assets/wireguardVPN_windows.png)
+![](../.gitbook/assets/wireguardVPN_windows.png)
 
 * Paste the entire content of the client configuration "`wg0.conf`" file in the big text box and click on **"Save"**
 * Click on the **"Activate"** button to enable the VPN connection
-* Test it by trying to create a [new SSH session](../../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address:
+* Test it by trying to create a [new SSH session](../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address:
 
 ```sh
 ssh admin@10.0.0.1
 ```
 
 {% hint style="info" %}
-Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
+Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
 {% endhint %}
 
 ### Configure additional clients
@@ -720,7 +720,7 @@ AllowedIPs = 10.0.0.4/32
 At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where RaMiX is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private_network#Private_IPv4_addresses).
 
 * Another additional server would define it for example as `10.0.1.1/24` where `10.0.1.1` would be the additional server, and `10.0.1.2`, `10.0.1.3`, `10.0.1.4` ..., for the clients in this case
-* If you want to set additional servers on the same LAN, you also have to define a different external port on [port forwarding](wireguard-vpn.md#port-forwarding) of the router, e.g **51821**, and point your Wireguard VPN Client to the **51821** port in the endpoint configuration: **`Endpoint = <yourdomain>:`**[**`51821`**](#user-content-fn-11)[^11]
+* If you want to set additional servers on the same LAN, you also have to define a different external port on [port forwarding](wireguard-vpn.md#port-forwarding) of the router, e.g **51821**, and point your Wireguard VPN Client to the **51821** port in the endpoint configuration: **`Endpoint = <yourdomain>:`**[**`51821`**](#user-content-fn-5)[^5]
 
 ### Use your router’s DDNS preconfigured provider
 
@@ -763,6 +763,22 @@ Port forwarding allows you to direct incoming traffic from the WAN side (identif
 Save and apply changes
 {% endhint %}
 
+## Upgrade
+
+* To upgrade, use the package manager by typing this command. If there is an update pending, you will be automatically prompted to update. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+## Uninstall
+
+* To uninstall, use the package manager by typing this command. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+
+```bash
+sudo apt autoremove wireguard --purge
+```
+
 ## Port reference
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="c0IJxo3AKKne" label="TCP" color="blue"></option><option value="wLavrizzjlR4" label="SSL" color="blue"></option><option value="aWKU3FdmHGlF" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">51820</td><td><span data-option="aWKU3FdmHGlF">UDP</span></td><td align="center">Default port</td></tr></tbody></table>
@@ -773,18 +789,6 @@ Save and apply changes
 
 [^3]: Replace
 
-[^4]: Replace
+[^4]: Add this new section
 
-[^5]: Replace
-
-[^6]: Replace
-
-[^7]: Replace
-
-[^8]: Replace
-
-[^9]: Add this new section
-
-[^10]: Replace
-
-[^11]: Change this
+[^5]: Change this

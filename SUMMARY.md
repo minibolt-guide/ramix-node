@@ -14,7 +14,7 @@
   * [1.5 Security](index-1/security.md)
   * [1.6 Privacy](index-1/privacy.md)
 
-## 🟠 ₿itcoin <a href="#bitcoin" id="bitcoin"></a>
+## ₿itcoin <a href="#bitcoin" id="bitcoin"></a>
 
 * [2. ₿itcoin](bitcoin/bitcoin/README.md)
   * [2.1 Bitcoin client: Bitcoin Core](bitcoin/bitcoin/bitcoin-client.md)
@@ -40,23 +40,25 @@
   * [Rustup + Cargo](bonus-guides/system/rustup-+-cargo.md)
   * [Go](bonus-guides/system/go.md)
   * [PostgreSQL](bonus-guides/system/postgresql.md)
-  * [Login with SSH keys](bonus/system/ssh-keys.md)
-  * [WireGuard VPN](bonus/system/wireguard-vpn.md)
-  * [Cloudflare tunnel](bonus-guides/system/cloudflare-tunnel.md)
-  * [Tor services: bridges & relays](bonus-guides/system/tor-services.md)
   * [Boot from microSD instead of an external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)
-* [🟠 ₿itcoin](bonus/bitcoin/README.md)
+* [₿itcoin](bonus/bitcoin/README.md)
   * [Electrs](bonus/bitcoin/electrs.md)
   * [Electrum Wallet Desktop](bonus/bitcoin/electrum-wallet-desktop.md)
   * [Bisq](bonus/bitcoin/bisq.md)
   * [Safu Ninja, a DIY steel mnemonic backup](bonus/bitcoin/safu-ninja.md)
   * [Ordisrespector spam filter](bonus/bitcoin/ordisrespector.md)
   * [Download the bitcoin whitepaper](bonus/bitcoin/white-paper.md)
-  * [RaMiX on Testnet](bonus/bitcoin/ramix-on-testnet.md)
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
+  * [RaMiX on Testnet](bonus/bitcoin/ramix-on-testnet.md)
 * [🦩 Nostr](bonus-guides/nostr/README.md)
   * [Nostr relay](bonus-guides/nostr/nostr-relay.md)
 
 ***
 
+* [🛡️ Security](security/README.md)
+  * [Login with SSH keys](security/ssh-keys.md)
+* [🌐 Networking](networking/README.md)
+  * [WireGuard VPN](networking/wireguard-vpn.md)
+  * [Tor services: bridges & relays](networking/tor-services.md)
+  * [Cloudflare tunnel](networking/cloudflare-tunnel.md)
 * [🔧 Troubleshooting](troubleshooting.md)

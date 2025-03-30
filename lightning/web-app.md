@@ -17,10 +17,6 @@ layout:
 
 # 3.3 Web app: ThunderHub
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 [ThunderHub](https://thunderhub.io/) is an open-source LND node manager where you can manage and monitor your node on any device or browser. It allows you to take control of the lightning network with a simple and intuitive UX and the most up-to-date tech stack.
 
 <figure><img src="../.gitbook/assets/thunderhub_logo.png" alt=""><figcaption></figcaption></figure>
@@ -375,7 +371,7 @@ cp .env .env.local
 nano .env.local
 ```
 
-* Uncomment and edit the following line to match with the next. Save and exit
+* Uncomment and edit the following line to match the next. Save and exit
 
 ```
 ACCOUNT_CONFIG_PATH='/home/thunderhub/thunderhub/thubConfig.yaml'
@@ -478,7 +474,7 @@ WantedBy=multi-user.target
 sudo systemctl enable thunderhub
 ```
 
-* Prepare "thunderhub" monitoring by the systemd journal and check log logging output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare "thunderhub" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`
 
 ```bash
 journalctl -fu thunderhub

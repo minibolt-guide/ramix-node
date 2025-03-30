@@ -24,7 +24,7 @@ _USE WITH CAUTION - For this guide to work properly, you will need to open ports
 Difficulty: Medium
 {% endhint %}
 
-<div data-full-width="false"><img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
+<div data-full-width="false"><img src="../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
 
 ## Obsf4 bridge
 
@@ -34,7 +34,7 @@ We will create a separate instance for the **obfs4 bridge** and **Guard/Middle r
 
 ## Requirements
 
-* [Tor](../../index-1/privacy.md#tor-installation)
+* [Tor](../index-1/privacy.md#tor-installation)
 
 ## Preparations obfs4 bridge
 
@@ -56,7 +56,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 #### Install obfs4 proxy
@@ -97,7 +97,7 @@ Tor version 0.4.7.10.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, follow only the [Tor installation](../../index-1/privacy.md#tor-installation) section in the Privacy section to install it and come back to follow the rest of the guide
+If you obtain `"command not found"` output, follow only the [Tor installation](../index-1/privacy.md#tor-installation) section in the Privacy section to install it and come back to follow the rest of the guide
 {% endhint %}
 
 ### **Configure Firewall & Router (NAT)**
@@ -181,11 +181,15 @@ ExtORPort auto
 ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy --enableLogging --logLevel=INFO
 
 ORPort <a data-footnote-ref href="#user-content-fn-1">&#x3C;TODO1></a> IPv4Only
-ServerTransportListenAddr obfs4 0.0.0.0:<a data-footnote-ref href="#user-content-fn-2">&#x3C;TODO2></a>
+ServerTransportListenAddr obfs4 0.0.0.0:<a data-footnote-ref href="#user-content-fn-1">&#x3C;TODO2></a>
 
 #### obfs4 bridge relay info
 ContactInfo &#x3C;address@email.com>
 Nickname &#x3C;PickANickname>
+
+# Don't self-test, to minimise exposure.
+# Make sure you open the port correctly and it is reachable from the outside.
+AssumeReachable 1
 </code></pre>
 
 <details>
@@ -423,10 +427,10 @@ sudo ss -tulpn | grep '\(tor\|obfs4proxy\)'
 <pre><code>tcp   LISTEN 0      4096         0.0.0.0:9050       0.0.0.0:*    users:(("tor",pid=975075,fd=6))
 tcp   LISTEN 0      4096       127.0.0.1:39149      0.0.0.0:*    users:(("tor",pid=206525,fd=8))
 tcp   LISTEN 0      4096       127.0.0.1:9051       0.0.0.0:*    users:(("tor",pid=975075,fd=7))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-3">9052</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=6))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-2">9052</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=6))
 tcp   LISTEN 0      4096       127.0.0.1:44105      0.0.0.0:*    users:(("obfs4proxy",pid=975077,fd=7))
-tcp   LISTEN 0      4096         0.0.0.0:<a data-footnote-ref href="#user-content-fn-4">2016</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=7))
-tcp   LISTEN 0      4096               *:<a data-footnote-ref href="#user-content-fn-5">2008</a>             *:*    users:(("obfs4proxy",pid=206526,fd=7))
+tcp   LISTEN 0      4096         0.0.0.0:<a data-footnote-ref href="#user-content-fn-2">2016</a>       0.0.0.0:*    users:(("tor",pid=206525,fd=7))
+tcp   LISTEN 0      4096               *:<a data-footnote-ref href="#user-content-fn-2">2008</a>             *:*    users:(("obfs4proxy",pid=206526,fd=7))
 </code></pre>
 
 * If you want to connect to your bridge manually, you will need to know the bridge's obfs4 certificate
@@ -547,7 +551,7 @@ A non-exit Tor relay requires minimal maintenance efforts and bandwidth usage ca
 
 ## Requirements
 
-* [Tor](../../index-1/privacy.md#tor-installation)
+* [Tor](../index-1/privacy.md#tor-installation)
 
 ### **Install dependencies**
 
@@ -567,7 +571,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 ## Preparations Guard/Middle relay
@@ -896,8 +900,8 @@ sudo ss -tulpn | grep tor
 
 **Example** of expected output:
 
-<pre><code>tcp   LISTEN 0      4096              0.0.0.0:<a data-footnote-ref href="#user-content-fn-6">9001</a>      0.0.0.0:*    users:(("tor",pid=15332,fd=7))
-tcp   LISTEN 0      4096            127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">9051</a>      0.0.0.0:*    users:(("tor",pid=14928,fd=15))
+<pre><code>tcp   LISTEN 0      4096              0.0.0.0:<a data-footnote-ref href="#user-content-fn-2">9001</a>      0.0.0.0:*    users:(("tor",pid=15332,fd=7))
+tcp   LISTEN 0      4096            127.0.0.1:<a data-footnote-ref href="#user-content-fn-3">9051</a>      0.0.0.0:*    users:(("tor",pid=14928,fd=15))
 tcp   LISTEN 0      4096            127.0.0.1:9050      0.0.0.0:*    users:(("tor",pid=14928,fd=6))
 tcp   LISTEN 0      4096            127.0.0.1:9053      0.0.0.0:*    users:(("tor",pid=15332,fd=6))
 </code></pre>
@@ -1038,7 +1042,7 @@ nyx -i 9051
 
 * Press the **right** `->` **navigation key** to navigate to page 2/5 to show the traffic of your Tor instance
 
-![Example of an obsf4 bridge running](../../images/nyx-tor-bridge.png)
+![Example of an obsf4 bridge running](../images/nyx-tor-bridge.png)
 
 * Press `"q"` key **2 times** to exit
 
@@ -1046,9 +1050,9 @@ nyx -i 9051
 
 On some occasions, due to some circumstances, your ISP, the company's network, your country, etc, could be censoring your access to Tor and with it the proper functioning of RaMiX services **(used on Bitcoin Core / LND + others)**
 
-![](../../images/tor-failing.jpg)
+![](../images/tor-failing.jpg)
 
-* On the RaMiX or external node, with the user `admin`, [install Tor](../../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* On the RaMiX or external node, with the user `admin`, [install Tor](../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install obfs4proxy
@@ -1095,7 +1099,7 @@ Bridge obfs4 <IPADDRESS>:<PORT> <FINGERPRINT> cert=<CERTIFICATE> iat-mode=0
 -> Since many bridge addresses aren’t public, you may need to request some from the Tor Project. Visit this website [CLEARNET](https://bridges.torproject.org/options) / [ONION](http://yq5jjvr7drkjrelzhut7kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options), to get bridges. Push the **`Just give me bridges`** button or select obfs4 on the drop down and push the **`Get Bridges`** button. Select one or the 2 offered, and add the content to the `torrc` configuration as a line more similar like `Bridge obfs4 <IPADDRESS>:...`⬇️
 {% endhint %}
 
-<figure><img src="../../images/get-bridge.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../images/get-bridge.PNG" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 -> Remember to add the word "`Bridge`" before the `obfs4 IP...` line got from Tor, if not, Tor daemon will give you an error.
@@ -1186,11 +1190,11 @@ sudo nano /etc/tor/torrc
 This is an example for: \~ 30 GB/day \* 30 days = 900 GB for BandwidthMax <1 TB tx+rx, replace with your election
 
 <pre><code>#### Guard/Middle relay limit total sum bandwidth
-<a data-footnote-ref href="#user-content-fn-8">AccountingStart</a> day 12:00
-<a data-footnote-ref href="#user-content-fn-9">AccountingMax</a> 30 GBytes
-<a data-footnote-ref href="#user-content-fn-10">AccountingRule</a> sum
-<a data-footnote-ref href="#user-content-fn-11">RelayBandwidthRate </a>1 MBytes
-<a data-footnote-ref href="#user-content-fn-12">RelayBandwidthBurst</a> 1 MBytes
+<a data-footnote-ref href="#user-content-fn-4">AccountingStart</a> day 12:00
+<a data-footnote-ref href="#user-content-fn-5">AccountingMax</a> 30 GBytes
+<a data-footnote-ref href="#user-content-fn-6">AccountingRule</a> sum
+<a data-footnote-ref href="#user-content-fn-7">RelayBandwidthRate </a>1 MBytes
+<a data-footnote-ref href="#user-content-fn-8">RelayBandwidthBurst</a> 1 MBytes
 </code></pre>
 
 {% hint style="info" %}
@@ -1253,29 +1257,21 @@ journalctl -fu tor@default
 
 [^1]: Replace
 
-[^2]: Replace
+[^2]: Check this
 
-[^3]: Check this
+[^3]: Control port
 
-[^4]: Check this
+[^4]: When the accounting period resets
 
-[^5]: Check this
+[^5]: This specifies the maximum amount of data your relay will send during an accounting period, and the maximum amount of data your relay will receive during an accounting period
 
-[^6]: Check this
-
-[^7]: Control port
-
-[^8]: When the accounting period resets
-
-[^9]: This specifies the maximum amount of data your relay will send during an accounting period, and the maximum amount of data your relay will receive during an accounting period
-
-[^10]: Controls whether Tor tracks only incoming traffic, only outgoing traffic, or both, when applying bandwidth usage limits set with accounting options like `AccountingMax`. (Default: **max**)
+[^6]: Controls whether Tor tracks only incoming traffic, only outgoing traffic, or both, when applying bandwidth usage limits set with accounting options like `AccountingMax`. (Default: **max**)
 
     * **`sum`**: It counts both incoming and outgoing traffic (common on VPS)
     * **`in`**: It only counts incoming traffic.
     * **`out`**: It only counts outgoing traffic.
     * **`max`**: calculate using the higher of either the sent or received bytes.
 
-[^11]: Controls the amount of bandwidth your Tor relay or bridge can consistently use to relay traffic
+[^7]: Controls the amount of bandwidth your Tor relay or bridge can consistently use to relay traffic
 
-[^12]: Lets your Tor relay or bridge use more bandwidth than the sustained limit during brief spikes in traffic, allowing it to handle sudden increases in demand without immediately throttling
+[^8]: Lets your Tor relay or bridge use more bandwidth than the sustained limit during brief spikes in traffic, allowing it to handle sudden increases in demand without immediately throttling

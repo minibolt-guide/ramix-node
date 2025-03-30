@@ -66,7 +66,7 @@ You can now pre-configure the operating system even before it’s started for th
 {% tab title=""Services" tab" %}
 * Activate the checkbox **"Enable SSH"  and 2 options**:&#x20;
   * Select **“Use password authentication”** to use the previously configurated "**username and password**"&#x20;
-  * Select "**Allow public-key authentication only"** and enter your SSH pub key. Get your SSH key pair and more info in the "[Login with SSH keys](../bonus/system/ssh-keys.md)" bonus guide
+  * Select "**Allow public-key authentication only"** and enter your SSH pub key. Get your SSH key pair and more info in the "[Login with SSH keys](../security/ssh-keys.md)" bonus guide
 
 {% hint style="info" %}
 This will allow you to connect to the Raspberry Pi remotely using “**S**ecure **SH**ell” without ever connecting it to a keyboard or screen.

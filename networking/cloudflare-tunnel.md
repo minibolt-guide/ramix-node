@@ -28,11 +28,11 @@ Cost: Paid service
 Difficulty: Medium
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/network-diagram-cloudflared.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/network-diagram-cloudflared.png" alt=""><figcaption></figcaption></figure>
 
 With Cloudflare Tunnel, you gain low latency access to your server on clearnet, without the need for complex firewall or router configurations, dynamic DNS, or relying on an internet service provider.
 
-<figure><img src="../../.gitbook/assets/cloudflared-connection.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/cloudflared-connection.PNG" alt=""><figcaption></figcaption></figure>
 
 Cloudflare Tunnel ensures secure connectivity without exposing your server's publicly routable IP address. Instead, a lightweight daemon, cloudflared, creates outbound-only connections to Cloudflare's global network. This establishes persistent tunnels that route traffic to DNS records. You can run multiple cloudflared processes within a tunnel, connecting your resources securely to Cloudflare's nearest data center.
 
@@ -54,7 +54,7 @@ Before you start, make sure you:
   * Click **Done, take note of the nameservers** assigned to your account
   * On **Overview**, locate the nameserver names in **2**
 
-<figure><img src="../../.gitbook/assets/cloudflare-nameservers.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/cloudflare-nameservers.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Change the domain nameservers to Cloudflare**
 
@@ -62,25 +62,25 @@ Before you start, make sure you:
   * Access your Namecheap account or the registrar selected, from the left sidebar, select **Dashboard,** and click on the **Manage** button next to your domain
   * Staying in the **Domain** tab, go to the **Nameservers section**, select **CustomDNS,** type the **nameservers provided for Cloudflare** before, and click on the green checkmark to save the changes
 
-<figure><img src="../../.gitbook/assets/CDNSsave.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDNSsave.png" alt=""><figcaption></figcaption></figure>
 
 * Make sure **DNSSEC** **is disabled** at this point
   * Select the **Advanced DNS** tab and find the DNSSEC section
   * Toggle the **button to the left** if are to the right
 
-<figure><img src="../../.gitbook/assets/DNSSECdisable.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/DNSSECdisable.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Once all of this is done, you need to wait for the registrar to update the nameservers. This process can take up to 24 hours, but it is usually much more immediate. In any case, Cloudflare will send an email when the process is finished
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/active-domain-cloudflare.png" alt="" width="375"><figcaption><p>Example of email notification received from Cloudflare</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/active-domain-cloudflare.png" alt="" width="375"><figcaption><p>Example of email notification received from Cloudflare</p></figcaption></figure>
 
 ### Check DNS records
 
-* From the left sidebar, select **Websites,** click on your site added, and again from the new left sidebar click on **DNS -> Records**
+* From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 
-<figure><img src="../../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 You can manually add a new record by clicking the "**Add record"** button. More later we will use this. Right now you will not have any record
@@ -164,13 +164,13 @@ Leave Cloudflared running to download the cert automatically while you complete 
 
 * In the same browser session with the Cloudflare account already open, enter the URL of the prompt provided earlier. Then, select your pre-configured site on Cloudflare to authorize the tunnel for that site
 
-<figure><img src="../../.gitbook/assets/cloudflared-auth-1.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/cloudflared-auth-1.PNG" alt=""><figcaption></figcaption></figure>
 
 * Authorize its connection
 
-<figure><img src="../../.gitbook/assets/authorized-tunnel.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/authorized-tunnel.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/cloudflared-auth-3.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/cloudflared-auth-3.PNG" alt=""><figcaption></figcaption></figure>
 
 * Go back to the RaMiX terminal session, and you will see this:
 
@@ -201,7 +201,7 @@ Created tunnel <NAME> with id <UUID>
 ```
 
 {% hint style="info" %}
-Take note of the tunnel ID ->`<UUID>: e.g: 8666c35d-6ac3-4b39-9324-12ae32ce64a7` you will need it later
+Take note of the tunnel ID -> `<UUID>` e.g: `8666c35d-6ac3-4b39-9324-12ae32ce64a8` you will need it later
 {% endhint %}
 
 * Ensure that the tunnel has been created
@@ -240,12 +240,12 @@ CONNECTOR ID                         CREATED              ARCHITECTURE VERSION  
 * Now assign a CNAME record that points traffic to your tunnel subdomain
 
 {% hint style="info" %}
-> If you want to tunnel only a specific service, you can choose the final subdomain for that service, for example, if you going to expose only the `BTC RPC Explorer`, choose `explorer.<domain.com>` or if you want to expose only the `BTCpay Server`, choose `btcpay.<domain.com>`
+> If you want to tunnel only a specific service, you can choose the final subdomain for that service, for example, if you going to expose only the `BTC RPC Explorer`, choose `explorer.<domain.com>` or if you want to expose only the `BTCPay Server`, choose `btcpay.<domain.com>`
 
-> Replace **`<UUID>`** for your one obtained before
+> Replace **`<UUID>`** for your one obtained before and `subdomain.domain.com` with your data
 {% endhint %}
 
-<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>cloudflared tunnel route dns &#x3C;UUID> subdomain.domain.com
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>cloudflared tunnel route dns <a data-footnote-ref href="#user-content-fn-1">&#x3C;UUID></a> <a data-footnote-ref href="#user-content-fn-2">subdomain</a>.<a data-footnote-ref href="#user-content-fn-3">domain.com</a>
 </strong></code></pre>
 
 **Example** of expected output:
@@ -258,7 +258,7 @@ CONNECTOR ID                         CREATED              ARCHITECTURE VERSION  
 
 We will create a configuration file in your `.cloudflared` directory. This file will configure the tunnel to route traffic from a given origin to the hostname of your choice. We will use ingress rules to let you specify which local services traffic should be proxied to.
 
-* Staying with user `admin`, create `config.yml`
+* Staying with the user `admin`, create `config.yml`
 
 ```bash
 nano /home/admin/.cloudflared/config.yml
@@ -266,54 +266,54 @@ nano /home/admin/.cloudflared/config.yml
 
 * Here you should choose services that you want to expose publicly. This is only an example, so replace the ingress rules with your preferences. For example, you can replace `btcpay` or `explorer` with your name (subdomain) chosen for the service, and `<domain.com>` with the domain, you purchased previously. Ensure to replace `<UUID>` with your obtained before
 
-```
-# RaMiX: cloudflared configuration
+<pre><code># RaMiX: cloudflared configuration
 # /home/admin/.cloudflared/config.yml
 
-tunnel: <UUID>
-credentials-file: /home/admin/.cloudflared/<UUID>.json
+tunnel: <a data-footnote-ref href="#user-content-fn-1">&#x3C;UUID></a>
+credentials-file: /home/admin/.cloudflared/<a data-footnote-ref href="#user-content-fn-1">&#x3C;UUID></a>.json
 
 ingress:
 
 # BTCPay Server
-  - hostname: btcpay.<domain.com>
+  - hostname: btcpay.&#x3C;domain.com>
     service: http://localhost:23000
 
 # BTC RPC Explorer
-  - hostname: explorer.<domain.com>
+  - hostname: explorer.&#x3C;domain.com>
     service: http://localhost:3002
 
   - service: http_status:404
-```
+</code></pre>
 
 {% hint style="info" %}
-> 1. Electrum server are not supported using Cloudflared
+To take into account:
 
-> 2. For security reasons, you shouldn't expose publically the administration access services using Cloudflared e.g SSH or Thunderhub, for these cases you should use [Wireguard VPN](../../bonus/system/wireguard-vpn.md)
-> 3.  If you want to expose only a service, you can delete or comment the associated lines of other services, always maintaining the "`- service: http_status:404"` line at the end of the rules. Example, expose only BTCPay Server, the comment the associated lines for BTC RPC Explorer:
+> 1. Electrum server are not supported using Cloudflared
+> 2. For security reasons, you shouldn't expose publically the administration access services using Cloudflared e.g SSH or Thunderhub, for these cases you should use [Wireguard VPN](broken-reference)
+> 3. If you want to expose only a service, you can delete or comment the associated lines of other services, always maintaining the "`- service: http_status:404`" line at the end of the file. Example, expose only BTCPay Server, the comment the associated lines for BTC RPC Explorer:
 >
->     ```
->     # BTC RPC Explorer
->     #  - hostname: explorer.<domain.com>
->     #    service: http://localhost:3002
->     ```
+> ```
+> # BTC RPC Explorer
+> #  - hostname: explorer.<domain.com>
+> #    service: http://localhost:3002
+> ```
 {% endhint %}
 
 ### Configure Cloudflare DNS records
 
 * We will go back to the Cloudflare DNS records table to make modifications.
 
-If you wanted to expose 2 services or more, that is to say, you ingressed more than one service on the ingress rules, follow the next steps, if not, you can only check the current recently created registry or jump directly to the next [Increase the maximum UDP Buffer Sizes](cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) section:
+Suppose you wanted to expose 2 services or more. In that case, that is to say, you ingressed more than one service on the ingress rules, follow the next steps; if not, you can only check the current recently created registry or jump directly to the next section: [Increase the maximum UDP Buffer Sizes](cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes)
 
-> 1. **Edit the existing CNAME record** that was recently created, and replace the `name` value with the name of the first or one of the services selected, or keep it if it's correct. For example, if you selected `btcpay`, keep the existing target content, which is the UUID of your tunnel
-> 2. Add a new record by selecting **CNAME** type.Enter the second subdomain selected in the second ingress rule e.g `explorer`, in the `name` box, and in the `target` content, enter the `UUID` of your tunnel (the same content as before)
+> 1. **Edit the existing CNAME record** that was recently created, and replace the `name` value with the name of the first or one of the services selected, or keep it if it's correct. For example, if you selected `btcpay`, keep the existing target content, which is the `UUID` of your tunnel
+> 2. Add a new record by selecting **CNAME** type. Enter the second subdomain selected in the second ingress rule e.g `explorer`, in the `name` box, and in the `target` content, enter the `UUID` of your tunnel (the same content as before)
 > 3. Ensure you have **enabled `Proxy`** for each record you have added **(Proxy status: Proxied)**
 
-<figure><img src="../../.gitbook/assets/add-record-DNS-records.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/add-record-DNS-records.png" alt=""><figcaption></figcaption></figure>
 
 **Example** of DNS record table:
 
-<figure><img src="../../.gitbook/assets/dns-records-uuid.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/dns-records-uuid.png" alt=""><figcaption></figcaption></figure>
 
 ### Increase the maximum UDP Buffer Sizes
 
@@ -439,7 +439,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run <a href="#id-6-run-the-tunnel" id="id-6-run-the-tunnel"></a>
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
 
 * Start the service
 
@@ -488,7 +488,7 @@ You should see the service properly running as if it were a local connection
 
 **Example** of expected output:
 
-<pre><code>tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-1">37599</a>      0.0.0.0:*    users:(("cloudflared",pid=311164,fd=3))
+<pre><code>tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-4">37599</a>      0.0.0.0:*    users:(("cloudflared",pid=311164,fd=3))
 </code></pre>
 
 ## Upgrade
@@ -542,4 +542,10 @@ Processing triggers for man-db (2.10.2-1) ...
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="2kSS8NMqexja" label="TCP" color="blue"></option><option value="WBMl8VnL8zxQ" label="SSL" color="blue"></option><option value="8PNqcU9AFom1" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">Random</td><td><span data-option="2kSS8NMqexja">TCP</span></td><td align="center">Random port</td></tr></tbody></table>
 
-[^1]: Random port
+[^1]: Replace
+
+[^2]: Replace with your selection i.e "explorer"
+
+[^3]: Replace with your domain
+
+[^4]: Random port

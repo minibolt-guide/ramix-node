@@ -17,10 +17,6 @@ layout:
 
 # 3.1 Lightning client: LND
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We set up [LND](https://github.com/lightningnetwork/lnd), the Lightning Network Daemon, by [Lightning Labs](https://lightning.engineering/).
 
 <div align="center"><img src="../images/lightning-network-daemon-logo.png" alt=""></div>
@@ -117,7 +113,7 @@ cd /tmp
 * Set a temporary version environment variable to the installation
 
 ```sh
-VERSION=0.18.5
+VERSION=0.19.0
 ```
 
 * Download the application, checksums, and signature
@@ -169,7 +165,7 @@ sha256sum --check manifest-v$VERSION-beta.txt --ignore-missing
 
 Now that we've verified the integrity of the downloaded binary, we need to check the authenticity of the manifest file we just used, starting with its signature.
 
-* Get the public key from a LND developer, who signed the manifest file; and add it to your GPG keyring
+* Get the public key from a LND developer, who signed the manifest file, and add it to your GPG keyring
 
 {% code overflow="wrap" %}
 ```bash
@@ -298,7 +294,19 @@ If you come to [update](lightning-client.md#upgrade) this is the final step
 sudo adduser --disabled-password --gecos "" lnd
 ```
 
-* Add the `lnd` user to the groups "bitcoin" and "debian-tor", allowing to the `btcrpcexplorer` user read the bitcoind `.cookie` file and to use the control port configuring Tor directly
+Expected output:
+
+```
+Adding user `lnd' ...
+Adding new group `lnd' (1005) ...
+Adding new user `lnd' (1005) with group `lnd (1005)' ...
+Creating home directory `/home/lnd' ...
+Copying files from `/etc/skel' ...
+Adding new user `lnd' to supplemental / extra groups `users' ...
+Adding user `lnd' to group `users' ...
+```
+
+* Add the `lnd` user to the groups "bitcoin" and "debian-tor", allowing the `btcrpcexplorer` user reads the bitcoind `.cookie` file and to use the control port to configure Tor directly
 
 ```sh
 sudo usermod -a -G bitcoin,debian-tor lnd
@@ -308,6 +316,13 @@ sudo usermod -a -G bitcoin,debian-tor lnd
 
 ```sh
 sudo adduser admin lnd
+```
+
+Expected output:
+
+```
+Adding user `admin' to group `lnd' ...
+Done.
 ```
 
 ### Create data folder
@@ -336,7 +351,7 @@ sudo su - lnd
 ln -s /data/lnd /home/lnd/.lnd && ln -s /data/bitcoin /home/lnd/.bitcoin
 ```
 
-* Check symbolic links have been created correctly
+* Check that symbolic links have been created correctly
 
 ```bash
 ls -la .lnd .bitcoin
@@ -360,7 +375,7 @@ For this initial setup, we choose the easy route: we store the password in a fil
 nano /data/lnd/password.txt
 ```
 
-* Tighten access privileges and make the file readable only for user `lnd`
+* Tighten access privileges and make the file readable only for the user `lnd`
 
 ```sh
 chmod 600 /data/lnd/password.txt
@@ -667,11 +682,11 @@ lnd successfully initialized!
 ```
 
 {% hint style="warning" %}
-These 24 words are all that you need (and the `channel.backup` file in case of disaster recovery) to restore the Bitcoin onchain wallet and possible UTXOs blocked
+These 24 words are all that you need (and the `channel.backup` file in case of disaster recovery) to restore the Bitcoin onchain wallet and possibly UTXOs blocked
 
-**Write these 24 words down manually on a piece of paper and store it in a safe place**
+**Write these 24 words down manually on a piece of paper and store them in a safe place**
 
-You can use a simple piece of paper, write them on the custom themed [Shiftcrypto backup card](https://shiftcrypto.ch/backupcard/backupcard_print.pdf), or even [stamp the seed words into metal](../bonus/bitcoin/safu-ninja.md)
+You can use a simple piece of paper, write them on the custom-themed [Shiftcrypto backup card](https://shiftcrypto.ch/backupcard/backupcard_print.pdf), or even [stamp the seed words into metal](../bonus/bitcoin/safu-ninja.md)
 {% endhint %}
 
 {% hint style="danger" %}
@@ -787,7 +802,7 @@ Jun 05 19:48:36 ramix lnd[124224]: 2023-11-26 19:48:36.361 [INF] LNWL: Finished 
 {% endtabs %}
 
 {% hint style="info" %}
-The current state of your channels, however, cannot be recreated from this seed. For this, the Static Channel Backup stored `/data/lnd/data/chain/bitcoin/mainnet/channel.backup` is updated for each channel opening and closing
+However, the current state of your channels, cannot be recreated from this seed. For this, the Static Channel Backup is stored `/data/lnd/data/chain/bitcoin/mainnet/channel.backup` is updated for each channel opening and closing
 
 There is a dedicated [guide](channel-backup.md) to making an automatic backup
 {% endhint %}
@@ -800,7 +815,7 @@ exit
 
 ### Validation
 
-* Check that LND is running and related ports are listening
+* Check that LND is running and the related ports are listening
 
 ```bash
 sudo ss -tulpn | grep lnd
@@ -882,18 +897,18 @@ lncli getinfo
 ## LND in action
 
 {% hint style="success" %}
-Now your Lightning node is ready. This is also the point of no return. Up until now, you can just start over. Once you send real Bitcoin to your RaMiX, you have "skin in the game"
+Now your Lightning node is ready. This is also the point of no return. Up until now, you could just start over. Once you send real Bitcoin to your RaMiX, you have "skin in the game"
 {% endhint %}
 
 {% hint style="info" %}
-The next commands can be entered in any new session without keeping a specific terminal opened with logs, but I recommend keeping this just in case any log could give extra information about the command you just entered
+The next commands can be entered in any new session without keeping a specific terminal open with logs, but I recommend keeping this just in case any log could give extra information about the command you just entered
 {% endhint %}
 
 ### Watchtower client
 
 Lightning channels need to be monitored to prevent malicious behavior by your channel peers. If your RaMiX goes down for a longer time, for instance, due to a hardware problem, a node on the other side of one of your channels might try to close the channel with an earlier channel balance that is better for them.
 
-Watchtowers are other Lightning nodes that can monitor your channels for you. If they detect such bad behavior, they can react on your behalf, and send a punishing transaction to close this channel. In this case, all channel funds will be sent to your LND on-chain wallet.
+Watchtowers are other Lightning nodes that can monitor your channels for you. If they detect such bad behavior, they can react on your behalf and send a punishing transaction to close this channel. In this case, all channel funds will be sent to your LND on-chain wallet.
 
 A watchtower can only send such a punishing transaction to your wallet, so you don't have to trust them. It's good practice to add a few watchtowers, just to be on the safe side.
 
@@ -944,7 +959,7 @@ Monitor logs with `journalctl -fu lnd` to check the watchtower client is working
 
 ### Watchtower server
 
-Same you can connect as a watchtower client to other watchtower servers, you could give the same service running an altruist watchtower server. **This was previously activated** in the `lnd.conf`, and you can see the information about it by typing the following command and sharing it with your peers.
+Same you can connect as a watchtower client to other watchtower servers, and you could give the same service by running an altruistic watchtower server. **This was previously activated** in the `lnd.conf`, and you can see the information about it by typing the following command and sharing it with your peers.
 
 ```sh
 lncli tower info
@@ -965,7 +980,7 @@ lncli tower info
 ```
 
 {% hint style="warning" %}
-This watchtower server service is not recommended to activate if you have a slow device without high-performance features, if yes consider disabling it commenting, or deleting the line `watchtower.active=true` of the `lnd.conf` file
+This watchtower server service is not recommended to activate if you have a slow device without high-performance features. If yes, consider disabling it by commenting or deleting the line `watchtower.active=true` of the `lnd.conf` file
 {% endhint %}
 
 {% hint style="info" %}
@@ -1021,9 +1036,9 @@ Continue with the guide on the [Create systemd service](lightning-client.md#crea
 ### Migrate an existing bbolt database to PostgreSQL
 
 {% hint style="danger" %}
-Attention: this process is very risky, supposedly this [software is in an experimental state](https://github.com/lightninglabs/lndinit/pull/21) which could damage your existing LND database. **Act at your own risk**❗
+Attention: this process is very risky, supposedly, this [software is in an experimental state](https://github.com/lightninglabs/lndinit/pull/21), which could damage your existing LND database. **Act at your own risk**❗
 
--> It is recommended to start from scratch by closing all existing channels, rather than a migration to ensure we don't lose anything because it is not possible to come back to the old bbolt database once migrated
+-> It is recommended to start from scratch by closing all existing channels, rather than a migration, to ensure we don't lose anything because it is not possible to come back to the old bbolt database once migrated
 {% endhint %}
 
 #### Install dependencies
@@ -1060,7 +1075,7 @@ If you obtain "**command not found**" outputs, you need to follow the [Go! bonus
 cd /tmp
 ```
 
-* Clone the `migrate-db` branch of the lndinit, from the official repository of the Minibolt and enter to the lndinit folder
+* Clone the `migrate-db` branch of the lndinit, from the official repository of the Minibolt and enter the lndinit folder
 
 {% code overflow="wrap" %}
 ```bash

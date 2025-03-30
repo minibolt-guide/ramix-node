@@ -17,10 +17,6 @@ layout:
 
 # 2.3 Blockchain explorer: BTC RPC Explorer
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 Run your private blockchain explorer with [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer). Trust your node, not some external services.
 
 <figure><img src="../../.gitbook/assets/btc_rpc_explorer_logo.png" alt=""><figcaption></figcaption></figure>
@@ -204,6 +200,12 @@ gpg: Note: This key has expired!
 Primary key fingerprint: 4D84 1E6E 6B1B 68EB FAB4  A9E6 70C0 B166 321C 0AF8
 </code></pre>
 
+* Edit the `package.json` file and replace the "`zeromq`" value "`^6.1.2`" with "`^6.3.0`". Save and exit
+
+```bash
+nano +75 package.json
+```
+
 * Install all dependencies using NPM
 
 ```sh
@@ -256,7 +258,7 @@ nano .env
 ```
 
 {% hint style="info" %}
-Activate any setting by removing the `#` at the beginning of the line or editing directly
+Activate any setting by removing the `#` at the beginning of the line or by editing directly
 {% endhint %}
 
 * Instruct the BTC RPC Explorer to connect to the local Bitcoin Core
@@ -445,7 +447,7 @@ sudo nano /home/btcrpcexplorer/btc-rpc-explorer/.env
 * **More privacy mode**, no external queries
 
 ```
-# Ucomment these lines
+# Uncomment these lines
 BTCEXP_PRIVACY_MODE=true
 BTCEXP_NO_RATES=true
 ```
@@ -590,6 +592,55 @@ abcdefg..............xyz.onion
 ```
 
 * With the [Tor browser](https://www.torproject.org), you can access this onion address from any device
+
+### Use Cloudflare tunnel to expose publicly
+
+You may want to expose your BTC RPC Explorer publicly using a clearnet address. To do this, follow the next steps:
+
+* Follow the [Cloudflare tunnel](../../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your MiniBolt to Cloudflare
+* When you finish the "[Create a tunnel and give it a name](../../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../../networking/cloudflare-tunnel.md#id-5-start-routing-traffic)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
+* Click on the **\[+ Add record]** button
+
+<figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+> Select the **CNAME** type
+
+> Type the selected subdomain (i.e service name "explorer") as the **Name** field
+
+> Type the tunnel `<UUID>`  of your previously obtained in the [Create a tunnel and give it a name](../../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section as the **Target** field
+
+> Ensure you enable the switch on the `Proxy status` field to be "Proxied"
+
+Click on the \[Save] button to save the new DNS registry
+{% endhint %}
+
+* If you didn't follow before, continue with the "[Configuration](../../networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](broken-reference) to [Increase the maximum UDP Buffer Sizes](../../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../networking/cloudflare-tunnel.md#create-systemd-service)
+* Edit the`config.yml`
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
+</strong></code></pre>
+
+* Add the next lines to the `config.yml`
+
+<pre><code># BTC RPC Explorer
+  - hostname: <a data-footnote-ref href="#user-content-fn-2">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-3">&#x3C;domain.com></a>
+    service: http://localhost:3002
+</code></pre>
+
+{% hint style="info" %}
+> You can choose the subdomain you want; the above information is an example, but keep in mind to use the port `3002` and always maintaining the "`- service: http_status:404`" line at the end of the file
+{% endhint %}
+
+* Restart Cloudflared to apply changes
+
+```bash
+sudo systemctl restart cloudflared
+```
+
+{% hint style="info" %}
+Try to access the newly created public access to the service by going to the `https://<subdomain>. <domain.com>`, i.e, `https://explorer.domain.com`
+{% endhint %}
 
 ## Upgrade
 
@@ -743,3 +794,9 @@ sudo ufw delete X
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="LyZ7ft09szgb" label="TCP" color="blue"></option><option value="SjWfpyVd0mUz" label="SSL" color="blue"></option><option value="haINAJR4wqnB" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3002</td><td><span data-option="LyZ7ft09szgb">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4000</td><td><span data-option="SjWfpyVd0mUz">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
 
 [^1]: Check this
+
+[^2]: Replace with the selected name of your service\
+    i.e: `explorer`
+
+[^3]: Replace with your domain\
+    i.e: `domain.com`
