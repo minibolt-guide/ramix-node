@@ -17,10 +17,6 @@ layout:
 
 # 3.4 Mobile app: Zeus
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 We install [Zeus](https://zeusln.app/), a cross-platform mobile app that connects to your Lightning network node. Make payments with lightning or on-chain and manage your channels while you're on the go.
 
 <figure><img src="../.gitbook/assets/zeus_logo.png" alt="" width="563"><figcaption></figcaption></figure>
