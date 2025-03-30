@@ -289,7 +289,7 @@ ingress:
 To take into account:
 
 > 1. Electrum server are not supported using Cloudflared
-> 2. For security reasons, you shouldn't expose publically the administration access services using Cloudflared e.g SSH or Thunderhub, for these cases you should use [Wireguard VPN](broken-reference)
+> 2. For security reasons, you shouldn't expose publically the administration access services using Cloudflared e.g SSH or Thunderhub, for these cases you should use [Wireguard VPN](wireguard-vpn.md)
 > 3. If you want to expose only a service, you can delete or comment the associated lines of other services, always maintaining the "`- service: http_status:404`" line at the end of the file. Example, expose only BTCPay Server, the comment the associated lines for BTC RPC Explorer:
 >
 > ```
