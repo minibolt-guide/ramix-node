@@ -615,7 +615,7 @@ You may want to expose your BTC RPC Explorer publicly using a clearnet address. 
 Click on the \[Save] button to save the new DNS registry
 {% endhint %}
 
-* If you didn't follow before, continue with the "[Configuration](../../networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](broken-reference) to [Increase the maximum UDP Buffer Sizes](../../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../networking/cloudflare-tunnel.md#create-systemd-service)
+* If you didn't follow before, continue with the "[Configuration](../../networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](../../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../networking/cloudflare-tunnel.md#create-systemd-service)
 * Edit the`config.yml`
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
