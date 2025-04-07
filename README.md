@@ -73,7 +73,7 @@ Feel free to join the many other contributors if you see something that can be i
 
 ## Resources
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>🌐 <a href="https://app.diagrams.net/?tags={}&#x26;lightbox=1&#x26;target=blank&#x26;highlight=0000ff&#x26;edit=_blank&#x26;layers=1&#x26;nav=1&#x26;title=networkmap.drawio.png#Uhttps://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/networkmap.drawio.png">Network map</a></td><td><a href=".gitbook/assets/networkmap_icon.png">networkmap_icon.png</a></td><td><a href="https://bit.ly/minibolt-ramix_netmap">https://bit.ly/minibolt-ramix_netmap</a></td></tr><tr><td>🛣️ <a href="https://github.com/orgs/minibolt-guide/projects/1">Roadmap</a></td><td><a href=".gitbook/assets/roadmap.png">roadmap.png</a></td><td><a href="https://github.com/orgs/minibolt-guide/projects/1">https://github.com/orgs/minibolt-guide/projects/1</a></td></tr><tr><td>📅 <a href="https://www.flockstr.com/calendar/naddr1qqyrgdmpvvmxxcfjqgstzl7vmurm5gu87qutx3pxwgxddrg39huj809zhmv03scfkus3z4grqsqqql95pq28q6">Launchpad (Calendar)</a></td><td><a href=".gitbook/assets/calendario.png">calendario.png</a></td><td></td></tr><tr><td>📺 <a href="https://zap.stream/p/npub1k9luehc8hg3c0upckdzzvusv66x3zt0eyw7290kclrpsndepz92sfcpp63">Streams</a></td><td><a href=".gitbook/assets/streams.png">streams.png</a></td><td></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>🌐 <a href="https://app.diagrams.net/?tags={}&#x26;lightbox=1&#x26;target=blank&#x26;highlight=0000ff&#x26;edit=_blank&#x26;layers=1&#x26;nav=1&#x26;title=networkmap.drawio.png#Uhttps://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/networkmap.drawio.png">Network map</a></td><td><a href=".gitbook/assets/networkmap_icon.png">networkmap_icon.png</a></td><td><a href="https://bit.ly/minibolt-ramix_netmap">https://bit.ly/minibolt-ramix_netmap</a></td></tr><tr><td>🛣️ <a href="https://github.com/orgs/minibolt-guide/projects/1">Roadmap</a></td><td><a href=".gitbook/assets/roadmap.png">roadmap.png</a></td><td><a href="https://github.com/orgs/minibolt-guide/projects/1">https://github.com/orgs/minibolt-guide/projects/1</a></td></tr><tr><td>📅 <a href="https://www.flockstr.com/calendar/naddr1qqyrgdmpvvmxxcfjqgstzl7vmurm5gu87qutx3pxwgxddrg39huj809zhmv03scfkus3z4grqsqqql95pq28q6">Launchpad (Calendar)</a></td><td><a href=".gitbook/assets/calendar.png">calendar.png</a></td><td></td></tr><tr><td>📺 <a href="https://zap.stream/p/npub1k9luehc8hg3c0upckdzzvusv66x3zt0eyw7290kclrpsndepz92sfcpp63">Streams</a></td><td><a href=".gitbook/assets/streams.png">streams.png</a></td><td></td></tr></tbody></table>
 
 ## Free services
 
@@ -83,8 +83,16 @@ Feel free to join the many other contributors if you see something that can be i
 Use [a Nostr client](bonus-guides/nostr/nostr-relay.md#nostr-clients) to connect
 {% endhint %}
 
+Nostr relay in Rust (🚾clearnet):
+
 <pre class="language-url"><code class="lang-url"><strong>wss://relay.minibolt.info
 </strong></code></pre>
+
+Nostr relay in Rust (🧅onion):
+
+```url
+ws://xib7qeea6f5nz3ueko4kwcsddpvggdray4nhagcvofbioot3n2qrapid.onion
+```
 {% endtab %}
 
 {% tab title="Electrum server" %}

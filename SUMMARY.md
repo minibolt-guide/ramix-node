@@ -51,7 +51,7 @@
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
   * [RaMiX on Testnet](bonus/bitcoin/ramix-on-testnet.md)
 * [🦩 Nostr](bonus-guides/nostr/README.md)
-  * [Nostr relay](bonus-guides/nostr/nostr-relay.md)
+  * [Nostr relay in Rust](bonus-guides/nostr/nostr-relay.md)
 
 ***
 

@@ -225,7 +225,7 @@ Adding new user `bitcoin' to supplemental / extra groups `users' ...
 Adding user `bitcoin' to group `users' ...
 ```
 
-* Add the user `admin` to the group "bitcoin" as well
+* Add the user `admin` to the group "bitcoin"
 
 ```bash
 sudo adduser admin bitcoin
