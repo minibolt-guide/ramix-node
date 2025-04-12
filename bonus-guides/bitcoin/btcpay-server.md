@@ -229,7 +229,7 @@ mkdir src && cd src
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.23
+VERSION=2.5.25
 ```
 
 * Download the NBXplorer source code and enter the folder
@@ -564,7 +564,7 @@ cd src
 * Set the variable environment version
 
 ```bash
-VERSION=2.0.7
+VERSION=2.1.0
 ```
 
 * Clone the BTCPay Server official GitHub repository and enter the folder
@@ -1157,7 +1157,7 @@ cd src/NBXplorer
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.23
+VERSION=2.5.25
 ```
 
 * Fetch the changes of the latest wish tag
@@ -1179,8 +1179,12 @@ Fast-forward
 [...]
 ```
 
-{% hint style="info" %}
-If the prompt shows you `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
+{% hint style="warning" %}
+**Troubleshooting notes:**
+
+
+
+If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
 
 ```bash
 git config user.email "ramix@dummyemail.com"
@@ -1191,9 +1195,9 @@ git config user.name "RaMiX"
 ```
 
 -> And try again the last command
-{% endhint %}
 
-{% hint style="info" %}
+
+
 If the prompt shows you this:
 
 ```
@@ -1293,7 +1297,7 @@ cd src/btcpayserver
 * Set the environment variable version
 
 ```bash
-VERSION=2.0.7
+VERSION=2.1.0
 ```
 
 * Fetch the changes of the latest tag. Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to apply modifications
@@ -1316,8 +1320,12 @@ Fast-forward
 [...]
 ```
 
-{% hint style="info" %}
-If the prompt shows you `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
+{% hint style="warning" %}
+**Troubleshooting notes:**
+
+
+
+If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
 
 ```bash
 git config user.email "ramix@dummyemail.com"
@@ -1328,9 +1336,9 @@ git config user.name "RaMiX"
 ```
 
 -> And try again the last command
-{% endhint %}
 
-{% hint style="info" %}
+
+
 If the prompt shows you: `fatal: Need to specify how to reconcile divergent branches.`⬇️
 
 ```bash
@@ -1338,9 +1346,9 @@ git config pull.rebase false
 ```
 
 -> And try again the last command
-{% endhint %}
 
-{% hint style="info" %}
+
+
 If the prompts show you logs like these:
 
 ```
@@ -1348,7 +1356,7 @@ Auto-merging BTCPayServer.Abstractions/BTCPayServer.Abstractions.csproj
 CONFLICT (content): Merge conflict in BTCPayServer.Abstractions/BTCPayServer.Abstractions.csproj
 ```
 
-* With the user `admin` (type `exit`), you need to delete the BTCPay Server source code:
+* With the user `admin` (type `exit`), you need to delete the BTCPay Server source code
 
 ```bash
 sudo rm -r /home/btcpay/src/btcpayserver

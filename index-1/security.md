@@ -345,3 +345,33 @@ Jun 04 18:25:18 ramix systemd[1]: Reloaded A high performance web server and a r
 sudo tail -f /var/log/nginx/error.log
 ```
 {% endhint %}
+
+### Upgrade
+
+* To upgrade, with the user `admin` type this command. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+### Uninstall
+
+* With the user `admin` stopping the`nginx.service`
+
+```purebasic
+sudo systemctl stop nginx
+```
+
+* Type this command to use the package manager and uninstall it. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+
+```bash
+sudo apt autoremove nginx
+```
+
+* Clean the system's residual files
+
+{% code overflow="wrap" %}
+```bash
+sudo rm -rf /etc/nginx && sudo rm -f /etc/ssl/certs/nginx-selfsigned.crt && sudo rm -f /etc/ssl/private/nginx-selfsigned.key
+```
+{% endcode %}

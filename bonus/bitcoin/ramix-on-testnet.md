@@ -59,12 +59,14 @@ uacomment=RaMiX Testnet4 node
 ## Add the parameter
 testnet4=1
 
-## Delete the parameter
+## Delete the next parameters
 bind=127.0.0.1
+bind=127.0.0.1=onion
 
-## Add the next 2 lines at the end of the file
+## Add the next lines at the end of the file
 [testnet4]
 bind=127.0.0.1
+bind=127.0.0.1=onion
 ```
 
 * Set permissions for only the user `bitcoin` and members of the `bitcoin` group can read it (needed for LND to read the "`rpcauth`" line)
