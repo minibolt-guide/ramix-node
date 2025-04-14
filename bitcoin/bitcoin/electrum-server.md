@@ -218,11 +218,11 @@ Fulcrum-1.11.1-arm64-linux/fulcrum-quick-config.conf
 
 {% code overflow="wrap" %}
 ```bash
-sudo install -m 0755 -o root -g root -t /usr/local/bin Fulcrum-$VERSION-arm64-linux/Fulcrum Fulcrum-$VERSION-arm64-linux/FulcrumAdmin
+sudo install -m 0755 -o root -g root -t /usr/local/bin Fulcrum-$VERSION-arm64-linux/Fulcrum
 ```
 {% endcode %}
 
-* Check the correct installation requesting the version
+* Check the correct installation, requesting the version
 
 ```sh
 Fulcrum --version
@@ -236,7 +236,7 @@ compiled: gcc 8.4.0
 [...]
 ```
 
-* **(Optional)** Delete installation files of the `tmp` folder
+* **(Optional)** Delete the installation files of the `tmp` folder
 
 {% code overflow="wrap" %}
 ```bash
