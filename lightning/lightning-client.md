@@ -1320,7 +1320,7 @@ This process could take a few minutes, depending on the database size. When the 
 <pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>sudo rm -r /tmp/lndinit-linux-arm64-v$VERSION-beta &#x26;&#x26; sudo rm /tmp/lndinit-linux-arm64-v$VERSION-beta.tar.gz &#x26;&#x26; sudo rm /tmp/manifest-v$VERSION-beta.sig &#x26;&#x26; sudo rm /tmp/manifest-v$VERSION-beta.txt &#x26;&#x26; sudo rm /tmp/manifest-v$VERSION-beta.sig.ots
 </strong></code></pre>
 
-* Now, edit the `lnd.conf` configuration dile to use the PostgreSQL database as the backend
+* Now, edit the `lnd.conf` configuration file to use the PostgreSQL database as the backend
 
 ```bash
 sudo nano /data/lnd/lnd.conf
@@ -1416,7 +1416,7 @@ Ensure you still have your node in the same situation before the migration using
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm /data/lnd/data/chain/bitcoin/mainnet/macaroons.db && sudo rm /data/lnd/data/chain/bitcoin/mainnet/macaroons.db* && sudo rm /data/lnd/data/chain/bitcoin/mainnet/macaroons.db.last-compacted && sudo rm /data/lnd/data/chain/bitcoin/mainnet/wallet.db && sudo rm /data/lnd/data/chain/bitcoin/mainnet/wallet.db* && sudo rm /data/lnd/data/graph/mainnet/* && sudo rm /data/lnd/data/watchtower/bitcoin/mainnet/*
+sudo rm /data/lnd/data/chain/bitcoin/mainnet/macaroons.db && sudo rm /data/lnd/data/chain/bitcoin/mainnet/macaroons.db* && sudo rm /data/lnd/data/chain/bitcoin/mainnet/wallet.db && sudo rm /data/lnd/data/chain/bitcoin/mainnet/wallet.db* && sudo rm /data/lnd/data/graph/mainnet/* && sudo rm /data/lnd/data/watchtower/bitcoin/mainnet/*
 ```
 {% endcode %}
 
