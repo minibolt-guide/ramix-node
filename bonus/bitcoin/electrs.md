@@ -282,8 +282,14 @@ v0.10.0
 sudo rm -r /tmp/electrs
 ```
 
+* Return to the home folder
+
+```bash
+cd
+```
+
 {% hint style="success" %}
-If you come to update this is the final step
+If you come to update, this is the final step
 {% endhint %}
 
 ### Create the electrs user & group <a href="#create-the-bitcoin-user-and-group" id="create-the-bitcoin-user-and-group"></a>
@@ -409,7 +415,7 @@ WantedBy=multi-user.target
 sudo systemctl enable electrs
 ```
 
-* Prepare "electrs" monitoring by the systemd journal and check log logging output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare "electrs" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`
 
 ```sh
 journalctl -fu electrs

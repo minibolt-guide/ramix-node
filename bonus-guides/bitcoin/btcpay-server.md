@@ -229,7 +229,7 @@ mkdir src && cd src
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.25
+VERSION=2.5.26
 ```
 
 * Download the NBXplorer source code and enter the folder
@@ -1157,7 +1157,7 @@ cd src/NBXplorer
 * Set the environment variable version
 
 ```bash
-VERSION=2.5.25
+VERSION=2.5.26
 ```
 
 * Fetch the changes of the latest wish tag
