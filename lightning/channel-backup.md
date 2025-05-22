@@ -375,7 +375,9 @@ sudo nano +15 -l /usr/local/bin/scb-backup
 REMOTE_BACKUP_ENABLED=true
 ```
 
-## Create systemd service
+## Configuration
+
+### Create systemd service
 
 We set up the backup script as a systemd service to run in the background and optionally start automatically on system startup.
 
@@ -392,7 +394,6 @@ sudo nano /etc/systemd/system/scb-backup.service
 
 [Unit]
 Description=SCB Automatic Backup
-Requires=lnd.service
 After=lnd.service
 
 [Service]

@@ -109,10 +109,10 @@ sudo -u postgres createdb -O admin lndb
 cd /tmp
 ```
 
-* Set a temporary version environment variable to the installation
+* Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=0.18.5
+VERSION=0.19.0
 ```
 
 * Download the application, checksums, and signature
@@ -415,6 +415,9 @@ color=<a data-footnote-ref href="#user-content-fn-6">#ff9900</a>
 wallet-unlock-password-file=/data/lnd/password.txt
 wallet-unlock-allow-create=true
 
+# Do not archive the history of the channel.backup file
+no-backup-archive=true
+
 # The TLS private key will be encrypted to the node's seed
 tlsencryptkey=true
 
@@ -462,6 +465,7 @@ bitcoin.node=bitcoind
 protocol.wumbo-channels=true
 protocol.option-scid-alias=true
 protocol.simple-taproot-chans=true
+protocol.zero-conf=true
 
 [wtclient]
 ## Watchtower client settings
@@ -1499,7 +1503,7 @@ Upgrading LND can lead to some issues. **Always** read the [LND release notes](h
 lnd --version
 ```
 
-* Download, verify, and install the latest LND binaries as described in the [Installation section](lightning-client.md#installation) of this guide, replacing the environment variable `"VERSION=x.xx"` value to the latest if it has not been already changed in this guide **(acting behind your responsibility)**
+* Download, verify, and install the latest LND binaries as described in the [Installation section](lightning-client.md#installation) of this guide, replacing the environment variable `"VERSION=x.xx"` value to the latest if it has not already been changed in this guide **(acting behind your responsibility)**
 * Restart LND to apply the new version
 
 ```sh
