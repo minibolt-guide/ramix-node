@@ -306,10 +306,6 @@ The rest of the **BTC RPC Explorer** guide is the same as the mainnet mode
 
 ### [Lightning client: LN](../../lightning/lightning-client.md)[D](../../lightning/lightning-client.md)
 
-{% hint style="danger" %}
-#### Not Testnet4 compatible yet, the next steps are not valid!
-{% endhint %}
-
 * Follow the complete guide from the beginning, when you arrive at the [Configuration](../../lightning/lightning-client.md#configuration) section, edit `lnd.conf`
 
 ```bash
@@ -324,25 +320,6 @@ bitcoin.testnet4=true
 
 [Bitcoind]
 bitcoind.config=/data/bitcoin/bitcoin-testnet4.conf
-```
-
-{% hint style="info" %}
-If you use [Ordirespector](ordisrespector.md) on testnet, add the next lines at the end of the file:
-{% endhint %}
-
-```
-[fee]
-# Use external fee estimator
-fee.url=https://nodes.lightning.computer/fees/v1/btctestnet4-fee-estimates.json
-```
-
-* When you arrive at the [Create systemd service](../../lightning/lightning-client.md#create-systemd-service) section, edit the `lnd.service` file and replace the next lines
-
-```
-Requires=bitcoind-testnet4.service postgresql.service
-After=bitcoind-testnet4.service postgresql.service
-
-ExecStop=/usr/local/bin/lncli --network=testnet4 stop
 ```
 
 {% hint style="info" %}
