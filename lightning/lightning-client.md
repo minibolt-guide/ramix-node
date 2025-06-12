@@ -55,7 +55,7 @@ zmqpubrawtx=tcp://127.0.0.1:28333
 sudo systemctl restart bitcoind
 ```
 
-* Check Bitcoin Core is enabled `zmqpubrawblock` and `zmqpubrawtx` on the `28332` and `28333` port
+* Check if Bitcoin Core is enabled `zmqpubrawblock` and `zmqpubrawtx` on the `28332` and `28333` port
 
 ```bash
 sudo ss -tulpn | grep bitcoind | grep 2833
@@ -91,7 +91,7 @@ If you obtain "**command not found**" outputs, you need to follow the [PostgreSQ
 
 #### Create PostgreSQL database
 
-* With user `admin`, create a new database with the `postgres` user and assign as the owner to the `admin` user
+* With user `admin`, create a new database with the `postgres` user and assign it as the owner to the `admin` user
 
 {% code overflow="wrap" %}
 ```bash
@@ -112,7 +112,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=0.19.0
+VERSION=0.19.1
 ```
 
 * Download the application, checksums, and signature
@@ -368,7 +368,7 @@ LND includes a Bitcoin wallet that manages your onchain and Lightning coins. It 
 
 For this initial setup, we choose the easy route: we store the password in a file that allows LND to unlock the wallet automatically.
 
-* Still as user `lnd`, create a text file and enter your LND wallet `password [C]`. **Password should have at least 8 characters.** Save and exit
+* Still as user `lnd`, create a text file and enter your LND wallet `password [C]`. **The password should have at least 8 characters.** Save and exit
 
 ```sh
 nano /data/lnd/password.txt
@@ -836,7 +836,7 @@ tcp   LISTEN 0      4096               *:9911             *:*    users:(("lnd",p
 
 ### Allow user "admin" to work with LND
 
-We interact with LND using the application `lncli`. At the moment, only the user `lnd` has the necessary access privileges. To make the user "admin" the main administrative user, we make sure it can interact with LND as well.
+We interact with LND using the application `lncli`. At the moment, only the user `lnd` has the necessary access privileges. To make the user "admin" the main administrative user, we make sure they can interact with LND as well.
 
 * As user `admin`, link the LND data directory in the user `admin` home. As a member of the group `lnd`, the `admin` user has read-only access to certain files
 
@@ -918,7 +918,7 @@ Subsequent commands can be entered in new sessions without needing to keep this 
 
 ### Watchtower client
 
-Lightning channels need to be monitored to prevent malicious behavior by your channel peers. If your RaMiX goes down for a longer time, for instance due to a hardware problem, a node on the other side of one of your channels might try to close the channel with an earlier channel balance that is better for them.
+Lightning channels need to be monitored to prevent malicious behavior by your channel peers. If your RaMiX goes down for a longer time, for instance, due to a hardware problem, a node on the other side of one of your channels might try to close the channel with an earlier channel balance that is better for them.
 
 Watchtowers are other Lightning nodes that can monitor your channels for you. If they detect such bad behavior, they can react on your behalf by sending a punishing transaction to close this channel. In this case, all channel funds will be sent to your LND on-chain wallet.
 
@@ -971,7 +971,7 @@ Monitor logs with `journalctl -fu lnd` to verify the watchtower client is workin
 
 ### Watchtower server
 
-Similarly you can connect as a watchtower client to other watchtower servers, and you could provide the same service by running an altruistic watchtower server. **This was previously activated** in the `lnd.conf`, and you can see the information about it by typing the following command and sharing it with your peers.
+Similarly, you can connect as a watchtower client to other watchtower servers, and you could provide the same service by running an altruistic watchtower server. **This was previously activated** in the `lnd.conf`, and you can see the information about it by typing the following command and sharing it with your peers.
 
 ```sh
 lncli tower info
@@ -996,7 +996,7 @@ TThis watchtower server service is not recommended to activate if you have a slo
 {% endhint %}
 
 {% hint style="info" %}
-Almost all of the following steps can be ran with the [mobile](mobile-app.md) | [web](web-app.md) app guides. We strongly recommend using these applications with an intuitive and visual UI to manage the Lightning Node, instead of using the command line. If you still want to explore the use of `lncli`, there are some useful commands in the [extra section](lightning-client.md#some-useful-lncli-commands)
+Almost all of the following steps can be run with the [mobile](mobile-app.md) | [web](web-app.md) app guides. We strongly recommend using these applications with an intuitive and visual UI to manage the Lightning Node, instead of using the command line. If you still want to explore the use of `lncli`, there are some useful commands in the [extra section](lightning-client.md#some-useful-lncli-commands)
 {% endhint %}
 
 ## Extras (optional)
@@ -1449,7 +1449,7 @@ Copy the output `[lnbc...]` of the "payment\_request": "`lnbc...`". Transform yo
 lncli payinvoice --amt <amount> <amp invoice>
 ```
 
-#### -> Send payment to node without invoice using AMP invoice (both sender and receiver nodes need to have AMP enabled)
+#### -> Send payment to the node without invoice using AMP invoice (both sender and receiver nodes need to have AMP enabled)
 
 ```sh
 lncli sendpayment --dest <destination public key> --amt <amount> --amp
@@ -1504,7 +1504,7 @@ Upgrading LND can lead to some issues. **Always** read the [LND release notes](h
 lnd --version
 ```
 
-* Download, verify, and install the latest LND binaries as described in the [Installation section](lightning-client.md#installation) of this guide, replacing the environment variable `"VERSION=x.xx"` value to the latest if it has not already been changed in this guide **(acting behind your responsibility)**
+* Download, verify, and install the latest LND binaries as described in the [Installation section](lightning-client.md#installation) of this guide, replacing the environment variable `"VERSION=x.xx"` value to the latest if it has not already been changed in this guide **(acting beyond your responsibility)**
 * Restart LND to apply the new version
 
 ```sh
@@ -1555,7 +1555,7 @@ sudo userdel -rf lnd
 sudo groupdel lnd
 ```
 
-### Detele the data directory
+### Delete the data directory
 
 * Delete the complete `lnd` directory
 
