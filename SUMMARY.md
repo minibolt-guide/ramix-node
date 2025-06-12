@@ -59,6 +59,6 @@
   * [Login with SSH keys](security/ssh-keys.md)
 * [🌐 Networking](networking/README.md)
   * [WireGuard VPN](networking/wireguard-vpn.md)
-  * [Tor services: bridges & relays](networking/tor-services.md)
   * [Cloudflare tunnel](networking/cloudflare-tunnel.md)
+  * [Tor services: bridges & relays](networking/tor-services.md)
 * [🔧 Troubleshooting](troubleshooting.md)
