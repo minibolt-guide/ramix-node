@@ -50,6 +50,7 @@
   * [Download the bitcoin whitepaper](bonus/bitcoin/white-paper.md)
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
   * [RaMiX on Testnet](bonus/bitcoin/ramix-on-testnet.md)
+  * [Bitcoin Knots](bonus-guides/bitcoin/bitcoin-knots.md)
 * [🦩 Nostr](bonus-guides/nostr/README.md)
   * [Nostr relay in Rust](bonus-guides/nostr/nostr-relay.md)
 
