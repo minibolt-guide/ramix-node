@@ -24,23 +24,23 @@ Difficulty: Medium
 
 ## Introduction
 
-Running a testnet node is a great way to get acquainted with the RaMiX and the suite of Bitcoin-related software typical of these powerful setups. Moreover, testnet empowers users to tinker with the software and its many configurations without the threat of losing funds. Helping Bitcoiners run a full testnet setup is a goal worthy of the RaMiX, and this page should provide you with the knowledge to get there.
+Running a testnet node is a great way to get acquainted with RaMiX and the suite of Bitcoin-related software typical of these powerful setups. Moreover, testnet empowers users to tinker with the software and its many configurations without the threat of losing funds. Helping Bitcoiners run a full testnet setup is a goal worthy of the RaMiX, and this page should provide you with the knowledge to get there.
 
-The great news is that most of the RaMiX guide can be used as-is. The small adjustments come in the form of changes to the config files and ports for testnet. You can follow the guide and replace the following configurations in the right places as you go.
+The great news is that most of the RaMiX guide can be used as-is. The small adjustments come in the form of changes to the config files and ports for the testnet. You can follow the guide and replace the following configurations in the right places as you go.
 
 {% hint style="info" %}
 > <mark style="color:red;">**Advice:**</mark>
 >
-> For the moment, this guide will touch only the case of simultaneous mode situation for Bitcoin Core, in the future, we will study adding the case of configuration to enable the parallel/simultaneous mode (`mainnet+testnet` in the same device).
+> For the moment, this guide will touch **only the case of simultaneous mode situation for Bitcoin Core**, in the future, we will study adding the case of configuration to enable the parallel/simultaneous mode (`mainnet+testnet` in the same device, that is in the same MiniBolt node.
 
-> The services mentioned in this guide are those that have been tested using testnet configuration and these worked fine. Later, in the next versions of this guide, we will go to adding other process to adapt other services to the testnet mode.
+> The services mentioned in this guide are those that have been tested using testnet configuration and these worked fine. Later, in the next versions of this guide, we will go to adding other process to adapt other services to the testnet mode
 {% endhint %}
 
 ## Bitcoin
 
 ### [Bitcoin client: Bitcoin Core](../../bitcoin/bitcoin/bitcoin-client.md)
 
-{% hint style="info" %}
+{% hint style="success" %}
 Mainnet + testnet simultaneous mode
 {% endhint %}
 
@@ -56,7 +56,7 @@ nano /home/bitcoin/.bitcoin/bitcoin-testnet4.conf
 ## Replace the parameter
 uacomment=RaMiX Testnet4 node
 
-## Add the parameter
+## Add the parameter at the end of the file (before [testnet4] section)
 testnet4=1
 
 ## Delete the next parameters
@@ -147,15 +147,15 @@ journalctl -fu bitcoind-testnet4
 sudo systemctl start bitcoind-testnet4
 ```
 
+{% hint style="warning" %}
+**Attention:** the next step is critical to allow the Bitcoin Core dependencies to access the `.cookie` file and start up without problems
+{% endhint %}
+
 * When you finish the [Run](../../bitcoin/bitcoin/bitcoin-client.md#run) section, with the user `admin` provide read and execute permissions to the Bitcoin group for the testnet folder
 
 ```bash
 sudo chmod g+rx /data/bitcoin/testnet4
 ```
-
-{% hint style="warning" %}
-**Attention:** the step before is critical to allow the Bitcoin Core dependencies to access the `.cookie` file and startup without problems
-{% endhint %}
 
 {% hint style="info" %}
 Use the flag `--testnet4` when you use the `bitcoin-cli` commands, e.g `bitcoin-cli --testnet4 -netinfo`
