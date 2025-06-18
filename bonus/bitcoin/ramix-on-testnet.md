@@ -33,7 +33,7 @@ The great news is that most of the RaMiX guide can be used as-is. The small adju
 >
 > For the moment, this guide will touch **only the case of simultaneous mode situation for Bitcoin Core**, in the future, we will study adding the case of configuration to enable the parallel/simultaneous mode (`mainnet+testnet` in the same device, that is in the same MiniBolt node.
 
-> The services mentioned in this guide are those that have been tested using testnet configuration and these worked fine. Later, in the next versions of this guide, we will go to adding other process to adapt other services to the testnet mode
+> The services mentioned in this guide are those that have been tested using testnet configuration and these worked fine. Later, in the next versions of this guide, we will go to adding other process to adapt other services to the testnet mode.
 {% endhint %}
 
 ## Bitcoin
@@ -167,7 +167,7 @@ The rest of the Bitcoin client guide is the same as the mainnet mode
 
 ### [Electrum server: Fulcrum](../../bitcoin/bitcoin/electrum-server.md)
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only testnet mode
 {% endhint %}
 
@@ -306,6 +306,10 @@ The rest of the **BTC RPC Explorer** guide is the same as the mainnet mode
 
 ### [Lightning client: LN](../../lightning/lightning-client.md)[D](../../lightning/lightning-client.md)
 
+{% hint style="warning" %}
+Only testnet mode
+{% endhint %}
+
 * Follow the complete guide from the beginning, when you arrive at the [Configuration](../../lightning/lightning-client.md#configuration) section, edit `lnd.conf`
 
 ```bash
@@ -352,6 +356,10 @@ The rest of the **Lightning Clien**t guide is the same as the mainnet mode
 
 ### [Channel backup](../../lightning/channel-backup.md)
 
+{% hint style="warning" %}
+Only testnet mode
+{% endhint %}
+
 * Follow the complete guide from the beginning. When you arrive at the ["Create script"](../../lightning/channel-backup.md#create-script) section, create the script
 
 ```sh
@@ -379,6 +387,10 @@ The rest of the **Channel Backup guide** is the same as the mainnet mode
 
 ### [Web app: ThunderHub](../../lightning/web-app.md)
 
+{% hint style="warning" %}
+Only testnet mode
+{% endhint %}
+
 * Follow the complete guide from the beginning. When you arrive at the [Configuration](../../lightning/web-app.md#configuration) section, replace the next parameter to match the testnet mode in the `.env.local` file
 
 ```
@@ -396,6 +408,10 @@ The rest of the **Web app: Thunderhub** is the same as the mainnet mode
 {% endhint %}
 
 ### [Mobile app: Zeus](../../lightning/mobile-app.md)
+
+{% hint style="success" %}
+Mainnet + testnet simultaneous mode
+{% endhint %}
 
 * Follow the complete guide from the beginning, when you arrive at the [**Create a lndconnect QR code**](../../lightning/mobile-app.md#create-a-lndconnect-qr-code) section, modify the "lndconnect" command to match the next
 
@@ -415,7 +431,7 @@ Be careful to add `--nocert` parameter only to the onion and Wireguard VPN netwo
 
 ### Bitcoin: [Electrs](electrs.md)
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only testnet mode
 {% endhint %}
 
@@ -439,7 +455,7 @@ server {
 }
 ```
 
-* Test and reload Nginx configuration
+* Test and reload the Nginx configuration
 
 ```sh
 sudo nginx -t
@@ -494,7 +510,7 @@ After=bitcoind-testnet4.service
 sudo nano +63 /etc/tor/torrc
 ```
 
-* Edit the `torrc` file and replace the ports with `40021/40022` to match with the testnet4 mode
+* Edit the `torrc` file and replace the ports with `40021/40022` to match the testnet4 mode
 
 ```
 # Hidden Service Electrs Testnet4 TCP & SSL
