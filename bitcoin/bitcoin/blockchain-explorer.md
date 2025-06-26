@@ -31,7 +31,7 @@ Run your private blockchain explorer with [BTC RPC Explorer](https://github.com/
 
 After the RaMiX runs your own fully validated node, and even acts as a backend for your hardware wallet with [Fulcrum](electrum-server.md), the last important puzzle piece to improve privacy and financial sovereignty is your own Blockchain Explorer. It lets you query transactions, addresses, and blocks of your choice. You no longer need to leak information by querying a third-party blockchain explorer that can be used to get your location and cluster addresses.
 
-[BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) provides a lightweight and easy to use web interface to accomplish just that. It's a database-free, self-hosted Bitcoin blockchain explorer, querying [Bitcoin Core](bitcoin-client.md) and [Fulcrum](electrum-server.md) via RPC.
+[BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) provides a lightweight and easy-to-use web interface to accomplish just that. It's a database-free, self-hosted Bitcoin blockchain explorer, querying [Bitcoin Core](bitcoin-client.md) and [Fulcrum](electrum-server.md) via RPC.
 
 ## Preparations
 
@@ -148,7 +148,7 @@ For improved security, we will create a new user `btcrpcexplorer` that will run 
 sudo adduser --disabled-password --gecos "" btcrpcexplorer
 ```
 
-* Add `btcrpcexplorer` user to the "bitcoin" group, allowing the `btcrpcexplorer` user read the bitcoind `.cookie` file
+* Add `btcrpcexplorer` user to the "bitcoin" group, allowing the `btcrpcexplorer` user reads the bitcoind `.cookie` file
 
 ```bash
 sudo adduser btcrpcexplorer bitcoin
@@ -346,7 +346,7 @@ journalctl -fu btcrpcexplorer
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
 
 * Start the service
 
@@ -729,7 +729,7 @@ sudo userdel -rf btcrpcexplorer
 
 ### Uninstall Tor hidden service
 
-* Ensure that you are logged in with the user `admin` and delete or comment on the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`" in the torrc file. Save and exit
+* Ensure that you are logged in as the user `admin` and delete or comment on the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`" in the torrc file. Save and exit
 
 ```bash
 sudo nano +63 /etc/tor/torrc --linenumbers
@@ -751,7 +751,7 @@ sudo systemctl reload tor
 
 ### **Uninstall reverse proxy & FW configuration**
 
-* Ensure you are logged in with the user `admin`, delete the reverse proxy config file
+* Ensure you are logged in as the user `admin`, delete the reverse proxy config file
 
 ```bash
 sudo rm /etc/nginx/sites-available/btcrpcexplorer-reverse-proxy.conf
@@ -782,7 +782,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 sudo systemctl reload nginx
 ```
 
-* Display the UFW firewall rules, and note the numbers of the rules for BTC RPC Explorer (e.g. "Y" below)
+* Display the UFW firewall rules, and note the numbers of the rules for BTC RPC Explorer (e.g., "Y" below)
 
 ```bash
 sudo ufw status numbered
