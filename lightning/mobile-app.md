@@ -2,17 +2,6 @@
 title: Mobile app
 nav_order: 60
 parent: Lightning
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # 3.4 Mobile app: Zeus
@@ -148,7 +137,7 @@ sudo nano /etc/tor/torrc
 ```
 # Hidden Service LND REST
 HiddenServiceDir /var/lib/tor/hidden_service_lnd_rest/
-HiddenServiceVersion 3
+HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 8080 127.0.0.1:8080
 ```
@@ -277,7 +266,7 @@ Expected output:
 sudo ufw delete X
 ```
 
-### Uninstall Tor
+### Uninstall Tor hidden service
 
 You must uninstall the app on your phone and delete the LND REST API on Tor hidden service.
 
@@ -288,13 +277,12 @@ You must uninstall the app on your phone and delete the LND REST API on Tor hidd
 sudo nano /etc/tor/torrc
 ```
 
-```
-# Hidden Service LND REST
+<pre><code># Hidden Service LND REST
 #HiddenServiceDir /var/lib/tor/hidden_service_lnd_rest/
-#HiddenServiceVersion 3
-HiddenServicePoWDefensesEnabled 1
+<strong>#HiddenServiceEnableIntroDoSDefense 1
+</strong>#HiddenServicePoWDefensesEnabled 1
 #HiddenServicePort 8080 127.0.0.1:8080
-```
+</code></pre>
 
 * Reload Tor to apply changes
 

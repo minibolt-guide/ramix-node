@@ -2,17 +2,6 @@
 title: Electrum server
 nav_order: 20
 parent: Bitcoin
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # 2.2 Electrum Server: Fulcrum
@@ -30,7 +19,7 @@ layout:
 
 #### Bitcoin with hardware wallets
 
-The best way to safely keep your bitcoin (meaning the best combination of security and usability) is to use a hardware wallet (like [BitBox](https://bitbox.swiss/bitbox02/), [Coldcard](https://coldcard.com/), [Ledger](https://www.ledger.com), or [Trezor](https://trezor.io)) in combination with your own Bitcoin node. This gives you security, privacy and eliminates the need to trust a third party to verify transactions.
+The best way to safely keep your bitcoin (meaning the best combination of security and usability) is to use a hardware wallet (like [BitBox](https://bitbox.swiss/bitbox02/), [Coldcard](https://coldcard.com/), [Ledger](https://www.ledger.com), or [Trezor](https://trezor.io)) in combination with your own Bitcoin node. This gives you security, privacy, and eliminates the need to trust a third party to verify transactions.
 
 Bitcoin Core on the RaMiX itself is not meant to hold funds.
 
@@ -291,7 +280,7 @@ Done.
 sudo mkdir -p /data/fulcrum/fulcrum_db
 ```
 
-* Assign as the owner to the `fulcrum` user
+* Assign the owner to the `fulcrum` user
 
 ```sh
 sudo chown -R fulcrum:fulcrum /data/fulcrum/
@@ -354,7 +343,7 @@ wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main
 
 ## Configuration
 
-RaMiX uses SSL as default for Fulcrum, but some wallets like BlueWallet do not support SSL over Tor. That's why we use TCP in configurations as well to let the user choose what he needs. You may as well need to use TCP for other reasons.
+RaMiX uses SSL as the default for Fulcrum, but some wallets like BlueWallet do not support SSL over Tor. That's why we use TCP in configurations as well to let the user choose what he needs. You may as well need to use TCP for other reasons.
 
 * Create a Fulcrum configuration file
 
@@ -448,7 +437,7 @@ WantedBy=multi-user.target
 sudo systemctl enable fulcrum
 ```
 
-* Prepare "fulcrum" monitoring by the systemd journal and check log logging output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare "fulcrum" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`
 
 ```sh
 journalctl -fu fulcrum
@@ -516,7 +505,7 @@ Jun 09 10:28:56 ramix Fulcrum[3345722]: [2024-06-09 10:28:56.707] <Controller> S
 
 ### Validation
 
-* Ensure the service is working and listening at the default `50002` & `50001` ports
+* Ensure the service is working and listening on the default `50002` & `50001` ports
 
 ```sh
 sudo ss -tulpn | grep Fulcrum
@@ -530,7 +519,7 @@ tcp   LISTEN 0      50        0.0.0.0:50002      0.0.0.0:*    users:(("Fulcrum",
 ```
 
 {% hint style="success" %}
-Congrats! Now you have a high-performance and self-hosted Electrum Server on your node. Now you can process installing the [Blockchain Explorer: BTC RPC Explorer](blockchain-explorer.md) or connect your [Desktop signing app: Sparrow Wallet](desktop-signing-app-sparrow.md) or [Electrum Wallet ](../../bonus/bitcoin/electrum-wallet-desktop.md)[Desktop](../../bonus/bitcoin/electrum-wallet-desktop.md)
+Congrats! Now you have a high-performance and self-hosted Electrum Server on your node. Now you can process installing the [Blockchain Explorer: BTC RPC Explorer](blockchain-explorer.md), or connect your [Desktop signing app: Sparrow Wallet](desktop-signing-app-sparrow.md) or [Electrum Wallet ](../../bonus/bitcoin/electrum-wallet-desktop.md)[Desktop](../../bonus/bitcoin/electrum-wallet-desktop.md)
 {% endhint %}
 
 ## Extras (optional)
@@ -548,7 +537,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 # Hidden Service Fulcrum TCP & SSL
 HiddenServiceDir /var/lib/tor/hidden_service_fulcrum_tcp_ssl/
-HiddenServiceVersion 3
+HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 50001 127.0.0.1:50001
 HiddenServicePort 50002 127.0.0.1:50002
@@ -584,7 +573,7 @@ abcdefg..............xyz.onion
  sudo nano /data/fulcrum/fulcrum.conf
 ```
 
-* Uncomment the `db_max_open_files` parameter choosing the appropriate one for 4 GB or 8 GB of RAM depending on your hardware
+* Uncomment the `db_max_open_files` parameter choosing the appropriate one for 4 GB or 8 GB of RAM, depending on your hardware
 
 ```
 ## Slow device optimizations
@@ -601,7 +590,7 @@ db_mem = 1024.0
 
 #### Install zram-swap
 
-[zram-swap](https://github.com/foundObjects/zram-swap) is a compressed swap in memory and on disk and is necessary for the proper functioning of Fulcrum during the sync process using compressed swap in memory (increase performance when memory usage is high)
+[zram-swap](https://github.com/foundObjects/zram-swap) is a compressed swap in memory and on disk, and is necessary for the proper functioning of Fulcrum during the sync process, using compressed swap in memory (increases performance when memory usage is high)
 
 * With user `admin`, access to the "admin" home folder
 
@@ -609,7 +598,7 @@ db_mem = 1024.0
 cd /home/admin/
 ```
 
-* Clone the repository of GitHub and go to the `zram-swap` folder
+* Clone the repository from GitHub and go to the `zram-swap` folder
 
 ```sh
 git clone https://github.com/foundObjects/zram-swap.git && cd zram-swap
@@ -690,7 +679,7 @@ Jul 28 12:20:13 ramix Fulcrum[181811]: [2022-07-28 12:20:13.064] Fulcrum 1.9.1 (
 
 ### Uninstall service
 
-* Ensure you are logged in with the user `admin`, stop fulcrum
+* Ensure you are logged in as the user `admin`, stop fulcrum
 
 ```sh
 sudo systemctl stop fulcrum
@@ -740,14 +729,13 @@ sudo rm /usr/local/bin/Fulcrum
 sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
-```
-# Hidden Service Fulcrum TCP & SSL
+<pre><code># Hidden Service Fulcrum TCP &#x26; SSL
 #HiddenServiceDir /var/lib/tor/hidden_service_fulcrum_ssl/
-#HiddenServiceVersion 3
-#HiddenServicePoWDefensesEnabled 1
+<strong>#HiddenServiceEnableIntroDoSDefense 1
+</strong>#HiddenServicePoWDefensesEnabled 1
 #HiddenServicePort 50001 127.0.0.1:50001
 #HiddenServicePort 50002 127.0.0.1:50002
-```
+</code></pre>
 
 * Reload the torrc config
 
