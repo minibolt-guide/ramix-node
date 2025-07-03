@@ -6,7 +6,7 @@ description: >-
 
 # RaMiX
 
-[![Forks](https://img.shields.io/github/forks/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/network/members) [![Stargazers](https://img.shields.io/github/stars/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/stargazers) [![MIT License](https://img.shields.io/github/license/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/LICENSE) [![Contributors](https://img.shields.io/github/contributors/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/graphs/contributors) [![Issues](https://img.shields.io/github/issues/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/minibolt-guide/ramix-node?label=latest%20release)](https://github.com/minibolt-guide/ramix-node/releases) [![GitHub followers](https://img.shields.io/github/followers/minibolt-guide)](https://github.com/orgs/minibolt-guide/followers) [![GitBook](https://img.shields.io/static/v1?message=Documented%20on%20GitBook&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1)](https://www.gitbook.com/preview?utm_source=gitbook_readme_badge&utm_medium=organic&utm_campaign=preview_documentation&utm_content=link)
+[![Forks](https://img.shields.io/github/forks/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/network/members) [![Stargazers](https://img.shields.io/github/stars/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/stargazers) [![MIT License](https://img.shields.io/github/license/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/LICENSE) [![Contributors](https://img.shields.io/github/contributors/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/graphs/contributors) [![Issues](https://img.shields.io/github/issues/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/minibolt-guide/ramix-node?label=latest%20release)](https://github.com/minibolt-guide/ramix-node/releases) [![GitHub followers](https://img.shields.io/github/followers/minibolt-guide)](https://github.com/orgs/minibolt-guide/followers) [![GitBook](https://img.shields.io/static/v1?message=Documented%20on%20GitBook\&logo=gitbook\&logoColor=ffffff\&label=%20\&labelColor=5c5c5c\&color=3F89A1)](https://www.gitbook.com/preview?utm_source=gitbook_readme_badge\&utm_medium=organic\&utm_campaign=preview_documentation\&utm_content=link)
 
 {% hint style="danger" %}
 <mark style="color:red;">**Attention!! This guide is in the WIP (work in progress) state and hasn't been tested yet. Many steps may be incorrect. Pay special attention to the "Status: Not tested on RaMiX" tag at the beginning of the guides. Be careful and act behind your responsibility.**</mark>
@@ -61,7 +61,7 @@ Your Bitcoin node will offer the following functionality:
 
 We aim to keep the core of this guide well-maintained and up-to-date:
 
-<table data-view="cards" data-full-width="false"><thead><tr><th></th><th align="center"></th><th align="center"></th><th data-type="content-ref"></th><th data-type="content-ref"></th><th data-type="content-ref"></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>🖥️</strong> <a href="broken-reference"><strong>System</strong></a></td><td align="center">Prepare the hardware and set up the operating system</td><td align="center"></td><td><a href="index-1/operating-system.md">operating-system.md</a></td><td><a href="index-1/remote-access.md">remote-access.md</a></td><td></td><td><a href="system/">system</a></td><td><a href=".gitbook/assets/operating-system.gif">operating-system.gif</a></td></tr><tr><td><strong>🟠</strong> <a href="broken-reference"><strong>₿itcoin</strong></a></td><td align="center">Sync your own Bitcoin full node, Electrum server, Blockchain Explorer, and connect a desktop wallet to the Electrum server</td><td align="center"></td><td><a href="bitcoin/bitcoin/electrum-server.md">electrum-server.md</a></td><td><a href="bitcoin/bitcoin/blockchain-explorer.md">blockchain-explorer.md</a></td><td></td><td><a href="bitcoin/bitcoin/">bitcoin</a></td><td><a href=".gitbook/assets/core_logo.png">core_logo.png</a></td></tr><tr><td><strong>⚡</strong> <a href="broken-reference"><strong>Lightning</strong></a></td><td align="center">Run your Lightning client with web-based node management, connect a mobile app, and save safely your SCB backup</td><td align="center"></td><td><a href="lightning/channel-backup.md">channel-backup.md</a></td><td><a href="lightning/web-app.md">web-app.md</a></td><td></td><td><a href="lightning/">lightning</a></td><td><a href="images/lightning-network-daemon-logo.png">lightning-network-daemon-logo.png</a></td></tr><tr><td><br><strong>➕</strong> <a href="broken-reference"><strong>Bonus guides</strong></a><br></td><td align="center">The bonus section contains more specific guides that build on top of the main section. More fun, lots of knowledge, but with lesser maintenance guarantees. Everything is optional.</td><td align="center"></td><td><a href="bonus/system/">system</a></td><td><a href="bonus/bitcoin/">bitcoin</a></td><td><a href="bonus-guides/nostr/">nostr</a></td><td><a href="broken-reference/">broken-reference</a></td><td><a href=".gitbook/assets/bonus-logo.png">bonus-logo.png</a></td></tr></tbody></table>
+<table data-view="cards" data-full-width="false"><thead><tr><th></th><th align="center"></th><th align="center"></th><th data-type="content-ref"></th><th data-type="content-ref"></th><th data-type="content-ref"></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>🖥️</strong> <a href="broken-reference/"><strong>System</strong></a></td><td align="center">Prepare the hardware and set up the operating system</td><td align="center"></td><td><a href="index-1/operating-system.md">operating-system.md</a></td><td><a href="index-1/remote-access.md">remote-access.md</a></td><td></td><td><a href="system/">system</a></td><td><a href=".gitbook/assets/operating-system.gif">operating-system.gif</a></td></tr><tr><td><strong>🟠</strong> <a href="broken-reference/"><strong>₿itcoin</strong></a></td><td align="center">Sync your own Bitcoin full node, Electrum server, Blockchain Explorer, and connect a desktop wallet to the Electrum server</td><td align="center"></td><td><a href="bitcoin/bitcoin/electrum-server.md">electrum-server.md</a></td><td><a href="bitcoin/bitcoin/blockchain-explorer.md">blockchain-explorer.md</a></td><td></td><td><a href="bitcoin/bitcoin/">bitcoin</a></td><td><a href=".gitbook/assets/core_logo.png">core_logo.png</a></td></tr><tr><td><strong>⚡</strong> <a href="broken-reference/"><strong>Lightning</strong></a></td><td align="center">Run your Lightning client with web-based node management, connect a mobile app, and save safely your SCB backup</td><td align="center"></td><td><a href="lightning/channel-backup.md">channel-backup.md</a></td><td><a href="lightning/web-app.md">web-app.md</a></td><td></td><td><a href="lightning/">lightning</a></td><td><a href="images/lightning-network-daemon-logo.png">lightning-network-daemon-logo.png</a></td></tr><tr><td><br><strong>➕</strong> <a href="broken-reference/"><strong>Bonus guides</strong></a><br></td><td align="center">The bonus section contains more specific guides that build on top of the main section. More fun, lots of knowledge, but with lesser maintenance guarantees. Everything is optional.</td><td align="center"></td><td><a href="bonus/system/">system</a></td><td><a href="bonus/bitcoin/">bitcoin</a></td><td><a href="bonus-guides/nostr/">nostr</a></td><td><a href="broken-reference/">broken-reference</a></td><td><a href=".gitbook/assets/bonus-logo.png">bonus-logo.png</a></td></tr></tbody></table>
 
 ## Community
 
@@ -83,12 +83,12 @@ Feel free to join the many other contributors if you see something that can be i
 Use [a Nostr client](bonus-guides/nostr/nostr-relay.md#nostr-clients) to connect
 {% endhint %}
 
-Nostr relay in Rust (🚾clearnet):
+* Nostr relay in Rust (🚾clearnet):
 
 <pre class="language-url"><code class="lang-url"><strong>wss://relay.minibolt.info
 </strong></code></pre>
 
-Nostr relay in Rust (🧅onion):
+* Nostr relay in Rust (🧅onion):
 
 ```url
 ws://xib7qeea6f5nz3ueko4kwcsddpvggdray4nhagcvofbioot3n2qrapid.onion
@@ -100,13 +100,13 @@ ws://xib7qeea6f5nz3ueko4kwcsddpvggdray4nhagcvofbioot3n2qrapid.onion
 Use a signing app ([Sparrow Wallet](bitcoin/bitcoin/desktop-signing-app-sparrow.md) or [Electrum Wallet desktop](bonus/bitcoin/electrum-wallet-desktop.md)) to connect
 {% endhint %}
 
-Fulcrum - mainnet (🧅onion):
+* Fulcrum - mainnet (🧅onion):
 
 ```url
 tcp://vr4bgiwqlhuweftttc6bj7lm5ijjyafwsr43nmeiu3k4mcgtl4tpozyd.onion:50001
 ```
 
-Fulcrum - testnet4 (🧅onion):
+* Fulcrum - testnet4 (🧅onion):
 
 ```url
 tcp://bnfpvanrc2g7r5o5kaabbbyjv6ddh46jmasfatrvbbsvjb7cdik5n7ad.onion:40001
@@ -118,41 +118,29 @@ ssl://bnfpvanrc2g7r5o5kaabbbyjv6ddh46jmasfatrvbbsvjb7cdik5n7ad.onion:40002
 {% endtab %}
 
 {% tab title="Explorer" %}
-BTC RPC Explorer - **mainnet** (🚾clearnet):
+* BTC RPC Explorer - **mainnet** (🚾clearnet):
 
--> CLICK to access -> [https://explorer.minibolt.info](https://explorer.minibolt.info) <-
+{% hint style="danger" %}
+Not accessible from EE.UU, Austria, or Germany
+{% endhint %}
 
-BTC RPC Explorer - **mainnet** (🧅onion - Use [Tor browser](https://www.torproject.org/download/)):
+&#x20;👉 CLICK to access: [https://explorer.minibolt.info](https://explorer.minibolt.info) 👈
+
+* BTC RPC Explorer - **mainnet** (🧅onion - Use [Tor browser](https://www.torproject.org/download/)):
+
+{% hint style="success" %}
+Accessible from **anywhere**
+{% endhint %}
 
 ```url
 http://rzcj4r2p6wterkto5prigsplq6iva5bqhcxr7y3d6w4hoc3uwizpp5qd.onion
 ```
 {% endtab %}
 
-{% tab title="Lightning Watchtower (only LND)" %}
-{% hint style="info" %}
-Use `lncli` to connect to it:
-
-{% code overflow="wrap" %}
-```bash
-lncli wtclient add 02ad47b4e41cfce258e2db8d7eb9a194570ca29beba2897970d1ecc7d1c9a2726b@zm32w2qs2lf6xljnvqnmv6o2xlufsf4g6vfjihyydg4yhxph4fnqcvyd.onion:9911
-```
-{% endcode %}
-{% endhint %}
-
-Lightning Watchtower server - **mainnet** (🧅onion):
-
-{% code overflow="wrap" %}
-```url
-02ad47b4e41cfce258e2db8d7eb9a194570ca29beba2897970d1ecc7d1c9a2726b@zm32w2qs2lf6xljnvqnmv6o2xlufsf4g6vfjihyydg4yhxph4fnqcvyd.onion:9911
-```
-{% endcode %}
-{% endtab %}
-
 {% tab title="Keyserver" %}
 * Hockeypuck OpenPGP Public Keyserver (🚾clearnet):
 
--> CLICK to access -> [https://keyserver.minibolt.info](https://keyserver.minibolt.info) <-
+👉 CLICK to access: [https://keyserver.minibolt.info](https://keyserver.minibolt.info) 👈
 
 * Hockeypuck OpenPGP Public Keyserver (🧅onion - use [Tor browser](https://www.torproject.org/download/)):
 
