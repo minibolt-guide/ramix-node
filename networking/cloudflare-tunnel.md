@@ -87,13 +87,31 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=2025.7.0
+VERSION=2025.8.0
 ```
 
 * Download Cloudflare Tunnel Client (Cloudflared)
 
 <pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>wget https://github.com/cloudflare/cloudflared/releases/download/$VERSION/cloudflared-linux-arm64.deb
 </strong></code></pre>
+
+* Set a temporary SHA256 environment variable to the installation
+
+```bash
+SHA256=caf5f4e1eaa5be42f62e42cee265e036206be448c8fce6c1d0c60e4b4e5c18dc
+```
+
+* Check the checksum of the file
+
+```bash
+echo "$SHA256 cloudflared-linux-arm64.deb" | sha256sum --check
+```
+
+**Example** of expected output:
+
+```
+cloudflared-linux-arm64.deb: OK
+```
 
 * Use the deb package manager to install it
 
@@ -120,7 +138,7 @@ sudo rm cloudflared-linux-arm64.deb
 ```
 
 {% hint style="info" %}
-If you come to update this is the final step
+If you come to update, this is the final step
 {% endhint %}
 
 ### Authenticate on Cloudflare and authorize <a href="#id-2-authenticate-cloudflared" id="id-2-authenticate-cloudflared"></a>
@@ -250,13 +268,14 @@ We will create a configuration file in your `.cloudflared` directory. This file 
 nano /home/admin/.cloudflared/config.yml
 ```
 
-* Here you should choose services that you want to expose publicly. This is only an example, so replace the ingress rules with your preferences. For example, you can replace `btcpay` or `explorer` with your name (subdomain) chosen for the service, and `<domain.com>` with the domain, you purchased previously. Ensure to replace `<UUID>` with your obtained before
+* Here, you should choose services that you want to expose publicly. This is only an example, so replace the ingress rules with your preferences. For example, you can replace `btcpay` or `explorer` with your name (subdomain) chosen for the service, and `<domain.com>` with the domain, you purchased previously. Ensure to replace `<UUID>` with your obtained before
 
 <pre><code># RaMiX: cloudflared configuration
 # /home/admin/.cloudflared/config.yml
 
 tunnel: <a data-footnote-ref href="#user-content-fn-1">&#x3C;UUID></a>
 credentials-file: /home/admin/.cloudflared/<a data-footnote-ref href="#user-content-fn-1">&#x3C;UUID></a>.json
+origincert: /home/admin/.cloudflared/cert.pem
 
 ingress:
 
@@ -425,7 +444,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run <a href="#id-6-run-the-tunnel" id="id-6-run-the-tunnel"></a>
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
+,To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
 
 * Start the service
 
