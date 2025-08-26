@@ -28,8 +28,8 @@ Before you start, make sure you:
 
 ### Buy a domain name
 
-* **Buy a domain or use an existing one**, there are different options to buy a domain, to this example, we will use Namecheap
-  * Go to the [Namecheap](https://www.namecheap.com/), search your wish domain between available, and follow the registration and buying process (you can pay using Bitcoin onchain), the price depends on the domain extensions chosen, a common extension like .com or .net generally has an annual cost between 10€ and 20€, but some less common extensions may have higher prices. In general, the most common extensions like .com, .net, and .org usually have low costs due to their popularity and availability. However, other less common extensions, such as .xyz or .online, are often offered at lower prices to attract more users.
+* **Buy a domain or use an existing one**. There are different options to buy a domain. For this example, we will use Namecheap
+  * Go to the [Namecheap](https://www.namecheap.com/), search for your wish domain among available, and follow the registration and buying process (you can pay using Bitcoin onchain), the price depends on the domain extensions chosen, a common extension like .com or .net generally has an annual cost between 10€ and 20€, but some less common extensions may have higher prices. In general, the most common extensions like .com, .net, and .org usually have low costs due to their popularity and availability. However, other less common extensions, such as .xyz or .online, are often offered at lower prices to attract more users.
 
 ### Create an account on Cloudflare
 
@@ -46,13 +46,13 @@ Before you start, make sure you:
 
 * Before your domain can begin using Cloudflare for DNS resolution, all requests should be redirected to Cloudflare’s network first, where Access policies can be applied. You need to **add these nameservers to your registrar** (Namecheap in our case)
   * Access your Namecheap account or the registrar selected, from the left sidebar, select **Dashboard,** and click on the **Manage** button next to your domain
-  * Staying in the **Domain** tab, go to the **Nameservers section**, select **CustomDNS,** type the **nameservers provided for Cloudflare** before, and click on the green checkmark to save the changes
+  * Staying in the **Domain** tab, go to the **Nameservers section**, select **CustomDNS,** type the **nameservers provided by Cloudflare** before, and click on the green checkmark to save the changes
 
 <figure><img src="../.gitbook/assets/CDNSsave.png" alt=""><figcaption></figcaption></figure>
 
 * Make sure **DNSSEC** **is disabled** at this point
   * Select the **Advanced DNS** tab and find the DNSSEC section
-  * Toggle the **button to the left** if are to the right
+  * Toggle the **button to the left** if it is to the right
 
 <figure><img src="../.gitbook/assets/DNSSECdisable.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -69,11 +69,11 @@ Once all of this is done, you need to wait for the registrar to update the names
 <figure><img src="../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-You can manually add a new record by clicking the "**Add record"** button. More later we will use this. Right now you will not have any record
+You can manually add a new record by clicking the "**Add record"** button. More later, we will use this. Right now, you will not have any record
 {% endhint %}
 
 {% hint style="info" %}
-Keep this Cloudflare session open, we will add and modify some registries to configure the tunnel
+Keep this Cloudflare session open. We will add and modify some registries to configure the tunnel
 {% endhint %}
 
 ## Installation
@@ -87,7 +87,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=2025.8.0
+VERSION=2025.8.1
 ```
 
 * Download Cloudflare Tunnel Client (Cloudflared)
@@ -98,7 +98,7 @@ VERSION=2025.8.0
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=caf5f4e1eaa5be42f62e42cee265e036206be448c8fce6c1d0c60e4b4e5c18dc
+SHA256=402cb9e2c1c4352f9ca24a0fab95c888d9e62a5433307a29ced40e503e5f5c6e
 ```
 
 * Check the checksum of the file
@@ -241,7 +241,7 @@ CONNECTOR ID                         CREATED              ARCHITECTURE VERSION  
 
 ### Start routing traffic <a href="#id-5-start-routing-traffic" id="id-5-start-routing-traffic"></a>
 
-* Now assign a CNAME record that points traffic to your tunnel subdomain
+* Now, assign a CNAME record that points traffic to your tunnel subdomain
 
 {% hint style="info" %}
 > If you want to tunnel only a specific service, you can choose the final subdomain for that service, for example, if you going to expose only the `BTC RPC Explorer`, choose `explorer.<domain.com>` or if you want to expose only the `BTCPay Server`, choose `btcpay.<domain.com>`
@@ -444,7 +444,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run <a href="#id-6-run-the-tunnel" id="id-6-run-the-tunnel"></a>
 
-,To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
 
 * Start the service
 
@@ -478,10 +478,10 @@ Jul 10 18:20:43 ramix cloudflared[3405663]: 2023-07-10T16:20:43Z INF Registered 
 
 </details>
 
-* Now point your browser to the hostnames created in your `config.yml` e.g `https://explorer.domain.com` or `https://btcpay.domain.com` and check if it resolves correctly to the local service
+* Now, point your browser to the hostnames created in your `config.yml` e.g `https://explorer.domain.com` or `https://btcpay.domain.com` and check if it resolves correctly to the local service
 
 {% hint style="info" %}
-You should see the service properly running as if it were a local connection
+You should see the service running properly as if it were a local connection
 {% endhint %}
 
 ### Validation
