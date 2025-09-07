@@ -509,6 +509,39 @@ To keep an eye on the software movements, [start your SSH program](../../index-1
 sudo systemctl start bitcoind
 ```
 
+<details>
+
+<summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu bitcoind</code> ⬇️</summary>
+
+```
+2022-11-24T18:08:04Z Bitcoin Core version v24.0.1.0 (release build)
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -upnp=0
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -natpmp=0
+2022-11-24T18:08:04Z InitParameterInteraction: parameter interaction: -proxy set -> setting -discover=0
+2022-11-24T18:08:04Z Using the 'sse4(1way),sse41(4way),avx2(8way)' SHA256 implementation
+2022-11-24T18:08:04Z Using RdRand as an additional entropy source
+2022-11-24T18:08:04Z Default data directory /home/bitcoin/.bitcoin
+2022-11-24T18:08:04Z Using data directory /home/bitcoin/.bitcoin
+2022-11-24T18:08:04Z Config file: /home/bitcoin/.bitcoin/bitcoin.conf
+2022-11-24T18:08:04Z Config file arg: blockfilterindex="1"
+2022-11-24T18:08:04Z Config file arg: coinstatsindex="1"
+2022-11-24T18:08:04Z Config file arg: i2pacceptincoming="1"
+2022-11-24T18:08:04Z Config file arg: i2psam="127.0.0.1:7656"
+2022-11-24T18:08:04Z Config file arg: listen="1"
+2022-11-24T18:08:04Z Config file arg: listenonion="1"
+2022-11-24T18:08:04Z Config file arg: peerblockfilters="1"
+2022-11-24T18:08:04Z Config file arg: peerbloomfilters="1"
+2022-11-24T18:08:04Z Config file arg: proxy="127.0.0.1:9050"
+2022-11-24T18:08:04Z Config file arg: rpcauth=****
+2022-11-24T18:08:04Z Config file arg: server="1"
+2022-11-24T18:08:04Z Config file arg: txindex="1"
+[...]
+2022-11-24T18:09:04Z Synchronizing blockheaders, height: 4000 (~0.56%)
+[...]
+```
+
+</details>
+
 {% hint style="info" %}
 Monitor the log file for a few minutes to see if it works. Logs like the next indicate that the initial start-up process has been successful:
 
