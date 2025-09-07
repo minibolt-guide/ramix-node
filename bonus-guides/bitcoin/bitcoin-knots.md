@@ -29,7 +29,7 @@ cd /tmp
 * Set the next environment variables
 
 ```sh
-VERSION=29.1.knots20250903 && BRANCH=29.x
+VERSION=28.1.knots20250305 && BRANCH=28.x
 ```
 
 * Get the latest binaries and signatures
@@ -480,7 +480,7 @@ sudo systemctl restart bitcoind
 
 By applying a spam and arbitrary data filter to our node, we can have a different version of the mempool compared to the rest of the network, and with it, the estimation of the fees. It is possible to point the fee estimator to another node without a spam or arbitrary data filter applied.
 
-* &#x20;With user admin, stop LND if you have installed it
+* With the user admin, stop LND if you have installed it
 
 ```bash
 sudo systemctl stop lnd
