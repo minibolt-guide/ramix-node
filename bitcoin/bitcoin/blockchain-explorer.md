@@ -196,12 +196,6 @@ gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: F579 929B 39B1 19CC 7B0B  B71F B326 ACF5 1F31 7B69
 </code></pre>
 
-* Edit the `package.json` file and replace the "`zeromq`" value "`^6.1.2`" with "`^6.3.0`". Save and exit
-
-```bash
-nano +75 package.json
-```
-
 * Install all dependencies using NPM
 
 ```sh
@@ -219,14 +213,19 @@ Installation can take some time; be patient. There might be a lot of confusing o
 **Example** of expected output:
 
 ```
-Installed to /home/btcrpcexplorer/btc-rpc-explorer/node_modules/node-sass/vendor/linux-arm64/binding.node
-added 480 packages from 307 contributors and audited 482 packages in 570.14s
+npm warn deprecated csurf@1.11.0: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
 
-43 packages are looking for funding
+added 564 packages, and audited 565 packages in 22s
+
+79 packages are looking for funding
   run `npm fund` for details
 
-found 12 vulnerabilities (8 moderate, 4 high)
-  run `npm audit fix` to fix them, or `npm audit` for details
+2 low severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
 ```
 
 * Check the correct installation by requesting the version
@@ -530,7 +529,7 @@ BTCEXP_DEMO=true
 ```
 
 {% hint style="warning" %}
-You will need to set password authentication following the [Security](blockchain-explorer.md#security) section, if not, a banner shows you this:
+You will need to set password authentication following the [Security](blockchain-explorer.md#security) section; if not, a banner shows you this:
 
 {% code overflow="wrap" %}
 ```
@@ -658,10 +657,24 @@ sudo su - btcrpcexplorer
 cd btc-rpc-explorer
 ```
 
-* Update the repository with the latest commits
+* Fetches changes from the remote repository.
 
+{% code overflow="wrap" %}
 ```sh
-git pull origin $(git rev-parse --abbrev-ref HEAD)
+git fetch origin
+```
+{% endcode %}
+
+* Moves your local branch to the remote commit and discards all uncommitted changes and any local commits that are not present on the remote
+
+```bash
+git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+```
+
+* Removes untracked files and directories
+
+```bash
+git clean -fd
 ```
 
 * Install dependencies

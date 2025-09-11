@@ -71,7 +71,7 @@ exit
 sudo apt update && sudo apt install tor deb.torproject.org-keyring
 ```
 
-* Check Tor has been correctly installed
+* Check that Tor has been correctly installed
 
 ```sh
 tor --version
@@ -106,7 +106,7 @@ ControlPort 9051
 sudo systemctl reload tor
 ```
 
-* Ensure that the Tor service is working and listening at the default ports `9050` and `9051` on the localhost (127.0.0.1)
+* Ensure that the Tor service is working and listening on the default ports `9050` and `9051` on the localhost (127.0.0.1)
 
 ```sh
 sudo ss -tulpn | grep tor
@@ -123,7 +123,7 @@ tcp     LISTEN 0    4096     127.0.0.1:9051   0.0.0.0:*    users:(("tor",pid=795
 
 </details>
 
-* **(Optional)** Check the systemd journal to see Tor in real time updates output logs. Ctrl + C to exit
+* **(Optional)** Check the systemd journal to see Tor in real-time updates, output logs. Ctrl + C to exit
 
 ```sh
 journalctl -fu tor@default --since='1 hour ago'
@@ -162,11 +162,11 @@ Nov 13 23:19:20 ramix systemd[1]: Reloaded tor@default.service - Anonymizing ove
 </details>
 
 {% hint style="info" %}
-Not all network traffic is routed over the Tor network, by default some services don't include a proxy SOCKS5 configuration. Anyway, we now have the base to configure sensitive applications to use it
+Not all network traffic is routed over the Tor network; by default, some services don't include a proxy SOCKS5 configuration. Anyway, we now have the base to configure sensitive applications to use it
 {% endhint %}
 
 {% hint style="info" %}
-**(Optional, but not reccomended)** -> If you want, you can **disable the autoboot** option for Tor using:
+**(Optional, but not recommended)** -> If you want, you can **disable the autoboot** option for Tor using:
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl disable tor
 </strong></code></pre>
@@ -183,14 +183,14 @@ Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 {% hint style="info" %}
 -> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
 
--> You can host [**your Tor obfs4 bridge**](../networking/tor-services.md#obsf4-bridge) or connect to an external one as mentioned before
+-> You can host [**your Tor obfs4 bridge**](../networking/tor-services.md#obsf4-bridge) or connect to an external one, as mentioned before
 {% endhint %}
 
 ## I2P Project
 
 <div align="left"><img src="../images/i2pd.png" alt="" width="150"></div>
 
-[I2P](https://geti2p.net/en/) is a universal anonymous network layer. All communications over I2P are anonymous and end-to-end encrypted, participants don't reveal their real IP addresses. I2P allows people from all around the world to communicate and share information without restrictions.
+[I2P](https://geti2p.net/en/) is a universal anonymous network layer. All communications over I2P are anonymous and end-to-end encrypted; participants don't reveal their real IP addresses. I2P allows people from all around the world to communicate and share information without restrictions.
 
 I2P client is software used for building and using anonymous I2P networks. Such networks are commonly used for anonymous peer-to-peer applications (filesharing, cryptocurrencies) and anonymous client-server applications (websites, instant messengers, chat-servers).
 
@@ -198,7 +198,7 @@ We will use [i2pd](https://i2pd.readthedocs.io/en/latest/) (I2P Daemon), a full-
 
 ### **I2P installation**
 
-* Ensure that you are logged in with the user `admin` and add the i2pd repository
+* Ensure that you are logged in as the user `admin` and add the i2pd repository
 
 ```sh
 wget -q -O - https://repo.i2pd.xyz/.help/add_repo | sudo bash -s -
@@ -229,7 +229,7 @@ i2pd --version
 </strong>[...]
 </code></pre>
 
-* Ensure that the i2pd service is working and listening at the default ports
+* Ensure that the i2pd service is working and listening on the default ports
 
 ```sh
 sudo ss -tulpn | grep i2pd
@@ -309,7 +309,7 @@ Realize that if you modify the config file, you will need to select "Keep" or re
 sudo nano /etc/nginx/sites-available/i2pd-webconsole-reverse-proxy.conf
 ```
 
-* Paste the complete following configuration. Save and exit
+* Paste the following complete configuration. Save and exit
 
 ```nginx
 server {
@@ -407,7 +407,7 @@ If you want to log into your RaMiX with SSH when you're away, you can easily do 
 
 #### **SSH server**
 
-* Ensure that you are logged in with the user `admin` , edit the `torrc` file
+* Ensure that you are logged in as the user `admin` , edit the `torrc` file
 
 ```sh
 sudo nano +63 /etc/tor/torrc
@@ -441,7 +441,7 @@ sudo cat /var/lib/tor/hidden_service_ssh_server/hostname
 abcdefg..............xyz.onion
 ```
 
-* Save the Tor address in a secure location, e.g. your password manager
+* Save the Tor address in a secure location, e.g., your password manager
 
 #### **SSH client**
 
@@ -449,19 +449,19 @@ You also need to have Tor installed on your regular computer where you start the
 
 * **Windows**:
 
-To enable Tor in the background follow the same instructions for the [preparations](../bitcoin/bitcoin/desktop-signing-app-sparrow.md#preparations-on-your-computer) section of the Desktop Wallet guide.
+To enable Tor in the background, follow the same instructions for the [preparations](../bitcoin/bitcoin/desktop-signing-app-sparrow.md#preparations-on-your-computer) section of the Desktop Wallet guide.
 
 * PuTTY:
-  * Follow the same instructions of the [remote access section](remote-access.md#access-with-secure-shell) for PuTTY but this time type the `.onion` address on the hostname.
+  * Follow the same instructions of the [remote access section](remote-access.md#access-with-secure-shell) for PuTTY, but this time type the `.onion` address on the hostname.
     * Go to the "Connection" tab -> Proxy, select "Socks5" as proxy type, on Proxy hostname, type "localhost", port "9050".
     * Press the button OPEN, when a "PuTTY security alert" banner appears, and press on the "Accept" button, if the prompt asks you user/password, leave it empty and press ENTER directly, and finally type your `password [A]`.
 * MobaXterm:
   * Follow the same instructions of the [remote access section](remote-access.md#access-with-secure-shell) for MobaXterm, but this time type the `.onion` address on the hostname.
-  * Go to the "Network settings" tab, select Proxy type "Socks5" on the host, type "localhost", for login, left empty, port "9050".
-  * Press the button OK, when a "Connexion to..." banner appears press the "Accept" button, if the prompt asks you user/password, leave it empty and press ENTER directly, and finally type your `password [A]`.
+  * Go to the "Network settings" tab, select Proxy type "Socks5" on the host, type "localhost", for login, leave it empty, and port "9050".
+  * Press the button OK, when a "Connexion to..." banner appears, press the "Accept" button, if the prompt asks you user/password, leave it empty and press ENTER directly, and finally type your `password [A]`.
 
 {% hint style="info" %}
-If you use PuTTY and fail to connect to your PC by setting port 9050 in the PuTTY proxy settings, try setting port 9150 instead. When Tor runs as an installed application instead of a background process it uses port 9150
+If you use PuTTY and fail to connect to your PC by setting port 9050 in the PuTTY proxy settings, try setting port 9150 instead. When Tor runs as an installed application instead of a background process, it uses port 9150
 {% endhint %}
 
 * **Linux**:
@@ -476,10 +476,10 @@ torsocks ssh admin@abcdefg..............xyz.onion
 ```
 
 {% hint style="info" %}
-When the prompt asks you "Are you sure you want to continue connecting?" type "yes" and press ENTER
+When the prompt asks you, "Are you sure you want to continue connecting?" type "yes" and press ENTER
 {% endhint %}
 
-* **macOS**: Using `torify` or `torsocks` may not work due to Apple's _System Integrity Protection (SIP)_ which will deny access to `/usr/bin/ssh`.
+* **macOS**: Using `torify` or `torsocks` may not work due to Apple's _System Integrity Protection (SIP),_ which will deny access to `/usr/bin/ssh`.
 
 To work around this, first, make sure Tor is installed and running on your Mac:
 
@@ -524,7 +524,7 @@ ssh HOSTNICKNAME
 
 ### **Use the Tor proxy from another device**
 
-It's possible to use the Tor proxy of the node from another device in the same local network (e.g your regular computer)
+It's possible to use the Tor proxy of the node from another device in the same local network (e.g, your regular computer)
 
 * With `admin` user, edit the torrc file
 
@@ -576,11 +576,11 @@ You can use this connection from another device in the same local network, for e
 
 Go to Settings > General > Network Settings > Push to the "Settings" button
 
-Edit the screen to match this, replacing SOCKS Host, with your node's local IP address:
+Edit the screen to match this, replacing SOCKS Host with your node's local IP address:
 
 <figure><img src="../.gitbook/assets/tor-proxy-browser.png" alt="" width="563"><figcaption></figcaption></figure>
 
-Click on the OK button, and try to navigate to some clearnet domain like [https://minibolt.info](https://minibolt.info), if it resolves, you are OK.
+Click on the OK button, and try to navigate to some clearnet domain like [https://minibolt.info](https://minibolt.info). If it resolves, you are OK.
 
 {% hint style="info" %}
 You can also go to this [website](https://check.torproject.org/) and see "_Congratulations. This browser is configured to use Tor."_
@@ -674,7 +674,7 @@ The following packages will be REMOVED:
 
 #### **Tor network issues**
 
-If you have problems with the Tor connection (LN channels offline, excessive delay to the hidden services access, etc...), the set of entry guards may be overloaded, delete the file called "`state`" in your Tor directory, and you will be forcing Tor to select an entirely new set of entry guards next time it starts.
+If you have problems with the Tor connection (LN channels offline, excessive delay to the hidden services access, etc), the set of entry guards may be overloaded, delete the file called "`state`" in your Tor directory, and you will be forcing Tor to select an entirely new set of entry guards next time it starts.
 
 * Stop Tor
 
@@ -697,7 +697,7 @@ sudo systemctl start tor
 {% hint style="info" %}
 -> If your new set of entry guards still produces the stream error, try connecting to the internet using a cable if you're using Wireless. If that doesn't help, I'd suggest downloading [Wireshark](https://www.wireshark.org/) and seeing if you're getting drowned in TCP transmission errors for non-Tor traffic. If yes, your ISP is who you need to talk to
 
--> If not, try using [obfs4 bridges](../networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be censoring completely your Tor access, use of obfs4 bridges could help to avoid this censorship
+-> If not, try using [obfs4 bridges](../networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be completely censoring your Tor access; use of obfs4 bridges could help to avoid this censorship
 {% endhint %}
 
 **Example** of Tor censorship output:
@@ -711,7 +711,7 @@ If you obtain this error [after updating](privacy.md#upgrade-tor-and-i2p) the re
 <figure><img src="../.gitbook/assets/tor_keyring_error.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-This means Tor has renovated the signature due probably that is soon to expiry or expired, follow the next steps to fix that ⬇️
+This means Tor has renovated the signature due probably that is soon to expire or has expired. Follow the next steps to fix that ⬇️
 {% endhint %}
 
 * With user `admin`, up to `"root"` user temporarily
@@ -735,7 +735,7 @@ exit
 ```
 
 {% hint style="info" %}
-Try to do `sudo apt update` again and see the error doesn't appear
+Try to do `sudo apt update` again and see if the error doesn't appear
 {% endhint %}
 
 ### **I2P troubleshooting**
