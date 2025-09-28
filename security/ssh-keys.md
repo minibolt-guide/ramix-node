@@ -4,17 +4,6 @@ parent: + System
 grand_parent: Bonus Section
 nav_exclude: true
 has_toc: false
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # Login with SSH keys
@@ -25,7 +14,7 @@ One of the best options to secure the sensitive SSH login is to disable password
 Difficulty: Medium
 {% endhint %}
 
-![](../../images/SSH-keys.png)
+![](../images/SSH-keys.png)
 
 ## Preparations
 

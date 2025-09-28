@@ -1,17 +1,3 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
----
-
 # 🔧 Troubleshooting
 
 ## Fix bad USB3 performance <a href="#fix-bad-usb3-performance" id="fix-bad-usb3-performance"></a>
