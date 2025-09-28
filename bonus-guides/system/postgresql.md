@@ -612,7 +612,7 @@ sudo systemctl daemon-reload
 * Stop all existing PostgreSQL dependencies and subdependencies services, at this moment on RaMiX
 
 ```bash
-sudo systemctl stop nostr-relay thunderhub lnd scbackup btcpay nbxplorer
+sudo systemctl stop nostr-relay thunderhub lnd scb-backup btcpay nbxplorer
 ```
 
 * Stop all existing PostgreSQL clusters and the main cluster
@@ -783,7 +783,7 @@ ramix systemd[1]: Started PostgreSQL Cluster 18-main.
 
 * Start all existing PostgreSQL dependencies and subdependencies services, at this moment on RaMiX
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl start nostr-relay lnd thunderhub scbackup nbxplorer btcpay 
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl start nostr-relay lnd thunderhub scb-backup nbxplorer btcpay 
 </strong></code></pre>
 
 {% hint style="info" %}
