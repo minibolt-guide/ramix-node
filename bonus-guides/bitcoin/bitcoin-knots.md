@@ -64,7 +64,7 @@ bitcoin-28.1.knots20250305.tar.gz: OK
 
 #### **Signature check**
 
-Bitcoin releases are signed by several individuals, each using its key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
+Bitcoin releases are signed by several individuals, each using their key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
 
 * The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs)
 
@@ -112,7 +112,7 @@ Primary key fingerprint: ...
 * If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Knots source code, install it, and check the version
 
 ```sh
-tar -xzvf bitcoin-$VERSION-x86_64-linux-gnu.tar.gz
+tar -xzvf bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
 ```
 
 **Example of expected output:**
@@ -160,7 +160,7 @@ Copyright (C) 2009-2025 The Bitcoin Core developers
 
 {% code overflow="wrap" %}
 ```bash
-sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-x86_64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc
+sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS SHA256SUMS.asc
 ```
 {% endcode %}
 
@@ -222,7 +222,7 @@ bitcoin-28.1.knots20250305.tar.gz: OK
 
 #### **Signature check**
 
-Bitcoin releases are signed by several individuals, each using its key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
+Bitcoin releases are signed by several individuals, each using their key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
 
 * The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs)
 
@@ -330,7 +330,7 @@ libtoolize: copying file 'build-aux/ltmain.sh'
 [...]
 ```
 
-* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press enter
+* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press Enter
 
 ```sh
 ./configure \
@@ -384,7 +384,7 @@ This process can take quite **a long time**, 10-15 minutes or more, depending on
 
 #### **Install**
 
-* Enter the next command to install the new binaries precompiled for yourself on the OS
+* Enter the next command to install the new binaries precompiled for you on the OS
 
 ```sh
 sudo make install
