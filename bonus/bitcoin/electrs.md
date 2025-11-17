@@ -55,7 +55,7 @@ sudo apt install libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev li
 ```
 {% endcode %}
 
-* Install the `librocksdb v7.8.3` from the source code. Go to the temporary folder
+* Install the `librocksdb v9.10.0` from the source code. Go to the temporary folder
 
 ```shellscript
 cd /tmp
@@ -197,7 +197,7 @@ cargo 1.71.0 (cfd3bbd8f 2023-06-08)
 ```
 
 {% hint style="warning" %}
-If you obtain "**command not found**" outputs, you need to follow the [Rustup + Cargo bonus section](../../bonus-guides/system/rustup-+-cargo.md) to install it and then come back to continue with the guide
+If you obtain "**command not found**" outputs, you need to follow the [Rustup + Cargo bonus section](../../bonus-guides/system/rustup-+-cargo.md) to install it, and then come back to continue with the guide
 {% endhint %}
 
 ### Reverse proxy & Firewall
@@ -267,7 +267,7 @@ There are no precompiled binaries available for Electrs, so we should compile th
 
 * With user `admin`, go to the temporary folder
 
-```sh
+```shellscript
 cd /tmp
 ```
 
