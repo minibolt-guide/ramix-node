@@ -31,23 +31,150 @@ Difficulty: Medium
 
 * With user `admin`, update the packages and upgrade to keep up to date with the OS
 
-```sh
+```shellscript
 sudo apt update && sudo apt full-upgrade
+```
+
+* Remove the old apt rocksdb version (if installed)
+
+```shellscript
+sudo apt remove librocksdb-dev librocksdb7.8
+```
+
+* Update the shared library cache. Wait until the prompt comes back to show
+
+```shellscript
+sudo ldconfig
 ```
 
 * Make sure that all necessary software packages are installed. Press "`y`" and `enter` or directly `enter`
 
 {% code overflow="wrap" %}
-```sh
-sudo apt install clang cmake build-essential librocksdb-dev=7.8.3-2
+```shellscript
+sudo apt install libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev clang llvm-dev libclang-dev make g++ cmake build-essential
 ```
 {% endcode %}
+
+* Install the `librocksdb v7.8.3` from the source code. Go to the temporary folder
+
+```shellscript
+cd /tmp
+```
+
+* Clone the [rocksdb](https://github.com/facebook/rocksdb) GitHub repository and enter the `rocksdb` folder
+
+```shellscript
+git clone -b v9.10.0 --depth 1 https://github.com/facebook/rocksdb && cd rocksdb
+```
+
+* Compile it
+
+```shellscript
+make shared_lib -j $(nproc)
+```
+
+<details>
+
+<summary>Example of expected output ⬇️</summary>
+
+```
+$DEBUG_LEVEL is 0
+$DEBUG_LEVEL is 0
+  CC       cache/cache.o
+  CC       cache/cache_entry_roles.o
+  CC       cache/cache_key.o
+  CC       cache/cache_reservation_manager.o
+  CC       cache/charged_cache.o
+  CC       cache/clock_cache.o
+  CC       cache/fast_lru_cache.o
+  CC       cache/lru_cache.o
+  CC       cache/compressed_secondary_cache.o
+  CC       cache/sharded_cache.o
+  CC       db/arena_wrapped_db_iter.o
+  CC       db/blob/blob_contents.o
+  CC       db/blob/blob_fetcher.o
+  CC       db/blob/blob_file_addition.o
+  CC       db/blob/blob_file_builder.o
+  CC       db/blob/blob_file_cache.o
+  CC       db/blob/blob_file_garbage.o
+  [...]
+```
+
+</details>
+
+{% hint style="info" %}
+This process can take several minutes, 10-15 minutes, or more, depending on the performance of your device. Please be patient until the prompt shows again
+{% endhint %}
+
+* Install it
+
+```shellscript
+sudo make install-shared
+```
+
+<details>
+
+<summary>Example of expected output ⬇️</summary>
+
+```
+$DEBUG_LEVEL is 0
+echo 'prefix=/usr/local' > rocksdb.pc
+echo 'exec_prefix=${prefix}' >> rocksdb.pc
+echo 'includedir=${prefix}/include' >> rocksdb.pc
+echo 'libdir=/usr/local/lib' >> rocksdb.pc
+echo '' >> rocksdb.pc
+echo 'Name: rocksdb' >> rocksdb.pc
+echo 'Description: An embeddable persistent key-value store for fast storage' >> rocksdb.pc
+echo Version: 7.8.3 >> rocksdb.pc
+echo 'Libs: -L${libdir}  -ldl -Wl,-rpath -Wl,'$ORIGIN' -lrocksdb' >> rocksdb.pc
+echo 'Libs.private: -lpthread -lrt -ldl -lsnappy -lgflags -lz -lbz2 -llz4 -lzstd ' >> rocksdb.pc
+echo 'Cflags: -I${includedir} -std=c++17  -faligned-new -DHAVE_ALIGNED_NEW -DROCKSDB_PLATFORM_POSIX -DROCKSDB_LIB_IO_POSIX  -DOS_LINUX -fno-builtin-memcmp -DROCKSDB_FALLOCATE_PRESENT -DSNAPPY -DGFLAGS=1 -DZLIB -DBZIP2 -DLZ4 -DZSTD -DROCKSDB_MALLOC_USABLE_SIZE -DROCKSDB_PTHREAD_ADAPTIVE_MUTEX -DROCKSDB_BACKTRACE -DROCKSDB_RANGESYNC_PRESENT -DROCKSDB_SCHED_GETCPU_PRESENT -DROCKSDB_AUXV_GETAUXVAL_PRESENT -DHAVE_UINT128_EXTENSION  -isystem third-party/gtest-1.8.1/fused-src' >> rocksdb.pc
+echo 'Requires: ' >> rocksdb.pc
+install -d /usr/local/lib
+install -d /usr/local/lib/pkgconfig
+for header_dir in `find "include/rocksdb" -type d`; do \
+        install -d //usr/local/$header_dir; \
+done
+for header in `find "include/rocksdb" -type f -name *.h`; do \
+        install -C -m 644 $header //usr/local/$header; \
+done
+for header in ; do \
+        install -d //usr/local/include/rocksdb/`dirname $header`; \
+        install -C -m 644 $header //usr/local/include/rocksdb/$header; \
+done
+install -C -m 644 rocksdb.pc /usr/local/lib/pkgconfig/rocksdb.pc
+install -d /usr/local/lib
+install -C -m 755 librocksdb.so.7.8.3 /usr/local/lib
+ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so.7.8
+ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so.7
+ln -fs librocksdb.so.7.8.3 /usr/local/lib/librocksdb.so
+```
+
+</details>
+
+* Update the shared library cache. Wait until the prompt comes back to show
+
+```shellscript
+sudo ldconfig
+```
+
+* Come back to the `/tmp` folder
+
+```shellscript
+cd ..
+```
+
+* Delete `rocksdb` folder
+
+```shellscript
+sudo rm -r rocksdb
+```
 
 #### Install Rustc (Cargo included)
 
 * Check if you already have `Rustc` installed
 
-```bash
+```shellscript
 rustc --version
 ```
 
@@ -59,7 +186,7 @@ rustc 1.71.0 (8ede3aae2 2023-07-12)
 
 * And cargo installed
 
-```bash
+```shellscript
 cargo -V
 ```
 
@@ -79,7 +206,7 @@ In the [Security section](../../index-1/security.md), we already set up Nginx as
 
 * With user `admin`, create the reverse proxy configuration
 
-```sh
+```shellscript
 sudo nano /etc/nginx/streams-available/electrs-reverse-proxy.conf
 ```
 
@@ -98,14 +225,14 @@ server {
 * Create the symbolic link that points to the directory `streams-enabled`
 
 {% code overflow="wrap" %}
-```bash
+```shellscript
 sudo ln -s /etc/nginx/streams-available/electrs-reverse-proxy.conf /etc/nginx/streams-enabled/
 ```
 {% endcode %}
 
 * Test the Nginx configuration
 
-```bash
+```shellscript
 sudo nginx -t
 ```
 
@@ -118,17 +245,17 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 * Reload the Nginx configuration to apply changes
 
-```sh
+```shellscript
 sudo systemctl reload nginx
 ```
 
 * Configure the firewall to allow incoming requests to the SSL and TCP ports
 
-```sh
+```shellscript
 sudo ufw allow 50022/tcp comment 'allow Electrs SSL from anywhere'
 ```
 
-```sh
+```shellscript
 sudo ufw allow 50021/tcp comment 'allow Electrs TCP from anywhere'
 ```
 
@@ -146,19 +273,19 @@ cd /tmp
 
 * Set a temporary version of the environment variable for the installation
 
-```sh
-VERSION=0.10.10
+```shellscript
+VERSION=0.11.0
 ```
 
 * Download the source code and go to the `electrs` folder
 
-```sh
+```shellscript
 git clone --branch v$VERSION https://github.com/romanz/electrs.git && cd electrs
 ```
 
-* To avoid using bad source code, verify that the release has been properly signed by the main developer [Roman Zeyde](https://github.com/romanz)
+* To avoid using bad source code, verify that the release has been properly signed by the main developer, [Roman Zeyde](https://github.com/romanz)
 
-```sh
+```shellscript
 curl https://romanzey.de/pgp.txt | gpg --import
 ```
 
@@ -174,7 +301,7 @@ gpg: key 87CAE5FA46917CBB: public key "Roman Zeyde &#x3C;me@romanzey.de>" import
 
 * Verify the release
 
-```sh
+```shellscript
 git verify-tag v$VERSION
 ```
 
@@ -193,7 +320,7 @@ Primary key fingerprint: 15C8 C357 4AE4 F1E2 5F3F  35C5 87CA E5FA 4691 7CBB
 * Now compile the source code into an executable binary
 
 {% code overflow="wrap" %}
-```bash
+```shellscript
 ROCKSDB_INCLUDE_DIR=/usr/include ROCKSDB_LIB_DIR=/usr/lib cargo build --locked --release
 ```
 {% endcode %}
@@ -248,14 +375,14 @@ This process can take quite **a long time**, 10-15 minutes or more, depending on
 * Install it
 
 {% code overflow="wrap" %}
-```bash
+```shellscript
 sudo install -m 0755 -o root -g root -t /usr/local/bin ./target/release/electrs
 ```
 {% endcode %}
 
 * Check the correct installation
 
-```sh
+```shellscript
 electrs --version
 ```
 
@@ -267,13 +394,13 @@ v0.10.0
 
 * **(Optional)** Delete the temporal `electrs` folder
 
-```sh
+```shellscript
 sudo rm -r /tmp/electrs
 ```
 
 * Return to the home folder
 
-```bash
+```shellscript
 cd
 ```
 
@@ -285,25 +412,25 @@ If you come to update, this is the final step
 
 * Create the `electrs` user
 
-```sh
+```shellscript
 sudo adduser --disabled-password --gecos "" electrs
 ```
 
 * Make to the `electrs` user a member of the "bitcoin" group
 
-```sh
+```shellscript
 sudo adduser electrs bitcoin
 ```
 
 * Create the Electrs data directory
 
-```sh
+```shellscript
 sudo mkdir /data/electrs
 ```
 
 * Assign the owner to the `electrs` user
 
-```sh
+```shellscript
 sudo chown electrs:electrs /data/electrs
 ```
 
@@ -311,13 +438,13 @@ sudo chown electrs:electrs /data/electrs
 
 * Switch to the `electrs` user
 
-```sh
+```shellscript
 sudo su - electrs
 ```
 
 * Create the electrs config file
 
-```sh
+```shellscript
 nano /data/electrs/electrs.conf
 ```
 
@@ -347,7 +474,7 @@ log_filters = "INFO"
 
 * Exit `electrs` user session to return to the `admin` user session
 
-```sh
+```shellscript
 exit
 ```
 
@@ -355,7 +482,7 @@ exit
 
 * As user `admin`, create the Electrs systemd unit
 
-```sh
+```shellscript
 sudo nano /etc/systemd/system/electrs.service
 ```
 
@@ -400,13 +527,13 @@ WantedBy=multi-user.target
 
 * Enable autoboot **(optional)**
 
-```sh
+```shellscript
 sudo systemctl enable electrs
 ```
 
 * Prepare "electrs" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`
 
-```sh
+```shellscript
 journalctl -fu electrs
 ```
 
@@ -416,7 +543,7 @@ To keep an eye on the software movements, [start your SSH program](../../index-1
 
 * Start the service
 
-```sh
+```shellscript
 sudo systemctl start electrs
 ```
 
@@ -461,7 +588,7 @@ Congrats! Now you have a self-hosted Electrum Server on your node. Now you can p
 
 * Ensure electrs service is working and listening on the default TCP `50021` port and the monitoring `14224` port (not used on RaMiX)
 
-```sh
+```shellscript
 sudo ss -tulpn | grep electrs
 ```
 
@@ -474,7 +601,7 @@ tcp   LISTEN 0      128        127.0.0.1:14224      0.0.0.0:*    users:(("electr
 
 * And the SSL `50022` port
 
-```bash
+```shellscript
 sudo ss -tulpn | grep 50022
 ```
 
@@ -496,7 +623,7 @@ To use your Electrum server when you're on the go, you can easily create a Tor h
 
 * With the user `admin`, edit the `torrc` file
 
-```sh
+```shellscript
 sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
@@ -513,13 +640,13 @@ HiddenServicePort 50022 127.0.0.1:50022
 
 * Reload the Tor configuration to apply changes
 
-```sh
+```shellscript
 sudo systemctl reload tor
 ```
 
 * Get your Onion address
 
-```sh
+```shellscript
 sudo cat /var/lib/tor/hidden_service_electrs_tcp_ssl/hostname
 ```
 
@@ -539,7 +666,7 @@ To get address balances, either an Electrum server or an external service is nec
 
 * As user `admin`, open the `btcrpcexplorer` service
 
-```sh
+```shellscript
 sudo nano /etc/systemd/system/btcrpcexplorer.service
 ```
 
@@ -552,7 +679,7 @@ After=bitcoind.service electrs.service
 
 * Restart the BTC RPC Explorer service to apply the changes
 
-```sh
+```shellscript
 sudo systemctl restart btcrpcexplorer
 ```
 
@@ -562,13 +689,13 @@ sudo systemctl restart btcrpcexplorer
 * Follow the complete [Build from the source code](electrs.md#build-from-the-source-code) section
 * When you finish, restart Electrs to apply the new version
 
-```sh
+```shellscript
 sudo systemctl restart electrs
 ```
 
-* Check logs and pay attention to the next log if that refers to the new version installed and no error logs
+* Check logs and pay attention to the next log if that refers to the new version installed, and no error logs
 
-```bash
+```shellscript
 journalctl -fu electrs
 ```
 
@@ -610,19 +737,19 @@ Starting electrs 0.10.0 on aarch64 linux with Config { network: Bitcoin, db_path
 
 * With the user `admin`, stop electrs
 
-```bash
+```shellscript
 sudo systemctl stop electrs
 ```
 
 * Disable autoboot (if enabled)
 
-```bash
+```shellscript
 sudo systemctl disable electrs
 ```
 
 * Delete the service
 
-```bash
+```shellscript
 sudo rm /etc/systemd/system/electrs.service
 ```
 
@@ -631,7 +758,7 @@ sudo rm /etc/systemd/system/electrs.service
 * Ensure you are logged in as the user `admin`. Delete the `electrs` user.\
   Don't worry about `userdel: electrs mail spool (/var/mail/electrs) not found` output, the uninstall has been successful
 
-```bash
+```shellscript
 sudo userdel -rf electrs
 ```
 
@@ -639,7 +766,7 @@ sudo userdel -rf electrs
 
 * Delete the electrs directory
 
-```bash
+```shellscript
 sudo rm -rf /data/electrs
 ```
 
@@ -647,7 +774,7 @@ sudo rm -rf /data/electrs
 
 * Ensure that you are logged in as the user `admin` , edit the `torrc` config file
 
-```bash
+```shellscript
 sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
@@ -664,7 +791,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 
 * Reload the Tor configuration to apply changes
 
-```bash
+```shellscript
 sudo systemctl reload tor
 ```
 
@@ -672,19 +799,19 @@ sudo systemctl reload tor
 
 * Ensure you are logged in as the user `admin`, delete the reverse proxy config file
 
-```bash
+```shellscript
 sudo rm /etc/nginx/sites-available/electrs-reverse-proxy.conf
 ```
 
 * Delete the symbolic link
 
-```bash
+```shellscript
 sudo rm /etc/nginx/sites-enabled/electrs-reverse-proxy.conf
 ```
 
 * Test Nginx configuration
 
-```bash
+```shellscript
 sudo nginx -t
 ```
 
@@ -697,13 +824,13 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 * Reload the Nginx configuration to apply changes
 
-```bash
+```shellscript
 sudo systemctl reload nginx
 ```
 
 * Display the UFW firewall rules, and note the numbers of the rules for Electrs (e.g., X and Y below)
 
-```bash
+```shellscript
 sudo ufw status numbered
 ```
 
@@ -716,7 +843,7 @@ Expected output:
 
 * Delete the rule with the correct number and confirm with "`yes`" and enter
 
-```bash
+```shellscript
 sudo ufw delete X
 ```
 
