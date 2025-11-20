@@ -51,6 +51,8 @@
   * [BTCPay Server](bonus-guides/bitcoin/btcpay-server.md)
   * [RaMiX on Testnet](bonus/bitcoin/ramix-on-testnet.md)
   * [Bitcoin Knots](bonus-guides/bitcoin/bitcoin-knots.md)
+* [⚡ Lightning](bonus-guides/lightning/README.md)
+  * [Alby Hub](bonus-guides/lightning/alby-hub.md)
 * [🦩 Nostr](bonus-guides/nostr/README.md)
   * [Nostr relay in Rust](bonus-guides/nostr/nostr-relay.md)
 

@@ -8,7 +8,7 @@ parent: Lightning
 
 We set up [LND](https://github.com/lightningnetwork/lnd), the Lightning Network Daemon, by [Lightning Labs](https://lightning.engineering/).
 
-<div align="center"><img src="../images/lightning-network-daemon-logo.png" alt=""></div>
+<div align="center"><img src="../.gitbook/assets/lightning-network-daemon-logo.png" alt=""></div>
 
 ## Requirements
 
@@ -101,7 +101,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=0.19.3
+VERSION=0.20.0
 ```
 
 * Download the application, checksums, and signature
