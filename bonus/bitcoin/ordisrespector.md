@@ -15,7 +15,7 @@ has_toc: false
 Difficulty: Medium
 {% endhint %}
 
-![](broken-reference)
+![](../../.gitbook/assets/ordisrespector-thread.png)
 
 ## Context
 

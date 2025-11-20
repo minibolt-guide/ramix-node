@@ -212,7 +212,7 @@ Congrats! You're now ready to start buying and selling Bitcoin on Bisq securely 
 
 Bisq will let you know when a new update is available. Follow the instructions on their announcement to download, verify, and install the update.
 
-![](broken-reference)
+![](../../.gitbook/assets/bisq-update.png)
 
 ## Uninstall
 

@@ -14,7 +14,7 @@ has_toc: false
 Difficulty: Easy
 {% endhint %}
 
-![](broken-reference) ![](broken-reference)
+![](../../.gitbook/assets/nodejs-logo.png) ![](../../.gitbook/assets/npm-logo.png)
 
 ## Installation
 

@@ -28,7 +28,7 @@ You can also use the following alternatives instead of Sparrow Wallet, according
 
 We will connect the Sparrow wallet to our own Electrum server as it is the most private option. For more information about the privacy and security trade-offs of the various server connection options, read the following [article](https://www.sparrowwallet.com/docs/best-practices.html) by Craig Raw, the author of the wallet.
 
-![](broken-reference)
+![](../../.gitbook/assets/electrum-compare.jpeg)
 
 We will set up Sparrow to connect to Fulcrum within your local network. There is also an optional section at the end that explains how to connect Sparrow to Fulcrum using Tor for when you're on the move.
 
@@ -66,7 +66,7 @@ Connected to Fulcrum x.x.x on protocol version...
 [...]
 ```
 
-![](broken-reference)
+![](../../.gitbook/assets/sparrow-tor-proxy.png)
 
 If there is a connection error message, try the following troubleshooting:
 
@@ -136,7 +136,7 @@ Connected to Fulcrum x.x.x on protocol version ...
 [...]
 ```
 
-![](broken-reference)
+![](../../.gitbook/assets/sparrow-electrum-tor-no-proxy.png)
 
 {% hint style="success" %}
 You're set! Sparrow is now configured to connect to your node over Tor, and you can use it wherever you are
@@ -172,7 +172,7 @@ Expected output:
 
 * **macOS**: download, verify, install, and run [Tor Browser](https://www.torproject.org/)
   * The application must be started manually when you want to connect over Tor
-  * By default, when you have Tor Browser running, the Tor proxy is available on port 9150, use this port instead of `9050` port
+  * By default, when you have Tor Browser running, the Tor proxy is available on port 9150; use this port instead of `9050` port
 
 ### Server configuration
 
@@ -188,10 +188,10 @@ Connected to Fulcrum x.x.x on protocol version ...
 [...]
 ```
 
-![](broken-reference)
+![](../../.gitbook/assets/sparrow-tor-proxy.png)
 
 {% hint style="info" %}
-If you followed the [**Use the Tor proxy from another device**](../../index-1/privacy.md#use-the-tor-proxy-from-another-device) section, you can use the Tor instance of your node instead of the instance of your regular computer, simply put on the "Proxy URL" box, your node IP local address (i.e 192.168.1.60) instead of localhost (127.0.0.1)
+If you followed the [**Use the Tor proxy from another device**](../../index-1/privacy.md#use-the-tor-proxy-from-another-device) section, you can use the Tor instance of your node instead of the instance of your regular computer. Simply put on the "Proxy URL" box, your node IP local address (i.e 192.168.1.60) instead of localhost (127.0.0.1)
 {% endhint %}
 
 Now, let's go back to the wallet and check that the proxy is working properly.
@@ -205,7 +205,7 @@ You're set! Sparrow Wallet is now configured to use the Tor proxy when fetching 
 {% endhint %}
 
 {% hint style="danger" %}
-**Troubleshooting note:** For those who already had Sparrow installed on their systems with old server connections, it is needed to clear the pre-existing cert from the certs folder. Follow these instructions:
+**Troubleshooting note:** For those who already have Sparrow installed on their systems with old server connections, it is needed to clear the pre-existing cert from the certs folder. Follow these instructions:
 {% endhint %}
 
 1. Shut down Sparrow if it's running

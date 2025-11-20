@@ -16,7 +16,7 @@ The following guide was derived from contributions by [Pantamis](https://github.
 Difficulty: Hard
 {% endhint %}
 
-![](broken-reference)
+![](../.gitbook/assets/wireguard.png)
 
 ## Acknowledgments
 
@@ -36,7 +36,7 @@ A VPN is an encrypted tunnel between two computers over the internet. In our cas
 * WireGuard is not censorship-resistant. The encrypted byte headers contain identifiable data which reveals you are using WireGuard VPN.
 * You need to open one port on your router.
 
-![](broken-reference)
+![](../.gitbook/assets/wireguard-VPN.png)
 
 ## Prerequisites
 
@@ -708,14 +708,14 @@ AllowedIPs = 10.0.0.4/32
 
 At this point, we have defined a Virtual Private Network in the `10.0.0.1/24` network range, where RaMiX is at `10.0.0.1` and your client is at `10.0.0.2`. You could use any other [private IP range](https://en.wikipedia.org/wiki/Private_network#Private_IPv4_addresses).
 
-* Another additional server would define it for example as `10.0.1.1/24` where `10.0.1.1` would be the additional server, and `10.0.1.2`, `10.0.1.3`, `10.0.1.4` ..., for the clients in this case
+* Another additional server would define it, for example, as `10.0.1.1/24` where `10.0.1.1` would be the additional server, and `10.0.1.2`, `10.0.1.3`, `10.0.1.4` ..., for the clients in this case
 * If you want to set additional servers on the same LAN, you also have to define a different external port on [port forwarding](wireguard-vpn.md#port-forwarding) of the router, e.g **51821**, and point your Wireguard VPN Client to the **51821** port in the endpoint configuration: **`Endpoint = <yourdomain>:`**[**`51821`**](#user-content-fn-5)[^5]
 
 ### Use your router’s DDNS preconfigured provider
 
-Some routers have support for Dynamic DNS providers like NOIP or dynDNS out of the box, and you simply need to select the right option (NoIP, dynDNS, or similar). It would be a great idea if your RaMiX server won't be running 24/7.
+Some routers have support for Dynamic DNS providers like NOIP or dynDNS out of the box, and you simply need to select the right option (NoIP, dynDNS, or similar). It would be a great idea if your RaMiX server weren't running 24/7.
 
-If your router does not have your DDNS provider preconfigured, the configuration procedure will depend on the specific type of router which is why we can't provide a tutorial for all of them. However, most of the time it boils down to entering the following details in your router configuration.
+If your router does not have your DDNS provider preconfigured, the configuration procedure will depend on the specific type of router, which is why we can't provide a tutorial for all of them. However, most of the time it boils down to entering the following details in your router configuration.
 
 🔍 Search for a section called dynDNS, DDNS, Dynamic DNS, or similar, and configure with these instructions:
 
@@ -739,12 +739,12 @@ Port forwarding allows you to direct incoming traffic from the WAN side (identif
 * **External port:** 51820
 
 {% hint style="info" %}
--> This parameter should be different (51821) if multiple external ports need to be routed to the same port number used by the server on the LAN side, e.g.: different WireGuard VPN servers on the same LAN. More on this in the [Configure additional servers section](wireguard-vpn.md#configure-additional-servers)
+-> This parameter should be different (51821) if multiple external ports need to be routed to the same port number used by the server on the LAN side, e.g, different WireGuard VPN servers on the same LAN. More on this in the [Configure additional servers section](wireguard-vpn.md#configure-additional-servers)
 {% endhint %}
 
 * **Internal port** _(optional in some cases):_ 51820
 * **Protocol:** UDP
-* **Internal host/Server IP address:** the RaMiX local IP address, e.g: 192.168.X.XXX
+* **Internal host/Server IP address:** the RaMiX local IP address, e.g, 192.168.X.XXX
 * **External host** (_some cases_): 0.0.0.0 or asterisk (\*) or blank
 * **WAN interface** _(some cases)**:**_ ppp0.1 or similar
 
