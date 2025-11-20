@@ -15,7 +15,7 @@ has_toc: false
 Difficulty: Medium
 {% endhint %}
 
-![](../../.gitbook/assets/electrs-logo.png)
+![](broken-reference)
 
 ## Requirements
 

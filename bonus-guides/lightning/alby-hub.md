@@ -19,7 +19,7 @@ layout:
 
 [Alby Hub](https://github.com/getAlby/hub) is a self-custodial, open source Lightning wallet that connects to apps.
 
-<figure><img src="../../.gitbook/assets/albyhub.jpeg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/spaces_PwUXd13GpYIkFW2A1Gwj_uploads_git-blob-62147dd6d07e01c55c625407cc5d93d4e8852cd6_albyhub.png" alt=""><figcaption></figcaption></figure>
 
 ### Requirements
 
@@ -122,7 +122,7 @@ VERSION=1.20.0
 
 {% code overflow="wrap" %}
 ```shellscript
-wget https://github.com/getAlby/hub/releases/download/v$VERSION/albyhub-Server-Linux-x86_64.tar.bz2
+wget https://github.com/getAlby/hub/releases/download/v$VERSION/albyhub-Server-Linux-aarch64.tar.bz2
 ```
 {% endcode %}
 
@@ -176,20 +176,20 @@ Primary key fingerprint: 5D92 1859 38E6 DBF8 93DC  CC5B A5EA BD88 3509 2B08
 * Verify the signed checksum against the actual checksum of your download
 
 ```shellscript
-grep 'Server-Linux-x86_64.tar.bz2' manifest.txt | sha256sum --check
+grep 'Server-Linux-aarch64.tar.bz2' manifest.txt | sha256sum --check
 ```
 
 Expected output:
 
 ```
-./albyhub-Server-Linux-x86_64.tar.bz2: OK
+./albyhub-Server-Linux-aarch64.tar.bz2: OK
 ```
 
 * Extract
 
 {% code overflow="wrap" %}
 ```shellscript
-sudo tar -xjvf albyhub-Server-Linux-x86_64.tar.bz2 --one-top-level=albyhub-Server-Linux-x86_64
+sudo tar -xjvf albyhub-Server-Linux-aarch64.tar.bz2 --one-top-level=albyhub-Server-Linux-aarch64
 ```
 {% endcode %}
 
@@ -209,7 +209,7 @@ Expected output:
 
 {% code overflow="wrap" %}
 ```shellscript
-sudo install -m 0755 -o root -g root -t /usr/local/bin albyhub-Server-Linux-x86_64/bin/albyhub
+sudo install -m 0755 -o root -g root -t /usr/local/bin albyhub-Server-Linux-aarch64/bin/albyhub
 ```
 {% endcode %}
 
@@ -217,7 +217,7 @@ sudo install -m 0755 -o root -g root -t /usr/local/bin albyhub-Server-Linux-x86_
 
 {% code overflow="wrap" %}
 ```shellscript
-sudo cp albyhub-Server-Linux-x86_64/lib/libldk_node.so /usr/local/lib/
+sudo cp albyhub-Server-Linux-aarch64/lib/libldk_node.so /usr/local/lib/
 ```
 {% endcode %}
 
@@ -231,7 +231,7 @@ sudo ldconfig
 
 {% code overflow="wrap" %}
 ```shellscript
-sudo rm -rf albyhub-Server-Linux-x86_64.tar.bz2 albyhub-Server-Linux-x86_64 manifest.txt manifest.txt.asc
+sudo rm -rf albyhub-Server-Linux-aarch64.tar.bz2 albyhub-Server-Linux-aarch64 manifest.txt manifest.txt.asc
 ```
 {% endcode %}
 
