@@ -479,6 +479,9 @@ routing.strictgraphpruning=true
 ## Database selection
 db.backend=postgres
 
+# Use native SQL instead of KV emulation (only for db.backend=postgres)
+db.use-native-sql=true
+
 [postgres]
 db.postgres.dsn=postgresql://admin:admin@127.0.0.1:5432/lndb?sslmode=disable
 db.postgres.timeout=0
