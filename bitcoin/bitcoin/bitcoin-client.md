@@ -99,8 +99,8 @@ bitcoin-26.1-aarch64-linux-gnu.tar.gz: OK
 ### Timestamp check
 
 * The binary checksum file is also timestamped with the Bitcoin blockchain using the [OpenTimestamps protocol](https://en.wikipedia.org/wiki/Time_stamp_protocol), proving that the file existed before some point in time. Let's verify this timestamp. On your local computer, download the checksums file and its timestamp proof:
-  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-29.0/SHA256SUMS.ots) the checksum file
-  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-29.0/SHA256SUMS) its timestamp proof
+  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.0/SHA256SUMS.ots) the checksum file
+  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.0/SHA256SUMS) its timestamp proof
 * In your browser, open the [OpenTimestamps website](https://opentimestamps.org/)
 * In the "Stamp and verify" section, drop or upload the downloaded `SHA256SUMS.ots` proof file in the dotted box
 * In the next box, drop or upload the `SHA256SUMS` file
@@ -360,7 +360,7 @@ onlynet=ipv4
 onlynet=ipv6
 
 # Append comment to the user agent string
-uacomment=RaMiX node
+uacomment=<a data-footnote-ref href="#user-content-fn-2">RaMiX node</a>
 
 # Disable integrated wallet
 disablewallet=1
@@ -403,10 +403,10 @@ proxy=unix:/run/tor/socks
 i2psam=127.0.0.1:7656
 
 # Connections
-rpcauth=<a data-footnote-ref href="#user-content-fn-2">&#x3C;replace with your own auth line generated in the previous step></a>
+rpcauth=<a data-footnote-ref href="#user-content-fn-3">&#x3C;replace with your own auth line generated in the previous step></a>
 
 # Initial block download optimizations
-dbcache=<a data-footnote-ref href="#user-content-fn-3">2048</a>
+dbcache=<a data-footnote-ref href="#user-content-fn-4">2048</a>
 blocksonly=1
 </code></pre>
 
@@ -558,13 +558,13 @@ UpdateTip: new best=000000000f8d29fcf9ac45e443706c6f21a6e9cfa615f94794b726d3ba8b
 ```
 {% endhint %}
 
-* Link the Bitcoin data directory from the `admin` user's home directory as well. This allows `admin` users to work with bitcoind directly, for example, by using the command `bitcoin-cli`
+* Link the Bitcoin data directory from the `admin` user's home directory as well. This allows `admin` user to work with bitcoind directly, for example, by using the command `bitcoin-cli`
 
 ```sh
 ln -s /data/bitcoin /home/admin/.bitcoin
 ```
 
-* This symbolic link becomes active **only in a new user session**. Log out from SSH by entering the next command
+* This symbolic link becomes active **only in a new user session**. Log out of SSH by entering the next command
 
 ```sh
 exit
@@ -585,7 +585,7 @@ Expected output:
 {% hint style="warning" %}
 **Troubleshooting note:**\
 \
-If you don't obtain the before-expected output ([`.bitcoin -> /data/bitcoin`](#user-content-fn-4)[^4]) and you only have (`.bitcoin`), you must follow the next steps to fix that:
+If you don't obtain the expected output ([`.bitcoin -> /data/bitcoin`](#user-content-fn-5)[^5]) and you only have (`.bitcoin`), you must follow the next steps to fix that:
 
 1. Delete the failed created symbolic link
 
@@ -599,7 +599,7 @@ sudo rm -r .bitcoin
 ln -s /data/bitcoin /home/admin/.bitcoin
 ```
 
-3. Check the symbolic link has been created correctly this time, and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-4)[^4]. If yes, continue with the guide, if not, try again
+3. Check the symbolic link has been created correctly this time, and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-5)[^5]. If yes, continue with the guide, if not, try again
 
 ```bash
 ls -la .bitcoin
@@ -611,7 +611,7 @@ Expected output:
 </code></pre>
 {% endhint %}
 
-* Wait a few minutes until Bitcoin Core starts, and enter the next command to obtain your Tor and I2P addresses. Take note of them, later you might need it
+* Wait a few minutes until Bitcoin Core starts, and enter the next command to obtain your Tor and I2P addresses. **Take note of them**, later you might need it
 
 {% code overflow="wrap" %}
 ```sh
@@ -655,9 +655,9 @@ sudo ss -tulpn | grep bitcoind
 
 Expected output:
 
-<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-5">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-6">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
+<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-6">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-8">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
 tcp   LISTEN 0      128            [::1]:8332          [::]:*    users:(("bitcoind",pid=773834,fd=10))
 </code></pre>
 
@@ -668,7 +668,7 @@ tcp   LISTEN 0      128            [::1]:8332          [::]:*    users:(("bitcoi
 ## Bitcoin Core is syncing
 
 {% hint style="info" %}
-This process is called IBD (Initial Block Download). This can take between one day and a week, depending mostly on your PC performance. It's best to wait until the synchronization is complete before going ahead
+This process is called IBD (Initial Block Download). This can take between one day and a week, depending mostly on your Raspberry Pi performance. It's best to wait until the synchronization is complete before going ahead
 {% endhint %}
 
 ### Explore bitcoin-cli
@@ -800,9 +800,9 @@ sudo nano /home/bitcoin/.bitcoin/bitcoin.conf
 
 <pre><code># Slow devices optimizations
 ## Limit the number of max peer connections
-<a data-footnote-ref href="#user-content-fn-8">maxconnections</a>=40
+<a data-footnote-ref href="#user-content-fn-9">maxconnections</a>=40
 ## Tries to keep outbound traffic under the given target per 24h
-<a data-footnote-ref href="#user-content-fn-9">maxuploadtarget</a>=5000
+<a data-footnote-ref href="#user-content-fn-10">maxuploadtarget</a>=5000
 ## Increase the number of threads to service RPC calls (default: 4)
 rpcthreads=128
 ## Increase the depth of the work queue to service RPC calls (default: 16)
@@ -832,7 +832,7 @@ whitelist=bloomfilter@192.168.0.0/16
 ```
 {% endhint %}
 
-### Renovate your Bitcoin Core Tor and I2P addresses
+### Renovate your Bitcoin Core, Tor, and I2P addresses
 
 * With user `admin`, stop bitcoind and dependencies
 
@@ -873,7 +873,7 @@ bitcoin-cli getnetworkinfo | grep address.*onion && bitcoin-cli getnetworkinfo |
 * For convenience, it might be useful to have the manual page for `bitcoin-cli` in the same machine, so that they can be consulted offline, and they can be installed from the directory
 
 {% hint style="info" %}
-If you followed the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md) this section is not needed because man pages are installed by default, type directly `man bitcoin-cli` command to see the man pages
+If you followed the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md), this section is not needed because man pages are installed by default, type directly `man bitcoin-cli` command to see the man pages
 {% endhint %}
 
 ```sh
@@ -928,7 +928,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=29.1
+VERSION=30.0
 ```
 
 * Clone the source code from GitHub and enter the bitcoin folder
@@ -1001,7 +1001,7 @@ If you already have another fully-synced MiniBolt node on your local network, co
 To get this, you will need a **full-sync** MiniBolt node on the same local network
 {% endhint %}
 
-You will need a **full-sync local MiniBolt node**
+You will need a **full-sync local RaMiX node**
 
 **On the full-sync local MiniBolt node:**
 
@@ -1009,9 +1009,11 @@ You will need a **full-sync local MiniBolt node**
 
 * Configure the firewall to allow incoming requests to Bitcoin Core from anywhere
 
+{% code overflow="wrap" %}
 ```sh
 sudo ufw allow 8333/tcp comment 'allow incoming connections to Bitcoin Core from anywhere'
 ```
+{% endcode %}
 
 #### Configure Bitcoin Core
 
@@ -1030,7 +1032,7 @@ sudo nano /data/bitcoin/bitcoin.conf
 
 Or **add** under `bind=127.0.0.1`, the next line allows **connections only from devices in the same local network** (**recommended option** to improve security)
 
-<pre><code>bind=<a data-footnote-ref href="#user-content-fn-10">192.168.x.x</a>
+<pre><code>bind=<a data-footnote-ref href="#user-content-fn-11">192.168.x.x</a>
 </code></pre>
 
 {% hint style="info" %}
@@ -1053,7 +1055,7 @@ sudo nano /data/bitcoin/bitcoin.conf
 
 * Attaches and persists the connection **only** to the full-sync local MiniBolt node. Add the next line at the end of the file. Save and exit
 
-<pre><code> connect=<a data-footnote-ref href="#user-content-fn-11">&#x3C;localip></a>:8333
+<pre><code> connect=<a data-footnote-ref href="#user-content-fn-12">&#x3C;localip></a>:8333
 </code></pre>
 
 {% hint style="info" %}
@@ -1107,8 +1109,8 @@ sudo nano /data/bitcoin/bitcoin.conf
 
 * Add at the end of the file the `onion` + `i2p` addresses of the desired peers that you want to add to improve the reliability of your Bitcoin Core on MiniBolt. Save and exit
 
-<pre><code>addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-12">abcdefg..............xyz.onion</a>>:8333
-addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-12">abcdefg..............xyz.b32</a>>.i2p:0
+<pre><code>addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-13">abcdefg..............xyz.onion</a>>:8333
+addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-13">abcdefg..............xyz.b32</a>>.i2p:0
 </code></pre>
 
 {% hint style="info" %}
@@ -1164,7 +1166,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=29.1
+VERSION=30.0
 ```
 
 * Download binary, checksum, signature files, and timestamp file
@@ -1272,7 +1274,7 @@ Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bi
 Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
 
--> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next step
+-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones, and continue to the next step
 {% endhint %}
 
 * Now, just check that the timestamp date is close to the [release](https://github.com/bitcoin/bitcoin/releases) date of the version you're installing
@@ -1416,28 +1418,30 @@ sudo ufw delete X
 
 [^1]: Check this
 
-[^2]: Replace
+[^2]: Change for your selection if you want
 
-[^3]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
+[^3]: Replace
+
+[^4]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
 
     -> Recommended: dbcache=1/2 x RAM available e.g: 4GB RAM -> dbcache=2048
 
     -> Remember to comment or delete this parameter after IBD (Initial Block Download)
 
-[^4]: Symbolic link
+[^5]: Symbolic link
 
-[^5]: RPC port
+[^6]: RPC port
 
-[^6]: P2P main port
+[^7]: P2P main port
 
-[^7]: Default P2P Tor port
+[^8]: Default P2P Tor port
 
-[^8]: Default 125 connections to different peers, 11 of which are outbound. You can therefore, have at most 114 inbound connections. Of the 11 outbound peers, there can be 8 full-relay connections, 2 block-relay-only ones and occasionally 1 short-lived feeler or an extra block-relay-only connection.
+[^9]: Default 125 connections to different peers, 11 of which are outbound. You can therefore, have at most 114 inbound connections. Of the 11 outbound peers, there can be 8 full-relay connections, 2 block-relay-only ones and occasionally 1 short-lived feeler or an extra block-relay-only connection.
 
-[^9]: This option can be specified in MiB per day and is turned off by default. \<MiB per day>
+[^10]: This option can be specified in MiB per day and is turned off by default. \<MiB per day>
 
-[^10]: Replace with your IP
+[^11]: Replace with your IP
 
-[^11]: Replace with the local IP of the remote node e.g, `192.168.1.43`
+[^12]: Replace with the local IP of the remote node e.g, `192.168.1.43`
 
-[^12]: Replace with the desire address of the peer
+[^13]: Replace with the desire address of the peer

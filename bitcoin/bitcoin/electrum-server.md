@@ -370,10 +370,13 @@ tcp = 0.0.0.0:50001
 peering = false
 zmq_allow_hashtx = true
 
+# Anonymize client IP addresses and TxIDs in logs (optional)
+<a data-footnote-ref href="#user-content-fn-2">anon_logs</a> = true
+
 # Max RocksDB Memory in MiB - DEFAULT: 2048.0
 # (this applies in initial synchronization and daily operation)
 # recommended: db_mem=1/2 x RAM available, e.g, 4GB RAM -> db_mem = 2048.0
-db_mem = <a data-footnote-ref href="#user-content-fn-2">2048.0</a>
+db_mem = <a data-footnote-ref href="#user-content-fn-3">2048.0</a>
 
 # Banner
 banner = /data/fulcrum/fulcrum-banner.txt
@@ -456,7 +459,7 @@ sudo systemctl start fulcrum
 <div data-full-width="false"><figure><img src="../../.gitbook/assets/fulcrum-index.PNG" alt=""><figcaption></figcaption></figure></div>
 
 {% hint style="info" %}
-> Fulcrum must first fully index the blockchain and compact its database before you can connect to it with your wallets. This can take up to \~1.5 - 4 days or more, depending on the hardware. Only proceed with the [Blockchain explorer: BTC RPC Explorer](blockchain-explorer.md) and [Desktop Wallet Section](desktop-signing-app-sparrow.md) once Fulcrum is ready.
+> Fulcrum must first fully index the blockchain and compact its database before you can connect to it with your wallets. This can take up to \~1.5 - 4 days or more, depending on yor Raspberry Pi. Only proceed with the [Blockchain explorer: BTC RPC Explorer](blockchain-explorer.md) and [Desktop Wallet Section](desktop-signing-app-sparrow.md) once Fulcrum is ready.
 
 > Fulcrum will now index the whole Bitcoin blockchain so that it can provide all necessary information to wallets. With this, the wallets you use no longer need to connect to any third-party server to communicate with the Bitcoin peer-to-peer network.
 {% endhint %}
@@ -476,13 +479,13 @@ sudo systemctl stop fulcrum
 sudo rm -r /data/fulcrum/fulcrum_db/*
 ```
 
-* Start fulcrum again
+* Start Fulcrum again
 
 ```bash
 sudo systemctl start fulcrum
 ```
 
--> You should see the logs of the [Run process](electrum-server.md#run) before again
+-> You should see the logs of the [Run process](electrum-server.md#run) again
 
 -> The troubleshooting note could be helpful after experiencing **data corruption due to a power outage** during normal operation
 {% endhint %}
@@ -801,4 +804,6 @@ Filename            Type                Size           Used    Priority
 
 [^1]: Check this
 
-[^2]: Accommodate this
+[^2]: To ensure greater privacy for third parties who connect (if you share Fulcrum publicly)
+
+[^3]: Accommodate this

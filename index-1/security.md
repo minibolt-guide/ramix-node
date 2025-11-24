@@ -20,11 +20,11 @@ ping6 -c2 2001:858:2:2:aabb:0:563b:1526 && ping6 -c2 2620:13:4000:6000::1000:118
 
 {% tabs %}
 {% tab title="First (more common)" %}
-If you obtain `ping6: connect: Network is unreachable`, you don't have IPv6 availability, don't worry, the IPv6 adoption is new, you will use your internet connection using the common IPv4. Additionally, you can obtain your public IPv4 with: `curl -s ipv4.icanhazip.com`
+If you obtain `ping6: connect: Network is unreachable`, you don't have IPv6 availability, don't worry, IPv6 adoption is new, you will use your internet connection using the common IPv4. Additionally, you can obtain your public IPv4 address with: `curl -s ipv4.icanhazip.com`
 {% endtab %}
 
 {% tab title="Second" %}
-If you obtain the `"OK."` output, you have IPv6 availability, additionally, you can obtain your IPv6 with: `curl -s ipv6.icanhazip.com` you are **OK**, continue the guide without modifications
+If you obtain the `"OK."` output, you have IPv6 availability. Additionally, you can obtain your IPv6 with: `curl -s ipv6.icanhazip.com` you are **OK**, continue the guide without modifications
 {% endtab %}
 {% endtabs %}
 
@@ -90,7 +90,7 @@ If you don't have [IPv6 availability](security.md#check-ipv6-availability), you 
 * Edit the UFW configuration
 
 ```bash
-sudo nano +7 /etc/default/ufw -l
+sudo nano +7 /etc/default/ufw
 ```
 
 * Change `IPV6=yes` to `IPV6=no`. Save and exit
@@ -117,7 +117,7 @@ sudo ufw allow 22/tcp comment 'allow SSH from anywhere'
 
 ### Enable
 
-* Enable the UFW, when the prompt shows you `"Command may disrupt existing ssh connections. Proceed with operation (y|n)?"`, press `"y"` and enter
+* Enable the UFW when the prompt shows you `"Command may disrupt existing ssh connections. Proceed with operation (y|n)?"`, press `"y"` and enter
 
 ```sh
 sudo ufw enable
@@ -154,17 +154,19 @@ To                    Action      From
 
 {% hint style="info" %}
 If you find it locked out by mistake, you can connect a keyboard and screen to your PC to log in locally and fix these settings (especially for the SSH port 22)
+
+More info: [UFW Essentials](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
 {% endhint %}
 
 ## Monitoring SSH authentication logs (optional)
 
-* You can monitor authentication general logs in your system in real-time using `systemd‑journald`
+* You can monitor the authentication general logs in your system in real-time using `systemd‑journald`
 
 ```sh
 journalctl -fu ssh
 ```
 
-* With this command, you can list the last satisfactory logged-in users in your RaMiX since 7 days ago. Change `-"7"days` option to do whatever you want
+* With this command, you can list the last satisfactory logged-in users in your RaMiX since 7 days. Change `-"7"days` option to do whatever you want
 
 ```sh
 last -s -7days -t today
@@ -180,9 +182,9 @@ Do this regularly to get security-related incidents
 
 ### Installation
 
-Several components of this guide will expose a communication port, for example, the Block Explorer, or the ThunderHub web interface for your Lightning node. Even if you use these services only within your own home network, communication should always be encrypted. Otherwise, any device in the same network can listen to the exchanged data, including passwords.
+Several components of this guide will expose a communication port, for example, the Block Explorer or the ThunderHub web interface for your Lightning node. Even if you use these services only within your own home network, communication should always be encrypted. Otherwise, any device in the same network can listen to the exchanged data, including passwords.
 
-We use Ngnix to encrypt the communication with SSL/TLS (Transport Layer Security). This setup is called a "reverse proxy": Nginx provides secure communication to the outside and routes the traffic back to the internal service without encryption.
+We use Nginx to encrypt the communication with SSL/TLS (Transport Layer Security). This setup is called a "reverse proxy": Nginx provides secure communication to the outside and routes the traffic back to the internal service without encryption.
 
 * With user `admin`, update and upgrade the OS.  Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
@@ -190,7 +192,7 @@ We use Ngnix to encrypt the communication with SSL/TLS (Transport Layer Security
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Install Ngnix and dependencies. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Install Nginx and dependencies. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install nginx libnginx-mod-stream
@@ -309,7 +311,7 @@ sudo systemctl reload nginx
 ```
 
 {% hint style="info" %}
-You can monitor the Nginx logs by entering this command. Exit with Ctrl + C
+**(Optional)** You can monitor the Nginx logs by entering this command. Exit with `Ctrl + C`
 {% endhint %}
 
 ```bash
@@ -325,7 +327,7 @@ Jun 04 18:25:18 ramix systemd[1]: Reloaded A high performance web server and a r
 </code></pre>
 
 {% hint style="info" %}
-**(Optional)** You can monitor Nginx error logs by entering the next command. Exit with `Ctrl + C`
+**(Optional)** You can monitor Nginx error logs by entering the following command. Exit with `Ctrl + C`
 
 ```bash
 sudo tail -f /var/log/nginx/error.log
@@ -344,7 +346,7 @@ sudo apt update && sudo apt upgrade
 
 * With the user `admin` stopping the`nginx.service`
 
-```purebasic
+```bash
 sudo systemctl stop nginx
 ```
 

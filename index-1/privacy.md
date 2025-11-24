@@ -12,7 +12,7 @@ True, it's only your IP address that is revealed, but using services like [iploc
 
 ## Tor Project
 
-<div align="left"><img src="../.gitbook/assets/tor-logo.png" alt="" width="248"></div>
+<div align="left"><img src="../.gitbook/assets/tor-logo.png" alt="" width="166"></div>
 
 We use Tor, a free software built by the [Tor Project](https://www.torproject.org). It allows you to anonymize internet traffic by routing it through a network of nodes, hiding your location and usage profile.
 
@@ -83,6 +83,10 @@ tor --version
 Tor version 0.4.7.13.
 [...]
 ```
+
+{% hint style="info" %}
+Please note that the version number before might change in your case; this is just an example of when the guide was made
+{% endhint %}
 
 ### **Tor configuration**
 
@@ -360,7 +364,7 @@ sudo ufw allow 7071/tcp comment 'allow i2pd webconsole SSL from anywhere'
 sudo nano +130 -l /etc/i2pd/i2pd.conf
 ```
 
-* Uncomment (delete "#" at the first of the lines) and replace "`changeme`" with your "`[ F ] i2pd webconsole password`". Save and exit
+* Uncomment (delete "#" at the beginning of the lines) and replace "`changeme`" with your "`[ F ] i2pd webconsole password`". Save and exit
 
 ```
 auth = true
@@ -390,7 +394,7 @@ tcp   LISTEN 0      4096       127.0.0.1:7070       0.0.0.0:*    users:(("i2pd",
 ```
 
 {% hint style="info" %}
-Now, point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:7071"` (or your node IP address) like `"https://192.168.x.xxx:7071"`. Type the credentials before configurated (`user: i2pd; password: [ F ] i2pd webconsole password`). After that, you should see something similar to the next screenshot
+Now, point your browser to the secure access point provided by the NGINX web proxy, for example, `"https://ramix.local:7071"` (or your node IP address) like `"https://192.168.x.xxx:7071"`. Type the credentials before configuration (`user: i2pd; password: [ F ] i2pd webconsole password`). After that, you should see something similar to the next screenshot
 
 This access is only available from the local network; no Tor or Wireguard VPN is allowed
 {% endhint %}
@@ -574,7 +578,7 @@ You can use this connection from another device in the same local network, for e
 
 **Example from Firefox:**
 
-Go to Settings > General > Network Settings > Push to the "Settings" button
+-> Go to Settings > General > Network Settings > Push to the "Settings" button
 
 Edit the screen to match this, replacing SOCKS Host with your node's local IP address:
 
@@ -711,7 +715,7 @@ If you obtain this error [after updating](privacy.md#upgrade-tor-and-i2p) the re
 <figure><img src="../.gitbook/assets/tor_keyring_error.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-This means Tor has renovated the signature due probably that is soon to expire or has expired. Follow the next steps to fix that ⬇️
+This means Tor has renovated the signature due probably that is probably soon to expire or has expired. Follow the next steps to fix that ⬇️
 {% endhint %}
 
 * With user `admin`, up to `"root"` user temporarily
