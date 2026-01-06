@@ -10,7 +10,7 @@ _USE WITH CAUTION - For this guide to work properly, you will need to open ports
 Difficulty: Medium
 {% endhint %}
 
-<div data-full-width="false"><img src="../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
+<div data-full-width="false"><img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
 
 ## Obsf4 bridge
 
@@ -20,7 +20,7 @@ We will create a separate instance for the **obfs4 bridge** and **Guard/Middle r
 
 ## Requirements
 
-* [Tor](../index-1/privacy.md#tor-installation)
+* [Tor](../../index-1/privacy.md#tor-installation)
 
 ## Preparations obfs4 bridge
 
@@ -42,7 +42,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 #### Install obfs4 proxy
@@ -83,7 +83,7 @@ Tor version 0.4.7.10.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, follow only the [Tor installation](../index-1/privacy.md#tor-installation) section in the Privacy section to install it and come back to follow the rest of the guide
+If you obtain `"command not found"` output, follow only the [Tor installation](../../index-1/privacy.md#tor-installation) section in the Privacy section to install it and come back to follow the rest of the guide
 {% endhint %}
 
 ### **Configure Firewall & Router (NAT)**
@@ -537,7 +537,7 @@ A non-exit Tor relay requires minimal maintenance efforts and bandwidth usage ca
 
 ## Requirements
 
-* [Tor](../index-1/privacy.md#tor-installation)
+* [Tor](../../index-1/privacy.md#tor-installation)
 
 ### **Install dependencies**
 
@@ -557,7 +557,7 @@ Tor version 0.4.7.13.
 ```
 
 {% hint style="info" %}
-If you obtain `"command not found"` output, you need to [install Tor](../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
+If you obtain `"command not found"` output, you need to [install Tor](../../index-1/privacy.md#tor-installation) following the proper section on RaMiX and come back to continue with the guide
 {% endhint %}
 
 ## Preparations Guard/Middle relay
@@ -1028,7 +1028,7 @@ nyx -i 9051
 
 * Press the **right** `->` **navigation key** to navigate to page 2/5 to show the traffic of your Tor instance
 
-![Example of an obsf4 bridge running](../.gitbook/assets/nyx-tor-bridge.png)
+![Example of an obsf4 bridge running](../../.gitbook/assets/nyx-tor-bridge.png)
 
 * Press `"q"` key **2 times** to exit
 
@@ -1036,9 +1036,9 @@ nyx -i 9051
 
 On some occasions, due to some circumstances, your ISP, the company's network, your country, etc, could be censoring your access to Tor and with it the proper functioning of RaMiX services **(used on Bitcoin Core / LND + others)**
 
-![](../.gitbook/assets/tor-failing.jpg)
+![](../../.gitbook/assets/tor-failing.jpg)
 
-* On the RaMiX or external node, with the user `admin`, [install Tor](../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* On the RaMiX or external node, with the user `admin`, [install Tor](../../index-1/privacy.md#tor-installation) and the `ofbs4 proxy`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt install obfs4proxy
@@ -1085,7 +1085,7 @@ Bridge obfs4 <IPADDRESS>:<PORT> <FINGERPRINT> cert=<CERTIFICATE> iat-mode=0
 -> Since many bridge addresses aren’t public, you may need to request some from the Tor Project. Visit this website [CLEARNET](https://bridges.torproject.org/options) / [ONION](http://yq5jjvr7drkjrelzhut7kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options), to get bridges. Push the **`Just give me bridges`** button or select obfs4 on the drop down and push the **`Get Bridges`** button. Select one or the 2 offered, and add the content to the `torrc` configuration as a line more similar like `Bridge obfs4 <IPADDRESS>:...`⬇️
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/get-bridge.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/get-bridge.PNG" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 -> Remember to add the word "`Bridge`" before the `obfs4 IP...` line got from Tor, if not, Tor daemon will give you an error.

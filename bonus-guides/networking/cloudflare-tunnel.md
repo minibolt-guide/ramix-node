@@ -14,11 +14,11 @@ Cost: Paid service
 Difficulty: Medium
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/network-diagram-cloudflared.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/network-diagram-cloudflared.png" alt=""><figcaption></figcaption></figure>
 
 With Cloudflare Tunnel, you gain low latency access to your server on clearnet, without the need for complex firewall or router configurations, dynamic DNS, or relying on an internet service provider.
 
-<figure><img src="../.gitbook/assets/cloudflared-connection.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cloudflared-connection.PNG" alt=""><figcaption></figcaption></figure>
 
 Cloudflare Tunnel ensures secure connectivity without exposing your server's publicly routable IP address. Instead, a lightweight daemon, cloudflared, creates outbound-only connections to Cloudflare's global network. This establishes persistent tunnels that route traffic to DNS records. You can run multiple cloudflared processes within a tunnel, connecting your resources securely to Cloudflare's nearest data center.
 
@@ -40,7 +40,7 @@ Before you start, make sure you:
   * Click **Done, take note of the nameservers** assigned to your account
   * On **Overview**, locate the nameserver names in **2**
 
-<figure><img src="../.gitbook/assets/cloudflare-nameservers.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cloudflare-nameservers.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Change the domain nameservers to Cloudflare**
 
@@ -48,25 +48,25 @@ Before you start, make sure you:
   * Access your Namecheap account or the registrar selected, from the left sidebar, select **Dashboard,** and click on the **Manage** button next to your domain
   * Staying in the **Domain** tab, go to the **Nameservers section**, select **CustomDNS,** type the **nameservers provided by Cloudflare** before, and click on the green checkmark to save the changes
 
-<figure><img src="../.gitbook/assets/CDNSsave.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CDNSsave.png" alt=""><figcaption></figcaption></figure>
 
 * Make sure **DNSSEC** **is disabled** at this point
   * Select the **Advanced DNS** tab and find the DNSSEC section
   * Toggle the **button to the left** if it is to the right
 
-<figure><img src="../.gitbook/assets/DNSSECdisable.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/DNSSECdisable.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Once all of this is done, you need to wait for the registrar to update the nameservers. This process can take up to 24 hours, but it is usually much more immediate. In any case, Cloudflare will send an email when the process is finished
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/active-domain-cloudflare.png" alt="" width="375"><figcaption><p>Example of email notification received from Cloudflare</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/active-domain-cloudflare.png" alt="" width="375"><figcaption><p>Example of email notification received from Cloudflare</p></figcaption></figure>
 
 ### Check DNS records
 
 * From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 
-<figure><img src="../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 You can manually add a new record by clicking the "**Add record"** button. More later, we will use this. Right now, you will not have any record
@@ -168,13 +168,13 @@ Leave Cloudflared running to download the cert automatically while you complete 
 
 * In the same browser session with the Cloudflare account already open, enter the URL of the prompt provided earlier. Then, select your pre-configured site on Cloudflare to authorize the tunnel for that site
 
-<figure><img src="../.gitbook/assets/cloudflared-auth-1.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cloudflared-auth-1.PNG" alt=""><figcaption></figcaption></figure>
 
 * Authorize its connection
 
-<figure><img src="../.gitbook/assets/authorized-tunnel.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/authorized-tunnel.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/cloudflared-auth-3.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cloudflared-auth-3.PNG" alt=""><figcaption></figcaption></figure>
 
 * Go back to the RaMiX terminal session, and you will see this:
 
@@ -314,11 +314,11 @@ Suppose you wanted to expose 2 services or more. In that case, that is to say, y
 > 2. Add a new record by selecting **CNAME** type. Enter the second subdomain selected in the second ingress rule e.g `explorer`, in the `name` box, and in the `target` content, enter the `UUID` of your tunnel (the same content as before)
 > 3. Ensure you have **enabled `Proxy`** for each record you have added **(Proxy status: Proxied)**
 
-<figure><img src="../.gitbook/assets/add-record-DNS-records.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/add-record-DNS-records.png" alt=""><figcaption></figcaption></figure>
 
 **Example** of DNS record table:
 
-<figure><img src="../.gitbook/assets/dns-records-uuid.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dns-records-uuid.png" alt=""><figcaption></figcaption></figure>
 
 ### Increase the maximum UDP Buffer Sizes
 
@@ -444,7 +444,7 @@ Keep **this terminal open,** you'll need to come back here on the next step to m
 
 ## Run <a href="#id-6-run-the-tunnel" id="id-6-run-the-tunnel"></a>
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`. Run the tunnel to proxy incoming traffic from the tunnel to any number of services running locally on your origin
 
 * Start the service
 

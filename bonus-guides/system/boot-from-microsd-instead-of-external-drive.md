@@ -16,7 +16,7 @@ When writing Raspberry Pi OS to the boot medium, use a **high endurance microSD 
 2. Follow the [Configuration](../../index-1/configuration.md) section until you reach the [Data directory](../../index-1/configuration.md#data-directory) section, which we will skip and continue with the steps below.
 
 {% hint style="info" %}
-**Remember:** if your external drive performs poorly during the [Check Drive Performance](../../index-1/configuration.md#check-drive-performance) step, refer to the [Fix Bad USB3 performance](../../troubleshooting.md#fix-bad-usb3-performance) instructions in the guide
+**Remember:** if your external drive performs poorly during the [Check Drive Performance](../../index-1/configuration.md#check-drive-performance) step, refer to the [Fix Bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) instructions in the guide
 {% endhint %}
 
 ## **Format external drive**

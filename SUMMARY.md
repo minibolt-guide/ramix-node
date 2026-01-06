@@ -55,13 +55,10 @@
   * [Alby Hub](bonus-guides/lightning/alby-hub.md)
 * [🦩 Nostr](bonus-guides/nostr/README.md)
   * [Nostr relay in Rust](bonus-guides/nostr/nostr-relay.md)
-
-***
-
-* [🛡️ Security](security/README.md)
-  * [Login with SSH keys](security/ssh-keys.md)
-* [🌐 Networking](networking/README.md)
-  * [WireGuard VPN](networking/wireguard-vpn.md)
-  * [Cloudflare tunnel](networking/cloudflare-tunnel.md)
-  * [Tor services: bridges & relays](networking/tor-services.md)
-* [🔧 Troubleshooting](troubleshooting.md)
+* [🛡️ Security](bonus-guides/security/README.md)
+  * [Login with SSH keys](bonus-guides/security/ssh-keys.md)
+* [🌐 Networking](bonus-guides/networking/README.md)
+  * [WireGuard VPN](bonus-guides/networking/wireguard-vpn.md)
+  * [Cloudflare tunnel](bonus-guides/networking/cloudflare-tunnel.md)
+  * [Tor services: bridges & relays](bonus-guides/networking/tor-services.md)
+* [🔧 Troubleshooting](bonus-guides/troubleshooting.md)

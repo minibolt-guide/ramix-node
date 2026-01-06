@@ -185,9 +185,9 @@ Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 {% endhint %}
 
 {% hint style="info" %}
--> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
+-> If you want to **avoid your ISP knowing you are using Tor**, follow the [**Add obfs4 bridge to the default Tor instance**](../bonus-guides/networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) section on the Tor services bonus guide to use ofbs4 bridges
 
--> You can host [**your Tor obfs4 bridge**](../networking/tor-services.md#obsf4-bridge) or connect to an external one, as mentioned before
+-> You can host [**your Tor obfs4 bridge**](../bonus-guides/networking/tor-services.md#obsf4-bridge) or connect to an external one, as mentioned before
 {% endhint %}
 
 ## I2P Project
@@ -701,7 +701,7 @@ sudo systemctl start tor
 {% hint style="info" %}
 -> If your new set of entry guards still produces the stream error, try connecting to the internet using a cable if you're using Wireless. If that doesn't help, I'd suggest downloading [Wireshark](https://www.wireshark.org/) and seeing if you're getting drowned in TCP transmission errors for non-Tor traffic. If yes, your ISP is who you need to talk to
 
--> If not, try using [obfs4 bridges](../networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be completely censoring your Tor access; use of obfs4 bridges could help to avoid this censorship
+-> If not, try using [obfs4 bridges](../bonus-guides/networking/tor-services.md#add-obfs4-bridge-to-the-default-tor-instance) and see if that helps. Your ISP, the company's network, your country, etc, could be completely censoring your Tor access; use of obfs4 bridges could help to avoid this censorship
 {% endhint %}
 
 **Example** of Tor censorship output:

@@ -130,7 +130,7 @@ Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
 {% hint style="info" %}
 If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface
 
--> Check the [Fix bad USB3 performance](../troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../troubleshooting.md) guide to learn how
+-> Check the [Fix bad USB3 performance](../bonus-guides/troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../bonus-guides/troubleshooting.md) guide to learn how
 {% endhint %}
 {% endtab %}
 

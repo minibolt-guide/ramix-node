@@ -16,7 +16,7 @@ The following guide was derived from contributions by [Pantamis](https://github.
 Difficulty: Hard
 {% endhint %}
 
-![](../.gitbook/assets/wireguard.png)
+![](../../.gitbook/assets/wireguard.png)
 
 ## Acknowledgments
 
@@ -36,7 +36,7 @@ A VPN is an encrypted tunnel between two computers over the internet. In our cas
 * WireGuard is not censorship-resistant. The encrypted byte headers contain identifiable data which reveals you are using WireGuard VPN.
 * You need to open one port on your router.
 
-![](../.gitbook/assets/wireguard-VPN.png)
+![](../../.gitbook/assets/wireguard-VPN.png)
 
 ## Prerequisites
 
@@ -85,15 +85,15 @@ If you have a contracted static IP with your ISP, log in to the RaMiX directly, 
 * Go to freemyip.com (Free dynamic DNS provider) by clicking here -> [https://freemyip.com](https://freemyip.com/)
 * This provider does not require registration - enter your desired domain name in this box and click on the "**`CHECK AVAILABILITY`**" button, i.e. `myfreedns`.freemyip.com
 
-<figure><img src="../.gitbook/assets/freemyip_start.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/freemyip_start.png" alt=""><figcaption></figcaption></figure>
 
 * If the domain is available, a screen like below will appear. Click on the "**`CLAIM IT!`**" button. If not, a message "**This domain name is not available :(**" will appear - try again with another one, going again to -> [https://freemyip.com](https://freemyip.com/main)
 
-<figure><img src="../.gitbook/assets/freemyip_available.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/freemyip_available.png" alt=""><figcaption></figcaption></figure>
 
 * If all is good a new screen with "**Domain was added :)**" will appear
 
-<figure><img src="../.gitbook/assets/freemyip_domain_added.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/freemyip_domain_added.png" alt=""><figcaption></figcaption></figure>
 
 * Take note of the URL that appears under "**Use this URL to update your IP:**" - you will need this for the next steps
 
@@ -116,7 +116,7 @@ In this case:
 
 Now we'll write a Bash script for RaMiX that will periodically poll its IP and send it to the DDNS service. We'll need the **`"<YOUR_SECRET_TOKEN>"`** and **`"<yourdomain>"`** from the previous [freemyip.com setup](wireguard-vpn.md#freemyip.com-setup) step.
 
-* As `admin` user, [log in](../index-1/remote-access.md#access-with-secure-shell) to RaMiX
+* As `admin` user, [log in](../../index-1/remote-access.md#access-with-secure-shell) to RaMiX
 * Create the next folder to locate the script
 
 ```bash
@@ -514,7 +514,7 @@ Expected output:
 ```
 
 {% hint style="info" %}
-Try to create a [new SSH session](../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address
+Try to create a [new SSH session](../../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address
 {% endhint %}
 
 ```sh
@@ -522,7 +522,7 @@ ssh admin@10.0.0.1
 ```
 
 {% hint style="info" %}
-Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
+Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
 {% endhint %}
 
 * Check the VPN client status using
@@ -625,18 +625,18 @@ Link to [Google Play Store](https://play.google.com/store/apps/details?id=com.wi
 * Download and install the [Wireguard VPN Windows version](https://download.wireguard.com/windows-client/wireguard-installer.exe)
 * Click on the little down-arrow on the bottom left and select **"Add empty tunnel"**
 
-![](../.gitbook/assets/wireguardVPN_windows.png)
+![](../../.gitbook/assets/wireguardVPN_windows.png)
 
 * Paste the entire content of the client configuration "`wg0.conf`" file in the big text box and click on **"Save"**
 * Click on the **"Activate"** button to enable the VPN connection
-* Test it by trying to create a [new SSH session](../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address:
+* Test it by trying to create a [new SSH session](../../index-1/remote-access.md#access-with-secure-shell) to the RaMiX, this time using the VPN IP instead of the local IP address:
 
 ```sh
 ssh admin@10.0.0.1
 ```
 
 {% hint style="info" %}
-Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
+Open your favorite browser and try to navigate to web services such as [BTC RPC Explorer](../../bitcoin/bitcoin/blockchain-explorer.md), this time using the VPN IP instead of the local or Tor IP address: `https://10.0.0.1:4000`
 {% endhint %}
 
 ### Configure additional clients

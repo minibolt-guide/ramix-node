@@ -592,8 +592,8 @@ abcdefg..............xyz.onion
 
 You may want to expose your BTC RPC Explorer publicly using a clearnet address. To do this, follow the next steps:
 
-* Follow the [Cloudflare tunnel](../../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your MiniBolt to Cloudflare
-* When you finish the "[Create a tunnel and give it a name](../../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../../networking/cloudflare-tunnel.md#id-5-start-routing-traffic)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
+* Follow the [Cloudflare tunnel](../../bonus-guides/networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your MiniBolt to Cloudflare
+* When you finish the "[Create a tunnel and give it a name](../../bonus-guides/networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../../bonus-guides/networking/cloudflare-tunnel.md#id-5-start-routing-traffic)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 * Click on the **\[+ Add record]** button
 
 <figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod.png" alt=""><figcaption></figcaption></figure>
@@ -603,14 +603,14 @@ You may want to expose your BTC RPC Explorer publicly using a clearnet address. 
 
 > Type the selected subdomain (i.e service name "explorer") as the **Name** field
 
-> Type the tunnel `<UUID>`  of your previously obtained in the [Create a tunnel and give it a name](../../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section as the **Target** field
+> Type the tunnel `<UUID>`  of your previously obtained in the [Create a tunnel and give it a name](../../bonus-guides/networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section as the **Target** field
 
 > Ensure you enable the switch on the `Proxy status` field to be "Proxied"
 
 Click on the \[Save] button to save the new DNS registry
 {% endhint %}
 
-* If you didn't follow before, continue with the "[Configuration](../../networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](../../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../networking/cloudflare-tunnel.md#create-systemd-service)
+* If you didn't follow before, continue with the "[Configuration](../../bonus-guides/networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](../../bonus-guides/networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../../bonus-guides/networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../bonus-guides/networking/cloudflare-tunnel.md#create-systemd-service)
 * Edit the`config.yml`
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
