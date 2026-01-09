@@ -1,3 +1,20 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+---
+
 # RaMiX on Testnet
 
 You can run your RaMiX node on **Testnet4** to develop and experiment with new applications without risking real money. This bonus guide highlights all configuration changes compared to the main guide.

@@ -2,6 +2,20 @@
 title: Channel backup
 nav_order: 20
 parent: Lightning
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # 3.2 Channel backup for LND

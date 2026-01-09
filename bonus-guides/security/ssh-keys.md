@@ -4,6 +4,20 @@ parent: + System
 grand_parent: Bonus Section
 nav_exclude: true
 has_toc: false
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # Login with SSH keys
