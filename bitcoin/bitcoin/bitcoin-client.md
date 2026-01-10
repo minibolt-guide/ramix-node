@@ -44,7 +44,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=30.0
+VERSION=30.2
 ```
 
 * Get the latest binaries and signatures
@@ -116,8 +116,8 @@ bitcoin-26.1-aarch64-linux-gnu.tar.gz: OK
 ### Timestamp check
 
 * The binary checksum file is also timestamped with the Bitcoin blockchain using the [OpenTimestamps protocol](https://en.wikipedia.org/wiki/Time_stamp_protocol), proving that the file existed before some point in time. Let's verify this timestamp. On your local computer, download the checksums file and its timestamp proof:
-  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.0/SHA256SUMS.ots) the checksum file
-  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.0/SHA256SUMS) its timestamp proof
+  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.2/SHA256SUMS.ots) the checksum file
+  * [Click to download](https://bitcoincore.org/bin/bitcoin-core-30.2/SHA256SUMS) its timestamp proof
 * In your browser, open the [OpenTimestamps website](https://opentimestamps.org/)
 * In the "Stamp and verify" section, drop or upload the downloaded `SHA256SUMS.ots` proof file in the dotted box
 * In the next box, drop or upload the `SHA256SUMS` file
@@ -367,7 +367,7 @@ Remember to accommodate the "`dbcache`" parameter depending on your hardware. Re
 server=1
 txindex=1
 
-# Set OP_RETURN limit to value before v30
+# Set OP_RETURN limit to value before v30.0
 datacarrier=83
 
 # Disable cjdns network
@@ -945,7 +945,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=30.0
+VERSION=30.2
 ```
 
 * Clone the source code from GitHub and enter the bitcoin folder
@@ -1183,7 +1183,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=30.0
+VERSION=30.2
 ```
 
 * Download binary, checksum, signature files, and timestamp file

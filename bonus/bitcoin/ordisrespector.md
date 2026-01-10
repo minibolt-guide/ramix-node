@@ -79,7 +79,7 @@ cd /tmp
 * Set the next environment variable
 
 ```sh
-VERSION=30.0
+VERSION=30.2
 ```
 
 * Get the latest source code, the list of cryptographic checksums, and the signatures attesting to the validity of the checksums
@@ -238,45 +238,44 @@ make -C depends -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
 **Example** of expected output:
 
 ```
-make: Entering directory '/tmp/bitcoin-29.0/depends'
-Fetching boost_1_81_0.tar.gz from https://archives.boost.io/release/1.81.0/source/
+make: Entering directory '/tmp/bitcoin-30.2/depends'
+Fetching capnproto-c++-1.2.0.tar.gz from https://capnproto.org/
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  133M  100  133M    0     0  39.0M      0  0:00:03  0:00:03 --:--:-- 39.0M
-/tmp/bitcoin-29.0/depends/work/download/boost-1.81.0/boost_1_81_0.tar.gz.temp: OK
-Extracting boost...
-/tmp/bitcoin-29.0/depends/sources/boost_1_81_0.tar.gz: OK
-Preprocessing boost...
-Configuring boost...
-Building boost...
-Staging boost...
-Postprocessing boost...
-Caching boost...
-Fetching libevent-2.1.12-stable.tar.gz from https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100 1075k  100 1075k    0     0  1117k      0 --:--:-- --:--:-- --:--:-- 3812k
-/tmp/bitcoin-29.0/depends/work/download/libevent-2.1.12-stable/libevent-2.1.12-stable.tar.gz.temp: OK
-Extracting libevent...
-/tmp/bitcoin-29.0/depends/sources/libevent-2.1.12-stable.tar.gz: OK
-Preprocessing libevent...
-patching file CMakeLists.txt
-patching file cmake/AddEventLibrary.cmake
-patching file CMakeLists.txt
-Configuring libevent...
--- The C compiler identification is GNU 11.4.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/gcc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Found Git: /usr/bin/git (found version "2.34.1") 
-fatal: not a git repository (or any of the parent directories): .git
--- Performing Test check_c_compiler_flag__Wall
--- Performing Test check_c_compiler_flag__Wall - Success
--- Performing Test check_c_compiler_flag__Wextra
--- Performing Test check_c_compiler_flag__Wextra - Success
+100 1727k  100 1727k    0     0  1199k      0  0:00:01  0:00:01 --:--:-- 1199k
+/tmp/bitcoin-30.2/depends/work/download/native_capnp-1.2.0/capnproto-cxx-1.2.0.tar.gz.temp: OK
+Extracting native_capnp...
+/tmp/bitcoin-30.2/depends/sources/capnproto-cxx-1.2.0.tar.gz: OK
+Preprocessing native_capnp...
+Configuring native_capnp...
+-- The CXX compiler identification is GNU 12.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include initializer_list
+-- Looking for C++ include initializer_list - found
+-- Looking for makecontext in c
+-- Looking for makecontext in c - found
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_EXPORT_NO_PACKAGE_REGISTRY
+
+
+-- Build files have been written to: /tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499
+Building native_capnp...
+make[1]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
+make[2]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
+make[3]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
+make[3]: Leaving directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
+make[3]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
+[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/array.c++.o
+[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/cidr.c++.o
+[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/list.c++.o
 [...]
 ```
 
@@ -289,12 +288,11 @@ BITCOIN_GENBUILD_NO_GIT=1 cmake -B build \
   -DBUILD_UTIL=OFF \
   -DBUILD_WALLET_TOOL=OFF \
   -DINSTALL_MAN=OFF \
-  -DWITH_BDB=ON \
   -DWITH_ZMQ=ON \
   --toolchain depends/aarch64-unknown-linux-gnu/toolchain.cmake
 ```
 
-Expected output:
+**Example** of expected output:
 
 ```
 -- The CXX compiler identification is GNU 11.4.0
@@ -334,7 +332,7 @@ wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/resources/
 ```
 {% endcode %}
 
-* **(Optional)** Inspect `ordisrespector.patch` file to make sure it does not do bad things. If you see all OK, exit with Ctrl-X and continue with the next command
+* **(Optional)** Inspect `ordisrespector.patch` file to make sure it does not do bad things. If you see all OK, exit with `Ctrl-X` and continue with the next command
 
 ```sh
 nano ordisrespector.patch
@@ -354,6 +352,34 @@ git apply ordisrespector.patch
 cmake --build build -j $(nproc)
 ```
 
+Example of expected output:
+
+```
+[  0%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/arith_uint256.cpp.o
+[  0%] Generating bitcoin-build-info.h
+[  1%] Building CXX object src/univalue/CMakeFiles/univalue.dir/lib/univalue.cpp.o
+[  1%] Building C object src/secp256k1/src/CMakeFiles/secp256k1_precomputed.dir/precomputed_ecmult.c.o
+[  1%] Built target generate_build_info
+[  1%] Building CXX object src/univalue/CMakeFiles/univalue.dir/lib/univalue_get.cpp.o
+[  1%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/aes.cpp.o
+[  1%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/chacha20.cpp.o
+[  2%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/consensus/merkle.cpp.o
+[  2%] Building C object src/secp256k1/src/CMakeFiles/secp256k1_precomputed.dir/precomputed_ecmult_gen.c
+[  2%] Built target secp256k1_precomputed
+[  2%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/chacha20poly1305.cpp.o
+[  2%] Building CXX object src/wallet/CMakeFiles/bitcoin_wallet.dir/coincontrol.cpp.o
+[  3%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/hex_base.cpp.o
+[  3%] Building CXX object src/univalue/CMakeFiles/univalue.dir/lib/univalue_read.cpp.o
+[  3%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/hkdf_sha256_32.cpp.o
+[  3%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/hmac_sha256.cpp.o
+[  3%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/consensus/tx_check.cpp.o
+[  3%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/hmac_sha512.cpp.o
+[  4%] Building CXX object src/crypto/CMakeFiles/bitcoin_crypto.dir/muhash.cpp.o
+[  4%] Building CXX object src/univalue/CMakeFiles/univalue.dir/lib/univalue_write.cpp.o
+[  6%] Linking CXX static library libunivalue.a
+[...]
+```
+
 {% hint style="info" %}
 This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
 {% endhint %}
@@ -370,7 +396,9 @@ Expected output:
 
 ```
 -- Install configuration: "RelWithDebInfo"
+-- Installing: /usr/local/bin/bitcoin
 -- Installing: /usr/local/bin/bitcoind
+-- Installing: /usr/local/libexec/bitcoin-node
 -- Installing: /usr/local/bin/bitcoin-cli
 ```
 
@@ -406,13 +434,19 @@ sudo rm -r bitcoin-$VERSION bitcoin-$VERSION.tar.gz SHA256SUMS SHA256SUMS.asc SH
 ```
 {% endcode %}
 
+* **(Optional)** Delete not necessary installed binaries
+
+```sh
+sudo rm /usr/local/bin/bitcoin
+```
+
 * If you have an existing Bitcoin Core installation without Ordisrespector applied, restart it using systemd and start a new instance with the Ordisrespector patch applied
 
 ```sh
 sudo systemctl restart bitcoind
 ```
 
-* Monitor the systemd journal and check the logging output. You can exit monitoring at any time with Ctrl+C and continue
+* Monitor the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl+C` and continue
 
 ```sh
 journalctl -fu bitcoind
