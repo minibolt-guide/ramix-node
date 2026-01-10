@@ -2,6 +2,20 @@
 title: Lightning client
 nav_order: 10
 parent: Lightning
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # 3.1 Lightning client: LND

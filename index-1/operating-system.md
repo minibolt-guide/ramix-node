@@ -1,3 +1,20 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+---
+
 # 1.2 Operating system
 
 We configure the Raspberry Pi and install the official operating system.
@@ -20,13 +37,13 @@ Raspberry Pi OS is based on the [Debian](https://www.debian.org/) Linux distribu
 
 ### Get Raspberry Pi Imager
 
-We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) application **v1.8+**. Download [from here](https://www.raspberrypi.com/software/) the proper version depending on the OS platform are you using on your regular computer. If you use a Linux Debian-based distro, you can enter only the next command on the terminal: `sudo apt install rpi-imager`
+We will use the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) application **v1.8+**, in concrete **v1.9.6**. Download [from here](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.9.6) the proper version depending on the OS platform are you using on your regular computer.
 
 ### Get Raspberry Pi OS <a href="#get-raspberry-pi-os" id="get-raspberry-pi-os"></a>
 
 * Start the **Raspberry Pi Imager**
 * On the “**Raspberry Pi device**” section > Push on “**Choose device**” > Select **“No filtering”**
-* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“**<mark style="color:red;">**Raspberry Pi OS Lite (64 bit)**</mark>**” -** _A port of Debian **Bookworm** with no desktop environment (Compatible with Raspberry Pi 3/4/400/5)_ and have the relevant image flashed to your drive
+* On the “**Operating system**” section > Push on “**Choose OS**” > “**Raspberry Pi OS (other)**” > Scroll to select **“**<mark style="color:red;">**Raspberry Pi OS (Legacy, 64 bit) Lite**</mark>**” -** _A port of Debian **Bookworm** with security updates and no desktop environment_
 * Connect the external drive to your regular computer. On the “**Storage**” section > Push on “**Choose storage**” > Select your external drive
 * Click on the **“NEXT”** button
 * On the “Use OS customisation” banner > Click on the **“EDIT SETTINGS”** button
