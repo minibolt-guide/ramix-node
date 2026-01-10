@@ -260,22 +260,6 @@ Configuring native_capnp...
 -- Looking for makecontext in c - found
 -- Configuring done
 -- Generating done
-CMake Warning:
-  Manually-specified variables were not used by the project:
-
-    CMAKE_EXPORT_NO_PACKAGE_REGISTRY
-
-
--- Build files have been written to: /tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499
-Building native_capnp...
-make[1]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
-make[2]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
-make[3]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
-make[3]: Leaving directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
-make[3]: Entering directory '/tmp/bitcoin-30.2/depends/work/build/aarch64-unknown-linux-gnu/native_capnp/1.2.0-b3cafcab499'
-[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/array.c++.o
-[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/cidr.c++.o
-[  3%] Building CXX object src/kj/CMakeFiles/kj.dir/list.c++.o
 [...]
 ```
 
@@ -352,7 +336,7 @@ git apply ordisrespector.patch
 cmake --build build -j $(nproc)
 ```
 
-Example of expected output:
+**Example** of expected output:
 
 ```
 [  0%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/arith_uint256.cpp.o
@@ -381,7 +365,7 @@ Example of expected output:
 ```
 
 {% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again. You can use [Tmux](https://github.com/tmux/tmux) to leave it in the background
 {% endhint %}
 
 ### **Install**
