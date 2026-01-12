@@ -103,7 +103,7 @@ chmod +x ./dotnet-install.sh
 * Set environment variable version
 
 ```bash
-VERSION=10.0
+VERSION=8.0
 ```
 
 * Install .NET Core SDK
@@ -232,7 +232,7 @@ mkdir src && cd src
 * Set the environment variable version
 
 ```bash
-VERSION=2.6.0
+VERSION=2.5.30-1
 ```
 
 * Download the NBXplorer source code and enter the folder
@@ -1072,7 +1072,7 @@ chmod +x ./dotnet-install.sh
 * Set the new `VERSION` environment variable, for example, 6.0 -> 8.0
 
 ```bash
-VERSION=10.0
+VERSION=8.0
 ```
 
 * Install .NET Core SDK
@@ -1159,7 +1159,7 @@ cd src/NBXplorer
 * Set the environment variable version
 
 ```bash
-VERSION=2.6.0
+VERSION=2.5.30-1
 ```
 
 * Fetch the changes of the latest wish tag
