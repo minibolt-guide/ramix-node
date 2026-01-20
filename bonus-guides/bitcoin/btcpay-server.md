@@ -352,7 +352,7 @@ Time Elapsed 00:00:41.43
 </details>
 
 {% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+This process can take several minutes, 10-15 minutes, or more, depending on the performance of your device. Please be patient until the prompt shows again
 {% endhint %}
 
 * Check the correct installation
@@ -452,7 +452,7 @@ WantedBy=multi-user.target
 sudo systemctl enable nbxplorer
 ```
 
-* Prepare `nbxplorer` monitoring by the systemd journal and checking the logging output. You can exit monitoring at any time with Ctrl-C
+* Prepare `nbxplorer` monitoring by the systemd journal and checking the logging output. You can exit monitoring at any time with `Ctrl-C`
 
 ```bash
 journalctl -fu nbxplorer
@@ -567,7 +567,7 @@ cd src
 * Set the variable environment version
 
 ```bash
-VERSION=2.3.2
+VERSION=2.3.3
 ```
 
 * Clone the BTCPay Server official GitHub repository and enter the folder
@@ -580,7 +580,7 @@ git clone --branch v$VERSION https://github.com/btcpayserver/btcpayserver && cd 
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 Cloning into 'btcpayserver'...
@@ -654,7 +654,7 @@ nano +3 build.sh
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 MSBuild version 17.3.2+561848881 for .NET
@@ -707,7 +707,7 @@ mkdir -p ~/.btcpayserver/Main && cd ~/.btcpayserver/Main
 nano settings.config
 ```
 
-* Add the complete following lines
+* Add the following lines
 
 <pre><code># RaMiX: btcpayserver configuration
 # /home/btcpay/.btcpayserver/Main/settings.config
@@ -726,7 +726,7 @@ postgres=User ID=admin;Password=admin;Host=localhost;Port=5432;Database=btcpay;
 {% hint style="info" %}
 -> If you want to connect your Lightning LND node to BTCPay Server too, go to the [Connect to your LND internal node](btcpay-server.md#connect-to-your-lnd-internal-node) optional section
 
--> The `socksendpoint=127.0.0.1:9050` parameter is optional but recommended to increase your privacy, if you want to delete, comment with # before it or delete it directly
+-> The `socksendpoint=127.0.0.1:9050` parameter is optional, but recommended to increase your privacy, if you want to delete, comment with # before it, or delete it directly
 {% endhint %}
 
 * Go back to the `admin` user
@@ -872,7 +872,7 @@ sudo nano /data/lnd/lnd.conf
 * Add the next line under the `[Application Options]` section. Save and exit
 
 ```
-# Specify all ipv4 interfaces to listen on for REST connections
+# Specify all IPv4 interfaces to listen on for REST connections
 restlisten=0.0.0.0:8080
 ```
 
@@ -1224,7 +1224,7 @@ git config pull.rebase false
 ```
 {% endhint %}
 
-* Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to no apply modifications
+* Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to not apply modifications
 * Build it
 
 ```bash
@@ -1337,7 +1337,7 @@ git config user.email "ramix@dummyemail.com"
 git config user.name "RaMiX"
 ```
 
--> And try again the last command
+-> And try the last command again
 
 
 
@@ -1347,7 +1347,7 @@ If the prompt shows you: `fatal: Need to specify how to reconcile divergent bran
 git config pull.rebase false
 ```
 
--> And try again the last command
+-> And try the last command again
 
 
 
@@ -1395,7 +1395,7 @@ Oct 30 16:26:48 ramix  run.sh[3307655]: info: BTCPayServer.HostedServices.Paymen
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
   Determining projects to restore...
