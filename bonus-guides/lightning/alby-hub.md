@@ -275,7 +275,7 @@ sudo nano /home/albyhub/.env
 
 * Paste the following content. Save and exit.
 
-<pre><code># MiniBolt: Alby Hub configuration
+<pre><code># RaMiX: Alby Hub configuration
 # /home/albyhub/.env
 
 # WORKING DIRECTORY
@@ -311,7 +311,7 @@ sudo nano /etc/systemd/system/albyhub.service
 * Enter the following content. Save and exit
 
 ```
-# MiniBolt: systemd unit for Alby Hub
+# RaMiX: systemd unit for Alby Hub
 # /etc/systemd/system/albyhub.service
 
 [Unit]
@@ -357,7 +357,7 @@ journalctl -fu albyhub
 
 ### Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the MiniBolt node, and log in as `admin`
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 * Start the service
 
@@ -397,7 +397,7 @@ Expected output:
 {% hint style="info" %}
 > Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., `https://yournode.com`) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the Alby Hub web interface
 
-> Now point your browser to `https://minibolt.local:3003` or the IP address (e.g. `https://192.168.x.xxx:3003`). You should see the home page of AlbyHub
+> Now point your browser to `https://ramix.local:3003` or the IP address (e.g. `https://192.168.x.xxx:3003`). You should see the home page of AlbyHub
 {% endhint %}
 
 {% hint style="success" %}
@@ -419,7 +419,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 # Hidden Service Alby Hub
 HiddenServiceDir /var/lib/tor/hidden_service_albyhub/
-HiddenServiceVersion 3
+HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 80 127.0.0.1:8090
 ```
@@ -464,7 +464,7 @@ journalctl -fu albyhub
 
 ```
 [...]
-nov 16 11:21:02 minibolt albyhub[1440537]: ⇨ http server started on [::]:8090 ...
+nov 16 11:21:02 ramix albyhub[1440537]: ⇨ http server started on [::]:8090 ...
 [...]
 ```
 
@@ -492,7 +492,7 @@ sudo rm /etc/systemd/system/albyhub.service
 
 ### Delete user & group
 
-* Delete the albyhub user. Don't worry about `userdel: albyhub mail spool (/var/mail/albyhub) not found` output, the uninstall has been successful
+* Delete the `albyhub` user. Don't worry about `userdel: albyhub mail spool (/var/mail/albyhub) not found` output, the uninstall has been successful
 
 ```shellscript
 sudo userdel -rf albyhub
@@ -531,7 +531,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 # Hidden Service Alby Hub
 #HiddenServiceDir /var/lib/tor/hidden_service_albyhub/
-#HiddenServiceVersion 3
+#HiddenServiceEnableIntroDoSDefense 1
 #HiddenServicePoWDefensesEnabled 1
 #HiddenServicePort 80 127.0.0.1:8090
 ```
