@@ -1,20 +1,3 @@
----
-layout:
-  width: wide
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
----
-
 # BTCPay Server
 
 [BTCPay Server](https://github.com/btcpayserver/btcpayserver) is a free, open-source, and self-hosted Bitcoin payment gateway, which means developers and security auditors can always inspect the code for quality. It enables individuals and businesses to accept Bitcoin payments online or in person without any fees, offering self-sovereignty in the process.
@@ -567,7 +550,7 @@ cd src
 * Set the variable environment version
 
 ```bash
-VERSION=2.3.3
+VERSION=2.3.4
 ```
 
 * Clone the BTCPay Server official GitHub repository and enter the folder
@@ -1299,7 +1282,7 @@ cd src/btcpayserver
 * Set the environment variable version
 
 ```bash
-VERSION=2.3.2
+VERSION=2.3.4
 ```
 
 * Fetch the changes of the latest tag. Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to apply modifications

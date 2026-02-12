@@ -2,20 +2,6 @@
 title: Lightning client
 nav_order: 10
 parent: Lightning
-layout:
-  width: wide
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 ---
 
 # 3.1 Lightning client: LND
@@ -115,7 +101,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=0.20.0
+VERSION=0.20.1
 ```
 
 * Download the application, checksums, and signature
@@ -285,7 +271,7 @@ lnd version 0.16.3-beta commit=v0.16.3-beta
 </strong></code></pre>
 
 {% hint style="info" %}
-If you come to [update](lightning-client.md#upgrade) this is the final step
+If you come to [update](lightning-client.md#upgrade), this is the final step
 {% endhint %}
 
 ### Create the lnd user & group

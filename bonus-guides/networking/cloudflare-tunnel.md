@@ -1,20 +1,3 @@
----
-layout:
-  width: wide
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
----
-
 # Cloudflare tunnel
 
 Exposing your local server on the Internet (clearnet) has various solutions, but the Cloudflare Tunnel stands out as the easiest and most cost-effective option. Traditionally, configuring Firewalls, using Tor, or setting up an SSH reverse tunnel to a public VPS were common approaches, each with its challenges and costs. Cloudflare Tunnel offers an alternative, though it acts as a middleman and can access or modify your traffic.
@@ -104,7 +87,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=2026.1.1
+VERSION=2026.2.0
 ```
 
 * Download Cloudflare Tunnel Client (Cloudflared)
@@ -115,7 +98,7 @@ VERSION=2026.1.1
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=87be6f807b350171de8995ff1926e086e531d5939b77e2edf3a42183732fd0dc
+SHA256=a5699dbaee00333ecc59523830b3b7f089820928214bb2b57f4c9a23c5eef013
 ```
 
 * Check the checksum of the file
@@ -151,7 +134,7 @@ cloudflared version 2023.6.1 (built 2023-06-20-0926 UTC)
 * Remove the package installation file
 
 ```bash
-sudo rm cloudflared-linux-arm64.deb
+rm cloudflared-linux-arm64.deb
 ```
 
 {% hint style="info" %}
