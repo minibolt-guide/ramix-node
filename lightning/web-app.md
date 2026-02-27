@@ -2,25 +2,11 @@
 title: Web app
 nav_order: 30
 parent: Lightning
-layout:
-  width: wide
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 ---
 
 # 3.3 Web app: ThunderHub
 
-[ThunderHub](https://thunderhub.io/) is an open-source LND node manager where you can manage and monitor your node on any device or browser. It allows you to take control of the lightning network with a simple and intuitive UX and the most up-to-date tech stack.
+[ThunderHub](https://thunderhub.io/) is an open-source LND node manager where you can manage and monitor your node on any device or browser. It allows you to take control of the Lightning Network with a simple and intuitive UX and the most up-to-date tech stack.
 
 <figure><img src="../.gitbook/assets/thunderhub_logo.png" alt=""><figcaption></figcaption></figure>
 
@@ -34,8 +20,6 @@ layout:
 ## Preparations
 
 ### Check Node + NPM
-
-Node + NPM should have been installed for the [BTC RPC Explorer](../bitcoin/bitcoin/blockchain-explorer.md).
 
 * With the user `admin`, check the Node version
 
@@ -62,9 +46,9 @@ npm -v
 ```
 
 {% hint style="info" %}
--> If the "`node -v"` output is **`>=18`**, you can move to the next section.
+-> If the "`node -v"` output is **`>=24`**, you can move to the next section.
 
--> If Nodejs is not installed (`-bash: /usr/bin/node: No such file or directory`), follow this [Node + NPM bonus guide](../bonus/system/nodejs-npm.md) to install it
+-> If Node.js is not installed (`-bash: /usr/bin/node: No such file or directory`), follow this [Node + NPM bonus guide](../bonus/system/nodejs-npm.md) to install it
 {% endhint %}
 
 ### Reverse proxy & Firewall
@@ -79,7 +63,7 @@ Enable the Nginx reverse proxy to route external encrypted HTTPS traffic interna
 sudo nano /etc/nginx/sites-available/thunderhub-reverse-proxy.conf
 ```
 
-* Paste the complete following configuration. Save and exit
+* Paste the following complete configuration. Save and exit
 
 ```nginx
 server {
@@ -87,7 +71,7 @@ server {
   error_page 497 =301 https://$host:$server_port$request_uri;
 
   location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass http://127.0.0.1:3001;
   }
 }
 ```
@@ -113,7 +97,7 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-* Reload the NGINX configuration to apply changes
+* Reload the Nginx configuration to apply changes
 
 ```bash
 sudo systemctl reload nginx
@@ -152,7 +136,7 @@ sudo su - thunderhub
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=0.14.6
+VERSION=0.15.1
 ```
 
 * Import the GPG key of the developer
@@ -161,7 +145,7 @@ VERSION=0.14.6
 curl https://github.com/apotdevin.gpg | gpg --import
 ```
 
-* Download the source code directly from GitHub, select the latest release branch associated, and go to the `thunderhub` folder
+* Download the source code directly from GitHub, select the latest release branch associated with it, and go to the `thunderhub` folder
 
 {% code overflow="wrap" %}
 ```sh
@@ -198,7 +182,7 @@ npm install
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 npm warn deprecated @types/cron@2.4.0: This is a stub types definition. cron provides its own type definitions, so you do not need this installed.
@@ -243,7 +227,7 @@ npm notice
 </details>
 
 {% hint style="info" %}
-**(Optional)** Improve your privacy by opt-out of Next.js [telemetry](https://nextjs.org/telemetry)
+**(Optional)** Improve your privacy by opting out of Next.js [telemetry](https://nextjs.org/telemetry)
 
 ```bash
 npx next telemetry disable
@@ -401,7 +385,7 @@ accounts:
 Replace the **`[E] ThunderHub password`** to your one, keeping quotes \[' ']
 {% endhint %}
 
-* **(Optional)** You can pre-enable automatic healthchecks ping and/or channel backups to Amboss before starting ThunderHub by adding some lines **at the end of the file** (**without indentation**)
+* **(Optional)** You can pre-enable automatic healthchecks ping, and/or channel backups to Amboss before starting ThunderHub by adding some lines **at the end of the file** (**without indentation**)
 
 Enable auto-backups:
 
@@ -498,121 +482,159 @@ sudo systemctl start thunderhub
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu thunderhub</code> ⬇️</summary>
 
 ```
-Jun 28 23:35:43 ramix npm[513274]: > thunderhub@0.13.15 start
-Jun 28 23:35:43 ramix npm[513274]: > cross-env NODE_ENV=production nest start
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [NestFactory] Starting Nest application...
-Jun 28 23:35:53 ramix npm[513313]: Getting production env variables.
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AppModule dependencies initialized +82ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] PassportModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] LndModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ApiModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] MainModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] DiscoveryModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ConfigHostModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ScheduleModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ThrottlerModule dependencies initialized +4ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] JwtModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ViewModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] GraphQLSchemaBuilderModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] WinstonModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] FilesModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] FetchModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AccountsModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] BaseModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] BitcoinModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] GithubModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] UserConfigModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AuthenticationModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AccountModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] BosModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] GraphQLModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] WsModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] WalletModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ToolsModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] MacaroonModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] NetworkModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] PeerModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ChainModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] EdgeModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ChannelsModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ForwardsModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] HealthModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] TransactionsModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] InvoicesModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] ChatModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] BoltzModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] LnUrlModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] AmbossModule dependencies initialized +1ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] SubModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: [Nest] 513313  - 06/28/2023, 11:35:53 PM     LOG [InstanceLoader] LnMarketsModule dependencies initialized +0ms
-Jun 28 23:35:53 ramix npm[513313]: {
-Jun 28 23:35:53 ramix npm[513313]:   message: 'WS server created',
-Jun 28 23:35:53 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:53 ramix npm[513313]:   timestamp: '2023-06-28T21:35:53.547Z'
-Jun 28 23:35:53 ramix npm[513313]: }
-Jun 28 23:35:53 ramix npm[513313]: {
-Jun 28 23:35:53 ramix npm[513313]:   context: 'RoutesResolver',
-Jun 28 23:35:53 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:53 ramix npm[513313]:   message: 'ViewController {/}:',
-Jun 28 23:35:53 ramix npm[513313]:   timestamp: '2023-06-28T21:35:53.552Z'
-Jun 28 23:35:53 ramix npm[513313]: }
-Jun 28 23:35:53 ramix npm[513313]: {
-Jun 28 23:35:53 ramix npm[513313]:   context: 'RouterExplorer',
-Jun 28 23:35:53 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:53 ramix npm[513313]:   message: 'Mapped {/, GET} route',
-Jun 28 23:35:53 ramix npm[513313]:   timestamp: '2023-06-28T21:35:53.555Z'
-Jun 28 23:35:53 ramix npm[513313]: }
-Jun 28 23:35:53 ramix npm[513313]: {
-Jun 28 23:35:53 ramix npm[513313]:   context: 'RouterExplorer',
-Jun 28 23:35:53 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:53 ramix npm[513313]:   message: 'Mapped {/*, GET} route',
-Jun 28 23:35:53 ramix npm[513313]:   timestamp: '2023-06-28T21:35:53.555Z'
-Jun 28 23:35:53 ramix npm[513313]: }
-Jun 28 23:35:53 ramix npm[513313]: {
-Jun 28 23:35:53 ramix npm[513313]:   message: 'Server accounts that will be available: ramix',
-Jun 28 23:35:53 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:53 ramix npm[513313]:   timestamp: '2023-06-28T21:35:53.563Z'
-Jun 28 23:35:53 ramix npm[513313]: }
-Jun 28 23:35:54 ramix npm[513313]: Persisted queries are enabled and are using an unbounded cache. Your server is vulnerable to denial of service attacks via memory exhaustion. Set `cache: "bounded"` or `persistedQueries: false` in your ApolloServer constructor, or see https://go.apollo.dev/s/cache-backends for other alternatives.
-Jun 28 23:35:54 ramix npm[513313]: {
-Jun 28 23:35:54 ramix npm[513313]:   context: 'GraphQLModule',
-Jun 28 23:35:54 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:54 ramix npm[513313]:   message: 'Mapped {/graphql, POST} route',
-Jun 28 23:35:54 ramix npm[513313]:   timestamp: '2023-06-28T21:35:54.092Z'
-Jun 28 23:35:54 ramix npm[513313]: }
-Jun 28 23:35:54 ramix npm[513313]: {
-Jun 28 23:35:54 ramix npm[513313]:   context: 'NestApplication',
-Jun 28 23:35:54 ramix npm[513313]:   level: 'info',
-Jun 28 23:35:54 ramix npm[513313]:   message: 'Nest application successfully started',
-Jun 28 23:35:54 ramix npm[513313]:   timestamp: '2023-06-28T21:35:54.524Z'
-Jun 28 23:35:54 ramix npm[513313]: }
-Jun 28 23:35:54 ramix npm[513313]: Application is running on: http://[::1]:3000
-Jun 28 23:35:54 ramix npm[513313]: (node:513313) [DEP0123] DeprecationWarning: Setting the TLS ServerName to an IP address is not permitted by RFC 6066. This will be ignored in a future version.
-Jun 28 23:35:54 ramix npm[513313]: (Use `node --trace-deprecation ...` to show where the warning was created)
-[...]
+Feb 27 09:32:54 ramix systemd[1]: Started thunderhub.service - ThunderHub.
+Feb 27 09:32:54 ramix npm[1551967]: > thunderhub@0.15.1 start
+Feb 27 09:32:54 ramix npm[1551967]: > cross-env NODE_ENV=production nest start
+Feb 27 09:33:17 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:17     LOG [NestFactory] Starting Nest application...
+Feb 27 09:33:18 ramix npm[1552018]: Getting production env variables.
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AppModule dependencies initialized +133ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] PassportModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] LndModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ApiModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MainModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigHostModule dependencies initialized +4ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] DiscoveryModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigModule dependencies initialized +12ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ScheduleModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ClientConfigModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ThrottlerModule dependencies initialized +9ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] JwtModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ServeStaticModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] WinstonModule dependencies initialized +2ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] FilesModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] FetchModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GraphQLSchemaBuilderModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AccountsModule dependencies initialized +2ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MempoolModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BlockstreamModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BitcoinModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GithubModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] UserConfigModule dependencies initialized +5ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AccountModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] SseModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] WalletModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NetworkModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] EdgeModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] TransactionsModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ToolsModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MacaroonModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] PeerModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChainModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ForwardsModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] HealthModule dependencies initialized +1ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] InvoicesModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChatModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChannelsModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BoltzModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] LnUrlModule dependencies initialized +2ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] DataloaderModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AmbossModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] SubModule dependencies initialized +0ms
+Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GraphQLModule dependencies initialized +4ms
+Feb 27 09:33:18 ramix npm[1552018]: {
+Feb 27 09:33:18 ramix npm[1552018]:   context: 'RoutesResolver',
+Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:18 ramix npm[1552018]:   message: 'SseController {/api/sse}:',
+Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.126Z'
+Feb 27 09:33:18 ramix npm[1552018]: }
+Feb 27 09:33:18 ramix npm[1552018]: {
+Feb 27 09:33:18 ramix npm[1552018]:   context: 'RouterExplorer',
+Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:18 ramix npm[1552018]:   message: 'Mapped {/api/sse/events, GET} route',
+Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.140Z'
+Feb 27 09:33:18 ramix npm[1552018]: }
+Feb 27 09:33:18 ramix npm[1552018]: {
+Feb 27 09:33:18 ramix npm[1552018]:   context: 'RoutesResolver',
+Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:18 ramix npm[1552018]:   message: 'ClientConfigController {/api}:',
+Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.140Z'
+Feb 27 09:33:18 ramix npm[1552018]: }
+Feb 27 09:33:18 ramix npm[1552018]: {
+Feb 27 09:33:18 ramix npm[1552018]:   context: 'RouterExplorer',
+Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:18 ramix npm[1552018]:   message: 'Mapped {/api/config, GET} route',
+Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.143Z'
+Feb 27 09:33:18 ramix npm[1552018]: }
+Feb 27 09:33:18 ramix npm[1552018]: {
+Feb 27 09:33:18 ramix npm[1552018]:   message: 'Server accounts that will be available: ramix',
+Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.186Z'
+Feb 27 09:33:18 ramix npm[1552018]: }
+Feb 27 09:33:19 ramix npm[1552018]: {
+Feb 27 09:33:19 ramix npm[1552018]:   context: 'GraphQLModule',
+Feb 27 09:33:19 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:19 ramix npm[1552018]:   message: 'Mapped {/graphql, POST} route',
+Feb 27 09:33:19 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:19.962Z'
+Feb 27 09:33:19 ramix npm[1552018]: }
+Feb 27 09:33:19 ramix npm[1552018]: {
+Feb 27 09:33:19 ramix npm[1552018]:   context: 'NestApplication',
+Feb 27 09:33:19 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:19 ramix npm[1552018]:   message: 'Nest application successfully started',
+Feb 27 09:33:19 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:19.996Z'
+Feb 27 09:33:19 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: Application is running on: http://[::1]:3001
+Feb 27 09:33:20 ramix npm[1552018]: (node:1552018) [DEP0123] DeprecationWarning: Setting the TLS ServerName to an IP address is not permitted by RFC 6066. This will be ignored in a future version.
+Feb 27 09:33:20 ramix npm[1552018]: (Use `node --trace-deprecation ...` to show where the warning was created)
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Connected to 2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.295Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Invoice subscription',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.298Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Payment subscription',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.304Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Forward subscription',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.309Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Channels subscription',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.311Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+Feb 27 09:33:20 ramix npm[1552018]: {
+Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
+Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
+Feb 27 09:33:20 ramix npm[1552018]:   message: 'Backup subscription',
+Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.315Z'
+Feb 27 09:33:20 ramix npm[1552018]: }
+
 ```
 
 </details>
 
 ### Validation
 
-* Ensure the service is working and listening on the default `3000` port and the HTTPS `4002` port
+* Ensure the service is working and listening on the default `3001` port and the HTTPS `4002` port
 
 ```bash
-sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4002|:3000)'
+sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4002|:3001)'
 ```
 
 Expected output:
 
-<pre><code><strong>tcp   LISTEN 0      511          0.0.0.0:4002       0.0.0.0:*    users:(("nginx",pid=992796,fd=7),("nginx",pid=992795,fd=7),("nginx",pid=992794,fd=7),("nginx",pid=992793,fd=7),("nginx",pid=992792,fd=7))
-</strong>tcp   LISTEN 0      511                *:3000             *:*    users:(("next-router-wor",pid=1405797,fd=32))
-</code></pre>
+```
+tcp   LISTEN 0      511          0.0.0.0:4002       0.0.0.0:*    users:(("nginx",pid=541834,fd=6),("nginx",pid=541833,fd=6),("nginx",pid=541832,fd=6),("nginx",pid=541831,fd=6),("nginx",pid=541041,fd=6))
+tcp   LISTEN 0      511                *:3001             *:*    users:(("MainThread",pid=1550842,fd=21))
+```
 
 {% hint style="info" %}
 > Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the ThunderHub web interface
@@ -637,11 +659,11 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 * Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`". Save and exit
 
 ```
-# Hidden Service Thunderhub
+# Hidden Service ThunderHub
 HiddenServiceDir /var/lib/tor/hidden_service_thunderhub/
 HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
-HiddenServicePort 80 127.0.0.1:3000
+HiddenServicePort 80 127.0.0.1:3001
 ```
 
 * Reload Tor to apply changes
@@ -680,7 +702,7 @@ If you can't do "**Login**", maybe the cause is that you don't have a **public**
 
 1. In ThunderHub, from the left sidebar, click on 🌍**Amboss.**
 2. In the **Backups section**, push the **Push** button to test and push the first backup to Amboss. If all is good, you could enable automatic backups to Amboss by pushing on **Enable** just above; now the backup file encrypted will be updated automatically on Amboss for every channel opening and closing.
-3. Go to the Amboss website, [backups section](https://amboss.space/settings?page=backups).
+3. Go to the Amboss website -> [backups section](https://amboss.space/settings?page=backups).
 4. Ensure that the last date of the backup is the same as before.
 
 <figure><img src="../.gitbook/assets/pushed-backup-amboss.png" alt="" width="563"><figcaption></figcaption></figure>
@@ -711,7 +733,7 @@ After possible data corruption of your LND node, ensure that this old node is co
 Once you have synced the new node, on-chain recovered with seeds, full on-chain re-scan complete, and Thunderhub installed and running, go to the Thunderhub dashboard.
 
 1. From the left sidebar, click on "**Tools"**, and go to the "Backups" section -> "**Recover Funds from Channels**" -> push the "**Recover**" button.
-2. In this box, enter the complete string text that contains your manually downloaded channels backup file in the step before, or use the string using the content of the latest Amboss automatic backup (recommended) and push again the "**Recover**" button.
+2. In this box, enter the complete string text that contains your manually downloaded channels backup file in the step before, or use the string using the content of the latest Amboss automatic backup (recommended), and push the " Recover " button again.
 
 {% hint style="info" %}
 All of the channels that you had opened in your old node will be forced closed, and they will appear in the "Pending" tab in the "Channels" section until closings are confirmed. Check the logs of LND to see how the recovery process is executed and get more information about it
@@ -746,7 +768,7 @@ cd thunderhub
 * Set the environment variable version
 
 ```bash
-VERSION=0.14.6
+VERSION=0.15.1
 ```
 
 * Pull the changes from GitHub
@@ -757,20 +779,29 @@ git pull https://github.com/apotdevin/thunderhub.git v$VERSION
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
+remote: Enumerating objects: 914, done.
+remote: Counting objects: 100% (560/560), done.
+remote: Compressing objects: 100% (279/279), done.
+remote: Total 914 (delta 263), reused 370 (delta 236), pack-reused 354 (from 3)
+Receiving objects: 100% (914/914), 885.90 KiB | 2.34 MiB/s, done.
+Resolving deltas: 100% (376/376), completed with 95 local objects.
 From https://github.com/apotdevin/thunderhub
- * tag                 v0.13.28   -> FETCH_HEAD
-Updating 1d5a3fe5..5e9b3f68
+ * tag                 v0.15.1    -> FETCH_HEAD
+Updating b2ca712e..d535ead1
 Fast-forward
- CHANGELOG.md                                    |   7 +++++++
- package-lock.json                               |   4 ++--
- package.json                                    |   2 +-
- src/server/modules/api/amboss/amboss.gql.ts     |   9 +++++++++
- src/server/modules/api/amboss/amboss.service.ts |  16 ++++++++++++++++
- src/server/modules/sub/sub.service.ts           | 113 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 6 files changed, 148 insertions(+), 3 deletions(-)
+ .dockerignore                                                                      |     7 +-
+ .eslintignore                                                                      |     6 -
+ .eslintrc.js                                                                       |    26 -
+ .github/workflows/docker-release.yml                                               |    55 +
+ .gitignore                                                                         |     6 +-
+ .husky/pre-commit                                                                  |     3 -
+ .nvmrc                                                                             |     2 +-
+ CHANGELOG.md                                                                       |    21 +
+ Dockerfile                                                                         |    35 +-
+ [...]
 ```
 
 </details>
@@ -783,39 +814,51 @@ npm install
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
-npm WARN deprecated subscriptions-transport-ws@0.11.0: The `subscriptions-transport-ws` package is no longer maintained. We recommend you use `graphql-ws` instead. For help migrating Apollo software to `graphql-ws`, see https://www.apollographql.com/docs/apollo-server/data/subscriptions/#switching-from-subscriptions-transport-ws    For general help using `graphql-ws`, see https://github.com/enisdenjo/graphql-ws/blob/master/README.md
-npm WARN deprecated apollo-server-plugin-base@3.7.2: The `apollo-server-plugin-base` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-npm WARN deprecated apollo-server-types@3.8.0: The `apollo-server-types` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-npm WARN deprecated apollo-server-express@3.12.0: The `apollo-server-express` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-npm WARN deprecated apollo-server@3.12.0: The `apollo-server` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-npm WARN deprecated apollo-reporting-protobuf@3.4.0: The `apollo-reporting-protobuf` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/usage-reporting-protobuf` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-npm WARN deprecated apollo-server-core@3.12.0: The `apollo-server-core` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
-(#################⠂) ⠧ reify:value-or-promise: timing reifyNode:node_modules/foreground-child/node_modules/signal-exit Completed in 39393ms
-[...]
-> thunderhub@0.13.19 prepare
-> husky install
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @apollo/server-plugin-landing-page-graphql-playground@4.0.1
+npm warn Found: @apollo/server@5.4.0
+npm warn node_modules/@apollo/server
+npm warn   @apollo/server@"^5.4.0" from the root project
+npm warn   2 more (@as-integrations/express5, @nestjs/apollo)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer @apollo/server@"^4.0.0" from @apollo/server-plugin-landing-page-graphql-playground@4.0.1
+npm warn node_modules/@apollo/server-plugin-landing-page-graphql-playground
+npm warn   @apollo/server-plugin-landing-page-graphql-playground@"4.0.1" from @nestjs/apollo@13.2.4
+npm warn   node_modules/@nestjs/apollo
+npm warn
+npm warn Conflicting peer dependency: @apollo/server@4.13.0
+npm warn node_modules/@apollo/server
+npm warn   peer @apollo/server@"^4.0.0" from @apollo/server-plugin-landing-page-graphql-playground@4.0.1
+npm warn   node_modules/@apollo/server-plugin-landing-page-graphql-playground
+npm warn     @apollo/server-plugin-landing-page-graphql-playground@"4.0.1" from @nestjs/apollo@13.2.4
+npm warn     node_modules/@nestjs/apollo
+npm warn deprecated @apollo/server-plugin-landing-page-graphql-playground@4.0.1: The use of GraphQL Playground in Apollo Server was supported in previous versions, but this is no longer the case as of December 3 exists for v4 migration purposes only. We do not intend to resolve security issues or other bugs with this package if they arise, so please migrate away from this to [Apollo Server's default Explorer](https://wdocs/apollo-server/api/plugin/landing-pages) as soon as possible.
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versi(at exorbitant rates) by contacting i@izs.me
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versi(at exorbitant rates) by contacting i@izs.me
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versi(at exorbitant rates) by contacting i@izs.me
 
-husky - Git hooks installed
+> thunderhub@0.15.1 prepare
+> husky
 
-added 1879 packages, and audited 1880 packages in 1m
 
-201 packages are looking for funding
+added 369 packages, removed 832 packages, changed 375 packages, and audited 1545 packages in 3m
+
+224 packages are looking for funding
   run `npm fund` for details
 
-16 vulnerabilities (1 low, 5 moderate, 10 high)
+17 vulnerabilities (3 low, 11 moderate, 2 high, 1 critical)
 
-To address all issues, run:
+To address issues that do not require attention, run:
   npm audit fix
 
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
 Run `npm audit` for details.
-npm notice
-npm notice New minor version of npm available! 9.5.1 -> 9.8.0
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.8.0
-npm notice Run npm install -g npm@9.8.0 to update!
-npm notice
 ```
 
 </details>
@@ -827,79 +870,37 @@ npm notice
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 
-> thunderhub@0.13.24 prebuild
-> rimraf dist && rimraf .next
+> thunderhub@0.15.1 prebuild
+> rimraf dist && rimraf src/client/dist
 
 
-> thunderhub@0.13.24 build
-> npm run build:nest && npm run build:next
+> thunderhub@0.15.1 build
+> npm run build:nest && npm run build:client
 
 
-> thunderhub@0.13.24 build:nest
+> thunderhub@0.15.1 build:nest
 > nest build
 
 
-> thunderhub@0.13.24 build:next
-> cd src/client && next build
+> thunderhub@0.15.1 build:client
+> cd src/client && npx vite build
 
+vite v7.3.1 building client environment for production...
+✓ 3432 modules transformed.
+dist/index.html                                    0.60 kB │ gzip:   0.36 kB
+dist/assets/index-C2Q4IGPT.css                    32.24 kB │ gzip:   6.62 kB
+dist/assets/SettingsDashboardPage-NuTzbgRs.js      1.59 kB │ gzip:   0.84 kB
+dist/assets/DashboardPage-D8gCYArr.js             61.63 kB │ gzip:  20.56 kB
+dist/assets/index-CbTrqCDL.js                  1,671.44 kB │ gzip: 533.46 kB
 
-./src/components/chart/BarChart.tsx
-61:6  Warning: React Hook useMemo has a missing dependency: 'dataKey'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-
-./src/components/chart/HorizontalBarChart.tsx
-139:6  Warning: React Hook useMemo has a missing dependency: 'maxValue'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-
-./src/components/table/DebouncedInput.tsx
-30:6  Warning: React Hook useEffect has missing dependencies: 'debounce' and 'onChange'. Either include them or remove the dependency array. If 'onChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
-
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
- ✓ Linting and checking validity of types
-   ▲ Next.js 14.0.1
-
-Browserslist: caniuse-lite is outdated. Please run:
-  npx browserslist@latest --update-db
-  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
- ✓ Creating an optimized production build
- ✓ Compiled successfully
- ✓ Collecting page data
- ✓ Collecting build traces
- ✓ Finalizing page optimization
-
-Route (pages)                              Size     First Load JS
-┌ λ /                                      23.8 kB         561 kB
-├   /_app                                  0 B             246 kB
-├ λ /404                                   344 B           246 kB
-├ λ /amboss                                3.31 kB         252 kB
-├ λ /chain                                 5.73 kB         268 kB
-├ λ /channels                              6.75 kB         312 kB
-├ λ /channels/[slug]                       4.47 kB         253 kB
-├ λ /chat                                  6.76 kB         259 kB
-├ λ /dashboard                             586 B           250 kB
-├ λ /forwards                              24.1 kB         550 kB
-├ λ /leaderboard                           3.62 kB         283 kB
-├ λ /lnmarkets                             5.22 kB         251 kB
-├ λ /login                                 5.6 kB          252 kB
-├ λ /peers                                 6.3 kB          269 kB
-├ λ /rebalance                             9.45 kB         289 kB
-├ λ /settings                              8.73 kB         260 kB
-├ λ /settings/dashboard                    458 B           250 kB
-├ λ /sso                                   2.79 kB         249 kB
-├ λ /stats                                 7.18 kB         256 kB
-├ λ /swap                                  11.4 kB         291 kB
-├ λ /tools                                 7.46 kB         253 kB
-└ λ /transactions                          5.09 kB         527 kB
-+ First Load JS shared by all              250 kB
-  ├ chunks/framework-1ebad0ea60aef44d.js   45.7 kB
-  ├ chunks/main-f884d18fd3231f30.js        33.2 kB
-  ├ chunks/pages/_app-23ed15c0ff29868f.js  165 kB
-  ├ chunks/webpack-9d8d1d250efc304b.js     2.17 kB
-  └ css/ba8e388a301f6e52.css               3.78 kB
-
-λ  (Dynamic)  server-rendered on demand using Node.js
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 ```
 
 </details>
@@ -929,14 +930,14 @@ sudo systemctl start thunderhub
 ```
 
 {% hint style="warning" %}
-If the update fails, you probably will have to stop Thunderhub, follow the [Uninstall ThunderHub section](web-app.md#uninstall-thunderhub) to delete `thunderhub` user, and repeat the installation process starting from the [Preparation section](web-app.md#preparation)
+If the update fails, you probably will have to stop ThunderHub, follow the [Uninstall ThunderHub section](web-app.md#uninstall-thunderhub) to delete `thunderhub` user, and repeat the installation process starting from the [Preparation section](web-app.md#preparation)
 {% endhint %}
 
 ## Uninstall
 
 ### Uninstall service
 
-* With user `admin` , stop thunderhub
+* With user `admin` , stop thunderhub service
 
 ```sh
 sudo systemctl stop thunderhub
@@ -971,14 +972,14 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
 ```
-# Hidden Service Thunderhub
+# Hidden Service ThunderHub
 #HiddenServiceDir /var/lib/tor/hidden_service_thunderhub/
 #HiddenServiceEnableIntroDoSDefense 1
 #HiddenServicePoWDefensesEnabled 1
-#HiddenServicePort 80 127.0.0.1:3000
+#HiddenServicePort 80 127.0.0.1:3001
 ```
 
-* Reload the tor config to apply changes
+* Reload the Tor config to apply changes
 
 ```sh
 sudo systemctl reload tor
@@ -1017,7 +1018,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 sudo systemctl reload nginx
 ```
 
-* Display the UFW firewall rules and note the numbers of the rules for Thunderhub (e.g. "X" below)
+* Display the UFW firewall rules and note the numbers of the rules for ThunderHub (e.g, "X" below)
 
 ```sh
 sudo ufw status numbered
@@ -1029,7 +1030,7 @@ Expected output:
 [X] 4002    ALLOW IN    Anywhere         # allow ThunderHub SSL from anywhere
 ```
 
-* Delete the two Thunderhub rules (check that the rule to be deleted is the correct one and type "y" and "Enter" when prompted)
+* Delete related ThunderHub rules (check that the rule to be deleted is the correct one and type "y" and "Enter" when prompted)
 
 ```sh
 sudo ufw delete X
