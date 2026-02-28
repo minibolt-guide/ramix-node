@@ -103,7 +103,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 sudo systemctl reload nginx
 ```
 
-* Configure the firewall to allow incoming HTTP requests from anywhere to the web server
+* Configure the firewall to allow incoming HTTPS requests from anywhere to the web server
 
 ```sh
 sudo ufw allow 4002/tcp comment 'allow ThunderHub SSL from anywhere'
@@ -623,7 +623,7 @@ Feb 27 09:33:20 ramix npm[1552018]: }
 
 ### Validation
 
-* Ensure the service is working and listening on the default `3001` port and the HTTPS `4002` port
+* Ensure the service is working and listening on the default `3001` port and the HTTPs `4002` port
 
 ```bash
 sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4002|:3001)'
@@ -1038,6 +1038,6 @@ sudo ufw delete X
 
 ## Port reference
 
-<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ipZ6Euow0ap9" label="TCP" color="blue"></option><option value="HU4agtGOlZ7f" label="SSL" color="blue"></option><option value="pDdUpKMq37rf" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3000</td><td><span data-option="ipZ6Euow0ap9">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4002</td><td><span data-option="HU4agtGOlZ7f">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ipZ6Euow0ap9" label="TCP" color="blue"></option><option value="HU4agtGOlZ7f" label="SSL" color="blue"></option><option value="pDdUpKMq37rf" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3001</td><td><span data-option="ipZ6Euow0ap9">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4002</td><td><span data-option="HU4agtGOlZ7f">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
 
 [^1]: Default password unless defined in account
