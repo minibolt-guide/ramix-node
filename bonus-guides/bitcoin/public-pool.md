@@ -1,3 +1,22 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Public Pool
 
 [Public Pool](https://web.public-pool.io/#/) is a NestJS and Typescript Bitcoin stratum mining server. It provides a lightweight and easy to use web interface to accomplish just that, a solo mining pool.
@@ -7,7 +26,7 @@ Difficulty: Medium
 {% endhint %}
 
 {% hint style="danger" %}
-Attention! This software is not compatible with the latest version of Node LTS (24), mentioned in the corresponding [Node + NPM guide](../../bonus/system/nodejs-npm.md). If you encounter an error when you [run](public-pool.md#run), it's due to this. If you wish to follow the next steps, realize that you will need to install version **22** following the [Node + NPM guide](../../bonus/system/nodejs-npm.md) instead of 24, but the **rest of the software that depends on Node version 24** **may stop working** (e.g [ThunderHub](../../lightning/web-app.md)).
+Attention! This software is not compatible with the latest version of Node LTS (24), mentioned in the corresponding [Node + NPM guide](../../bonus/system/nodejs-npm.md). If you encounter an error when you [run](public-pool.md#run), it's due to this. If you wish to follow the next steps, realize that you will need to install version **22,** following the [Node + NPM guide](../../bonus/system/nodejs-npm.md) instead of 24, but the **rest of the software that depends on Node version 24** **may stop working** (e.g [ThunderHub](../../lightning/web-app.md))
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/public-pool.png" alt=""><figcaption></figcaption></figure>
@@ -58,7 +77,7 @@ npm -v
 
 ### Reverse proxy & Firewall
 
-In the [security section](../../index-1/security.md), we set up Nginx as a reverse proxy. Now we can add the Public Pool configuration.
+In the [security section](../../index-1/security.md#nginx), we set up Nginx as a reverse proxy. Now we can add the Public Pool configuration.
 
 * Edit your Nginx configuration file
 
@@ -617,7 +636,7 @@ journalctl -fu public-pool
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
+To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
 * Start the service
 
