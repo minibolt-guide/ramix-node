@@ -1,20 +1,3 @@
----
-layout:
-  width: wide
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
----
-
 # 2.1 Bitcoin client: Bitcoin Core
 
 We install [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/), the reference client implementation of the Bitcoin network.
@@ -414,7 +397,7 @@ bind=127.0.0.1
 bind=127.0.0.1=onion
 
 ## Proxify clearnet outbound connections using Tor SOCKS5 proxy
-proxy=unix:/run/tor/socks
+proxy=127.0.0.1:9050
 
 ## I2P SAM proxy to reach I2P peers and accept I2P connections
 i2psam=127.0.0.1:7656

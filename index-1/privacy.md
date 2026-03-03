@@ -542,12 +542,6 @@ sudo nano +18 /etc/tor/torrc -l
 SocksPort 0.0.0.0:9050
 ```
 
-* Add down the next line (on line 19). Save and exit
-
-```
-SocksPort unix:/run/tor/socks WorldWritable
-```
-
 * Reload the Tor configuration to apply changes
 
 ```bash
