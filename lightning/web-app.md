@@ -2,6 +2,22 @@
 title: Web app
 nav_order: 30
 parent: Lightning
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # 3.3 Web app: ThunderHub
@@ -136,7 +152,7 @@ sudo su - thunderhub
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=0.15.1
+VERSION=0.15.5
 ```
 
 * Import the GPG key of the developer
@@ -768,7 +784,7 @@ cd thunderhub
 * Set the environment variable version
 
 ```bash
-VERSION=0.15.1
+VERSION=0.15.5
 ```
 
 * Pull the changes from GitHub

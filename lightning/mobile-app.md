@@ -2,6 +2,22 @@
 title: Mobile app
 nav_order: 60
 parent: Lightning
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # 3.4 Mobile app: Zeus

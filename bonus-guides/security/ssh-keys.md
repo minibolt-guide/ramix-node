@@ -4,6 +4,22 @@ parent: + System
 grand_parent: Bonus Section
 nav_exclude: true
 has_toc: false
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # Login with SSH keys
@@ -20,12 +36,12 @@ Difficulty: Medium
 
 ### Generate SSH keys on Windows
 
-* On your regular computer, download Puttygen [64-bit x86](https://the.earth.li/~sgtatham/putty/latest/w64/puttygen.exe) or [32-bit x86](https://the.earth.li/~sgtatham/putty/latest/w32/puttygen.exe) version depending on your OS architecture, and start it. Also, you can download [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) start it, and use the "MobaKeyGen (SSH key generator)" integrated tool in the "Tools" submenu
+* On your regular computer, download Puttygen [64-bit x86](https://the.earth.li/~sgtatham/putty/latest/w64/puttygen.exe) or [32-bit x86](https://the.earth.li/~sgtatham/putty/latest/w32/puttygen.exe) version, depending on your OS architecture, and start it. Also, you can download [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) start it, and use the "MobaKeyGen (SSH key generator)" integrated tool in the "Tools" submenu
 * Click on the "Generate" button and move the mouse over the window until the progress is finished
 * Assign a key passphrase (recommended), to encrypt the private key locally, use `password [A]` for example
 * Click on:
-  * "Save public key", and give it a name, eg. `ramix_SSH_pubkey.txt`
-  * "Save private key", and give it a name, eg. `ramix_SSH_privkey` (Keep this safe!)
+  * "Save public key", and give it a name, eg `ramix_SSH_pubkey.txt`
+  * "Save private key", and give it a name, eg `ramix_SSH_privkey` (Keep this safe!)
 
 ### Generate SSH keys on Linux or macOS
 
@@ -128,9 +144,9 @@ chmod 600 .ssh/authorized_keys
 
 ### From GitHub keyserver
 
-* On your regular computer, access to "GPG and SSH keys" section of your [GitHub account](https://github.com/settings/keys), if you don't have an account [create one](https://github.com/signup)
-* Click on the "new SSH key" button, type a title e.g SSH\_keys\_RaMiX, select Key type "Authentication key", and paste on the "Key" section the SSH pub key generated in the preparations [section](ssh-keys.md#preparations) depending on the regular computer OS
-* Login with the `admin` user on RaMiX and create a new folder at home called ".ssh". If already exists, skip the next step
+* On your regular computer, access the "GPG and SSH keys" section of your [GitHub account](https://github.com/settings/keys), if you don't have an account, [create one](https://github.com/signup)
+* Click on the "new SSH key" button, type a title e.g SSH\_keys\_RaMiX, select Key type "Authentication key", and paste on the "Key" section the SSH pub key generated in the preparations [section](ssh-keys.md#preparations), depending on the regular computer OS
+* Login with the `admin` user on RaMiX and create a new folder at home called ".ssh". If it already exists, skip the next step
 
 ```sh
 mkdir .ssh
@@ -142,7 +158,7 @@ mkdir .ssh
 chmod 700 .ssh
 ```
 
-* Import your SSH GitHub keys replacing `<username>` with the GitHub username (that appears in your profile section)
+* Import your SSH GitHub keys, replacing `<username>` with the GitHub username (that appears in your profile section)
 
 ```sh
 curl https://github.com/<username>.keys >> .ssh/authorized_keys
@@ -184,7 +200,7 @@ Attention: This command only works if you generated the SSH keys [on Linux or ma
 
 ### Putty Linux/Windows
 
-* On your regular computer, download Putty [64-bit x86](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) version depending on your OS architecture, and start it
+* On your regular computer, download Putty [64-bit x86](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) or [32-bit x86](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) version, depending on your OS architecture, and start it
 * To automatically connect and log in to your server you need to add the Private Key to the Putty client. Then go to the left Category menu, select SSH –> Auth -> Credentials, on "Private key file for authentication" hit the "Browse" button, search, and add your Private Key file
 * To the left tree, select "session", in the "Hostname (or IP address)" box, and type `admin@ramix.local` or `admin@192.168.x.xx`, left port `22` to the right box. Click on `Open`. If you selected a key passphrase in the [preparations](ssh-keys.md#preparations) section, enter it. That’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the Open button without the need to enter passwords
 
@@ -192,15 +208,19 @@ Attention: This command only works if you generated the SSH keys [on Linux or ma
 
 * On your regular computer, download MobaXterm [Portable edition](https://download.mobatek.net/2232022120824733/MobaXterm_Portable_v22.3.zip) or [Installer edition](https://download.mobatek.net/2232022120824733/MobaXterm_Installer_v22.3.zip) version depending on whether you want to install it permanently or not
 * Start MobaXterm, on the top menu, click on Session -> New session -> Select SSH
-* Enter in remote host, "ramix.local" or your RaMiX IP address (192.168.x.xx), check to "specify username" and enter to the right "admin", keep port "22" selected to the right
-* To automatically connect and log in to your server you need to add the Private Key to the MobaXterm client, select the "Advanced SSH settings" tab, check "Use private key" and click on the icon to the right form shaped like a document and select your Private Key file
-* Click on the "OK" button and that’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the "Open" button without the need to enter passwords
+* Enter in remote host, "ramix.local" or your RaMiX IP address (192.168.x.xx), check to "specify username" and enter " admin " to the right, keep port "22" selected to the right
+* To automatically connect and log in to your server you need to add the Private Key to the MobaXterm client, select the "Advanced SSH settings" tab, check "Use private key", and click on the icon to the right form shaped like a document, and select your Private Key file
+* Click on the "OK" button, and that’s it! Now you can automatically securely connect to your remote SSH server with Putty client by hitting the "Open" button without the need to enter passwords
 
 ## Extras (optional)
 
 ### Enable password login
 
-* Log in to the MiniBolt as `admin`, using SSH with your SSH keys
+{% hint style="info" %}
+This step is only valid if you selected [Option 2](../../index-1/operating-system.md#services-tab) in **Operating system** > **Configure boot options** section
+{% endhint %}
+
+* Log in to the RaMiX as `admin`, using SSH with your SSH keys
 * Add a custom config file to the drop-in config
 
 ```bash

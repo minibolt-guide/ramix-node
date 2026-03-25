@@ -1,3 +1,22 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Boot from microSD instead of an external drive
 
 If the Raspberry Pi cannot boot from your external drive, you can boot from a microSD card and store all the application data on the external drive.

@@ -1,6 +1,6 @@
 ---
 layout:
-  width: wide
+  width: default
   title:
     visible: true
   description:
@@ -26,7 +26,9 @@ Difficulty: Medium
 {% endhint %}
 
 {% hint style="danger" %}
-Attention! This software is not compatible with the latest version of Node LTS (24), mentioned in the corresponding [Node + NPM guide](../../bonus/system/nodejs-npm.md). If you encounter an error when you [run](public-pool.md#run), it's due to this. If you wish to follow the next steps, realize that you will need to install version **22,** following the [Node + NPM guide](../../bonus/system/nodejs-npm.md) instead of 24, but the **rest of the software that depends on Node version 24** **may stop working** (e.g [ThunderHub](../../lightning/web-app.md))
+Attention! This software is not compatible with the latest version of Node LTS (24), mentioned in the corresponding [Node + NPM guide](../../bonus/system/nodejs-npm.md). If you encounter an error when you [run](public-pool.md#run), it's due to this. There is [an issue](https://github.com/benjamin-wilson/public-pool/issues/147) open about this in the official Public Pool repository to fix this.
+
+If you wish to follow the next steps, realize that you will need to install version **22,** following the [Node + NPM guide](../../bonus/system/nodejs-npm.md), instead of 24, but the rest of the **software that depends on Node version 24** **may stop working** (e.g [ThunderHub](../../lightning/web-app.md)).
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/public-pool.png" alt=""><figcaption></figcaption></figure>

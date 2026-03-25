@@ -1,3 +1,22 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Bitcoin Knots
 
 [**Bitcoin Knots**](https://bitcoinknots.org/) is a community-driven fork of Bitcoin Core that offers advanced features, experimental options, and enhanced configurability. It includes additional consensus and networking parameters—such as stronger spam filtering and custom block processing rules—designed for power users and developers seeking deeper control over their Bitcoin node.
@@ -174,7 +193,7 @@ sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS
 
 {% code overflow="wrap" %}
 ```shell
-sudo apt install automake autotools-dev bison bsdmainutils build-essential cmake curl libtool patch pkg-config python3 xz-utils --no-install-recommends
+sudo apt install build-essential cmake curl patch pkg-config python3 xz-utils --no-install-recommends
 ```
 {% endcode %}
 
@@ -189,7 +208,7 @@ cd /tmp
 * Set the next environment variables
 
 ```sh
-VERSION=28.1.knots20250305 && BRANCH=28.x
+VERSION=29.3.knots20260210 && BRANCH=29.x
 ```
 
 * Get the latest source code, the list of cryptographic checksums, and the signatures attesting to the validity of the checksums
@@ -303,41 +322,48 @@ cd bitcoin-$VERSION
 * Execute the `autogen.sh` script
 
 ```sh
-./autogen.sh
+make -C depends -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
 ```
 
 Expected output:
 
 ```
-libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'build-aux'.
-libtoolize: copying file 'build-aux/ltmain.sh'
-libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'build-aux/m4'.
-libtoolize: copying file 'build-aux/m4/libtool.m4'
-libtoolize: copying file 'build-aux/m4/ltoptions.m4'
-libtoolize: copying file 'build-aux/m4/ltsugar.m4'
-libtoolize: copying file 'build-aux/m4/ltversion.m4'
-libtoolize: copying file 'build-aux/m4/lt~obsolete.m4'
-configure.ac:39: installing 'build-aux/ar-lib'
-configure.ac:37: installing 'build-aux/compile'
-configure.ac:24: installing 'build-aux/config.guess'
-configure.ac:24: installing 'build-aux/config.sub'
-configure.ac:27: installing 'build-aux/install-sh'
-configure.ac:27: installing 'build-aux/missing'
-Makefile.am: installing 'build-aux/depcomp'
-parallel-tests: installing 'build-aux/test-driver'
-libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'build-aux'.
-libtoolize: copying file 'build-aux/ltmain.sh'
+make: Entering directory '/tmp/bitcoin-29.3.knots20260210/depends'
+Fetching boost_1_81_0.tar.gz from https://archives.boost.io/release/1.81.0/source/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  133M  100  133M    0     0  1277k      0  0:01:47  0:01:47 --:--:-- 1487k
+/tmp/bitcoin-29.3.knots20260210/depends/work/download/boost-1.81.0/boost_1_81_0.tar.gz.temp: OK
+Extracting boost...
+/tmp/bitcoin-29.3.knots20260210/depends/sources/boost_1_81_0.tar.gz: OK
+Preprocessing boost...
+Configuring boost...
+Building boost...
+Staging boost...
+Postprocessing boost...
+Caching boost...
+Fetching libevent-2.1.12-stable.tar.gz from https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 1075k  100 1075k    0     0  1330k      0 --:--:-- --:--:-- --:--:-- 1330k
+/tmp/bitcoin-29.3.knots20260210/depends/work/download/libevent-2.1.12-stable/libevent-2.1.12-stable.tar.gz.temp: OK
+Extracting libevent...
+/tmp/bitcoin-29.3.knots20260210/depends/sources/libevent-2.1.12-stable.tar.gz: OK
 [...]
 ```
 
-* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press Enter
+* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press `Enter`
 
 ```sh
-./configure \
-  --disable-bench \
-  --disable-maintainer-mode \
-  --disable-tests \
-  --with-gui=no
+BITCOIN_GENBUILD_NO_GIT=1 cmake -B build \
+  -DBUILD_TESTS=OFF \
+  -DBUILD_TX=OFF \
+  -DBUILD_UTIL=OFF \
+  -DBUILD_WALLET_TOOL=OFF \
+  -DINSTALL_MAN=OFF \
+  -DWITH_ZMQ=ON \
+  --toolchain depends/aarch64-unknown-linux-gnu/toolchain.cmake
 ```
 
 #### **Apply the UA patch (optional)**
@@ -350,18 +376,36 @@ This patch removes the Bitcoin Knots reference from the **user agent** to make i
 Skip this step if you want only to build Bitcoin Knots from the source code, but not apply the user agent patch
 {% endhint %}
 
-* Download the UA patch
-
-{% code overflow="wrap" %}
-```bash
-wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/mod-ua-knots.patch
-```
-{% endcode %}
-
-* **(Optional)** Inspect `mod-ua-knots.patch` file to make sure it does not do bad things. If you see all OK, exit with Ctrl-X and continue with the next command
+* Create the UA patch
 
 ```sh
 nano mod-ua-knots.patch
+```
+
+* Enter the next content. Save and exit
+
+```
+diff --git a/src/clientversion.cpp b/src/clientversion.cpp
+index 6bf7ef6406..9445e3b6f5 100644
+--- a/src/clientversion.cpp
++++ b/src/clientversion.cpp
+@@ -66,15 +66,7 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const
+ {
+     std::string comments_str;
+     if (!comments.empty()) comments_str = strprintf("(%s)", Join(comments, "; "));
+-    std::string ua = strprintf("/%s:%s%s/", name, FormatVersion(nClientVersion), comments_str);
+-    if (!base_name_only) {
+-        static const auto ua_knots = []() -> std::string {
+-            const auto pos{CLIENT_BUILD.find(".knots")};
+-            return "Knots:" + CLIENT_BUILD.substr(pos + 6) + "/";
+-        }();
+-        ua += ua_knots;
+-    }
+-    return ua;
++    return strprintf("/%s:%s%s/", name, FormatVersion(nClientVersion), comments_str);
+ }
+
+ std::string CopyrightHolders(const std::string& strPrefix)
 ```
 
 * Apply the patch
@@ -375,8 +419,64 @@ git apply mod-ua-knots.patch
 * Enter the command to compile
 
 ```sh
-make -j$(nproc)
+cmake --build build -j2
 ```
+
+<details>
+
+<summary><strong>Example</strong> of expected output ⬇️</summary>
+
+```
+[  0%] Generating bitcoin-build-info.h
+[  1%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/arith_uint256.cpp.o
+[  1%] Building CXX object src/CMakeFiles/crc32c.dir/crc32c/src/crc32c.cc.o
+[  1%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/builder.cc.o
+[  1%] Built target generate_build_info
+[  2%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/c.cc.o
+[  2%] Building CXX object src/CMakeFiles/crc32c.dir/crc32c/src/crc32c_portable.cc.o
+[  3%] Building CXX object src/CMakeFiles/crc32c.dir/crc32c/src/crc32c_sse42.cc.o
+[  3%] Linking CXX static library libcrc32c.a
+[  3%] Built target crc32c
+[  3%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/db_impl.cc.o
+[  3%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/db_iter.cc.o
+[  3%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/consensus/merkle.cpp.o
+[  3%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/consensus/tx_check.cpp.o
+[  4%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/dbformat.cc.o
+[  5%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/hash.cpp.o
+[  5%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/primitives/block.cpp.o
+[  5%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/dumpfile.cc.o
+[  5%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/primitives/transaction.cpp.o
+[  5%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/filename.cc.o
+[  6%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/pubkey.cpp.o
+[  6%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/log_reader.cc.o
+[  7%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/log_writer.cc.o
+[  7%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/script/script.cpp.o
+[  7%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/memtable.cc.o
+[  7%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/script/script_error.cpp.o
+[  7%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/repair.cc.o
+[  8%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/table_cache.cc.o
+[  9%] Building CXX object src/CMakeFiles/bitcoin_consensus.dir/uint256.cpp.o
+[  9%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/version_edit.cc.o
+[  9%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/version_set.cc.o
+[ 10%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/db/write_batch.cc.o
+[ 10%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/block.cc.o
+[ 10%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/block_builder.cc.o
+[ 10%] Linking CXX static library ../lib/libbitcoin_consensus.a
+[ 10%] Built target bitcoin_consensus
+[ 10%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/filter_block.cc.o
+[ 11%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/format.cc.o
+[ 11%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/iterator.cc.o
+[ 11%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/merger.cc.o
+[ 12%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/table.cc.o
+[ 12%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/table_builder.cc.o
+[ 12%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/table/two_level_iterator.cc.o
+[ 13%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/util/arena.cc.o
+[ 13%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/util/bloom.cc.o
+[ 13%] Building CXX object src/CMakeFiles/leveldb.dir/leveldb/util/cache.cc.o
+[...]
+```
+
+</details>
 
 {% hint style="info" %}
 This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again. You can use [Tmux](https://github.com/tmux/tmux) to leave it in the background
@@ -387,7 +487,15 @@ This process can take quite **a long time**, 10-15 minutes or more, depending on
 * Enter the next command to install the new binaries precompiled for you on the OS
 
 ```sh
-sudo make install
+sudo cmake --install build
+```
+
+Expected output:
+
+```
+-- Install configuration: "RelWithDebInfo"
+-- Installing: /usr/local/bin/bitcoind
+-- Installing: /usr/local/bin/bitcoin-cli
 ```
 
 * Check the correct installation by requesting the output of the version
@@ -423,19 +531,13 @@ sudo rm -r bitcoin-$VERSION bitcoin-$VERSION.tar.gz SHA256SUMS SHA256SUMS.asc
 ```
 {% endcode %}
 
-* **(Optional)** Delete unnecessary binaries before installing `make install` command
+{% hint style="info" %}
+**(Optional)** If you have an existing Bitcoin Knots installation without the UA patch applied, restart it using systemd and start a new instance with the UA patch applied
 
-{% code overflow="wrap" %}
 ```bash
-sudo rm /usr/local/bin/bitcoin-tx /usr/local/bin/bitcoin-wallet /usr/local/bin/bitcoin-util
-```
-{% endcode %}
-
-* If you have an existing Bitcoin Knots installation without the UA patch applied, restart it using systemd and start a new instance with the UA patch applied
-
-```sh
 sudo systemctl restart bitcoind
 ```
+{% endhint %}
 
 * Monitor the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl+ C` and continue
 
@@ -448,7 +550,7 @@ journalctl -fu bitcoind
 ### Enforce spam and arbitrary data rejection
 
 {% hint style="info" %}
-Configuring `bitcoin.conf` with targeted Bitcoin Knots parameters enhance the network’s ability to block spam and arbitrary data
+Configuring `bitcoin.conf` with targeted Bitcoin Knots parameters, enhance the network’s ability to block spam and arbitrary data
 {% endhint %}
 
 * With the user admin, edit the `bitcoin.conf` file
@@ -470,7 +572,7 @@ rejecttokens=1
 dustrelayfee=0.00010
 ```
 
-* Restart Bitcoin Core to apply changes
+* Restart Bitcoin Knots to apply changes
 
 ```bash
 sudo systemctl restart bitcoind
@@ -509,7 +611,7 @@ sudo systemctl start lnd
 
 The latest release can be found on the [GitHub page](https://github.com/bitcoinknots/bitcoin) of the Bitcoin Knots project. Always read the [RELEASE NOTES](https://github.com/bitcoinknots/bitcoin/tree/28.x-knots/doc/release-notes) first! When upgrading, there might be breaking changes or changes in the data structure that need special attention
 
-Go to the Option 1: Using precompiled binaries - [Installation section](bitcoin-knots.md#installation), or Option 2: Compiling from source code - [Installation section](bitcoin-knots.md#installation-1), depending on the selected option, and replace the environment variables `"VERSION=x.xx"` and `"BRANCH="x.xx"` values for the latest version and branch, if they have not already been changed in this guide. Continue until you complete the entire Installation section.
+Go to the **Option 1**: Using precompiled binaries - [Installation section](bitcoin-knots.md#installation), or **Option 2**: Compiling from source code - [Installation section](bitcoin-knots.md#installation-1), depending on the selected option, and replace the environment variables `"VERSION=x.xx"` and `"BRANCH="x.xx"` values for the latest version and branch, if they have not already been changed in this guide. Continue until you complete the entire Installation section.
 
 {% hint style="info" %}
 Remember to restart the Bitcoin Knots to apply the new version with: `sudo systemctl restart bitcoind`
@@ -517,7 +619,7 @@ Remember to restart the Bitcoin Knots to apply the new version with: `sudo syste
 
 ## Uninstall
 
-To uninstall Bitcoin Knots, follow the entire Bitcoin Client: Bitcoin Core [uninstall section](../../bitcoin/bitcoin/bitcoin-client.md#uninstall)
+To uninstall Bitcoin Knots, follow the entire [Bitcoin Client: Bitcoin Core uninstall section](../../bitcoin/bitcoin/bitcoin-client.md#uninstall)
 
 ## Port reference
 

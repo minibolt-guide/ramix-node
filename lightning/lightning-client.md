@@ -2,6 +2,22 @@
 title: Lightning client
 nav_order: 10
 parent: Lightning
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # 3.1 Lightning client: LND
@@ -321,7 +337,7 @@ Done.
 sudo mkdir /data/lnd
 ```
 
-* Assign the `lnd` user as owner&#x20;
+* Assign the `lnd` user as owner
 
 ```sh
 sudo chown -R lnd:lnd /data/lnd
@@ -1052,7 +1068,7 @@ Continue with the guide in the [Create systemd service](lightning-client.md#crea
 ### Migrate an existing bbolt database to PostgreSQL
 
 {% hint style="danger" %}
-Attention:  It is recommended to start from scratch by closing all existing channels, rather than a migration, to ensure we don't lose anything because it is not possible to come back to the old bbolt database once migrated
+Attention: It is recommended to start from scratch by closing all existing channels, rather than a migration, to ensure we don't lose anything because it is not possible to come back to the old bbolt database once migrated
 {% endhint %}
 
 #### Install lndinit
@@ -1083,6 +1099,10 @@ Application Options:
 ```
 
 -> If lndinit is not installed (`-bash: lndinit: command not found`), follow the [lndinit bonus guide](../bonus-guides/lightning/lndinit.md) to get instructions to install or use only [lndinit](https://github.com/lightninglabs/lndinit)
+{% endhint %}
+
+{% hint style="info" %}
+Follow the [lndinit bonus guide](/broken/pages/96SMNPk8eWyiyWlmsSbA) to get instructions to install or use only [lndinit](https://github.com/lightninglabs/lndinit)
 {% endhint %}
 
 #### Migrate bbolt database to PostgreSQL
@@ -1119,11 +1139,11 @@ May 30 20:45:02 ramix systemd[1]: lnd.service: Consumed 12h 11min 606ms CPU time
 * Previously followed:
   1. [Install PostgreSQL section](lightning-client.md#install-postgresql)
   2. [Create PostgreSQL database section](lightning-client.md#create-postgresql-database)
-* Depending on whether you selected in the [Binaries installation section](lightning-client.md#binaries-installation-1) the [option 1](lightning-client.md#id-1.-temporary-use-recomended) or [2](lightning-client.md#id-2.-permanet-installation):
+* Depending on whether you selected in the [Binaries installation section](lightning-client.md#binaries-installation-1) the [option 1](lightning-client.md#id-1.-temporary-use-recomended) or [option 2](lightning-client.md#id-2.-permanet-installation):
 
 {% tabs %}
 {% tab title="1. For temporary use option (recommended)" %}
-- Go to the lndinit folder
+- Go to the `lndinit` folder
 
 ```bash
 cd lndinit-linux-arm64-v$VERSION-beta
@@ -1147,7 +1167,7 @@ This process could take a few minutes, depending on the database size. When the 
 {% endtab %}
 
 {% tab title="2. For permanent installation option" %}
-* Execute the migration and wait for completion
+* Execute the migration and wait for it to finish
 
 ```bash
 sudo lndinit --debuglevel info migrate-db \
@@ -1214,11 +1234,11 @@ sudo nano /data/lnd/lnd.conf
 * Replace or comment with "`#`" the `# Database` section about the bbolt database backend
 
 ```
-[bolt]
+#[bolt]
 ## Database
 # Set the next value to false to disable auto-compact DB
 # and fast boot and comment the next line
-db.bolt.auto-compact=true
+#db.bolt.auto-compact=true
 # Uncomment to do DB compact at every LND reboot (default: 168h)
 #db.bolt.auto-compact-min-age=0h
 ```
@@ -1226,7 +1246,6 @@ db.bolt.auto-compact=true
 * To this
 
 ```
-# Database
 [db]
 db.backend=postgres
 
@@ -1518,19 +1537,21 @@ Replace:
 
 **Example** of expected output:
 
-<pre data-overflow="wrap"><code>Starting PSBT funding flow with pending channel ID <a data-footnote-ref href="#user-content-fn-18">693ddd43693ed8d620547ee77b729fcd68bb09853ff1bfec0e247514588c44aa</a>.
-PSBT funding initiated with peer <a data-footnote-ref href="#user-content-fn-18">039a53a85abd18ae5087e8fc99d2f2b09543bfd8e68072810f6900541e279c7615</a>.
-Please create a PSBT that sends <a data-footnote-ref href="#user-content-fn-18">0.01000000</a> BTC (<a data-footnote-ref href="#user-content-fn-18">1000000</a> satoshi) to the funding address <a data-footnote-ref href="#user-content-fn-18">tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4</a>.
+{% code overflow="wrap" %}
+```
+Starting PSBT funding flow with pending channel ID 693ddd43693ed8d620547ee77b729fcd68bb09853ff1bfec0e247514588c44aa.
+PSBT funding initiated with peer 039a53a85abd18ae5087e8fc99d2f2b09543bfd8e68072810f6900541e279c7615.
+Please create a PSBT that sends 0.01000000 BTC (1000000 satoshi) to the funding address tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4.
 
 Note: The whole process should be completed within 10 minutes, otherwise there
 is a risk of the remote node timing out and canceling the funding process.
 
 Example with bitcoind:
-        bitcoin-cli walletcreatefundedpsbt [] '[{"<a data-footnote-ref href="#user-content-fn-18">tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4</a>":<a data-footnote-ref href="#user-content-fn-18">0.01000000</a>}]'
+        bitcoin-cli walletcreatefundedpsbt [] '[{"tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4":0.01000000}]'
 
 If you are using a wallet that can fund a PSBT directly (currently not possible
 with bitcoind), you can use this PSBT that contains the same address and amount:
-<a data-footnote-ref href="#user-content-fn-18">cHNidP8BADUCAAAAAAFAQg8AAAAAACIAIOmDaGIYDmMwTlZn2R3BzlXgra0/Q3Np934uUtM2RzjEAAAAAAAA</a>
+cHNidP8BADUCAAAAAAFAQg8AAAAAACIAIOmDaGIYDmMwTlZn2R3BzlXgra0/Q3Np934uUtM2RzjEAAAAAAAA
 
 !!! WARNING !!!
 DO NOT PUBLISH the finished transaction by yourself or with another tool.
@@ -1541,7 +1562,8 @@ If your PSBT is very long (specifically, more than 4096 characters), please save
 it to a file and paste the full file path here instead as some terminals will
 truncate the pasted text if it's too long.
 Base64 encoded PSBT (or path to file):
-</code></pre>
+```
+{% endcode %}
 
 {% hint style="info" %}
 Keep the terminal open and go to [Sparrow wallet](../bitcoin/bitcoin/desktop-signing-app-sparrow.md) on your regular computer
@@ -1555,33 +1577,30 @@ Keep the terminal open and go to [Sparrow wallet](../bitcoin/bitcoin/desktop-sig
 
 > * Create TX (Push the **\[Send]** button) with the next information:
 >
-> > `<address>`: provided by LND (in the previous **example** expected output: tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4[^18])
+> > `<address>`: provided by LND (in the previous **example** expected output: tb1qaxpkscscpe3nqnjkvlv3msww2hs2mtflgdeknam79efdxdj88rzq50wes4\[^18])
 >
-> > `<amount>`: \<exact\_amount\_in\_sats> (in the previous example expected output: 1000000[^18])
+> > `<amount>`: \<exact\_amount\_in\_sats> (in the previous example expected output: 1000000\[^18])
 >
 > > `<fee>`: free selection (minimun reccomended: 1 sat/vB)
 
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 200927.png" alt="" width="563"><figcaption></figcaption></figure>
-
 > * Push on **\[Create Transaction]** button
 
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 200939.png" alt=""><figcaption></figcaption></figure>
-
 > * Go to File > Save PSBT > To clipboard > Push on **\[As Base64]**
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 20103922.png" alt=""><figcaption></figcaption></figure>
 
 **lncli**
 
 * Come back to the terminal, paste the Base64 encoded PSBT, and press `Enter`
 
-<pre data-overflow="wrap"><code>[...]
+{% code overflow="wrap" %}
+```
+[...]
 Paste the funded PSBT here to continue the funding flow.
 If your PSBT is very long (specifically, more than 4096 characters), please save
 it to a file and paste the full file path here instead as some terminals will
 truncate the pasted text if it's too long.
-Base64 encoded PSBT (or path to file):<a data-footnote-ref href="#user-content-fn-18">cHNidP8BAH0CAAAAAWWHmb3fTdrJxma/TCGvtbvApOVoi6G95w4UaHRGfDMhAAAAAAD9////AlLkZwUAAAAAFgAUX9ew44+OB8+kwpgG6iF70MmfcLhAQg8AAAAAACIAIOmDaGIYDmMwTlZn2R3BzlXgra0/Q3Np934uUtM2RzjEj+kBAE8BBDWHzwNnHxQdgAAAAJQLvJjmRynKxf0gEGTPjTNFfZihcWaKxdg80bFuZwx9A4ic/HW3i2wsi7DzQpgp3XU35GRAZE7/6xtlSU2q40k9EDJZn0RUAACAAQAAgAAAAIAAAQB9AgAAAAEuAdCdlVbd1FfBgq2pPg9M66oDLOhlqx7q4j/fmcpHgQAAAAAA/f///wIqJ3cFAAAAABYAFMa73Oh+0Y0qatXicTjbtvwoTfsSQEIPAAAAAAAiUSCpAIClp6Lhu5buI2JpHZh4EPu4FsNf0wGveMloyahvq7foAQABAR8qJ3cFAAAAABYAFMa73Oh+0Y0qatXicTjbtvwoTfsSAQMEAQAAACIGAmcWxbzjatOXumEFVjOtKLrmnBDxGLlTfWngNx5qOdRMGDJZn0RUAACAAQAAgAAAAIABAAAAEAAAAAAiAgM8w/U1eexTj+OBYiFuSuTNcIAdRgzC7GxJ/2YejuPWehgyWZ9EVAAAgAEAAIAAAACAAQAAABEAAAAAAA==</a>
-</code></pre>
+Base64 encoded PSBT (or path to file):cHNidP8BAH0CAAAAAWWHmb3fTdrJxma/TCGvtbvApOVoi6G95w4UaHRGfDMhAAAAAAD9////AlLkZwUAAAAAFgAUX9ew44+OB8+kwpgG6iF70MmfcLhAQg8AAAAAACIAIOmDaGIYDmMwTlZn2R3BzlXgra0/Q3Np934uUtM2RzjEj+kBAE8BBDWHzwNnHxQdgAAAAJQLvJjmRynKxf0gEGTPjTNFfZihcWaKxdg80bFuZwx9A4ic/HW3i2wsi7DzQpgp3XU35GRAZE7/6xtlSU2q40k9EDJZn0RUAACAAQAAgAAAAIAAAQB9AgAAAAEuAdCdlVbd1FfBgq2pPg9M66oDLOhlqx7q4j/fmcpHgQAAAAAA/f///wIqJ3cFAAAAABYAFMa73Oh+0Y0qatXicTjbtvwoTfsSQEIPAAAAAAAiUSCpAIClp6Lhu5buI2JpHZh4EPu4FsNf0wGveMloyahvq7foAQABAR8qJ3cFAAAAABYAFMa73Oh+0Y0qatXicTjbtvwoTfsSAQMEAQAAACIGAmcWxbzjatOXumEFVjOtKLrmnBDxGLlTfWngNx5qOdRMGDJZn0RUAACAAQAAgAAAAIABAAAAEAAAAAAiAgM8w/U1eexTj+OBYiFuSuTNcIAdRgzC7GxJ/2YejuPWehgyWZ9EVAAAgAEAAIAAAACAAQAAABEAAAAAAA==
+```
+{% endcode %}
 
 Expected output:
 
@@ -1605,15 +1624,11 @@ Keep the terminal open and go back to [Sparrow wallet](../bitcoin/bitcoin/deskto
 
 > - Push the **\[Finalize transaction for signing]** button
 
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 201qqqw039.png" alt="" width="533"><figcaption></figcaption></figure>
-
 {% hint style="danger" %}
 DO NOT PUSH THE **\[BROADCAST TRANSACTION]** BUTTON!!
 {% endhint %}
 
 > * Follow the sign process, push the **\[Sign]** button (depending on your case follow the proper signing process of your Hardware Wallet)
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 201308.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 DO NOT PUSH THE **\[BROADCAST TRANSACTION]** BUTTON!!
@@ -1621,13 +1636,9 @@ DO NOT PUSH THE **\[BROADCAST TRANSACTION]** BUTTON!!
 
 > * Push on the **\[View Final Transaction]** button
 
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 201335.png" alt=""><figcaption></figcaption></figure>
-
 Code Down (hexadecimal base16) **raw transaction hex /**/ hex encoded raw wire TX
 
 > * Go to the Code Down (hexadecimal base16) **raw transaction hex /**/ hex encoded raw wire TX Select All code (double click) > (Right click) Push on (Copy All) banner
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-04 201451.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 DO NOT PUSH THE **\[BROADCAST TRANSACTION]** BUTTON!!
@@ -1637,12 +1648,15 @@ DO NOT PUSH THE **\[BROADCAST TRANSACTION]** BUTTON!!
 
 * Come back to the terminal, paste the hex encoded raw wire TX, and press `Enter`
 
-<pre data-overflow="wrap"><code>PSBT verified by lnd, please continue the funding flow by signing the PSBT by
+{% code overflow="wrap" %}
+```
+PSBT verified by lnd, please continue the funding flow by signing the PSBT by
 all required parties/devices. Once the transaction is fully signed, paste it
 again here either in base64 PSBT or hex encoded raw wire TX format.
 
-Signed base64 encoded PSBT or hex encoded raw wire TX (or path to file):<a data-footnote-ref href="#user-content-fn-18">02000000000101658799bddf4ddac9c666bf4c21afb5bbc0a4e5688ba1bde70e146874467c33210000000000fdffffff0252e46705000000001600145fd7b0e38f8e07cfa4c29806ea217bd0c99f70b840420f0000000000220020e9836862180e63304e5667d91dc1ce55e0adad3f437369f77e2e52d3364738c40247304402207fe76b5b1632d75c5ed2376857efaef0bed28caf2345e5bb9c9adff83da34dc802207b91f19360e2f5eef1f598d5a8d1f52612606d49226ea89558d25da30da51e760121026716c5bce36ad397ba61055633ad28bae69c10f118b9537d69e0371e6a39d44c8fe90100</a>
-</code></pre>
+Signed base64 encoded PSBT or hex encoded raw wire TX (or path to file):02000000000101658799bddf4ddac9c666bf4c21afb5bbc0a4e5688ba1bde70e146874467c33210000000000fdffffff0252e46705000000001600145fd7b0e38f8e07cfa4c29806ea217bd0c99f70b840420f0000000000220020e9836862180e63304e5667d91dc1ce55e0adad3f437369f77e2e52d3364738c40247304402207fe76b5b1632d75c5ed2376857efaef0bed28caf2345e5bb9c9adff83da34dc802207b91f19360e2f5eef1f598d5a8d1f52612606d49226ea89558d25da30da51e760121026716c5bce36ad397ba61055633ad28bae69c10f118b9537d69e0371e6a39d44c8fe90100
+```
+{% endcode %}
 
 **Example** of expected output:
 
@@ -1663,8 +1677,7 @@ Check the successful open channel via [ThunderHub](web-app.md), [Zeus](mobile-ap
 ### Recover the BIP32 Master Extended Private Key
 
 {% hint style="danger" %}
-PSA: It is not safe to externally manage the on-chain funds of LND wallet with standard tools like Sparrow Wallet or Electrum Wallet.
-\
+PSA: It is not safe to externally manage the on-chain funds of LND wallet with standard tools like Sparrow Wallet or Electrum Wallet.\
 There are advanced scripts involving other parties in Lightning channels, and you may cause those funds to be unrecoverable.
 
 USE ONLY IN CASE OF DISASTER RECOVERY!!!
@@ -1694,7 +1707,7 @@ chantools version v0.14.1, commit
 
 {% tabs %}
 {% tab title="1. For temporary use option (recommended)" %}
-#### Extract the private key of your LND
+**Extract the private key of your LND**
 
 * Go to the `chantools` folder
 
@@ -1730,7 +1743,7 @@ Input your cipher seed passphrase (press enter if your seed doesn't have a passp
 Your BIP32 HD root key is: xprv...
 ```
 
-#### Extract the private key of your Hardware Wallet
+**Extract the private key of your Hardware Wallet**
 
 * With user `admin`, enter the next command
 
@@ -1764,7 +1777,7 @@ Now, if you want to check, you can use the Sparrow wallet to import the BIP32 HD
 {% endtab %}
 
 {% tab title="2. For permanent installation option" %}
-#### Extract the private key of your LND
+**Extract the private key of your LND**
 
 * With user `admin`, enter the next command
 
@@ -1794,7 +1807,7 @@ Input your cipher seed passphrase (press enter if your seed doesn't have a passp
 Your BIP32 HD root key is: xprv...
 ```
 
-#### Extract the private key of your Hardware Wallet
+**Extract the private key of your Hardware Wallet**
 
 * With user `admin`, enter the next command
 
@@ -1835,41 +1848,16 @@ Go to [Sparrow wallet](../bitcoin/bitcoin/desktop-signing-app-sparrow.md) on you
 **Sparrow**
 
 * Go to File > **New wallet**
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 200439.png" alt=""><figcaption></figcaption></figure>
-
 * Type your desired name
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 200506.png" alt=""><figcaption></figcaption></figure>
-
 * If you created your LND node recently, select the Script Type > \[**Taproot (P2TR)**]. If you created your LND node a long time ago, select the Script Type > \[**Native Segwit(P2WPKH)**]
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 201839.png" alt=""><figcaption></figcaption></figure>
-
 * Push on the **\[New or Imported Software Wallet]** button
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 200649.png" alt="" width="563"><figcaption></figcaption></figure>
-
 * Push on the **\[Enter Private Key]** in the **Master Private Key (BIP32)**
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 201158.png" alt="" width="494"><figcaption></figcaption></figure>
-
 * Type the Master Private Key previously extracted from your LND and push the **\[Import]** button
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 201324.png" alt="" width="493"><figcaption></figcaption></figure>
-
 * Push on the **\[Import Keystore]** button
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 201531.png" alt=""><figcaption></figcaption></figure>
-
 * Finally, push on the **\[Apply]** button
-
-<figure><img src="../.gitbook/assets/Captura de pantalla 2026-03-24 201710.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Check the balance on the **\[Transactions]** and **\[UTXOs]** section if you already have movements in your LND on-chain wallet
-
-<img src="../.gitbook/assets/Captura de pantalla 2026-03-24 202450.png" alt="" data-size="original">![](<../.gitbook/assets/Captura de pantalla 2026-03-24 202435.png>)
 {% endhint %}
 
 * **(Optional)** Delete the chantools files from the temporary folder

@@ -1,3 +1,22 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Nostr relay in Rust
 
 A [nostr relay written in Rust](https://github.com/scsibug/nostr-rs-relay) with support for the entire relay protocol and data persistence using PostgreSQL or SQLite.
@@ -97,7 +116,7 @@ If you obtain "**command not found**" output, you need to follow the [Rustup + C
 ### Install PostgreSQL
 
 {% hint style="info" %}
-Skip this step if you want to use the SQLite database, go directly to the [next section](nostr-relay.md#installation)
+Skip this step if you want to use the SQLite database; go directly to the [next section](nostr-relay.md#installation)
 {% endhint %}
 
 * Check if you already have PostgreSQL installed
@@ -113,7 +132,7 @@ psql (PostgreSQL) 15.3 (Ubuntu 15.3-1.pgdg22.04+1)
 ```
 
 {% hint style="info" %}
-If you obtain "**command not found**" outputs, you need to follow the [PostgreSQL bonus guide](../system/postgresql.md) to install it and then come back to continue with the guide
+If you obtain "**command not found**" outputs, you need to follow the [PostgreSQL bonus guide](../system/postgresql.md) to install it, and then come back to continue with the guide
 {% endhint %}
 
 #### Create PostgreSQL database
@@ -525,7 +544,7 @@ data_directory = "/data/nostr/rs-relay/db"
 ```
 
 {% hint style="info" %}
-Ignore the next lines related to the PostgreSQL **(do not uncomment or edit)**:
+Ignore the next lines related to PostgreSQL **(do not uncomment or edit)**:
 
 ```
 engine = "postgres"
@@ -542,7 +561,7 @@ After=network-online.target
 ```
 
 {% hint style="info" %}
-[Continue](nostr-relay.md#run) with the guide, the rest of the steps are the same as PostgreSQL use
+[Continue](nostr-relay.md#run) with the guide; the rest of the steps are the same as PostgreSQL use
 {% endhint %}
 
 ### Create your Nostr key pair
@@ -672,12 +691,6 @@ Nostr live streaming.
 Nostr public key mining tool.
 
 [GitHub](https://github.com/grunch/rana)
-{% endtab %}
-
-{% tab title="Nosy" %}
-Find the top relays of those who follow you or you follow.
-
-[Web](https://nosy.tigerville.no/)
 {% endtab %}
 {% endtabs %}
 

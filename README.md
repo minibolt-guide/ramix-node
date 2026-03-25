@@ -2,6 +2,22 @@
 description: >-
   Build your own "DIY" Bitcoin & Lightning node, and other stuff on a Raspberry
   Pi. No need to trust anyone else.
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
 # RaMiX
