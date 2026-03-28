@@ -243,23 +243,59 @@ npm notice
 </details>
 
 {% hint style="info" %}
+
+
 **(Optional)** Improve your privacy by opting out of Next.js [telemetry](https://nextjs.org/telemetry)
 
 ```bash
 npx next telemetry disable
 ```
 
+When the promp ask you this:
+
+```
+Need to install the following packages:
+next@16.2.1
+Ok to proceed? (y)
+```
+
+* Type "y" and press `Enter`
+
 Expected output:
 
 ```
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
 Your preference has been saved to /home/thunderhub/.config/nextjs-nodejs/config.json.
 
 Status: Disabled
 
 You have opted-out of Next.js' anonymous telemetry program.
 No data will be collected from your machine.
+
 Learn more: https://nextjs.org/telemetry
 ```
+
+If you are not sure if you have already disabled the telemetry, check with the next command:
+
+```bash
+npx next telemetry status
+```
+
+**Example** of expected output:
+
+<pre><code>Next.js Telemetry
+
+Status: <a data-footnote-ref href="#user-content-fn-1">Disabled</a>
+
+You have opted-out of Next.js' anonymous telemetry program.
+No data will be collected from your machine.
+
+Learn more: https://nextjs.org/telemetry
+</code></pre>
 {% endhint %}
 
 * Build it
@@ -273,73 +309,47 @@ npm run build
 <summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
-> thunderhub@0.13.31 prebuild
-> rimraf dist && rimraf .next
+> thunderhub@0.15.5 prebuild
+> rimraf dist && rimraf src/client/dist
 
 
-> thunderhub@0.13.31 build
-> npm run build:nest && npm run build:next
+> thunderhub@0.15.5 build
+> npm run build:nest && npm run build:client
 
 
-> thunderhub@0.13.31 build:nest
+> thunderhub@0.15.5 build:nest
 > nest build
 
 
-> thunderhub@0.13.31 build:next
-> cd src/client && next build
+> thunderhub@0.15.5 build:client
+> cd src/client && npx vite build
 
+vite v7.3.1 building client environment for production...
+✓ 3468 modules transformed.
+dist/index.html                                                       0.88 kB │ gzip:   0.47 kB
+dist/assets/jetbrains-mono-vietnamese-wght-normal-Bt-aOZkq.woff2      7.50 kB
+dist/assets/jetbrains-mono-greek-wght-normal-Bw9x6K1M.woff2           9.00 kB
+dist/assets/noto-sans-greek-ext-wght-normal-12T8GTDR.woff2           10.76 kB
+dist/assets/jetbrains-mono-cyrillic-wght-normal-D73BlboJ.woff2       12.11 kB
+dist/assets/noto-sans-vietnamese-wght-normal-DLTJy58D.woff2          14.46 kB
+dist/assets/jetbrains-mono-latin-ext-wght-normal-DBQx-q_a.woff2      15.20 kB
+dist/assets/noto-sans-cyrillic-wght-normal-B2hlT84T.woff2            20.08 kB
+dist/assets/noto-sans-greek-wght-normal-Ymb6dZNd.woff2               21.78 kB
+dist/assets/noto-sans-latin-wght-normal-BYSzYMf3.woff2               35.82 kB
+dist/assets/jetbrains-mono-latin-wght-normal-B9CIFXIH.woff2          40.40 kB
+dist/assets/noto-sans-cyrillic-ext-wght-normal-DSNfmdVt.woff2        70.68 kB
+dist/assets/noto-sans-devanagari-wght-normal-Cv-Vwajv.woff2          99.24 kB
+dist/assets/noto-sans-latin-ext-wght-normal-W1qJv59z.woff2          167.96 kB
+dist/assets/index-CaOutTYy.css                                      120.38 kB │ gzip:  21.24 kB
+dist/assets/SettingsDashboardPage-Cw2lNbJ3.js                         2.06 kB │ gzip:   0.97 kB
+dist/assets/DashboardPage-CdGPQaG7.js                                61.33 kB │ gzip:  20.51 kB
+dist/assets/index-CM0qvWIF.js                                     1,736.10 kB │ gzip: 534.93 kB
 
-./src/components/chart/BarChart.tsx
-61:6  Warning: React Hook useMemo has a missing dependency: 'dataKey'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-
-./src/components/chart/HorizontalBarChart.tsx
-139:6  Warning: React Hook useMemo has a missing dependency: 'maxValue'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-
-./src/components/table/DebouncedInput.tsx
-30:6  Warning: React Hook useEffect has missing dependencies: 'debounce' and 'onChange'. Either include them or remove the dependency array. If 'onChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
-
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
- ✓ Linting and checking validity of types
-Browserslist: caniuse-lite is outdated. Please run:
-  npx browserslist@latest --update-db
-  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
- ✓ Creating an optimized production build
- ✓ Compiled successfully
- ✓ Collecting page data
- ✓ Collecting build traces
- ✓ Finalizing page optimization
-
-Route (pages)                              Size     First Load JS
-┌ λ /                                      23.9 kB         557 kB
-├   /_app                                  0 B             243 kB
-├ λ /404                                   344 B           243 kB
-├ λ /amboss                                3.92 kB         250 kB
-├ λ /chain                                 5.69 kB         265 kB
-├ λ /channels                              6.61 kB         310 kB
-├ λ /channels/[slug]                       4.44 kB         250 kB
-├ λ /chat                                  6.63 kB         255 kB
-├ λ /dashboard                             586 B           247 kB
-├ λ /forwards                              23.5 kB         545 kB
-├ λ /leaderboard                           3.62 kB         281 kB
-├ λ /lnmarkets                             5.2 kB          248 kB
-├ λ /login                                 5.54 kB         249 kB
-├ λ /peers                                 6.29 kB         265 kB
-├ λ /rebalance                             9.28 kB         287 kB
-├ λ /settings                              8.66 kB         257 kB
-├ λ /settings/dashboard                    458 B           247 kB
-├ λ /sso                                   2.78 kB         246 kB
-├ λ /stats                                 7.02 kB         253 kB
-├ λ /swap                                  11.2 kB         289 kB
-├ λ /tools                                 7.38 kB         250 kB
-└ λ /transactions                          5.08 kB         523 kB
-+ First Load JS shared by all              247 kB
-  ├ chunks/framework-80ea8c0f440c6a32.js   45.4 kB
-  ├ chunks/main-5aa2e2aecccdc7ca.js        33 kB
-  ├ chunks/pages/_app-43ed1c524f6479ab.js  162 kB
-  ├ chunks/webpack-bafa1815dd7342f2.js     2.17 kB
-  └ css/9f506b76c3634369.css               4.22 kB
-
-λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.66s
 ```
 
 </details>
@@ -388,13 +398,13 @@ nano thubConfig.yaml
 
 * Copy and paste the following information
 
-<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-1">PASSWORD</a>'
+<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-2">PASSWORD</a>'
 accounts:
   - name: 'RaMiX'
     serverUrl: '127.0.0.1:10009'
     macaroonPath: '/data/lnd/data/chain/bitcoin/mainnet/admin.macaroon'
     certificatePath: '/data/lnd/tls.cert'
-    password: '[E] ThunderHub password'
+    password: '<a data-footnote-ref href="#user-content-fn-3">[E] ThunderHub password</a>'
 </code></pre>
 
 {% hint style="info" %}
@@ -1056,4 +1066,8 @@ sudo ufw delete X
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ipZ6Euow0ap9" label="TCP" color="blue"></option><option value="HU4agtGOlZ7f" label="SSL" color="blue"></option><option value="pDdUpKMq37rf" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3001</td><td><span data-option="ipZ6Euow0ap9">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4002</td><td><span data-option="HU4agtGOlZ7f">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
 
-[^1]: Default password unless defined in account
+[^1]: Check this
+
+[^2]: Default password unless defined in account
+
+[^3]: Replace this
