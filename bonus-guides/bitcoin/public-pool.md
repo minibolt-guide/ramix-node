@@ -25,12 +25,6 @@ layout:
 Difficulty: Medium
 {% endhint %}
 
-{% hint style="danger" %}
-Attention! This software is not compatible with the latest version of Node LTS (24), mentioned in the corresponding [Node + NPM guide](../../bonus/system/nodejs-npm.md). If you encounter an error when you [run](public-pool.md#run), it's due to this. There is [an issue](https://github.com/benjamin-wilson/public-pool/issues/147) open about this in the official Public Pool repository to fix this.
-
-If you wish to follow the next steps, realize that you will need to install version **22,** following the [Node + NPM guide](../../bonus/system/nodejs-npm.md), instead of 24, but the rest of the **software that depends on Node version 24** **may stop working** (e.g [ThunderHub](../../lightning/web-app.md)).
-{% endhint %}
-
 <figure><img src="../../.gitbook/assets/public-pool.png" alt=""><figcaption></figcaption></figure>
 
 ## Requirements
@@ -74,7 +68,7 @@ npm -v
 
 -> If you have `node -v` output, **you can move to the** [**next section**](public-pool.md#reverse-proxy-and-firewall)
 
--> If Nodejs is not installed, output: `-bash: /usr/bin/node: No such file or directory.` Follow this [Node + NPM bonus guide](../../bonus/system/nodejs-npm.md) to install it
+-> If Node.js is not installed, output: `-bash: /usr/bin/node: No such file or directory.` Follow this [Node + NPM bonus guide](../../bonus/system/nodejs-npm.md) to install it
 {% endhint %}
 
 ### Reverse proxy & Firewall
@@ -207,7 +201,7 @@ zmqpubrawblock=tcp://127.0.0.1:28332
 sudo systemctl restart bitcoind
 ```
 
-* Check if Bitcoin Core has enabled `zmqpubrawblock` on the `28322` port
+* Check if Bitcoin Core has been enabled `zmqpubrawblock` on the `28322` port
 
 ```bash
 sudo ss -tulpn | grep -E '(:28332)'
@@ -809,6 +803,10 @@ dic 20 16:49:50 ramix public-pool[97483]: Stratum server is listening on port 23
 ```
 
 ## Uninstall
+
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
 
 ### Uninstall service
 

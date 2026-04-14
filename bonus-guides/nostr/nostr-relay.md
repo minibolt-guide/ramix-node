@@ -175,7 +175,7 @@ cargo build --release
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
     Updating crates.io index
@@ -229,7 +229,7 @@ If the prompt shows you this error:
 
 `error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured. help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.`
 
-You need to type **`rustup default stable`** and wait for the process to finish, then try again the command before
+You need to type **`rustup default stable`** and wait for the process to finish, then try the command again before
 {% endhint %}
 
 * Install it
@@ -442,7 +442,7 @@ sudo systemctl start nostr-relay
 
 <details>
 
-<summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu nostr-relay</code></summary>
+<summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu nostr-relay</code>⬇️</summary>
 
 ```
 Jun 07 10:49:45 ramix systemd[1]: Started Nostr relay.
@@ -478,12 +478,12 @@ tcp   LISTEN 0   128   127.0.0.1:8880   0.0.0.0:*  users:(("nostr-rs-relay",pid=
 
 {% tabs %}
 {% tab title="Method 1" %}
-* Go to the [nostr.watch](https://legacy.nostr.watch) the website to check and test the relay connection
-* Access to the URL, replacing `<relay.domain.com>` with your Nostr relay URL: `https://legacy.nostr.watch/relay/relay.domain.com,` example: [https://legacy.nostr.watch/relay/relay.damus.io](https://legacy.nostr.watch/relay/relay.damus.io)
+* Go to the [nostr.watch](https://nostr.watch/) the website to check and test the relay connection
+* Access to the URL, replacing `<relay.domain.com>` with your Nostr relay URL: `https://legacy.nostr.watch/relay/relay.domain.com,` example: [https://nostr.watch/relays/wss/relay.damus.io](https://nostr.watch/relays/wss/relay.damus.io)
 
-Expected output:
+**Example** of expected output:
 
-<figure><img src="../../.gitbook/assets/relay-connection.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Captura de pantalla 2026-04-09 143203.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Method 2" %}
@@ -1019,6 +1019,10 @@ sudo rm -r /tmp/nostr-rs-relay
 ```
 
 ## Uninstall
+
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
 
 ### Uninstall service
 

@@ -12,7 +12,7 @@ Difficulty: Medium
 
 <div data-full-width="false"><img src="../../.gitbook/assets/tor_bridge_midguard_relay_pan.png" alt=""></div>
 
-## Obsf4 bridge
+## **Obsf4 bridge**
 
 The design of the Tor network means that the IP address of Tor relays is public. However, one of the ways Tor can be blocked by governments or ISPs is by blocklisting the IP addresses of these public Tor nodes. [Tor Bridges](https://tb-manual.torproject.org/bridges/) are nodes in the network that are not listed in the public Tor directory, which makes it harder for ISPs and governments to block them. We are going to use a kind of [pluggable transport](https://tb-manual.torproject.org/circumvention/) called [obfs4](https://gitlab.com/yawning/obfs4), a special kind of bridge, to address this by adding a layer of obfuscation.
 
@@ -453,6 +453,10 @@ sudo apt update && sudo apt upgrade
 
 ## Uninstall obfs4 bridge
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 * With user `admin`, stop obsfs4 bridge service. Wait until the prompts show you again
 
 ```bash
@@ -517,19 +521,19 @@ sudo ufw status verbose
 Reverts router NAT configuration following the same [Configure Firewall & Router (NAT) ](tor-services.md#configure-firewall-and-router-nat)previous step but this time deleting the configuration setting
 {% endhint %}
 
-## Guard/Middle relay
+## **Guard/Middle relay**
 
 _(also known as non-exit relays)_
 
 {% hint style="danger" %}
-Attention!! The IP addresses of the Guard/Middle relays are listed in the public Tor relay directory, this could be a security and privacy risk, so we recommended running this on a security/privacy-focused VPS service like [1984.hosting](https://1984.hosting/)
+Attention!! The IP addresses of the Guard/Middle relays are listed in the public Tor relay directory. This could be a security and privacy risk, so we recommend running this on a security/privacy-focused VPS service like [1984.hosting](https://1984.hosting/)
 {% endhint %}
 
-A guard relay is the first relay (hop) in a Tor circuit. A middle relay is a relay that acts as the second hop in the Tor circuit. To become a guard relay, the relay has to be stable and fast (at least 2MByte/s of upstream and downstream bandwidth) otherwise it will remain a middle relay.
+A guard relay is the first relay (hop) in a Tor circuit. A middle relay is a relay that acts as the second hop in the Tor circuit. To become a guard relay, the relay has to be stable and fast (at least 2MByte/s of upstream and downstream bandwidth), otherwise it will remain a middle relay.
 
 Guard and middle relays usually do not receive abuse complaints. However, all relays are listed in the public Tor relay directory, and as a result, they may be blocked by certain services. These include services that either misunderstand how Tor works or deliberately want to censor Tor users, for example, online banking and streaming services.
 
-A non-exit Tor relay requires minimal maintenance efforts and bandwidth usage can be highly customized in the Tor configuration. The so called "exit policy" of the relay decides if it is a relay allowing clients to exit or not. A non-exit relay does not allow exiting in its exit policy.
+A non-exit Tor relay requires minimal maintenance efforts, and bandwidth usage can be highly customized in the Tor configuration. The so called "exit policy" of the relay decides if it is a relay allowing clients to exit or not. A non-exit relay does not allow exiting in its exit policy.
 
 {% hint style="warning" %}
 **Important:** If you are running a relay from home with a single static IP address and are concerned about your IP being blocked by certain online services, consider running a bridge like the before [Obfs4 bridge](tor-services.md#obsf4-bridge) or a Tor [snowflake proxy](https://community.torproject.org/relay/setup/snowflake/) (not covered in this guide yet) instead. This alternative can help prevent your non-Tor traffic from being mistakenly blocked as though it's coming from a Tor relay.
@@ -543,7 +547,7 @@ A non-exit Tor relay requires minimal maintenance efforts and bandwidth usage ca
 
 #### **Install Tor**
 
-* With user `admin`, check if you have Tor daemon installed
+* With user `admin`, check if you have the Tor daemon installed
 
 ```bash
 tor --version
@@ -873,12 +877,12 @@ Oct 20 14:03:49 ramix Tor-guardmidrelay[15079]: Your Tor server's identity key f
 {% hint style="info" %}
 -> In this example, HASHED FINGERPRINT, would be: `8D4FE09E8CF58EEB437A6A7FB36B09D7D8D24389`
 
--> Take note of this, about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or `HASHED FINGERPRINT` and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
+-> Take note of this: about **3 hours** after you start your relay, it should appear on [Relay Search](https://metrics.torproject.org/rs.html) on the Metrics portal. You can search for your relay using your nickname, public IP address, or `HASHED FINGERPRINT` and monitor your Guard/Middle relay usage on Relay Search. Just enter some of them in the form and click on "Search"
 {% endhint %}
 
 ### Validation
 
-* Ensure that the Tor port related to the bridge and the Obfs4proxy service are working and listening at the the ports selected
+* Ensure that the Tor port related to the bridge and the Obfs4proxy service are working and listening at the ports selected
 
 ```bash
 sudo ss -tulpn | grep tor
@@ -901,6 +905,10 @@ sudo apt update && sudo apt upgrade
 ```
 
 ## **Uninstall Tor Guard/Middle**
+
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
 
 ### Delete user & group <a href="#delete-user-and-group" id="delete-user-and-group"></a>
 

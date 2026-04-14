@@ -507,6 +507,10 @@ Remember to restart the Bitcoin Core to apply the new version with `sudo systemc
 
 ## Uninstall
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 To uninstall Bitcoin Core with the Ordisrespector patch applied, follow the entire [Bitcoin Core uninstall section](../../bitcoin/bitcoin/bitcoin-client.md#uninstall)
 
 ## Port reference

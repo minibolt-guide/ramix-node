@@ -733,6 +733,10 @@ Jul 28 12:20:13 ramix Fulcrum[181811]: [2022-07-28 12:20:13.064] Fulcrum 1.9.1 (
 
 ## Uninstall
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 ### Uninstall service
 
 * Ensure you are logged in as the user `admin`, stop fulcrum

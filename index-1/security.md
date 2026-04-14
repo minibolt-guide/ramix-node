@@ -245,7 +245,7 @@ sudo openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/nginx-se
 
 ### Configuration
 
-* NGINX is also a full web server. To use it only as a reverse proxy, backup the default configuration
+* Nginx is also a full web server. To use it only as a reverse proxy, backup the default configuration
 
 ```bash
 sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
@@ -277,6 +277,8 @@ http {
   ssl_protocols TLSv1.2 TLSv1.3;
   ssl_prefer_server_ciphers on;
   include /etc/nginx/sites-enabled/*.conf;
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
 }
 
 stream {

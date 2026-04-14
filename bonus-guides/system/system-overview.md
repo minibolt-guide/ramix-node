@@ -217,6 +217,10 @@ To upgrade, follow the complete [Install](system-overview.md#install-scrip)[ scr
 
 ## Uninstall
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 * With user `admin`, type the next command to uninstall
 
 {% code overflow="wrap" %}

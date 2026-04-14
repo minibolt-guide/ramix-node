@@ -47,7 +47,7 @@ Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to
 sudo nano +52 /boot/firmware/config.txt
 ```
 
-* Add the following line at the end of the file behind the `[all]` section. Save and exit
+* Add the following line at the end of the file, behind the `[all]` section. Save and exit
 
 ```
 dtparam=pciex1_gen=3
@@ -90,8 +90,8 @@ The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections
 
 #### Fallback Gen 3.0
 
-* If you followed the before `"via config.txt"` method, replace `dtparam=pciex1_gen=3` to `dtparam=pciex1` and reboot again with `sudo reboot`
-* If you followed the before `"via raspi-config"` method, when you arrive to the step number 3, choose `No`and finally reboot again with `sudo reboot`
+* If you followed the steps before [via config.txt](configuration.md#via-config.txt) method, replace `dtparam=pciex1_gen=3` to `dtparam=pciex1` and reboot again with `sudo reboot`
+* If you followed the steps before [via raspi-config](configuration.md#via-raspi-config) method, when you arrive at step number 3, choose `No`and finally reboot again with `sudo reboot`
 {% endhint %}
 
 ## System update
@@ -169,16 +169,16 @@ Timing O_DIRECT disk reads: 2422 MB in 3.00 seconds = 806.86 MB/sec
 {% endtabs %}
 
 {% hint style="success" %}
-If the measured speeds are more than 150 MB/s, you're good but it is recommended more for a better experience
+If the measured speeds are more than 150 MB/s, you're good, but it is recommended for a better experience
 {% endhint %}
 
 ## Data directory
 
 {% hint style="info" %}
-If you want to boot from microSD instead of an external drive, here you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly
+If you want to boot from microSD instead of an external drive, you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly
 {% endhint %}
 
-We'll store all application data in the dedicated directory `/data`. This allows for better security because it's not inside any user's home directory. Additionally, it's easier to move that directory somewhere else, for instance to a separate drive, as you can just mount any storage option to `/data`
+We'll store all application data in the dedicated directory `/data`. This allows for better security because it's not inside any user's home directory. Additionally, it's easier to move that directory somewhere else, for instance, to a separate drive, as you can just mount any storage option to `/data`
 
 * Create the data folder
 
@@ -211,7 +211,7 @@ The swap file acts as slower memory and is essential for system stability. The s
 It will then be created dynamically to use ½ of the total RAM size installed
 {% endhint %}
 
-* Recreate new swapfile
+* Recreate a new swapfile
 
 ```bash
 sudo systemctl restart dphys-swapfile

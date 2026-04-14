@@ -62,7 +62,9 @@ npm -v
 ```
 
 {% hint style="info" %}
--> If the "`node -v"` output is **`>=24`**, you can move to the next section.
+2 options:
+
+-> If the "`node -v"` output is **`>=22`**, you can move to the next section.
 
 -> If Node.js is not installed (`-bash: /usr/bin/node: No such file or directory`), follow this [Node + NPM bonus guide](../bonus/system/nodejs-npm.md) to install it
 {% endhint %}
@@ -242,62 +244,6 @@ npm notice
 
 </details>
 
-{% hint style="info" %}
-
-
-**(Optional)** Improve your privacy by opting out of Next.js [telemetry](https://nextjs.org/telemetry)
-
-```bash
-npx next telemetry disable
-```
-
-When the promp ask you this:
-
-```
-Need to install the following packages:
-next@16.2.1
-Ok to proceed? (y)
-```
-
-* Type "y" and press `Enter`
-
-Expected output:
-
-```
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
-Your preference has been saved to /home/thunderhub/.config/nextjs-nodejs/config.json.
-
-Status: Disabled
-
-You have opted-out of Next.js' anonymous telemetry program.
-No data will be collected from your machine.
-
-Learn more: https://nextjs.org/telemetry
-```
-
-If you are not sure if you have already disabled the telemetry, check with the next command:
-
-```bash
-npx next telemetry status
-```
-
-**Example** of expected output:
-
-<pre><code>Next.js Telemetry
-
-Status: <a data-footnote-ref href="#user-content-fn-1">Disabled</a>
-
-You have opted-out of Next.js' anonymous telemetry program.
-No data will be collected from your machine.
-
-Learn more: https://nextjs.org/telemetry
-</code></pre>
-{% endhint %}
-
 * Build it
 
 ```sh
@@ -384,13 +330,13 @@ cp .env .env.local
 nano .env.local
 ```
 
-* Uncomment and edit the following line to match the next. Save and exit
+* Uncomment (delete the `#` symbol at the beginning of the line), and edit the following line to match the next. Save and exit
 
 ```
 ACCOUNT_CONFIG_PATH='/home/thunderhub/thunderhub/thubConfig.yaml'
 ```
 
-* Create a new`thubConfig.yaml` file
+* Create a new `thubConfig.yaml` file
 
 ```sh
 nano thubConfig.yaml
@@ -398,13 +344,12 @@ nano thubConfig.yaml
 
 * Copy and paste the following information
 
-<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-2">PASSWORD</a>'
+<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-1">[E] ThunderHub password</a>'
 accounts:
   - name: 'RaMiX'
     serverUrl: '127.0.0.1:10009'
     macaroonPath: '/data/lnd/data/chain/bitcoin/mainnet/admin.macaroon'
     certificatePath: '/data/lnd/tls.cert'
-    password: '<a data-footnote-ref href="#user-content-fn-3">[E] ThunderHub password</a>'
 </code></pre>
 
 {% hint style="info" %}
@@ -508,141 +453,124 @@ sudo systemctl start thunderhub
 <summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu thunderhub</code> ⬇️</summary>
 
 ```
-Feb 27 09:32:54 ramix systemd[1]: Started thunderhub.service - ThunderHub.
-Feb 27 09:32:54 ramix npm[1551967]: > thunderhub@0.15.1 start
-Feb 27 09:32:54 ramix npm[1551967]: > cross-env NODE_ENV=production nest start
-Feb 27 09:33:17 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:17     LOG [NestFactory] Starting Nest application...
-Feb 27 09:33:18 ramix npm[1552018]: Getting production env variables.
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AppModule dependencies initialized +133ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] PassportModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] LndModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ApiModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MainModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigHostModule dependencies initialized +4ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] DiscoveryModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigModule dependencies initialized +12ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ScheduleModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ClientConfigModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ThrottlerModule dependencies initialized +9ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] JwtModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ServeStaticModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] WinstonModule dependencies initialized +2ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] FilesModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] FetchModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GraphQLSchemaBuilderModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AccountsModule dependencies initialized +2ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MempoolModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BlockstreamModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BitcoinModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GithubModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] UserConfigModule dependencies initialized +5ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AccountModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] SseModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] WalletModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NetworkModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] EdgeModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] TransactionsModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ToolsModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] MacaroonModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] PeerModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChainModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ForwardsModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] HealthModule dependencies initialized +1ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] InvoicesModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChatModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] ChannelsModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] BoltzModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] LnUrlModule dependencies initialized +2ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] DataloaderModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] AmbossModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] SubModule dependencies initialized +0ms
-Feb 27 09:33:18 ramix npm[1552018]: [Nest] 1552018  - 27/02/2026, 09:33:18     LOG [InstanceLoader] GraphQLModule dependencies initialized +4ms
-Feb 27 09:33:18 ramix npm[1552018]: {
-Feb 27 09:33:18 ramix npm[1552018]:   context: 'RoutesResolver',
-Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:18 ramix npm[1552018]:   message: 'SseController {/api/sse}:',
-Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.126Z'
-Feb 27 09:33:18 ramix npm[1552018]: }
-Feb 27 09:33:18 ramix npm[1552018]: {
-Feb 27 09:33:18 ramix npm[1552018]:   context: 'RouterExplorer',
-Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:18 ramix npm[1552018]:   message: 'Mapped {/api/sse/events, GET} route',
-Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.140Z'
-Feb 27 09:33:18 ramix npm[1552018]: }
-Feb 27 09:33:18 ramix npm[1552018]: {
-Feb 27 09:33:18 ramix npm[1552018]:   context: 'RoutesResolver',
-Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:18 ramix npm[1552018]:   message: 'ClientConfigController {/api}:',
-Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.140Z'
-Feb 27 09:33:18 ramix npm[1552018]: }
-Feb 27 09:33:18 ramix npm[1552018]: {
-Feb 27 09:33:18 ramix npm[1552018]:   context: 'RouterExplorer',
-Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:18 ramix npm[1552018]:   message: 'Mapped {/api/config, GET} route',
-Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.143Z'
-Feb 27 09:33:18 ramix npm[1552018]: }
-Feb 27 09:33:18 ramix npm[1552018]: {
-Feb 27 09:33:18 ramix npm[1552018]:   message: 'Server accounts that will be available: ramix',
-Feb 27 09:33:18 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:18 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:18.186Z'
-Feb 27 09:33:18 ramix npm[1552018]: }
-Feb 27 09:33:19 ramix npm[1552018]: {
-Feb 27 09:33:19 ramix npm[1552018]:   context: 'GraphQLModule',
-Feb 27 09:33:19 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:19 ramix npm[1552018]:   message: 'Mapped {/graphql, POST} route',
-Feb 27 09:33:19 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:19.962Z'
-Feb 27 09:33:19 ramix npm[1552018]: }
-Feb 27 09:33:19 ramix npm[1552018]: {
-Feb 27 09:33:19 ramix npm[1552018]:   context: 'NestApplication',
-Feb 27 09:33:19 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:19 ramix npm[1552018]:   message: 'Nest application successfully started',
-Feb 27 09:33:19 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:19.996Z'
-Feb 27 09:33:19 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: Application is running on: http://[::1]:3001
-Feb 27 09:33:20 ramix npm[1552018]: (node:1552018) [DEP0123] DeprecationWarning: Setting the TLS ServerName to an IP address is not permitted by RFC 6066. This will be ignored in a future version.
-Feb 27 09:33:20 ramix npm[1552018]: (Use `node --trace-deprecation ...` to show where the warning was created)
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Connected to 2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.295Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Invoice subscription',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.298Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Payment subscription',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.304Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Forward subscription',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.309Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Channels subscription',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.311Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-Feb 27 09:33:20 ramix npm[1552018]: {
-Feb 27 09:33:20 ramix npm[1552018]:   connections: '2FakTorLNtest4🧪🧬(030f289f0f)[btctestnet4]',
-Feb 27 09:33:20 ramix npm[1552018]:   level: 'info',
-Feb 27 09:33:20 ramix npm[1552018]:   message: 'Backup subscription',
-Feb 27 09:33:20 ramix npm[1552018]:   timestamp: '2026-02-27T08:33:20.315Z'
-Feb 27 09:33:20 ramix npm[1552018]: }
-
+Apr 10 16:35:09 ramix systemd[1]: Started ThunderHub.
+Apr 10 16:35:09 ramix npm[75525]: > thunderhub@0.15.5 start
+Apr 10 16:35:09 ramix npm[75525]: > cross-env NODE_ENV=production nest start
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [NestFactory] Starting Nest application...
+Apr 10 16:35:23 ramix npm[75556]: Getting production env variables.
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AppModule dependencies initialized +50ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] PassportModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] LndModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ApiModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] MainModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ConfigHostModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] LitdModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] DiscoveryModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +6ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ProviderRegistryModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ScheduleModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ClientConfigModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ThrottlerModule dependencies initialized +10ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ServeStaticModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] WinstonModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] FilesModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] FetchModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AuthenticationModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] GraphQLSchemaBuilderModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AccountsModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] MempoolModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] BlockstreamModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] BitcoinModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] GithubModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] UserConfigModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] TapdModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AccountModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AuthenticationModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] SseModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] WalletModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] NetworkModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] EdgeModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] TransactionsModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ToolsModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] MacaroonModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] PeerModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ChainModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ForwardsModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] HealthModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] InvoicesModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] NodeModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] ChannelsModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] BoltzModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] TapdApiModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] LnUrlModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] DataloaderModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] AmbossModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] SubModule dependencies initialized +0ms
+Apr 10 16:35:23 ramix npm[75556]: [Nest] 75556  - 04/10/2026, 4:35:23 PM     LOG [InstanceLoader] GraphQLModule dependencies initialized +1ms
+Apr 10 16:35:23 ramix npm[75556]: {
+Apr 10 16:35:23 ramix npm[75556]:   context: 'RoutesResolver',
+Apr 10 16:35:23 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:23 ramix npm[75556]:   message: 'SseController {/api/sse}:',
+Apr 10 16:35:23 ramix npm[75556]:   timestamp: '2026-04-10T16:35:23.571Z'
+Apr 10 16:35:23 ramix npm[75556]: }
+Apr 10 16:35:23 ramix npm[75556]: {
+Apr 10 16:35:23 ramix npm[75556]:   context: 'RouterExplorer',
+Apr 10 16:35:23 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:23 ramix npm[75556]:   message: 'Mapped {/api/sse/events, GET} route',
+Apr 10 16:35:23 ramix npm[75556]:   timestamp: '2026-04-10T16:35:23.576Z'
+Apr 10 16:35:23 ramix npm[75556]: }
+Apr 10 16:35:23 ramix npm[75556]: {
+Apr 10 16:35:23 ramix npm[75556]:   context: 'RoutesResolver',
+Apr 10 16:35:23 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:23 ramix npm[75556]:   message: 'ClientConfigController {/api}:',
+Apr 10 16:35:23 ramix npm[75556]:   timestamp: '2026-04-10T16:35:23.576Z'
+Apr 10 16:35:23 ramix npm[75556]: }
+Apr 10 16:35:23 ramix npm[75556]: {
+Apr 10 16:35:23 ramix npm[75556]:   context: 'RouterExplorer',
+Apr 10 16:35:23 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:23 ramix npm[75556]:   message: 'Mapped {/api/config, GET} route',
+Apr 10 16:35:23 ramix npm[75556]:   timestamp: '2026-04-10T16:35:23.577Z'
+Apr 10 16:35:23 ramix npm[75556]: }
+Apr 10 16:35:24 ramix npm[75556]: {
+Apr 10 16:35:24 ramix npm[75556]:   message: 'Saving new yaml file',
+Apr 10 16:35:24 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:24 ramix npm[75556]:   timestamp: '2026-04-10T16:35:24.450Z'
+Apr 10 16:35:24 ramix npm[75556]: }
+Apr 10 16:35:24 ramix npm[75556]: {
+Apr 10 16:35:24 ramix npm[75556]:   message: 'Succesfully saved',
+Apr 10 16:35:24 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:24 ramix npm[75556]:   timestamp: '2026-04-10T16:35:24.453Z'
+Apr 10 16:35:24 ramix npm[75556]: }
+Apr 10 16:35:24 ramix npm[75556]: {
+Apr 10 16:35:24 ramix npm[75556]:   message: 'Server accounts that will be available: ramix',
+Apr 10 16:35:24 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:24 ramix npm[75556]:   timestamp: '2026-04-10T16:35:24.458Z'
+Apr 10 16:35:24 ramix npm[75556]: }
+Apr 10 16:35:25 ramix npm[75556]: {
+Apr 10 16:35:25 ramix npm[75556]:   context: 'GraphQLModule',
+Apr 10 16:35:25 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:25 ramix npm[75556]:   message: 'Mapped {/graphql, POST} route',
+Apr 10 16:35:25 ramix npm[75556]:   timestamp: '2026-04-10T16:35:25.092Z'
+Apr 10 16:35:25 ramix npm[75556]: }
+Apr 10 16:35:25 ramix npm[75556]: {
+Apr 10 16:35:25 ramix npm[75556]:   context: 'NestApplication',
+Apr 10 16:35:25 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:25 ramix npm[75556]:   message: 'Nest application successfully started',
+Apr 10 16:35:25 ramix npm[75556]:   timestamp: '2026-04-10T16:35:25.103Z'
+Apr 10 16:35:25 ramix npm[75556]: }
+Apr 10 16:35:25 ramix npm[75556]: Application is running on: http://[::1]:3001
+Apr 10 16:35:25 ramix npm[75556]: (node:75556) [DEP0123] DeprecationWarning: Setting the TLS ServerName to an IP address is not permitted by RFC 6066. This will be ignored in a future version.
+Apr 10 16:35:25 ramix npm[75556]: (Use `node --trace-deprecation ...` to show where the warning was created)
+Apr 10 16:35:31 ramix npm[75556]: {
+Apr 10 16:35:31 ramix npm[75556]:   message: 'Connected to RaMiXLNnode(035772a363)[btc]',
+Apr 10 16:35:31 ramix npm[75556]:   level: 'info',
+Apr 10 16:35:31 ramix npm[75556]:   timestamp: '2026-04-10T16:35:31.812Z'
+Apr 10 16:35:31 ramix npm[75556]: }
+[...]
 ```
 
 </details>
@@ -961,6 +889,10 @@ If the update fails, you probably will have to stop ThunderHub, follow the [Unin
 
 ## Uninstall
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 ### Uninstall service
 
 * With user `admin` , stop thunderhub service
@@ -1066,8 +998,4 @@ sudo ufw delete X
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ipZ6Euow0ap9" label="TCP" color="blue"></option><option value="HU4agtGOlZ7f" label="SSL" color="blue"></option><option value="pDdUpKMq37rf" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3001</td><td><span data-option="ipZ6Euow0ap9">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4002</td><td><span data-option="HU4agtGOlZ7f">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
 
-[^1]: Check this
-
-[^2]: Default password unless defined in account
-
-[^3]: Replace this
+[^1]: Replace

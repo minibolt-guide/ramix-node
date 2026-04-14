@@ -476,9 +476,13 @@ nov 16 11:21:02 ramix albyhub[1440537]: ⇨ http server started on [::]:8090 ...
 
 ## Uninstall
 
+{% hint style="danger" %}
+Warning: This section removes the installation. Only run these commands if you intend to uninstall
+{% endhint %}
+
 ### Uninstall service
 
-* Ensure you are logged in as the user `admin`, stop albyhub
+* Ensure you are logged in as the user `admin`, stop albyhub service
 
 ```shellscript
 sudo systemctl stop albyhub
