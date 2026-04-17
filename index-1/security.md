@@ -63,7 +63,7 @@ sudo apt install ufw
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 Fetched 538 kB in 0s (1,544 kB/s)
@@ -185,7 +185,7 @@ More info: [UFW Essentials](https://www.digitalocean.com/community/tutorials/ufw
 journalctl -fu ssh
 ```
 
-* With this command, you can list the last satisfactory logged-in users in your RaMiX since 7 days. Change `-"7"days` option to do whatever you want
+* With this command, you can list the last satisfactory logged-in users in your RaMiX for the last 7 days. Change `-"7"days` option to do whatever you want
 
 ```sh
 last -s -7days -t today
