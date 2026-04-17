@@ -655,10 +655,10 @@ Try to access the newly created public access to the service by going to the `ht
 
 If you followed the [Electrs](../../bonus/bitcoin/electrs.md) instead of the [Fulcrum](electrum-server.md) guide, you need to do the next steps
 
-* As user `admin`, stop the mempool service
+* As user `admin`, stop the btcrpcexplorer service
 
 ```bash
-sudo systemctl stop mempool
+sudo systemctl stop btcrpcexplorer
 ```
 
 * Edit the btcrpcexplorer `.env` file
