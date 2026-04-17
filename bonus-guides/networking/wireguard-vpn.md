@@ -470,7 +470,7 @@ Now return to the RaMiX node to allow access to the newly created Wireguard VPN 
 sudo nano /etc/wireguard/wg0.conf
 ```
 
--> Now we are going to complete the previous parameter **`<Your_Client_Public_Key>`** that we created and left pending in the **"**[**Generate client key pair**](wireguard-vpn.md#generate-client-key-pair)**"** section
+-> Now we are going to complete the previous parameter **`<Your_Client_Public_Key>`** that we created and left pending in the [**Generate client key pair**](wireguard-vpn.md#generate-client-key-pair) section
 
 * Replace the existing **`<Your_Client_Public_Key>`** parameter with yours
 

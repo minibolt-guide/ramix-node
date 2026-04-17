@@ -39,16 +39,16 @@ Difficulty: Easy
 cd /tmp
 ```
 
-* Set a temporary version environment variable to the installation
+* Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=1.24.1
+VERSION=1.26.2
 ```
 
 * Set a temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=8df5750ffc0281017fb6070fba450f5d22b600a02081dceef47966ffaf36a3af
+SHA256=c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
@@ -104,7 +104,7 @@ go version
 go version go1.21.10 linux/arm64
 ```
 
-* **(Optional)** Delete the file of the temporary folder to be immediately ready for the next update
+* **(Optional)** Delete the file from the temporary folder to be immediately ready for the next update
 
 ```bash
 rm go$VERSION.linux-arm64.tar.gz
@@ -124,16 +124,16 @@ sudo rm -rf /usr/local/go
 cd /tmp
 ```
 
-* Set a temporary version environment variable with the new value, to the installation
+* Set a temporary version environment variable with the new value for the installation
 
 ```bash
-VERSION=1.24.1
+VERSION=1.26.2
 ```
 
 * Set the new temporary SHA256 environment variable to the installation
 
 ```bash
-SHA256=8df5750ffc0281017fb6070fba450f5d22b600a02081dceef47966ffaf36a3af
+SHA256=c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23
 ```
 
 * Get the latest binary of the [official repository](https://go.dev/dl/)
@@ -162,7 +162,7 @@ sudo tar -C /usr/local -xzvf go$VERSION.linux-arm64.tar.gz
 
 * Verify that you've updated Go by typing the following command
 
-```
+```bash
 go version
 ```
 
@@ -202,7 +202,7 @@ sudo nano /etc/profile
 source /etc/profile
 ```
 
-* Ensure you are uninstalled Go definitely
+* Ensure you have uninstalled Go definitely
 
 ```bash
 go version
@@ -214,7 +214,7 @@ Expected output:
 -bash: /usr/local/go/bin/go: No such file or directory
 ```
 
-Next new session you will obtain this command when you try `go version` command:
+In the next new session, you will obtain this command when you try `go version` command:
 
 ```
 Command 'go' not found..

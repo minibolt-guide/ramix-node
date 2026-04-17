@@ -179,14 +179,13 @@ git verify-commit v$VERSION
 
 **Example** of expected output:
 
-```
-gpg: Signature made Fri May 26 16:56:42 2023 CEST
+<pre><code>gpg: Signature made Fri May 26 16:56:42 2023 CEST
 gpg:                using RSA key 3C8A01A8344B66E7875CE5534403F1DFBE779457
-gpg: Good signature from "Anthony Potdevin <potdevin.anthony@gmail.com>" [unknown]
+gpg: <a data-footnote-ref href="#user-content-fn-1">Good signature</a> from "Anthony Potdevin &#x3C;potdevin.anthony@gmail.com>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 3C8A 01A8 344B 66E7 875C  E553 4403 F1DF BE77 9457
-```
+</code></pre>
 
 * Install all dependencies and the necessary modules using NPM
 
@@ -344,7 +343,7 @@ nano thubConfig.yaml
 
 * Copy and paste the following information
 
-<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-1">[E] ThunderHub password</a>'
+<pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-2">[E] ThunderHub password</a>'
 accounts:
   - name: 'RaMiX'
     serverUrl: '127.0.0.1:10009'
@@ -577,7 +576,7 @@ Apr 10 16:35:31 ramix npm[75556]: }
 
 ### Validation
 
-* Ensure the service is working and listening on the default `3001` port and the HTTPs `4002` port
+* Ensure the service is working and listening on the default `3001` port and the HTTPS `4002` port
 
 ```bash
 sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4002|:3001)'
@@ -884,7 +883,7 @@ sudo systemctl start thunderhub
 ```
 
 {% hint style="warning" %}
-If the update fails, you probably will have to stop ThunderHub, follow the [Uninstall ThunderHub section](web-app.md#uninstall-thunderhub) to delete `thunderhub` user, and repeat the installation process starting from the [Preparation section](web-app.md#preparation)
+If the update fails, you probably will have to stop ThunderHub, follow the [Uninstall ThunderHub section](web-app.md#uninstall-thunderhub) to delete the `thunderhub` user, and repeat the installation process starting from the [Preparation section](web-app.md#preparation)
 {% endhint %}
 
 ## Uninstall
@@ -998,4 +997,6 @@ sudo ufw delete X
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="ipZ6Euow0ap9" label="TCP" color="blue"></option><option value="HU4agtGOlZ7f" label="SSL" color="blue"></option><option value="pDdUpKMq37rf" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3001</td><td><span data-option="ipZ6Euow0ap9">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4002</td><td><span data-option="HU4agtGOlZ7f">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
 
-[^1]: Replace
+[^1]: Check this
+
+[^2]: Replace

@@ -259,10 +259,10 @@ Now, you can log in with a password
 ### Disable admin password request (caution!)
 
 {% hint style="danger" %}
-**Attention:** This could be a security risk, is not recommended to disable the admin password to avoid a possible and hypothetical attacker could gain complete control of the node in case of intrusion, if you do it, act at your own risk.
+**Attention:** This could be a security risk; disabling the `admin` password could allow a hypothetical attacker to gain complete control of the node in case of intrusion. If you do it, act at your own risk
 {% endhint %}
 
-* Ensure you are logged in with user admin, edit the next file
+* Ensure you are logged in as the user `admin`, edit the next file
 
 ```sh
 sudo visudo

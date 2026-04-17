@@ -116,7 +116,7 @@ VERSION=10.0
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 dotnet-install: Attempting to download using aka.ms link https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.405/dotnet-sdk-8.0.405-linux-x64.tar.gz
@@ -217,7 +217,7 @@ sudo -u postgres psql -c "CREATE DATABASE btcpay TEMPLATE 'template0' LC_CTYPE '
 
 ### Install NBXplorer
 
-[NBXplorer](https://github.com/dgarage/NBXplorer) is a minimalist UTXO tracker for HD Wallets, used by BTCPay Server
+[NBXplorer](https://github.com/dgarage/NBXplorer) is a minimalist UTXO tracker for HD Wallets, used by BTCPay Server.
 
 * With user `admin`, switch to the `btcpay` user
 
@@ -245,7 +245,7 @@ git clone --branch v$VERSION https://github.com/dgarage/NBXplorer.git && cd NBXp
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
 Cloning into 'btcpayserver'...
@@ -851,7 +851,7 @@ When you follow the "[Use Cloudflare tunnel to expose publicly](btcpay-server.md
 {% endhint %}
 
 {% hint style="danger" %}
-We do not yet have a way to secure the local connection, and it is not recommended to access the TCP (unencrypted connection)`"http://minibolt.local:23000"` (or your node IP address) like `"http://192.168.0.20:23000"`
+We do not yet have a way to secure the local connection, and it is not recommended to access the TCP (unencrypted connection)`"http://ramix.local:23000"` (or your node IP address) like `"http://192.168.0.20:23000"`
 {% endhint %}
 
 {% hint style="info" %}
@@ -868,7 +868,7 @@ You can now create the first account to access the dashboard using a real (recom
 
 #### Configure LND
 
-* Stay logged with the `admin` user, and configure LND to allow LND REST from anywhere by editing the `lnd.conf` file
+* Stay logged in with the `admin` user, and configure LND to allow LND REST from anywhere by editing the `lnd.conf` file
 
 ```bash
 sudo nano /data/lnd/lnd.conf
@@ -1008,10 +1008,10 @@ abcdefg..............xyz.onion
 You may want to expose your BTCPay Server publicly using a clearnet address. To do this, follow the next steps:
 
 * Follow the [Cloudflare tunnel](../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your RaMiX to Cloudflare
-* When you finish the "[Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../networking/cloudflare-tunnel.md)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
+* When you finish the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section, you can skip the [Start routing traffic](../networking/cloudflare-tunnel.md) section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 * Click on the **\[+ Add record]** button
 
-<figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 > Select the **CNAME** type
@@ -1025,7 +1025,7 @@ You may want to expose your BTCPay Server publicly using a clearnet address. To 
 Click on the \[Save] button to save the new DNS registry
 {% endhint %}
 
-* If you didn't follow before, continue with the "[Configuration](../networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service)
+* If you didn't follow before, continue with the [Configuration](../networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service)
 * Edit the`config.yml`
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
@@ -1126,7 +1126,7 @@ echo 'export DOTNET_CLI_TELEMETRY_OPTOUT=1' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-* Check the new .NET SDK version has been correctly installed
+* Check that the new .NET SDK version has been correctly installed
 
 ```bash
 dotnet --version
@@ -1234,7 +1234,7 @@ git config pull.rebase false
 ```
 {% endhint %}
 
-* Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` to not apply modifications
+* Press `Ctrl+X` when the nano automatically opens the `MERGE_MSG` not to apply modifications
 * Build it
 
 ```bash
@@ -1592,7 +1592,7 @@ sudo -u postgres psql -c "DROP DATABASE nbxplorer;" && sudo -u postgres psql -c 
 
 ## Port reference
 
-<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="dR2RimIjbg1Q" label="TCP" color="blue"></option><option value="itmj67rFv2Hi" label="SSL" color="blue"></option><option value="l1OwCjXfqAZy" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">24444</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">NBXplorer default port</td></tr><tr><td align="center">23000</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">BTCPay Server default port</td></tr></tbody></table>
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="dR2RimIjbg1Q" label="TCP" color="blue"></option><option value="itmj67rFv2Hi" label="SSL" color="blue"></option><option value="l1OwCjXfqAZy" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">24444</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">NBXplorer default port</td></tr><tr><td align="center">23000</td><td><span data-option="dR2RimIjbg1Q">TCP</span></td><td align="center">BTCPay Server HTTP default port</td></tr></tbody></table>
 
 [^1]: (Optional)
 

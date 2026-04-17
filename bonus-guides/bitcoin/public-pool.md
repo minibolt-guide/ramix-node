@@ -21,6 +21,10 @@ layout:
 
 [Public Pool](https://web.public-pool.io/#/) is a NestJS and Typescript Bitcoin stratum mining server. It provides a lightweight and easy to use web interface to accomplish just that, a solo mining pool.
 
+{% hint style="danger" %}
+Status: Not tested on RaMiX
+{% endhint %}
+
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
@@ -555,7 +559,7 @@ nano public-pool.env
 
 * Paste the following content. Note that you can edit the `POOL_IDENTIFIER` parameter if you wish. Save and exit
 
-<pre class="language-sh"><code class="lang-sh"># RaMiX: Public Pool  configuration
+<pre><code># RaMiX: Public Pool  configuration
 # /home/public-pool/public-pool.env
 
 ## Bitcoin Core settings

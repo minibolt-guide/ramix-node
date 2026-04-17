@@ -614,7 +614,7 @@ sudo apt update && sudo apt full-upgrade
 If a banner like this appears to you, keep selecting "No" and press Enter
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-09-26 013115.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/upgrade_postgresql_cluster.png" alt=""><figcaption></figcaption></figure>
 
 * Finally, enter this command to reload the systemctl daemon
 
@@ -698,7 +698,7 @@ This may take a lot of time, depending on the existing database size (the nostr 
 
 <details>
 
-<summary>Example of expected output 👇</summary>
+<summary><strong>Example</strong> of expected output 👇</summary>
 
 ```
 Upgrading cluster 17/main to 18/main ...

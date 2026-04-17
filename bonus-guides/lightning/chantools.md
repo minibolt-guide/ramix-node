@@ -139,7 +139,7 @@ chantools-linux-arm64-v0.14.2/chantools
 
 {% tabs %}
 {% tab title="1. Temporary use (recommended)" %}
-In this case, only go to the proper step to use this tool in a concrete case. e.g: Recover the BIP32 Master Extended Private Key option 1
+In this case, only go to the proper step to use this tool in a concrete case. e.g: Recover the BIP32 Master Extended Private Key [option 1](../../lightning/lightning-client.md#id-1.-for-temporary-use-option-recommended-1)
 {% endtab %}
 
 {% tab title="2. Permanent installation" %}
