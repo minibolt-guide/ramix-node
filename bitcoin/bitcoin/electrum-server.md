@@ -49,13 +49,13 @@ Make sure that you have followed the [Activate mempool & reduce 'dbcache' after 
 
 ### Install dependencies
 
-* With user `admin`, update and upgrade your OS
+* With user `admin`, update and upgrade your OS. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Make sure that all necessary software packages are installed
+* Make sure that all necessary software packages are installed.  Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt install libssl-dev
@@ -259,30 +259,10 @@ If you come to update, this is the final step, go back to the [Upgrade section](
 sudo adduser --disabled-password --gecos "" fulcrum
 ```
 
-Expected output:
-
-```
-Adding user `fulcrum' ...
-Adding new group `fulcrum' (1002) ...
-Adding new user `fulcrum' (1002) with group `fulcrum (1002)' ...
-Creating home directory `/home/fulcrum' ...
-Copying files from `/etc/skel' ...
-Adding new user `fulcrum' to supplemental / extra groups `users' ...
-Adding user `fulcrum' to group `users' ...
-```
-
 * Add `fulcrum` user to the "bitcoin" group, allowing him to read the bitcoind `.cookie` file
 
 ```bash
 sudo adduser fulcrum bitcoin
-```
-
-Expected output:
-
-```
-sudo adduser fulcrum bitcoin
-Adding user `fulcrum' to group `bitcoin' ...
-Done.
 ```
 
 ### Create data folder
@@ -399,7 +379,7 @@ banner = /data/fulcrum/fulcrum-banner.txt
 </code></pre>
 
 {% hint style="info" %}
-Remember, if you have a slow-performance device, follow the [slow device section](electrum-server.md#slow-devices-mode) to improve the experience of the first indexation
+Remember, if you have a slow-performance device, follow the [Slow devices mode section](electrum-server.md#slow-devices-mode) to improve the experience of the first indexation
 {% endhint %}
 
 * Exit the `fulcrum` user session to return to the "admin" user session
@@ -717,7 +697,7 @@ Follow the complete [Installation section](electrum-server.md#installation) unti
 sudo systemctl restart fulcrum
 ```
 
-* Check logs and pay attention to the next log if that refers to the new version installed
+* Check logs and pay attention to the next log if it refers to the new version installed
 
 ```sh
 journalctl -fu fulcrum

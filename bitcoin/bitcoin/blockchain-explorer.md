@@ -274,20 +274,16 @@ nano .env
 Activate any setting by removing the `#` at the beginning of the line or by editing directly
 {% endhint %}
 
-* Instruct the BTC RPC Explorer to connect to the local Bitcoin Core
-
-```
-# Uncomment & replace the value of this line
-BTCEXP_BITCOIND_COOKIE=/data/bitcoin/.cookie
-```
-
 * An Electrum server or an external service is necessary to get address balances. Your local Electrum server can provide address transaction lists, balances, and more
 
-```
-# Uncomment & replace the value of these lines
+{% hint style="info" %}
+If you used [Electrs](../../bonus/bitcoin/electrs.md) instead of [Fulcrum](electrum-server.md), use `BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:50021` instead of `BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:50001`
+{% endhint %}
+
+<pre><code># Uncomment &#x26; replace the value of these lines
 BTCEXP_ADDRESS_API=electrum
-BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:50001
-```
+BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:<a data-footnote-ref href="#user-content-fn-2">50001</a>
+</code></pre>
 
 * Uncomment this line
 
@@ -508,9 +504,9 @@ sudo nano /home/btcrpcexplorer/btc-rpc-explorer/.env
 BTCEXP_UI_THEME=dark
 ```
 
-### Slow device mode (resource-intensive features are disabled)
+### Slow device mode
 
-Extend the timeout period and enable slow device mode due to the limited resources
+Extend the timeout period and enable slow device mode due to the limited resources (resource-intensive features are disabled)
 
 * With user `admin` user, edit the `.env` configuration file
 
@@ -610,11 +606,11 @@ abcdefg..............xyz.onion
 
 You may want to expose your BTC RPC Explorer publicly using a clearnet address. To do this, follow the next steps:
 
-* Follow the [Cloudflare tunnel](../../bonus-guides/networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your MiniBolt to Cloudflare
-* When you finish the "[Create a tunnel and give it a name](../../bonus-guides/networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../../bonus-guides/networking/cloudflare-tunnel.md#id-5-start-routing-traffic)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
+* Follow the [Cloudflare tunnel](../../bonus-guides/networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your RaMiX to Cloudflare
+* When you finish the [Create a tunnel and give it a name](../../bonus-guides/networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section, you can skip the [Start routing traffic](../../bonus-guides/networking/cloudflare-tunnel.md#id-5-start-routing-traffic) section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 * Click on the **\[+ Add record]** button
 
-<figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/add_new_cname_tunnel_mod (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 > Select the **CNAME** type
@@ -628,7 +624,7 @@ You may want to expose your BTC RPC Explorer publicly using a clearnet address. 
 Click on the \[Save] button to save the new DNS registry
 {% endhint %}
 
-* If you didn't follow before, continue with the "[Configuration](../../bonus-guides/networking/cloudflare-tunnel.md#configuration)" section of the [Cloudflare tunnel guide](../../bonus-guides/networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../../bonus-guides/networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../bonus-guides/networking/cloudflare-tunnel.md#create-systemd-service)
+* If you didn't follow before, continue with the [Configuration](../../bonus-guides/networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../../bonus-guides/networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../../bonus-guides/networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../../bonus-guides/networking/cloudflare-tunnel.md#create-systemd-service)
 * Edit the`config.yml`
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
@@ -637,7 +633,7 @@ Click on the \[Save] button to save the new DNS registry
 * Add the next lines to the `config.yml`
 
 <pre><code># BTC RPC Explorer
-  - hostname: <a data-footnote-ref href="#user-content-fn-2">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-3">&#x3C;domain.com></a>
+  - hostname: <a data-footnote-ref href="#user-content-fn-3">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-4">&#x3C;domain.com></a>
     service: http://localhost:3002
 </code></pre>
 
@@ -654,6 +650,58 @@ sudo systemctl restart cloudflared
 {% hint style="info" %}
 Try to access the newly created public access to the service by going to the `https://<subdomain>.<domain.com>`, i.e, `https://explorer.domain.com`
 {% endhint %}
+
+### Use Electrs like Electrum server
+
+If you followed the [Electrs](../../bonus/bitcoin/electrs.md) instead of the [Fulcrum](electrum-server.md) guide, you need to do the next steps
+
+* As user `admin`, stop the mempool service
+
+```bash
+sudo systemctl stop mempool
+```
+
+* Edit the btcrpcexplorer `.env` file
+
+```bash
+sudo nano /home/btcrpcexplorer/btc-rpc-explorer/.env
+```
+
+* Replace the "`BTCEXP_ELECTRUM_SERVERS=...`" line to this. Save and exit
+
+```
+BTCEXP_ELECTRUM_SERVERS=tcp://127.0.0.1:50021
+```
+
+* Edit the `btcrpcexplorer` service
+
+```sh
+sudo nano /etc/systemd/system/btcrpcexplorer.service
+```
+
+* Replace the `fulcrum.service` with the `electrs.service` in these lines. Save and exit
+
+<pre class="language-sh"><code class="lang-sh">Requires=bitcoind.service <a data-footnote-ref href="#user-content-fn-5">electrs.service</a>
+After=bitcoind.service <a data-footnote-ref href="#user-content-fn-5">electrs.service</a>
+</code></pre>
+
+* Reload the systemctl daemon to apply changes
+
+```bash
+sudo systemctl daemon-reload
+```
+
+* Start the BTC RPC Explorer service
+
+```sh
+sudo systemctl start btcrpcexplorer
+```
+
+* (Optional) Check if all is running fine with
+
+```bash
+journalctl -fu btcrpcexplorer
+```
 
 ## Upgrade
 
@@ -833,12 +881,16 @@ sudo ufw delete X
 
 ## Port reference
 
-<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="LyZ7ft09szgb" label="TCP" color="blue"></option><option value="SjWfpyVd0mUz" label="SSL" color="blue"></option><option value="haINAJR4wqnB" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3002</td><td><span data-option="LyZ7ft09szgb">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4000</td><td><span data-option="SjWfpyVd0mUz">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr></tbody></table>
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="LyZ7ft09szgb" label="TCP" color="blue"></option><option value="SjWfpyVd0mUz" label="SSL" color="blue"></option><option value="haINAJR4wqnB" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">3002</td><td><span data-option="LyZ7ft09szgb">TCP</span></td><td align="center">Default HTTP port</td></tr><tr><td align="center">4000</td><td><span data-option="SjWfpyVd0mUz">SSL</span></td><td align="center">HTTPS port</td></tr></tbody></table>
 
 [^1]: Check this
 
-[^2]: Replace with the selected name of your service\
+[^2]: If you want to use Electrs instead of Fulcrum, use 50021&#x20;
+
+[^3]: Replace with the selected name of your service\
     i.e: `explorer`
 
-[^3]: Replace with your domain\
+[^4]: Replace with your domain\
     i.e: `domain.com`
+
+[^5]: Replace with this

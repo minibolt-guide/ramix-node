@@ -146,11 +146,11 @@ Superblock backups stored on blocks:
 Take note of the `Filesystem UUID` -> i.e: _dafc3c67-c6e5-4eaa-8840-adaf604c85db_, you will need this more later
 {% endhint %}
 
-### **Mount external drive**
+### **Mount the external drive**
 
 The external drive is then attached to the file system and becomes available as a regular folder (this is called “mounting”).
 
-* List the block devices one more time to ensure that UUID has been assigned
+* List the block devices one more time to ensure that the UUID has been assigned
 
 ```bash
 lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
@@ -264,7 +264,7 @@ CONF_SWAPFILE=/data/swapfile
 It will then be created dynamically to use ½ of the total RAM size installed
 {% endhint %}
 
-* Recreate and activate new swapfile
+* Recreate and activate a new swapfile
 
 ```bash
 sudo systemctl restart dphys-swapfile

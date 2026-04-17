@@ -320,7 +320,7 @@ Example of expected output:
   * In the "Key" box, copy/paste the string generated above starting (e.g. `ssh-rsa 1234abcd... lnd@ramix`)
   * Tick the box "`Allow write access`" to enable this key to push changes to the repository
   * Click "Add key"
-* Set up global Git configuration values (the name and email are required but can be dummy values)
+* Set up global Git configuration values (the name and email are required, but can be dummy values)
 
 ```sh
 git config --global user.name "RaMiX"
@@ -330,7 +330,7 @@ git config --global user.name "RaMiX"
 git config --global user.email "ramix@dummyemail.com"
 ```
 
-* **(Optional)** Add this step if you want to preserve your privacy with GitHub servers if not, jump to the next step directly -> (`cd ~/.lnd`)
+* **(Optional)** Add this step if you want to preserve your privacy with GitHub servers; if not, jump to the next step directly -> (`cd ~/.lnd`)
 
 <pre class="language-bash"><code class="lang-bash"><strong>git config --global core.sshCommand "torsocks ssh"
 </strong></code></pre>
@@ -483,9 +483,9 @@ Jul 25 17:32:34 ramix scb-backup[401749]: Watches established.
 If you get the next error:
 
 ```
-Nov 05 23:18:43 minibolt scb-backup[1710686]: Pushing changes to remote repository...
-Nov 05 23:18:43 minibolt scb-backup[1711268]: error: src refspec main does not match any
-Nov 05 23:18:43 minibolt scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
+Nov 05 23:18:43 ramix scb-backup[1710686]: Pushing changes to remote repository...
+Nov 05 23:18:43 ramix scb-backup[1711268]: error: src refspec main does not match any
+Nov 05 23:18:43 ramix scb-backup[1711268]: error: failed to push some refs to 'github.com:<YourGitHubUsername>/remote-lnd-backup.git
 ```
 
 -> Edit line 41  [in the script](channel-backup.md#create-script) with the following command:&#x20;

@@ -163,7 +163,7 @@ Learn more: https://nextjs.org/telemetry
 
 ## Upgrade
 
-* With user `admin`, stop the current dependencies services of the Node + NPM, that are actually BTC RPC Explorer + Thunderhub
+* With user `admin`, stop the current dependencies services of the Node + NPM, that are actually BTC RPC Explorer + ThunderHub
 
 ```bash
 sudo systemctl stop btcrpcexplorer && sudo systemctl stop thunderhub
@@ -181,7 +181,13 @@ sudo apt update && sudo apt full-upgrade
 node -v && npm -v
 ```
 
-* Start BTC RPC Explorer & Thunderhub again
+* **(Optional)** Delete the setup script
+
+```bash
+rm nodesource_setup.sh
+```
+
+* Start BTC RPC Explorer & ThunderHub again
 
 ```bash
 sudo systemctl start btcrpcexplorer && sudo systemctl start thunderhub
@@ -189,7 +195,7 @@ sudo systemctl start btcrpcexplorer && sudo systemctl start thunderhub
 
 ### Upgrade to the major version
 
-* With user `admin`, stop the current dependencies services of the Node + NPM, that are actually BTC RPC Explorer + Thunderhub
+* With user `admin`, stop the current dependencies services of the Node + NPM, that are actually BTC RPC Explorer + ThunderHub
 
 ```bash
 sudo systemctl stop btcrpcexplorer && sudo systemctl stop thunderhub
@@ -243,7 +249,7 @@ node -v && npm -v
 rm nodesource_setup.sh
 ```
 
-* Start BTC RPC Explorer & Thunderhub again
+* Start BTC RPC Explorer & ThunderHub again
 
 ```bash
 sudo systemctl start btcrpcexplorer && sudo systemctl start thunderhub

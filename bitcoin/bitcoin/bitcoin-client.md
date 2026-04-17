@@ -31,9 +31,9 @@ Bitcoin Core will download the full Bitcoin blockchain and validate all transact
 
 We download the latest Bitcoin Core binary (the application) and compare this file with the signed and timestamped checksum. This is a precaution to make sure that this is an official release and not a malicious version trying to steal our money.
 
-💡 If you want to install the Ordisrespector patch to reject the Ordinals of your mempool, follow the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md) and come back to continue with the ["Create the bitcoin user"](bitcoin-client.md#create-the-bitcoin-user-and-group) section.
+💡 If you want to install the Ordisrespector patch to reject the Ordinals of your mempool, follow the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md) and come back to continue with the [Create the bitcoin user](bitcoin-client.md#create-the-bitcoin-user-and-group) section.
 
-💡 If you want to install Bitcoin Core from the source code but without the Ordisrespector patch, follow the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md), skipping [Apply the patch “Ordisrespector”](../../bonus/bitcoin/ordisrespector.md#apply-the-ordisrespector-patch) and come back to continue with the ["Create the bitcoin user"](bitcoin-client.md#create-the-bitcoin-user-and-group) section.
+💡 If you want to install Bitcoin Core from the source code but without the Ordisrespector patch, follow the [Ordisrespector bonus guide](../../bonus/bitcoin/ordisrespector.md), skipping [Apply the patch “Ordisrespector”](../../bonus/bitcoin/ordisrespector.md#apply-the-ordisrespector-patch) and come back to continue with the [Create the bitcoin user](bitcoin-client.md#create-the-bitcoin-user-and-group) section.
 
 ### Download binaries
 
@@ -67,7 +67,7 @@ wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/SHA256SUMS.asc
 
 ### Signature check
 
-Bitcoin releases are signed by several individuals, each using its own key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
+Bitcoin releases are signed by several individuals, each using their own key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
 
 * The next command downloads and imports automatically all signatures from the [Bitcoin Core release attestations (Guix)](https://github.com/bitcoin-core/guix.sigs) repository
 
@@ -218,47 +218,21 @@ The Bitcoin Core application will run in the background as a daemon and use the 
 sudo adduser --gecos "" --disabled-password bitcoin
 ```
 
-**Example** of expected output:
-
-```
-Adding user `bitcoin' ...
-Adding new group `bitcoin' (1004) ...
-Adding new user `bitcoin' (1004) with group `bitcoin(1004)' ...
-Creating home directory `/home/bitcoin' ...
-Copying files from `/etc/skel' ...
-Adding new user `bitcoin' to supplemental / extra groups `users' ...
-Adding user `bitcoin' to group `users' ...
-```
-
 * Add the user `admin` to the group "bitcoin"
 
 ```bash
 sudo adduser admin bitcoin
 ```
 
-Expected output:
-
-```
-Adding user `admin' to group `bitcoin' ...
-Done.
-```
-
-* Allow the user `bitcoin` to use the control port and configure Tor directly by adding it to the "`debian-tor`" group
+* Allow the user `bitcoin` to use the control port and configure Tor directly by adding it to the `debian-tor` group
 
 ```bash
 sudo adduser bitcoin debian-tor
 ```
 
-Expected output:
-
-```
-Adding user `bitcoin' to group `debian-tor' ...
-Done.
-```
-
 ### Create data folder
 
-Bitcoin Core uses by default the folder `.bitcoin` in the user's home. Instead of creating this directory, we create a data directory in the general data location `/data` and link to it.
+Bitcoin Core uses, by default, the folder `.bitcoin` in the user's home. Instead of creating this directory, we create a data directory in the general data location `/data` and link to it.
 
 * Create the Bitcoin data folder
 
@@ -323,16 +297,14 @@ wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpca
 All commands entered are stored in the bash history. But we don't want the password to be stored where anyone can find it. For this, put a space `( )` in front of the command shown below
 {% endhint %}
 
-```sh
- python3 rpcauth.py ramix YourPasswordB
-```
+<pre class="language-sh"><code class="lang-sh"> python3 rpcauth.py ramix <a data-footnote-ref href="#user-content-fn-2">YourPasswordB</a>
+</code></pre>
 
 **Example** of expected output:
 
-```
-String to be appended to bitcoin.conf:
-rpcauth=ramix:00d8682ce66c9ef3dd9d0c0a6516b10e$c31da4929b3d0e092ba1b2755834889f888445923ac8fd69d8eb73efe0699afa
-```
+<pre><code>String to be appended to bitcoin.conf:
+<a data-footnote-ref href="#user-content-fn-3">rpcauth=ramix:00d8682ce66c9ef3dd9d0c0a6516b10e$c31da4929b3d0e092ba1b2755834889f888445923ac8fd69d8eb73efe0699afa</a>
+</code></pre>
 
 * Copy the `rpcauth` line, we'll need to paste it into the Bitcoin config file
 
@@ -340,7 +312,7 @@ rpcauth=ramix:00d8682ce66c9ef3dd9d0c0a6516b10e$c31da4929b3d0e092ba1b2755834889f8
 
 Now, the configuration file `bitcoind` needs to be created. We'll also set the proper access permissions.
 
-* Still, as the user `"bitcoin"`, creates the `bitcoin.conf` file
+* Still as the user `"bitcoin"`, creates the `bitcoin.conf` file
 
 ```bash
 nano /home/bitcoin/.bitcoin/bitcoin.conf
@@ -379,7 +351,7 @@ onlynet=ipv4
 onlynet=ipv6
 
 # Append comment to the user agent string
-uacomment=<a data-footnote-ref href="#user-content-fn-2">RaMiX node</a>
+uacomment=<a data-footnote-ref href="#user-content-fn-4">RaMiX node</a>
 
 # Disable integrated wallet
 disablewallet=1
@@ -422,10 +394,10 @@ proxy=127.0.0.1:9050
 i2psam=127.0.0.1:7656
 
 # Connections
-rpcauth=<a data-footnote-ref href="#user-content-fn-3">&#x3C;replace with your own auth line generated in the previous step></a>
+rpcauth=<a data-footnote-ref href="#user-content-fn-2">&#x3C;replace with your own auth line generated in the previous step></a>
 
 # Initial block download optimizations
-dbcache=<a data-footnote-ref href="#user-content-fn-4">2048</a>
+dbcache=<a data-footnote-ref href="#user-content-fn-5">2048</a>
 blocksonly=1
 </code></pre>
 
@@ -604,7 +576,7 @@ Expected output:
 {% hint style="warning" %}
 **Troubleshooting note:**\
 \
-If you don't obtain the expected output ([`.bitcoin -> /data/bitcoin`](#user-content-fn-5)[^5]) and you only have (`.bitcoin`), you must follow the next steps to fix that:
+If you don't obtain the expected output ([`.bitcoin -> /data/bitcoin`](#user-content-fn-6)[^6]) and you only have (`.bitcoin`), you must follow the next steps to fix that:
 
 1. Delete the failed created symbolic link
 
@@ -618,7 +590,7 @@ sudo rm -r .bitcoin
 ln -s /data/bitcoin /home/admin/.bitcoin
 ```
 
-3. Check the symbolic link has been created correctly this time, and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-5)[^5]. If yes, continue with the guide, if not, try again
+3. Check the symbolic link has been created correctly this time, and you now have the expected output: [.bitcoin -> /data/bitcoin](#user-content-fn-6)[^6]. If yes, continue with the guide, if not, try again
 
 ```bash
 ls -la .bitcoin
@@ -674,9 +646,9 @@ sudo ss -tulpn | grep bitcoind
 
 Expected output:
 
-<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-6">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
-tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-8">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
+<pre><code>tcp   LISTEN 0      128        127.0.0.1:<a data-footnote-ref href="#user-content-fn-7">8332</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=11))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-8">8333</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=46))
+tcp   LISTEN 0      4096       127.0.0.1:<a data-footnote-ref href="#user-content-fn-9">8334</a>       0.0.0.0:*    users:(("bitcoind",pid=773834,fd=44))
 tcp   LISTEN 0      128            [::1]:8332          [::]:*    users:(("bitcoind",pid=773834,fd=10))
 </code></pre>
 
@@ -819,9 +791,9 @@ sudo nano /home/bitcoin/.bitcoin/bitcoin.conf
 
 <pre><code># Slow devices optimizations
 ## Limit the number of max peer connections
-<a data-footnote-ref href="#user-content-fn-9">maxconnections</a>=40
+<a data-footnote-ref href="#user-content-fn-10">maxconnections</a>=40
 ## Tries to keep outbound traffic under the given target per 24h
-<a data-footnote-ref href="#user-content-fn-10">maxuploadtarget</a>=5000
+<a data-footnote-ref href="#user-content-fn-11">maxuploadtarget</a>=5000
 ## Increase the number of threads to service RPC calls (default: 4)
 rpcthreads=128
 ## Increase the depth of the work queue to service RPC calls (default: 16)
@@ -1018,11 +990,11 @@ If you already have another fully-synced MiniBolt node on your local network, co
 
 {% hint style="info" %}
 To get this, you will need a **full-sync** MiniBolt node on the same local network
-{% endhint %}
 
 You will need a **full-sync local RaMiX node**
+{% endhint %}
 
-**On the full-sync local MiniBolt node:**
+**On the full-sync local RaMiX node:**
 
 #### Configure Firewall
 
@@ -1051,11 +1023,11 @@ sudo nano /data/bitcoin/bitcoin.conf
 
 Or **add** under `bind=127.0.0.1`, the next line allows **connections only from devices in the same local network** (**recommended option** to improve security)
 
-<pre><code>bind=<a data-footnote-ref href="#user-content-fn-11">192.168.x.x</a>
+<pre><code>bind=<a data-footnote-ref href="#user-content-fn-12">192.168.x.x</a>
 </code></pre>
 
 {% hint style="info" %}
-Remember to replace `192.168.x.x` with your MiniBolt local IP, i.e `192.168.1.43`
+Remember to replace `192.168.x.x` with your RaMiX local IP, e.g `192.168.1.43`
 {% endhint %}
 
 * Restart Bitcoin Core to apply changes
@@ -1064,7 +1036,7 @@ Remember to replace `192.168.x.x` with your MiniBolt local IP, i.e `192.168.1.43
 sudo systemctl restart bitcoind
 ```
 
-**On the new MiniBolt node:**
+**On the new RaMiX node:**
 
 * With the user `admin`, edit the `bitcoin.conf` file
 
@@ -1074,7 +1046,7 @@ sudo nano /data/bitcoin/bitcoin.conf
 
 * Attaches and persists the connection **only** to the full-sync local MiniBolt node. Add the next line at the end of the file. Save and exit
 
-<pre><code> connect=<a data-footnote-ref href="#user-content-fn-12">&#x3C;localip></a>:8333
+<pre><code> connect=<a data-footnote-ref href="#user-content-fn-13">&#x3C;localip></a>:8333
 </code></pre>
 
 {% hint style="info" %}
@@ -1112,7 +1084,7 @@ out manual   i2p  1    401    939    1   49  418           1019        455 271 a
 
 ### Improve the reliability
 
-Ensuring your node connects to high-uptime, reliable peers is essential for smooth synchronization, faster transaction propagation, and overall stability. By configuring the Bitcoin client with both onion and i2p addnode entries—especially using the trusted official MiniBolt project addresses—you create diverse and robust connection paths that help bypass latency and network issues, reducing the risk of disruptions while enhancing security and efficiency.
+Ensuring your node connects to high-uptime, reliable peers is essential for smooth synchronization, faster transaction propagation, and overall stability. By configuring the Bitcoin client with both onion and I2P addnode entries—especially using the trusted official MiniBolt project addresses—you create diverse and robust connection paths that help bypass latency and network issues, reducing the risk of disruptions while enhancing security and efficiency.
 
 {% hint style="info" %}
 To get this, you will need a **full-sync** node peer like the official MiniBolt project node (later, it is suggested)
@@ -1126,10 +1098,10 @@ To get this, you will need a **full-sync** node peer like the official MiniBolt 
 sudo nano /data/bitcoin/bitcoin.conf
 ```
 
-* Add at the end of the file the `onion` + `i2p` addresses of the desired peers that you want to add to improve the reliability of your Bitcoin Core on MiniBolt. Save and exit
+* Add at the end of the file the `onion` + `i2p` addresses of the desired peers that you want to add to improve the reliability of your Bitcoin Core on RaMiX. Save and exit
 
-<pre><code>addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-13">abcdefg..............xyz.onion</a>>:8333
-addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-13">abcdefg..............xyz.b32</a>>.i2p:0
+<pre><code>addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-14">abcdefg..............xyz.onion</a>>:8333
+addnode=&#x3C;<a data-footnote-ref href="#user-content-fn-14">abcdefg..............xyz.b32</a>>.i2p:0
 </code></pre>
 
 {% hint style="info" %}
@@ -1293,7 +1265,7 @@ Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bi
 Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
 ```
 
--> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones, and continue to the next step
+-> This means that the timestamp is pending confirmation on the Bitcoin blockchain. You can skip this step or wait a few hours/days to perform this verification. It is safe to skip this verification step if you followed the previous ones and continue to the next step
 {% endhint %}
 
 * Now, just check that the timestamp date is close to the [release](https://github.com/bitcoin/bitcoin/releases) date of the version you're installing
@@ -1393,7 +1365,7 @@ sudo userdel -rf bitcoin
 sudo groupdel bitcoin
 ```
 
-### Detele data directory
+### Delete data directory
 
 * Delete the complete `bitcoin`directory
 
@@ -1441,30 +1413,32 @@ sudo ufw delete X
 
 [^1]: Check this
 
-[^2]: Change for your selection if you want
+[^2]: Replace
 
-[^3]: Replace
+[^3]: Copy this
 
-[^4]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
+[^4]: Change for your selection if you want
+
+[^5]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
 
     -> Recommended: dbcache=1/2 x RAM available e.g: 4GB RAM -> dbcache=2048
 
     -> Remember to comment or delete this parameter after IBD (Initial Block Download)
 
-[^5]: Symbolic link
+[^6]: Symbolic link
 
-[^6]: RPC port
+[^7]: RPC port
 
-[^7]: P2P main port
+[^8]: P2P main port
 
-[^8]: Default P2P Tor port
+[^9]: Default P2P Tor port
 
-[^9]: Default 125 connections to different peers, 11 of which are outbound. You can therefore, have at most 114 inbound connections. Of the 11 outbound peers, there can be 8 full-relay connections, 2 block-relay-only ones and occasionally 1 short-lived feeler or an extra block-relay-only connection.
+[^10]: Default 125 connections to different peers, 11 of which are outbound. You can therefore, have at most 114 inbound connections. Of the 11 outbound peers, there can be 8 full-relay connections, 2 block-relay-only ones and occasionally 1 short-lived feeler or an extra block-relay-only connection.
 
-[^10]: This option can be specified in MiB per day and is turned off by default. \<MiB per day>
+[^11]: This option can be specified in MiB per day and is turned off by default. \<MiB per day>
 
-[^11]: Replace with your IP
+[^12]: Replace with your IP
 
-[^12]: Replace with the local IP of the remote node e.g, `192.168.1.43`
+[^13]: Replace with the local IP of the remote node e.g, `192.168.1.43`
 
-[^13]: Replace with the desire address of the peer
+[^14]: Replace with the desire address of the peer

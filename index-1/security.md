@@ -23,7 +23,7 @@ We make sure that your RaMiX is secured against unauthorized remote access.
 
 The RaMiX needs to be secured against online attacks using various methods.
 
-<figure><img src="../.gitbook/assets/security.jpg" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/security_cover.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Check IPv6 availability
 
@@ -211,10 +211,59 @@ We use Nginx to encrypt the communication with SSL/TLS (Transport Layer Security
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Install Nginx and dependencies. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Import an official Nginx signing key so apt could verify the packages authenticity. Fetch the key
+
+```bash
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+```
+
+Expected output:
+
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 11809  100 11809    0     0  45819      0 --:--:-- --:--:-- --:--:-- 45949
+```
+
+* Verify that the downloaded file contains the proper key
+
+{% code overflow="wrap" %}
+```bash
+gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+```
+{% endcode %}
+
+Expected output:
+
+<pre data-overflow="wrap"><code>    pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
+          <a data-footnote-ref href="#user-content-fn-1">573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62</a>
+    uid                      nginx signing key &#x3C;signing-key@nginx.com>
+</code></pre>
+
+* To set up the apt repository for stable Nginx packages, run the following command
+
+{% code overflow="wrap" %}
+```bash
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://nginx.org/packages/debian `lsb_release -cs` nginx" \
+    | sudo tee /etc/apt/sources.list.d/nginx.list
+```
+{% endcode %}
+
+* Set up repository pinning to prefer the Nginx packages over distribution-provided ones
+
+{% code overflow="wrap" %}
+```bash
+echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
+    | sudo tee /etc/apt/preferences.d/99nginx
+```
+{% endcode %}
+
+* Install Nginx. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
-sudo apt install nginx libnginx-mod-stream
+sudo apt update && sudo apt install nginx
 ```
 
 * Check the correct installation
@@ -226,7 +275,7 @@ nginx -v
 **Example** of expected output:
 
 ```
-nginx version: nginx/1.18.0 (Ubuntu)
+nginx version: nginx/1.28.3
 ```
 
 * Create a self-signed SSL/TLS certificate (valid for 10 years)
@@ -302,14 +351,14 @@ sudo mkdir /etc/nginx/streams-available
 sudo mkdir /etc/nginx/streams-enabled
 ```
 
-* Remove the Nginx `site available` and `site enabled` default configuration files
+* Create the `sites-available` and `sites-enabled` directories for future configuration files
 
 ```bash
-sudo rm /etc/nginx/sites-available/default
+sudo mkdir /etc/nginx/sites-available
 ```
 
 ```sh
-sudo rm /etc/nginx/sites-enabled/default
+sudo mkdir /etc/nginx/sites-enabled
 ```
 
 * Test this barebone Nginx configuration
@@ -325,10 +374,10 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-* Reload Nginx to apply the configuration
+* Start Nginx
 
 ```sh
-sudo systemctl reload nginx
+sudo systemctl start nginx
 ```
 
 {% hint style="info" %}
@@ -341,11 +390,9 @@ journalctl -fu nginx
 
 Expected output:
 
-<pre><code><strong>Jun 04 18:21:09 ramix systemd[1]: Starting A high performance web server and a reverse proxy server...
-</strong>Jun 04 18:21:09 ramix systemd[1]: Started A high performance web server and a reverse proxy server.
-Jun 04 18:25:18 ramix systemd[1]: Reloading A high performance web server and a reverse proxy server...
-Jun 04 18:25:18 ramix systemd[1]: Reloaded A high performance web server and a reverse proxy server.
-</code></pre>
+```
+Apr 07 06:04:39 ramix systemd[1]: Started nginx.service - nginx - high performance web server.
+```
 
 {% hint style="info" %}
 **(Optional)** You can monitor Nginx error logs by entering the following command. Exit with `Ctrl + C`
@@ -388,3 +435,5 @@ sudo apt autoremove nginx
 sudo rm -rf /etc/nginx && sudo rm -f /etc/ssl/certs/nginx-selfsigned.crt && sudo rm -f /etc/ssl/private/nginx-selfsigned.key
 ```
 {% endcode %}
+
+[^1]: Check this

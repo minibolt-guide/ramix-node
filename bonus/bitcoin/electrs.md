@@ -91,7 +91,7 @@ make shared_lib -j $(nproc)
 
 <details>
 
-<summary>Example of expected output ⬇️</summary>
+<summary>Expected output ⬇️</summary>
 
 ```
 $DEBUG_LEVEL is 0
@@ -226,7 +226,7 @@ In the [Security section](../../index-1/security.md), we already set up Nginx as
 sudo nano /etc/nginx/streams-available/electrs-reverse-proxy.conf
 ```
 
-* Paste the complete following configuration. Save and exit
+* Paste the following complete configuration. Save and exit
 
 ```nginx
 upstream electrs {
@@ -491,8 +491,8 @@ db_dir = "/data/electrs/db"
 server_banner = "Welcome to electrs (Electrum Rust Server) running on a RaMiX node!"
 skip_block_download_wait = true
 
-# Allow concurrent DB background operations.
-# Delete or comment on this parameter if you are using an SD instead of an SSD for data.
+# Allow concurrent DB background operations. e.g., for 4 threads max use.
+# Customise with your available threads.
 db_parallelism=4
 
 # Logging
@@ -686,29 +686,6 @@ abcdefg..............xyz.onion
 {% hint style="info" %}
 You should now be able to connect to your Electrs server remotely via Tor using your hostname and port `50022 (SSL)` , or `50021 (TCP)`
 {% endhint %}
-
-### Migrate BTC RPC Explorer to Electrs API connection
-
-To get address balances, either an Electrum server or an external service is necessary. Your local Electrs server can provide address transaction lists, balances, and more.
-
-* As user `admin`, open the `btcrpcexplorer` service
-
-```shellscript
-sudo nano /etc/systemd/system/btcrpcexplorer.service
-```
-
-* Replace the `fulcrum.service` with the `electrs.service`. Save and exit
-
-```sh
-Requires=bitcoind.service electrs.service
-After=bitcoind.service electrs.service
-```
-
-* Restart the BTC RPC Explorer service to apply the changes
-
-```shellscript
-sudo systemctl restart btcrpcexplorer
-```
 
 ## Upgrade
 
