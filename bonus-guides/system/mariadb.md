@@ -33,21 +33,13 @@ Difficulty: Easy
 
 ## Installation
 
-### Install dependencies
+### Install MariaDB using the apt package manager
 
 * With user `admin`, update and upgrade your OS. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```bash
 sudo apt update && sudo apt full-upgrade
 ```
-
-* Install `apt-transport-https` package
-
-```bash
-sudo apt install apt-transport-https
-```
-
-### Install MariaDB using the apt package manager
 
 * Import the repository signing key
 

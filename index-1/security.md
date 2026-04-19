@@ -236,16 +236,24 @@ gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/sh
 
 Expected output:
 
-<pre data-overflow="wrap"><code>    pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
-          <a data-footnote-ref href="#user-content-fn-1">573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62</a>
-    uid                      nginx signing key &#x3C;signing-key@nginx.com>
+<pre data-overflow="wrap"><code>pub   rsa4096 2024-05-29 [SC]
+      8540A6F18833A80E9C1653A42FD21310B49F6B46
+uid                      nginx signing key &#x3C;signing-key-2@nginx.com>
+
+pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
+      <a data-footnote-ref href="#user-content-fn-1">573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62</a>
+uid                      nginx signing key &#x3C;signing-key@nginx.com>
+
+pub   rsa4096 2024-05-29 [SC]
+      9E9BE90EACBCDE69FE9B204CBCDCD8A38D88A2B3
+uid                      nginx signing key &#x3C;signing-key-3@nginx.com>
 </code></pre>
 
 * To set up the apt repository for stable Nginx packages, run the following command
 
 {% code overflow="wrap" %}
 ```bash
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+echo "deb [arch=arm64 signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
 https://nginx.org/packages/debian `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
@@ -275,7 +283,7 @@ nginx -v
 **Example** of expected output:
 
 ```
-nginx version: nginx/1.28.3
+nginx version: nginx/1.30.0
 ```
 
 * Create a self-signed SSL/TLS certificate (valid for 10 years)
@@ -436,4 +444,4 @@ sudo rm -rf /etc/nginx && sudo rm -f /etc/ssl/certs/nginx-selfsigned.crt && sudo
 ```
 {% endcode %}
 
-[^1]: Check this
+[^1]: Check this is present

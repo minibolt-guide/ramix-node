@@ -45,11 +45,15 @@ It is called "Tor" for "The Onion Router": information is routed through many ho
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Install dependency. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Add the GPG key used to sign the packages by running the following command at your command prompt
 
+{% code overflow="wrap" %}
 ```sh
-sudo apt install apt-transport-https
+wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc \
+| gpg --dearmor \
+| sudo tee /usr/share/keyrings/tor-archive-keyring.gpg > /dev/null
 ```
+{% endcode %}
 
 * Create a new file called `tor.list`
 
@@ -60,31 +64,10 @@ sudo nano /etc/apt/sources.list.d/tor.list
 * Add the following entries. Save and exit
 
 ```
-deb     [arch=arm64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main
-deb-src [arch=arm64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main
+deb [arch=arm64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main
 ```
 
-* Up to `"root"` user temporarily
-
-```sh
-sudo su
-```
-
-* Add the GPG key used to sign the packages by running the following command at your command prompt
-
-{% code overflow="wrap" %}
-```sh
-wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
-```
-{% endcode %}
-
-* Return to `admin` using `exit` command
-
-```bash
-exit
-```
-
-* Update the apt repository, and install Tor and Tor Debian keyring. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Update the apt repository, and install Tor and the Tor Debian keyring. Press "**y**" and `enter` or directly `enter` when the prompt asks you
 
 ```sh
 sudo apt update && sudo apt install tor deb.torproject.org-keyring
@@ -129,7 +112,7 @@ ControlPort 9051
 sudo systemctl reload tor
 ```
 
-* Ensure that the Tor service is working and listening on the default ports `9050` and `9051` on the localhost (127.0.0.1)
+* Ensure that the Tor service is working and listening on the default ports `9050` and `9051` on the localhost (`127.0.0.1`)
 
 ```sh
 sudo ss -tulpn | grep tor
@@ -146,7 +129,7 @@ tcp     LISTEN 0    4096     127.0.0.1:9051   0.0.0.0:*    users:(("tor",pid=795
 
 </details>
 
-* **(Optional)** Check the systemd journal to see Tor in real-time updates, output logs. Ctrl + C to exit
+* **(Optional)** Check the systemd journal to see Tor in real-time updates and output logs. Ctrl + C to exit
 
 ```sh
 journalctl -fu tor@default --since='1 hour ago'
@@ -217,21 +200,32 @@ Removed /etc/systemd/system/multi-user.target.wants/tor.service.
 
 I2P client is software used for building and using anonymous I2P networks. Such networks are commonly used for anonymous peer-to-peer applications (filesharing, cryptocurrencies) and anonymous client-server applications (websites, instant messengers, chat-servers).
 
-We will use [i2pd](https://i2pd.readthedocs.io/en/latest/) (I2P Daemon), a full-featured C++ implementation of the I2P client, as a Tor network complement.
+We will use [i2pd](https://i2pd.readthedocs.io/en/latest/) (I2P Daemon), a full-featured C++ implementation of the I2P client, as a complement to the Tor network.
 
 ### **I2P installation**
 
-* Ensure that you are logged in as the user `admin` and add the i2pd repository
+* With user `admin`, add the GPG key used to sign the packages by running the following command at your command prompt
 
-```sh
-wget -q -O - https://repo.i2pd.xyz/.help/add_repo | sudo bash -s -
+{% code overflow="wrap" %}
+```bash
+wget -qO- https://repo.i2pd.xyz/r4sas.gpg \
+  | gpg --dearmor \
+  | sudo tee /usr/share/keyrings/purplei2p.gpg > /dev/null
 ```
+{% endcode %}
 
-Expected output:
+* Create a new file called `purplei2p.list`
+
+{% code overflow="wrap" %}
+```bash
+sudo nano /etc/apt/sources.list.d/purplei2p.list
+```
+{% endcode %}
+
+* Add the following entries. Save and exit
 
 ```
-Importing signing key
-Adding APT repository
+deb [arch=arm64 signed-by=/usr/share/keyrings/purplei2p.gpg] https://repo.i2pd.xyz/ubuntu jammy main
 ```
 
 * Update the apt repository and install i2pd as any other software package. Press "**y**" and `enter` or directly `enter` when the prompt asks you
@@ -735,25 +729,15 @@ If you obtain this error [after updating](privacy.md#upgrade-tor-and-i2p) the re
 This means Tor has renewed the signature because it is probably soon to expire or has expired. Follow the next steps to fix that ⬇️
 {% endhint %}
 
-* With user `admin`, up to `"root"` user temporarily
-
-```sh
-sudo su
-```
-
-* Add the GPG key used to sign the packages by running the following command at your command prompt
+* Add the GPG key used to sign the packages by running the following command at your command prompt:
 
 {% code overflow="wrap" %}
 ```sh
-wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
+wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc \
+| gpg --dearmor \
+| sudo tee /usr/share/keyrings/tor-archive-keyring.gpg > /dev/null
 ```
 {% endcode %}
-
-* Return to `admin` using `exit` command
-
-```bash
-exit
-```
 
 {% hint style="info" %}
 Try to do `sudo apt update` again and see if the error doesn't appear

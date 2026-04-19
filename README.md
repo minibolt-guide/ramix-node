@@ -75,7 +75,7 @@ Your Bitcoin node will offer the following functionality:
 
 * [x] We strive to give foolproof instructions. But the goal is also to do everything ourselves.
 * [x] Shortcuts that involve trusting someone else are not allowed. This makes this guide quite technical, but we try to make it as straightforward as possible.
-* [x] You'll gain a basic understanding of the how and why.
+* [x] You'll gain a basic understanding of how and why.
 * [x] If you want to learn about Linux, Bitcoin, and Lightning, this guide is for you.
 
 ### Structure

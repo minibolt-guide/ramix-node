@@ -47,7 +47,6 @@ Clients should always provide users the flexibility to connect to multiple relay
 
 You can obtain more info about nostr on these additional resources:
 
-* [austritch.net](https://www.austrich.net/nostr/)
 * [awesome-nostr](https://www.nostr.net/)
 * [use-nostr](https://usenostr.org/)
 * [Nostr.how](https://nostr.how/en/what-is-nostr)
@@ -56,10 +55,9 @@ You can obtain more info about nostr on these additional resources:
 
 ## Requirements
 
-* [Cloudflare tunnel](../networking/cloudflare-tunnel.md)
-* Others
-  * [PostgreSQL](../system/postgresql.md)
-  * [Rustup + Cargo](../system/rustup-+-cargo.md)
+* [Rustup + Cargo](../system/rustup-+-cargo.md)
+* [Cloudflare tunnel](../networking/cloudflare-tunnel.md) (optional)
+* [PostgreSQL](../system/postgresql.md) (optional)
 
 ## Preparations
 
@@ -277,7 +275,7 @@ Copying files from `/etc/skel' ...
 sudo su - nostr
 ```
 
-* **(Optional)** If you want to use the RaMiX [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/refs/heads/main/resources/favicons/favicon.icohttps://raw.githubusercontent.com/minibolt-guide/minibolt/refs/heads/main/resources/favicons/favicon.ico) file, download it by entering this command, if not, download your own, or skip this step, not to provide any (remember to leave the `favicon.ico` commented on the configuration file)
+* **(Optional)** If you want to use the RaMiX [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/favicon.ico) file, download it by entering this command, if not, download your own, or skip this step, not to provide any (remember to leave the `favicon.ico` commented on the configuration file)
 
 {% code overflow="wrap" %}
 ```bash
@@ -376,7 +374,7 @@ Uncomment and replace only the next line:
 > > [remote\_ip\_header = "cf-connecting-ip"](#user-content-fn-5)[^5]
 
 {% hint style="info" %}
-If you want, use the same [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/minibolt/refs/heads/main/resources/favicons/favicon.ico) file downloaded before (the relay's icon of RaMiX) and the value `relay_icon` parameter (URL -> [https://blossom.minibolt.info/75e70d1ec40f8ed7489ff17a222afc7d4ec6bd117ac827aa212b38b0ee2c480e.png](https://blossom.minibolt.info/75e70d1ec40f8ed7489ff17a222afc7d4ec6bd117ac827aa212b38b0ee2c480e.png)), or replace it with your info
+If you want, use the same [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/favicon.ico) file downloaded before (the relay's icon of RaMiX) and the value `relay_icon` parameter (URL -> [https://blossom.minibolt.info/fa666d2459cdddead8a3a10c7bb89f72d6bf5dad967ac72bd84d9e5a1b1445f0.webp](https://blossom.minibolt.info/fa666d2459cdddead8a3a10c7bb89f72d6bf5dad967ac72bd84d9e5a1b1445f0.webp)), or replace it with your info
 {% endhint %}
 
 ### **Create systemd service**
@@ -479,7 +477,7 @@ tcp   LISTEN 0   128   127.0.0.1:8880   0.0.0.0:*  users:(("nostr-rs-relay",pid=
 {% tabs %}
 {% tab title="Method 1" %}
 * Go to the [nostr.watch](https://nostr.watch/) the website to check and test the relay connection
-* Access to the URL, replacing `<relay.domain.com>` with your Nostr relay URL: `https://legacy.nostr.watch/relay/relay.domain.com,` example: [https://nostr.watch/relays/wss/relay.damus.io](https://nostr.watch/relays/wss/relay.damus.io)
+* Access to the URL, replacing `<relay.domain.com>` with your Nostr relay URL: `https://nostr.watch/relay/wss/relay.domain.com`, example: [https://nostr.watch/relays/wss/relay.damus.io](https://nostr.watch/relays/wss/relay.damus.io)
 
 **Example** of expected output:
 
@@ -571,7 +569,7 @@ After=network-online.target
     * [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/alby/)
     * [Librewolf](https://addons.mozilla.org/en-US/firefox/addon/alby/)
     * [Tor browser](https://addons.mozilla.org/en-US/firefox/addon/alby/) <- Follow [this guide](https://guides.getalby.com/user-guide/alby-account-and-browser-extension/alby-browser-extension/faqs-alby-extension/can-i-use-alby-with-the-tor-browser) to enable the Alby extension using the Tor browser
-  * For Chromium based-browser:
+  * For Chromium-based browser:
     * [Chrome](https://chrome.google.com/webstore/detail/alby-bitcoin-lightning-wa/iokeahhehimjnekafflcihljlcjccdbe)
     * [Brave](https://chrome.google.com/webstore/detail/alby-bitcoin-lightning-wa/iokeahhehimjnekafflcihljlcjccdbe)
 * After installation, the browser automatically redirects you to choose a password to unlock Alby. Click on the \[**Next]** button
@@ -586,7 +584,7 @@ Select a strong password for the Alby extension (this password is for encrypting
 
 <figure><img src="../../.gitbook/assets/alby-account.png" alt="" width="375"><figcaption></figcaption></figure>
 
-* **Login** with your **existing account** or **create a new one**
+* **Log in** with your **existing account** or **create a new one**
 
 <figure><img src="../../.gitbook/assets/alby-login-create.PNG" alt="" width="262"><figcaption></figcaption></figure>
 
@@ -754,7 +752,7 @@ Amethyst brings the best social network to your Android phone.
 {% tab title="Password Manager (Vault)" %}
 A free, open-source, and decentralized password manager, powered by NOSTR.
 
-[Chrome-based extension](https://chrome.google.com/webstore/detail/vault/namadahddjnkmjgdnncdlhioopmjiflm) | [GitHub](nostr-relay.md#first-https-github.com-jinglescode-nostr-password-manager)
+[Chrome-based extension](https://chrome.google.com/webstore/detail/vault/namadahddjnkmjgdnncdlhioopmjiflm)
 {% endtab %}
 
 {% tab title="njump" %}
@@ -777,7 +775,7 @@ If you want all your past events to be accessible through your new relay, you ca
 * Go to [metadata.nostr.com](https://metadata.nostr.com) website, log in **\[Load My Profile]**, and click on **\[Relays]**
 * Add your new Nostr relay **`[wss://relay.domain.com]`** address to the list of preferred relays in your profile (in the empty box below), select the **read+write** option, and click the **\[Update]** button.
 
-You can take the opportunity to add more preferred relays to your profile to also push events to them, selected from this [list](https://legacy.nostr.watch/relays/find)
+You can take the opportunity to add more preferred relays to your profile to also push events to them, selected from this [list](https://nostr.watch/)
 
 * Go to the [NostrSync](https://nostrsync.vercel.app/) webpage and log in **\[Get from extension] (Alby)**, or manually enter the \[npub...] of your Nostr profile
 * Click the **\[Backup & Broadcast]** button...
@@ -847,7 +845,7 @@ This is necessary to access you `ws://` URL, since Tor does not use `wss://` due
 You may want to expose your Nostr relay publicly using a clearnet address. To do this, follow the next steps:
 
 * Follow the [Cloudflare tunnel](../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your RaMiX to Cloudflare
-* When you finish the "[Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name)" section, you can skip the "[Start routing traffic](../networking/cloudflare-tunnel.md#id-5-start-routing-traffic)" section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
+* When you finish the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section, you can skip the [Start routing traffic](../networking/cloudflare-tunnel.md#id-5-start-routing-traffic) section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
 * Click on the **\[+ Add record]** button
 
 <figure><img src="../../.gitbook/assets/add_new_cname_tunnel_cloudflare.png" alt=""><figcaption></figcaption></figure>
