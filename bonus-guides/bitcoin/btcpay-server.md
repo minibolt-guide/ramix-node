@@ -171,7 +171,7 @@ dotnet --version
 rm dotnet-install.sh
 ```
 
-* Come back to the "admin" user
+* Come back to the `admin` user
 
 ```bash
 exit
@@ -1198,7 +1198,7 @@ Fast-forward
 {% hint style="warning" %}
 **Troubleshooting notes:**
 
-If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
+1. If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
 
 ```bash
 git config user.email "ramix@dummyemail.com"
@@ -1210,7 +1210,7 @@ git config user.name "RaMiX"
 
 -> And try the last command again
 
-If the prompt shows you this:
+2. If the prompt shows you this:
 
 ```
 hint: You have divergent branches and need to specify how to reconcile them.
@@ -1364,7 +1364,7 @@ Merge made by the 'ort' strategy.
 {% hint style="warning" %}
 **Troubleshooting notes:**
 
-If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
+1. If the prompt shows you: `"fatal: unable to auto-detect email address (got 'btcpay@ramix.(none)')"`⬇️
 
 ```bash
 git config user.email "ramix@dummyemail.com"
@@ -1376,7 +1376,7 @@ git config user.name "RaMiX"
 
 -> And try the last command again
 
-If the prompt shows you: `fatal: Need to specify how to reconcile divergent branches.`⬇️
+2. If the prompt shows you: `fatal: Need to specify how to reconcile divergent branches.`⬇️
 
 ```bash
 git config pull.rebase false
@@ -1384,7 +1384,7 @@ git config pull.rebase false
 
 -> And try the last command again
 
-If the prompts show you logs like these:
+3. If the prompts show you logs like these:
 
 ```
 Auto-merging BTCPayServer.Abstractions/BTCPayServer.Abstractions.csproj
@@ -1419,7 +1419,7 @@ Oct 30 16:26:48 ramix  run.sh[3307655]: info: BTCPayServer.HostedServices.Paymen
 [...]
 ```
 
-If the prompts show you logs like these:
+4. If the prompts show you logs like these:
 
 {% code overflow="wrap" %}
 ```
