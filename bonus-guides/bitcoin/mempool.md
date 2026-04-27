@@ -544,7 +544,7 @@ Pay attention to the next step!
 * Set a temporary version environment variable
 
 ```bash
-VERSION=3.3.0
+VERSION=3.3.1
 ```
 
 * Import the GPG key of the developer
