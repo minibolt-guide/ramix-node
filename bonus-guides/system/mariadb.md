@@ -21,10 +21,6 @@ layout:
 
 [MariaDB Server](https://mariadb.org/) is one of the most popular open source relational databases. It’s made by the original developers of MySQL and guaranteed to stay open source. It is part of most cloud offerings and the default in most Linux distributions.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="success" %}
 Difficulty: Easy
 {% endhint %}
@@ -62,13 +58,13 @@ sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_
 {% code overflow="wrap" %}
 ```bash
 sudo tee /etc/apt/sources.list.d/mariadb.sources > /dev/null <<'EOF'
-# MariaDB 10.6 repository list - created 2026-04-16 09:40 UTC
+# MariaDB 10.11 repository list - created 2026-04-27 15:45 UTC
 # https://mariadb.org/download/
 X-Repolib-Name: MariaDB
 Types: deb
 # deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-# URIs: https://deb.mariadb.org/10.6/debian
-URIs: https://mirror.raiolanetworks.com/mariadb/repo/10.6/debian
+# URIs: https://deb.mariadb.org/10.11/debian
+URIs: https://mirror.raiolanetworks.com/mariadb/repo/10.11/debian
 Suites: bookworm
 Components: main
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
@@ -319,41 +315,32 @@ journalctl -fu mariadb
 <summary><strong>Example</strong> of expected output ⬇️</summary>
 
 ```
-Apr 13 12:50:02 minibolt systemd[1]: Stopping MariaDB 10.6.25 database server...
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] /usr/sbin/mariadbd (initiated by: unknown): Normal shutdown
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: FTS optimize thread exiting.
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: Starting shutdown...
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: Buffer pool(s) dump completed at 260413 12:50:02
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] InnoDB: Shutdown completed; log sequence number 41920; transaction id 15
-Apr 13 12:50:02 minibolt mariadbd[602116]: 2026-04-13 12:50:02 0 [Note] /usr/sbin/mariadbd: Shutdown complete
-Apr 13 12:50:02 minibolt systemd[1]: mariadb.service: Deactivated successfully.
-Apr 13 12:50:02 minibolt systemd[1]: Stopped MariaDB 10.6.25 database server.
-Apr 13 12:50:02 minibolt systemd[1]: Starting MariaDB 10.6.25 database server...
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] Starting MariaDB 10.6.25-MariaDB-ubu2204 source revision 05e6c9d42d2f49ada1a0c49a4e0d7fc3ce420e4e server_uid C8ZtbKr3iBsZ6zFbM5T1AgZ2I2c= as process 603577
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Number of pools: 1
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Using liburing
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Initializing buffer pool, total size = 134217728, chunk size = 134217728
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Completed initialization of buffer pool
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=41908,41908
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: 128 rollback segments are active.
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Creating shared tablespace for temporary tables
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: 10.6.25 started; log sequence number 41920; transaction id 14
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] Plugin 'FEEDBACK' is disabled.
-Apr 13 12:50:02 minibolt mariadbd[603577]: 2026-04-13 12:50:02 0 [Note] InnoDB: Loading buffer pool(s) from /data/mariadb/ib_buffer_pool
-Apr 13 12:50:03 minibolt mariadbd[603577]: 2026-04-13 12:50:03 0 [Warning] You need to use --log-bin to make --expire-logs-days or --binlog-expire-logs-seconds work.
-Apr 13 12:50:03 minibolt mariadbd[603577]: 2026-04-13 12:50:03 0 [Note] Server socket created on IP: '127.0.0.1'.
-Apr 13 12:50:03 minibolt mariadbd[603577]: 2026-04-13 12:50:03 0 [Note] /usr/sbin/mariadbd: ready for connections.
-Apr 13 12:50:03 minibolt mariadbd[603577]: Version: '10.6.25-MariaDB-ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
-Apr 13 12:50:03 minibolt mariadbd[603577]: 2026-04-13 12:50:03 0 [Note] InnoDB: Buffer pool(s) load completed at 260413 12:50:03
-Apr 13 12:50:03 minibolt systemd[1]: Started MariaDB 10.6.25 database server.
-Apr 13 12:50:03 minibolt /etc/mysql/debian-start[603595]: Upgrading MySQL tables if necessary.
+Apr 27 17:50:35 ramix systemd[1]: Starting mariadb.service - MariaDB 10.11.16 database server...
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] Starting MariaDB 10.11.16-MariaDB-deb12 source revision 3218602d3100db9ce7a875511a591cddc173cc16 server_uid 6wZ9jpK0tRTvsqSel2fNU2HxlYE= as process 3704769
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: Compressed tables use zlib 1.2.13
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: Number of transaction pools: 1
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: Using ARMv8 crc32 instructions
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: Using io_uring
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: innodb_buffer_pool_size_max=128m, innodb_buffer_pool_size=128m
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: Completed initialization of buffer pool
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+Apr 27 17:50:35 ramix mariadbd[3704769]: 2026-04-27 17:50:35 0 [Note] InnoDB: End of log at LSN=44808
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: 128 rollback segments are active.
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: log sequence number 44808; transaction id 14
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: Loading buffer pool(s) from /data/mariadb/ib_buffer_pool
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] Plugin 'FEEDBACK' is disabled.
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Warning] You need to use --log-bin to make --expire-logs-days or --binlog-expire-logs-seconds work.
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] Server socket created on IP: '127.0.0.1', port: '3306'.
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] InnoDB: Buffer pool(s) load completed at 260427 17:50:36
+Apr 27 17:50:36 ramix mariadbd[3704769]: 2026-04-27 17:50:36 0 [Note] /usr/sbin/mariadbd: ready for connections.
+Apr 27 17:50:36 ramix mariadbd[3704769]: Version: '10.11.16-MariaDB-deb12'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
+Apr 27 17:50:36 ramix systemd[1]: Started mariadb.service - MariaDB 10.11.16 database server.
+Apr 27 17:50:36 ramix /etc/mysql/debian-start[3704784]: Upgrading MariaDB tables if necessary.
+Apr 27 17:50:36 ramix /etc/mysql/debian-start[3704797]: Checking for insecure root accounts.
+Apr 27 17:50:36 ramix /etc/mysql/debian-start[3704801]: Triggering myisam-recover for all MyISAM tables and aria-recover for all Aria tables
 ```
 
 </details>

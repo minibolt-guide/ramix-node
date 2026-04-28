@@ -21,10 +21,6 @@ layout:
 
 [Mempool](https://github.com/mempool/mempool) is the fully-featured mempool visualizer, explorer, and API service.
 
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
-
 {% hint style="warning" %}
 Difficulty: Medium
 {% endhint %}
