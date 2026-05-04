@@ -67,6 +67,7 @@ Types: deb
 URIs: https://mirror.raiolanetworks.com/mariadb/repo/10.11/debian
 Suites: bookworm
 Components: main
+Architectures: arm64
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 EOF
 ```
