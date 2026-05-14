@@ -59,17 +59,17 @@ This guide explains setting up your Bitcoin node on a Raspberry Pi. However, it 
 
 Your Bitcoin node will offer the following functionality:
 
-🟠 **Bitcoin**: direct and trustless participation in the Bitcoin peer-to-peer network, full validation of blocks and transactions
+🟠 **Bitcoin**: direct and trustless participation in the Bitcoin peer-to-peer network, full validation of blocks and transactions.
 
-⚛️ **Electrum server**: connect your compatible wallets (including hardware wallets) to your node
+⚛️ **Electrum server**: connect your compatible wallets (including hardware wallets) to your node.
 
-⛓️ **Blockchain Explorer**: web-based Explorer to privately look up transactions, blocks, and more
+⛓️ **Blockchain Explorer**: web-based Explorer to privately look up transactions, blocks, and more.
 
-⚡ **Lightning**: full client with stable long-term channels and web-based and mobile-based management interfaces
+⚡ **Lightning**: full client with stable long-term channels and web-based and mobile-based management interfaces.
 
-🔋 **Always on**: services are constantly synced and available 24/7
+🔋 **Always on**: services are constantly synced and available 24/7.
 
-🌐 **Reachable from anywhere**: connect to all your services through the Tor network and Wireguard VPN
+🌐 **Reachable from anywhere**: connect to all your services through the Tor network and Wireguard VPN.
 
 ### Target audience
 
@@ -94,7 +94,7 @@ Feel free to join the many other contributors if you see something that can be i
 
 ## Resources
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="image">Cover image</th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>🌐 <a href="https://app.diagrams.net/?tags={}&#x26;lightbox=1&#x26;target=blank&#x26;highlight=0000ff&#x26;edit=_blank&#x26;layers=1&#x26;nav=1&#x26;title=networkmap.drawio.png#Uhttps://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/networkmap.drawio.png">Network map</a></td><td><a href=".gitbook/assets/networkmap_icon.png">networkmap_icon.png</a></td><td><a href="https://bit.ly/minibolt-ramix_netmap">https://bit.ly/minibolt-ramix_netmap</a></td></tr><tr><td>🛣️ <a href="https://github.com/orgs/minibolt-guide/projects/1">Roadmap</a></td><td><a href=".gitbook/assets/roadmap.png">roadmap.png</a></td><td><a href="https://github.com/orgs/minibolt-guide/projects/1">https://github.com/orgs/minibolt-guide/projects/1</a></td></tr><tr><td>📋<a href="https://yakihonne.com/article/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju"><strong>Guides list</strong></a></td><td><a href=".gitbook/assets/list_icon.png">list_icon.png</a></td><td><a href="https://yakihonne.com/article/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju">https://yakihonne.com/article/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju</a></td></tr><tr><td>📅 <a href="https://www.flockstr.com/calendar/naddr1qqyrgdmpvvmxxcfjqgstzl7vmurm5gu87qutx3pxwgxddrg39huj809zhmv03scfkus3z4grqsqqql95pq28q6">Launchpad (Calendar)</a></td><td><a href=".gitbook/assets/calendar.png">calendar.png</a></td><td></td></tr><tr><td>📺 <a href="https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd">Streams</a></td><td><a href=".gitbook/assets/streams.png">streams.png</a></td><td><a href="https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd">https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="image">Cover image</th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>🌐 <a href="https://app.diagrams.net/?tags={}&#x26;lightbox=1&#x26;target=blank&#x26;highlight=0000ff&#x26;edit=_blank&#x26;layers=1&#x26;nav=1&#x26;title=networkmap.drawio.png#Uhttps://raw.githubusercontent.com/minibolt-guide/minibolt/main/resources/networkmap.drawio.png">Network map</a></td><td><a href=".gitbook/assets/networkmap_icon.png">networkmap_icon.png</a></td><td><a href="https://bit.ly/minibolt-ramix_netmap">https://bit.ly/minibolt-ramix_netmap</a></td></tr><tr><td>🛣️ <a href="https://github.com/orgs/minibolt-guide/projects/1">Roadmap</a></td><td><a href=".gitbook/assets/roadmap.png">roadmap.png</a></td><td><a href="https://github.com/orgs/minibolt-guide/projects/1">https://github.com/orgs/minibolt-guide/projects/1</a></td></tr><tr><td>📋 <a href="https://njump.me/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju">Guides list</a></td><td><a href=".gitbook/assets/list_icon.png">list_icon.png</a></td><td><a href="https://yakihonne.com/article/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju">https://yakihonne.com/article/naddr1qvzqqqr4gupzpvtlen0s0w3rslcr3v6yyeeqe45dzykljgau52ld37xrpxmjzy24qqxnzdenxsur2d3cxcmngdph8a0eju</a></td></tr><tr><td>📅 <a href="https://plektos.app/profile/npub1wcas2w7r0gyjfst03adxq7pt0sddp22mn09vv7t3kd2ejn5d470s7j67s4">Launchpad (Calendar)</a></td><td><a href=".gitbook/assets/calendar.png">calendar.png</a></td><td></td></tr><tr><td>📺 <a href="https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd">Streams</a></td><td><a href=".gitbook/assets/streams.png">streams.png</a></td><td><a href="https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd">https://zap.stream/p/nprofile1qqs8vwc980ph5zfyc9hc7knq0q4hcxks49dehjkx09cmx4vef6x6l8c9lz6rd</a></td></tr></tbody></table>
 
 ## Free services
 
@@ -161,7 +161,7 @@ http://fr2bbk7gitvpielymw7jmbkmm7glrzs2avxyxsh3rqbszkwavmqkklid.onion
 
 All guides are rated with labels to help you assess their difficulty and whether they are tested against the most recent version of the main guide.
 
-* **Difficulty:** indicates how difficult the bonus guide is in terms of installation procedure or usage
+* **Difficulty:** indicates how difficult the bonus guide is in terms of installation procedure or usage:
 
 {% hint style="success" %}
 Difficulty: Easy
@@ -175,13 +175,13 @@ Difficulty: Medium
 Difficulty: Hard
 {% endhint %}
 
-* **Cost:** indicates if the service used in the guide is free or paid
+* **Cost:** indicates if the service used in the guide is free or paid:
 
 {% hint style="warning" %}
 Cost: Paid service
 {% endhint %}
 
-* **Status:** indicates if the guide has been tested on a RaMiX environment
+* **Status:** indicates if the guide has been tested on a RaMiX environment:
 
 {% hint style="danger" %}
 Status: Not tested on RaMiX

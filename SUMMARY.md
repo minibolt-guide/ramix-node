@@ -38,7 +38,6 @@
   * [Aliases](bonus/system/aliases.md)
   * [Node + NPM](bonus/system/nodejs-npm.md)
   * [Rustup + Cargo](bonus-guides/system/rustup-+-cargo.md)
-  * [Go](bonus-guides/system/go.md)
   * [PostgreSQL](bonus-guides/system/postgresql.md)
   * [MariaDB](bonus-guides/system/mariadb.md)
   * [Boot from microSD instead of an external drive](bonus-guides/system/boot-from-microsd-instead-of-external-drive.md)

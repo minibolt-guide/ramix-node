@@ -26,10 +26,10 @@ You are now on the command line of your own Bitcoin node. Let's start with the c
 ## Enable PCIe and Gen 3.0 (only Raspberry Pi 5 + NVMe case)
 
 {% hint style="info" %}
-If you connected the SSD directly to the USB (**more common**), and you won't use M.2 NVMe drive, you can skip these steps and go to the [Install general dependency packages](configuration.md#install-general-dependency-packages) section
+If you connected the SSD directly to the USB (**more common**), and you won't use M.2 NVMe drive, you can skip these steps and go to the [Install general dependency packages](configuration.md#install-general-dependency-packages) section.
 {% endhint %}
 
-By default, the PCIe connector is not enabled **unless connected to a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/). To enable the connector, follow these steps.
+By default, the PCIe connector is not enabled **unless connected to a** [**HAT+ device**](https://www.raspberrypi.com/products/m2-hat-plus/). To enable the connector, follow these steps:
 
 {% hint style="info" %}
 If you connected **a** [HAT+ device](https://www.raspberrypi.com/products/m2-hat-plus/), skip this step and go directly to the next [PCIe Gen 3.0](configuration.md#pcie-gen-3.0) section
@@ -37,7 +37,7 @@ If you connected **a** [HAT+ device](https://www.raspberrypi.com/products/m2-hat
 
 Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s) by default. Apply the next config to force Gen 3.0 (8 GT/s) speeds (if the peripheral board and M.2 NVMe drive support (more common)) and enable the PCIe port.&#x20;
 
--> 2 different methods:
+**-> 2 different methods:**
 
 {% tabs %}
 {% tab title="via config.txt" %}
@@ -85,7 +85,7 @@ Complete the following steps to enable PCIe Gen 3.0 speeds:
 sudo reboot
 ```
 
-{% hint style="danger" %}
+{% hint style="warning" %}
 The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections may be unstable. If you have problems, follow the next [Fallback Gen 3.0](configuration.md#fallback-gen-3.0) section
 
 #### Fallback Gen 3.0
@@ -94,9 +94,51 @@ The Raspberry Pi 5 is not certified for Gen 3.0 speeds. PCIe Gen 3.0 connections
 * If you followed the steps before [via raspi-config](configuration.md#via-raspi-config) method, when you arrive at step number 3, choose `No`and finally reboot again with `sudo reboot`
 {% endhint %}
 
+## Check IPv6 availability
+
+* With user `admin`, check your IPv6 availability:
+
+{% code overflow="wrap" %}
+```bash
+ping6 -c2 2001:858:2:2:aabb:0:563b:1526 && ping6 -c2 2620:13:4000:6000::1000:118 && ping6 -c2 2001:67c:289c::9 && ping6 -c2 2001:678:558:1000::244 && ping6 -c2 2001:638:a000:4140::ffff:189 && echo OK.
+```
+{% endcode %}
+
+**-> 2 output options:**
+
+{% tabs %}
+{% tab title="First (more common)" %}
+If you obtain `ping6: connect: Network is unreachable`, you don't have IPv6 availability, don't worry, IPv6 adoption is new, you will use your internet connection using the common IPv4. Additionally, you can obtain your public IPv4 address with: `curl -s ipv4.icanhazip.com`
+{% endtab %}
+
+{% tab title="Second" %}
+If you obtain the `"OK."` output, you have IPv6 availability. Additionally, you can obtain your IPv6 with: `curl -s ipv6.icanhazip.com` you are **OK**, continue the guide without modifications
+{% endtab %}
+{% endtabs %}
+
+## Force APT to Use IPv4
+
+If [IPv6 is unavailable](configuration.md#check-ipv6-availability) on your network, you can force APT to use IPv4 to prevent delays caused by IPv6 connection attempts.
+
+* With user `admin`, created a drop-in file inside the apt configuration:
+
+{% code overflow="wrap" %}
+```bash
+sudo nano /etc/apt/apt.conf.d/99-force-ipv4
+```
+{% endcode %}
+
+* Type the following. Save and exit.
+
+{% code overflow="wrap" %}
+```
+Acquire::ForceIPv4 "true";
+```
+{% endcode %}
+
 ## System update
 
-* Update the operating system and all installed software packages. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Update the operating system and all installed software packages. Press "**y**" and `enter` or directly `enter` when the prompt asks you:
 
 ```sh
 sudo apt update && sudo apt full-upgrade
@@ -108,7 +150,7 @@ Do this regularly for security-related updates
 
 ## Install general dependency packages
 
-* Make sure that all necessary global software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Make sure that all necessary global software packages are installed. Press "**y**" and `enter` or directly `enter` when the prompt asks you:
 
 ```bash
 sudo apt install git
@@ -118,13 +160,13 @@ sudo apt install git
 
 Performant unit storage is essential for your node. Let's check if your drive works well as-is, or if additional configuration is needed.
 
-* Install the software to measure the performance of your drive. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Install the software to measure the performance of your drive. Press "**y**" and `enter` or directly `enter` when the prompt asks you:
 
 ```bash
 sudo apt install hdparm
 ```
 
-* Your external disk should be detected as `/dev/sda` if you use SSD or `/dev/nvme0n1` if you use NVMe. Check if this is the case by listing the names of connected block devices
+* Your external disk should be detected as `/dev/sda` if you use SSD or `/dev/nvme0n1` if you use NVMe. Check if this is the case by listing the names of connected block devices:
 
 ```sh
 lsblk -pli
@@ -134,7 +176,7 @@ lsblk -pli
 
 {% tabs %}
 {% tab title="Case USB SSD (more common)" %}
-Measure the speed of your drive
+* Measure the speed of your drive:
 
 ```bash
 sudo hdparm -t --direct /dev/sda
@@ -147,14 +189,14 @@ Timing O_DIRECT disk reads: 932 MB in 3.00 seconds = 310.23 MB/sec
 ```
 
 {% hint style="info" %}
-If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface
+If the speed of your USB3 drive is not acceptable, we need to configure the USB driver to ignore the UAS interface.
 
--> Check the [Fix bad USB3 performance](../bonus-guides/troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../bonus-guides/troubleshooting.md) guide to learn how
+-> Check the [Fix bad USB3 performance](../bonus-guides/troubleshooting.md#fix-bad-usb3-performance) entry in the [Troubleshooting](../bonus-guides/troubleshooting.md) guide to learn how.
 {% endhint %}
 {% endtab %}
 
 {% tab title="Case NVMe" %}
-Measure the speed of your drive
+Measure the speed of your drive:
 
 ```bash
 sudo hdparm -t --direct /dev/nvme0n1
@@ -169,24 +211,24 @@ Timing O_DIRECT disk reads: 2422 MB in 3.00 seconds = 806.86 MB/sec
 {% endtabs %}
 
 {% hint style="success" %}
-If the measured speeds are more than 150 MB/s, you're good, but it is recommended for a better experience
+If the measured speeds are more than 150 MB/s, you're good, but it is recommended for a better experience.
 {% endhint %}
 
 ## Data directory
 
 {% hint style="info" %}
-If you want to boot from microSD instead of an external drive, you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly
+If you want to boot from microSD instead of an external drive, you need to go to the [System configuration](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md#system-configuration) of the [Boot from microSD instead of an external drive](../bonus-guides/system/boot-from-microsd-instead-of-external-drive.md) and follow those steps, instead of continuing with this section. When you finish, skip to the [Security](security.md) section directly.
 {% endhint %}
 
 We'll store all application data in the dedicated directory `/data`. This allows for better security because it's not inside any user's home directory. Additionally, it's easier to move that directory somewhere else, for instance, to a separate drive, as you can just mount any storage option to `/data`
 
-* Create the data folder
+* Create the data folder:
 
 ```sh
 sudo mkdir /data
 ```
 
-* Assing to the `admin` user as the owner of the **`/data`** folder
+* Assing to the `admin` user as the owner of the **`/data`** folder:
 
 ```sh
 sudo chown admin:admin /data
@@ -196,12 +238,12 @@ sudo chown admin:admin /data
 
 The swap file acts as slower memory and is essential for system stability. The standard size of 200M is way too small.
 
-* Edit the configuration file
+* Edit the configuration file:
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /etc/dphys-swapfile
 </strong></code></pre>
 
-* Comment on the entry `CONF_SWAPSIZE` by placing a "`#"` symbol in front of it. Save and exit
+* Comment on the entry `CONF_SWAPSIZE` by placing a "`#"` symbol in front of it. Save and exit.
 
 ```
 #CONF_SWAPSIZE=512
@@ -211,13 +253,13 @@ The swap file acts as slower memory and is essential for system stability. The s
 It will then be created dynamically to use ½ of the total RAM size installed
 {% endhint %}
 
-* Recreate a new swapfile
+* Recreate a new swapfile:
 
 ```bash
 sudo systemctl restart dphys-swapfile
 ```
 
-* Check the new swap size
+* Check the new swap size:
 
 ```bash
 swapon --show

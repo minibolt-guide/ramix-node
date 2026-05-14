@@ -37,7 +37,7 @@ layout:
 
 ### Check Node + NPM
 
-* With the user `admin`, check the Node version
+* With the user `admin`, check the Node version:
 
 ```sh
 node -v
@@ -49,7 +49,7 @@ node -v
 v16.14.2
 ```
 
-* Check the NPM version
+* Check the NPM version:
 
 ```sh
 npm -v
@@ -62,11 +62,11 @@ npm -v
 ```
 
 {% hint style="info" %}
-2 options:
+**2 options:**
 
 -> If the "`node -v"` output is **`>=22`**, you can move to the next section.
 
--> If Node.js is not installed (`-bash: /usr/bin/node: No such file or directory`), follow this [Node + NPM bonus guide](../bonus/system/nodejs-npm.md) to install it
+-> If Node.js is not installed (`-bash: /usr/bin/node: No such file or directory`), follow this [Node + NPM bonus guide](../bonus/system/nodejs-npm.md) to install it.
 {% endhint %}
 
 ### Reverse proxy & Firewall
@@ -75,13 +75,13 @@ In the security [section](../index-1/security.md#prepare-nginx-reverse-proxy), w
 
 Enable the Nginx reverse proxy to route external encrypted HTTPS traffic internally to ThunderHub. The `error_page 497` directive instructs browsers that send HTTP requests to resend them over HTTPS.
 
-* With user `admin`, create the reverse proxy configuration
+* With user `admin`, create the reverse proxy configuration:
 
 ```sh
 sudo nano /etc/nginx/sites-available/thunderhub-reverse-proxy.conf
 ```
 
-* Paste the following complete configuration. Save and exit
+* Paste the following complete configuration. Save and exit.
 
 ```nginx
 server {
@@ -94,7 +94,7 @@ server {
 }
 ```
 
-* Create the symbolic link that points to the directory `sites-enabled`
+* Create the symbolic link that points to the directory `sites-enabled`:
 
 {% code overflow="wrap" %}
 ```bash
@@ -102,7 +102,7 @@ sudo ln -s /etc/nginx/sites-available/thunderhub-reverse-proxy.conf /etc/nginx/s
 ```
 {% endcode %}
 
-* Test Nginx configuration
+* Test Nginx configuration:
 
 ```sh
 sudo nginx -t
@@ -115,13 +115,13 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-* Reload the Nginx configuration to apply changes
+* Reload the Nginx configuration to apply changes:
 
 ```bash
 sudo systemctl reload nginx
 ```
 
-* Configure the firewall to allow incoming HTTPS requests from anywhere to the web server
+* Configure the firewall to allow incoming HTTPS requests from anywhere to the web server:
 
 ```sh
 sudo ufw allow 4002/tcp comment 'allow ThunderHub SSL from anywhere'
@@ -133,37 +133,37 @@ sudo ufw allow 4002/tcp comment 'allow ThunderHub SSL from anywhere'
 
 We do not want to run Thunderhub code alongside `bitcoind` and `lnd` because of security reasons. For that, we will create a separate user and run the code as the new user. We will install Thunderhub in the home directory since it doesn't need too much space.
 
-* Create a new `thunderhub` user and group
+* Create a new `thunderhub` user and group:
 
 ```sh
 sudo adduser --disabled-password --gecos "" thunderhub
 ```
 
-* Add `thunderhub` user to the `lnd` group to allow the user `thunderhub` reading the `admin.macaroon` and `tls.cert` files
+* Add `thunderhub` user to the `lnd` group to allow the user `thunderhub` reading the `admin.macaroon` and `tls.cert` files:
 
 ```sh
 sudo adduser thunderhub lnd
 ```
 
-* Change to the `thunderhub` user
+* Change to the `thunderhub` user:
 
 ```bash
 sudo su - thunderhub
 ```
 
-* Set a temporary version environment variable for the installation
+* Set a temporary version environment variable for the installation:
 
 ```bash
-VERSION=0.15.5
+VERSION=0.15.1
 ```
 
-* Import the GPG key of the developer
+* Import the GPG key of the developer:
 
 ```bash
 curl https://github.com/apotdevin.gpg | gpg --import
 ```
 
-* Download the source code directly from GitHub, select the latest release branch associated with it, and go to the `thunderhub` folder
+* Download the source code directly from GitHub, select the latest release branch associated with it, and go to the `thunderhub` folder:
 
 {% code overflow="wrap" %}
 ```sh
@@ -171,7 +171,7 @@ git clone --branch v$VERSION https://github.com/apotdevin/thunderhub.git && cd t
 ```
 {% endcode %}
 
-* Verify the release
+* Verify the release:
 
 ```bash
 git verify-commit v$VERSION
@@ -187,7 +187,7 @@ gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 3C8A 01A8 344B 66E7 875C  E553 4403 F1DF BE77 9457
 </code></pre>
 
-* Install all dependencies and the necessary modules using NPM
+* Install all dependencies and the necessary modules using NPM:
 
 {% hint style="warning" %}
 **Not to run** the `npm audit fix` command, which could break the original code!!
@@ -243,7 +243,7 @@ npm notice
 
 </details>
 
-* Build it
+* Build it:
 
 ```sh
 npm run build
@@ -300,10 +300,10 @@ dist/assets/index-CM0qvWIF.js                                     1,736.10 kB â”
 </details>
 
 {% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again.
 {% endhint %}
 
-* Check the correct installation by requesting the version
+* Check the correct installation by requesting the version:
 
 ```bash
 head -n 3 /home/thunderhub/thunderhub/package.json | grep version
@@ -317,31 +317,31 @@ head -n 3 /home/thunderhub/thunderhub/package.json | grep version
 
 ## Configuration
 
-* Copy the configuration file template
+* Copy the configuration file template:
 
 ```sh
 cp .env .env.local
 ```
 
-* Edit the configuration file
+* Edit the configuration file:
 
 ```sh
 nano .env.local
 ```
 
-* Uncomment (delete the `#` symbol at the beginning of the line), and edit the following line to match the next. Save and exit
+* Uncomment (delete the `#` symbol at the beginning of the line), and edit the following line to match the next. Save and exit.
 
 ```
 ACCOUNT_CONFIG_PATH='/home/thunderhub/thunderhub/thubConfig.yaml'
 ```
 
-* Create a new `thubConfig.yaml` file
+* Create a new `thubConfig.yaml` file:
 
 ```sh
 nano thubConfig.yaml
 ```
 
-* Copy and paste the following information
+* Copy and paste the following information:
 
 <pre class="language-yaml"><code class="lang-yaml">masterPassword: '<a data-footnote-ref href="#user-content-fn-2">[E] ThunderHub password</a>'
 accounts:
@@ -352,10 +352,10 @@ accounts:
 </code></pre>
 
 {% hint style="info" %}
-Replace the **`[E] ThunderHub password`** to your one, keeping quotes \[' ']
+Replace the **`[E] ThunderHub password`** to your one, keeping quotes \[' '].
 {% endhint %}
 
-* **(Optional)** You can pre-enable automatic healthchecks ping, and/or channel backups to Amboss before starting ThunderHub by adding some lines **at the end of the file** (**without indentation**)
+* **(Optional)** You can pre-enable automatic healthchecks ping, and/or channel backups to Amboss before starting ThunderHub by adding some lines **at the end of the file** (**without indentation**):
 
 Enable auto-backups:
 
@@ -370,16 +370,16 @@ healthCheckPingEnabled: true
 ```
 
 {% hint style="info" %}
-> Anyway is possible to enable this later using the ThunderHub interface that will be explained in the [Enable auto backups and healthcheck notifications](web-app.md#enable-auto-backups-and-healthcheck-notifications-to-the-amboss-account) extra section
+> Anyway is possible to enable this later using the ThunderHub interface that will be explained in the [Enable auto backups and healthcheck notifications](web-app.md#enable-auto-backups-and-healthcheck-notifications-to-the-amboss-account) extra section.
 
-> Keep in mind that if you stop ThunderHub, Amboss will interpret that your node is offline because the connection is established between ThunderHub <> Amboss to send healthchecks pings
+> Keep in mind that if you stop ThunderHub, Amboss will interpret that your node is offline because the connection is established between ThunderHub <> Amboss to send healthchecks pings.
 {% endhint %}
 
 {% hint style="info" %}
-These features are not available for a testnet node
+These features are not available for a testnet node.
 {% endhint %}
 
-* Exit `thunderhub` user session to return to the `admin` user session
+* Exit `thunderhub` user session to return to the `admin` user session:
 
 ```sh
 exit
@@ -387,13 +387,13 @@ exit
 
 ### Create systemd service
 
-* As user `admin`, create the service file
+* As user `admin`, create the service file:
 
 ```sh
 sudo nano /etc/systemd/system/thunderhub.service
 ```
 
-* Paste the following configuration. Save and exit
+* Paste the following configuration. Save and exit.
 
 <pre><code># RaMiX: systemd unit for Thunderhub
 # /etc/systemd/system/thunderhub.service
@@ -425,13 +425,13 @@ PrivateDevices=true
 WantedBy=multi-user.target
 </code></pre>
 
-* Enable autoboot **(optional)**
+* Enable autoboot **(optional)**:
 
 ```sh
 sudo systemctl enable thunderhub
 ```
 
-* Prepare "thunderhub" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare "thunderhub" monitoring by the systemd journal and check the log output. You can exit monitoring at any time with `Ctrl-C`:
 
 ```bash
 journalctl -fu thunderhub
@@ -439,9 +439,9 @@ journalctl -fu thunderhub
 
 ## Run
 
-To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) straight forward (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin"
+To keep an eye on the software movements, [start your SSH program](../index-1/remote-access.md#access-with-secure-shell) straight forward (eg. PuTTY) a second time, connect to the RaMiX node, and log in as "admin".
 
-* Start the service
+* Start the service:
 
 ```sh
 sudo systemctl start thunderhub
@@ -576,7 +576,7 @@ Apr 10 16:35:31 ramix npm[75556]: }
 
 ### Validation
 
-* Ensure the service is working and listening on the default `3001` port and the HTTPS `4002` port
+* Ensure the service is working and listening on the default `3001` port and the HTTPS `4002` port:
 
 ```bash
 sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4002|:3001)'
@@ -590,26 +590,26 @@ tcp   LISTEN 0      511                *:3001             *:*    users:(("MainTh
 ```
 
 {% hint style="info" %}
-> Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the ThunderHub web interface
+> Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the ThunderHub web interface.
 
-> Now point your browser to `https://ramix.local:4002` or the IP address (e.g. `https://192.168.x.xxx:4002`). You should see the home page of ThunderHub
+> Now point your browser to `https://ramix.local:4002` or the IP address (e.g. `https://192.168.x.xxx:4002`). You should see the home page of ThunderHub.
 {% endhint %}
 
 {% hint style="success" %}
-Congrats! You now have ThunderHub up and running
+Congrats! You now have ThunderHub up and running.
 {% endhint %}
 
 ## Extras (optional)
 
 ### Remote access over Tor
 
-* With the user `admin`, edit the `torrc` file
+* With the user `admin`, edit the `torrc` file:
 
 ```sh
 sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
-* Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`". Save and exit
+* Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`". Save and exit.
 
 ```
 # Hidden Service ThunderHub
@@ -619,13 +619,13 @@ HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 80 127.0.0.1:3001
 ```
 
-* Reload Tor to apply changes
+* Reload Tor to apply changes:
 
 ```sh
 sudo systemctl reload tor
 ```
 
-* Get your Onion address
+* Get your Onion address:
 
 ```sh
 sudo cat /var/lib/tor/hidden_service_thunderhub/hostname
@@ -637,17 +637,17 @@ Expected output:
 abcdefg..............xyz.onion
 ```
 
-* With the [Tor browser](https://www.torproject.org), you can access this onion address from any device
+* With the [Tor browser](https://www.torproject.org), you can access this onion address from any device.
 
 ### Access to your Amboss node account
 
 * In the "**Home**" screen - "**Quick Actions**" section, click on the Amboss icon "**Login**", wait for the top right corner notification to show you "**Logged in**", and click again on the Amboss icon "**Go to**". This will open a secondary tab in your browser to access your Amboss account node
 
 {% hint style="warning" %}
-If you can't do "**Login**", maybe the cause is that you don't have a **public** channel opened yet. **You'll need at least one public channel that has been open for a few days.** Planning to open a small-sized public channel to be connected with some Lightning Network peers or directly to the [Amboss node](https://amboss.space/es/node/03006fcf3312dae8d068ea297f58e2bd00ec1ffe214b793eda46966b6294a53ce6). More info on [Amboss docs](https://amboss.tech/docs)
+If you can't do "**Login**", maybe the cause is that you don't have a **public** channel opened yet. **You'll need at least one public channel that has been open for a few days.** Planning to open a small-sized public channel to be connected with some Lightning Network peers or directly to the [Amboss node](https://amboss.space/es/node/03006fcf3312dae8d068ea297f58e2bd00ec1ffe214b793eda46966b6294a53ce6). More info on [Amboss docs](https://amboss.tech/docs).
 {% endhint %}
 
-* Making sure we are connected to the [Amboss account](https://amboss.space/settings?page=account), now back to Thunderhub for the next steps
+* Making sure we are connected to the [Amboss account](https://amboss.space/settings?page=account), now back to Thunderhub for the next steps.
 
 ### Enable auto backups and healthcheck notifications to the Amboss account
 
@@ -674,9 +674,9 @@ If you can't do "**Login**", maybe the cause is that you don't have a **public**
 4. Go to the [Notifications section](https://amboss.space/settings?page=notifications) to enable the different notification methods that you wish to be notified.
 
 {% hint style="info" %}
-> Feel free to link to the Telegram bot notifications, enable different notifications, complete your public node profile in Amboss, and other things in the different sections of your account
+> Feel free to link to the Telegram bot notifications, enable different notifications, complete your public node profile in Amboss, and other things in the different sections of your account.
 
-> Keep in mind that if you stop ThunderHub, Amboss will interpret that your node is offline because the connection is established between ThunderHub <-> Ambos to send healthchecks pings
+> Keep in mind that if you stop ThunderHub, Amboss will interpret that your node is offline because the connection is established between ThunderHub <-> Ambos to send healthchecks pings.
 {% endhint %}
 
 ### Recovering channels using the ThunderHub method
@@ -721,7 +721,7 @@ cd thunderhub
 * Set the environment variable version
 
 ```bash
-VERSION=0.15.5
+VERSION=0.15.1
 ```
 
 * Pull the changes from GitHub

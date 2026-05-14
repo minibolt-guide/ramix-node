@@ -43,20 +43,20 @@ You need to set up an automated SCB update mechanism that:
 1. Creates or updates your SCB file each time you open a channel (or close one, although this is less important).
 2. Stores the SCB file in a different backup location to ensure that it is available in case of a failing SSD.
 
-You can read more about SCBs in [this section of Mastering the Lightning Network](https://github.com/lnbook/lnbook/blob/ec806916edd6f4d1b2f9da2fef08684f80acb671/05_node_operations.asciidoc#node-and-channel-backups)
+You can read more about SCBs in [this section of Mastering the Lightning Network](https://github.com/lnbook/lnbook/blob/ec806916edd6f4d1b2f9da2fef08684f80acb671/05_node_operations.asciidoc#node-and-channel-backups).
 
 ## Choose your preferred backup method(s)
 
 This guide covers two automated backup methods:
 
-* **LOCAL**: store the backup on a USB thumbdrive or microSD card plugged into your Pi
-* **REMOTE**: send the encrypted backup to a private GitHub repository
+* **LOCAL**: store the backup on a USB thumbdrive or microSD card plugged into your Pi.
+* **REMOTE**: send the encrypted backup to a private GitHub repository.
 
 <table data-full-width="false"><thead><tr><th align="center">Method</th><th align="center">Requires hardware</th><th align="center">Requires GitHub account</th><th align="center">Protects against</th><th align="center">Relies on 3rd-party</th></tr></thead><tbody><tr><td align="center">LOCAL</td><td align="center">YES</td><td align="center">NO</td><td align="center">Drive failure only</td><td align="center">NO</td></tr><tr><td align="center">REMOTE</td><td align="center">NO</td><td align="center">YES</td><td align="center">Drive failure &#x26; widespread node damage</td><td align="center">YES</td></tr></tbody></table>
 
 We recommend using both methods, but you can choose either one of them, depending on your requirements and preferences. Whatever method you choose:
 
-1. Follow the "Preparations" section first, then
+1. Follow the "Preparations" section first, then.
 2. Follow the optional local and/or remote backup sections.
 3. Finally, follow the "Run SCB-Backup" section that works for whatever method you've chosen.
 
@@ -75,7 +75,7 @@ Installing [`inotify-tools`](https://github.com/inotify-tools/inotify-tools) all
 
 We will use it to monitor the `channel.backup` file and detect updates by LND each time a channel is opened or closed.
 
-* With user `admin`, install `inotify-tools`. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* With user `admin`, install `inotify-tools`. Press "**y**" and `enter` or directly `enter` when the prompt asks you:
 
 ```sh
 sudo apt install inotify-tools
@@ -85,13 +85,13 @@ sudo apt install inotify-tools
 
 We create a shell script to monitor `channel.backup` and make a copy of our backup locations if it changes.
 
-* Create a new shell script file
+* Create a new shell script file:
 
 ```sh
 sudo nano /usr/local/bin/scb-backup --linenumbers
 ```
 
-* Check the following lines of code and paste them into the text editor. By default, both local and remote backup methods are disabled. We will enable one or both of them in the next sections, depending on your preferences. Save and exit
+* Check the following lines of code and paste them into the text editor. By default, both local and remote backup methods are disabled. We will enable one or both of them in the next sections, depending on your preferences. Save and exit.
 
 ```
 #!/bin/bash

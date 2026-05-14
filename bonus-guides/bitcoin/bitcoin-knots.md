@@ -25,7 +25,7 @@ layout:
 
 ### Preparations
 
-* With `admin` user, update, and upgrade your OS
+* With `admin` user, update, and upgrade your OS:
 
 ```sh
 sudo apt update && sudo apt full-upgrade
@@ -34,24 +34,24 @@ sudo apt update && sudo apt full-upgrade
 ### Option 1: Using precompiled binaries
 
 {% hint style="info" %}
-#### Option recommended for non-advanced users
+#### Option recommended for non-advanced users.
 {% endhint %}
 
 #### Installation
 
-* Go to the temporary folder
+* Go to the temporary folder:
 
 ```bash
 cd /tmp
 ```
 
-* Set the next environment variables
+* Set the next environment variables:
 
 ```sh
-VERSION=29.3.knots20260210 && BRANCH=29.x
+VERSION=29.3.knots20260508 && BRANCH=29.x
 ```
 
-* Get the latest binaries and signatures
+* Get the latest binaries and signatures:
 
 {% code overflow="wrap" %}
 ```sh
@@ -69,7 +69,7 @@ wget https://bitcoinknots.org/files/$BRANCH/$VERSION/SHA256SUMS.asc
 
 #### **Checksum check**
 
-* Check that the reference checksum in the file `SHA256SUMS` matches the checksum calculated by you
+* Check that the reference checksum in the file `SHA256SUMS` matches the checksum calculated by you:
 
 ```sh
 sha256sum --ignore-missing --check SHA256SUMS
@@ -85,7 +85,7 @@ bitcoin-28.1.knots20250305.tar.gz: OK
 
 Bitcoin releases are signed by several individuals, each using their key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
 
-* The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs)
+* The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs):
 
 {% code overflow="wrap" %}
 ```bash
@@ -112,15 +112,13 @@ gpg:               imported: 1
 [...]
 ```
 
-* Verify that the checksums file is cryptographically signed by the release signing keys. The following command prints signature checks for each of the public keys that signed the checksums
+* Verify that the checksums file is cryptographically signed by the release signing keys. The following command prints signature checks for each of the public keys that signed the checksums:
 
 ```sh
-gpg --verify SHA256SUMS.asc
+gpg --verify SHA256SUMS.asc SHA256SUMS
 ```
 
-* Check that at least a few signatures show the following text
-
-Expected output:
+* Check that at least a few signatures show the following text:
 
 ```
 gpg: Good signature from ...
@@ -128,7 +126,7 @@ Primary key fingerprint: ...
 [...]
 ```
 
-* If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Knots source code, install it, and check the version
+* If you're satisfied with the checksum, signature, and timestamp checks, extract the Bitcoin Knots source code, install it, and check the version:
 
 ```sh
 tar -xzvf bitcoin-$VERSION-aarch64-linux-gnu.tar.gz
@@ -155,12 +153,12 @@ bitcoin-28.0/.github/workflows/
 
 #### Binaries installation
 
-* Install it
+* Install it:
 
 <pre class="language-sh" data-overflow="wrap"><code class="lang-sh"><strong>sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-$VERSION/bin/bitcoin-cli bitcoin-$VERSION/bin/bitcoind
 </strong></code></pre>
 
-* Check the correct installation by requesting the output of the version
+* Check the correct installation by requesting the output of the version:
 
 ```sh
 bitcoin-cli --version
@@ -175,7 +173,7 @@ Copyright (C) 2009-2025 The Bitcoin Core developers
 [...]
 ```
 
-* **(Optional)** Delete installation files of the `tmp` folder to be ready for the next installation
+* **(Optional)** Delete installation files of the `tmp` folder to be ready for the next installation:
 
 {% code overflow="wrap" %}
 ```bash
@@ -183,13 +181,19 @@ sudo rm -r bitcoin-$VERSION bitcoin-$VERSION-aarch64-linux-gnu.tar.gz SHA256SUMS
 ```
 {% endcode %}
 
+{% hint style="info" %}
+If you want to signal support for the RDTS (BIP110) soft fork, follow the [Enable RDTS (BIP110) consensus rules](bitcoin-knots.md#enable-rdts-bip110-consensus-rules) extra section.
+
+More info: [bip110.org](https://bip110.org/)
+{% endhint %}
+
 ### Option 2: Compiling from source code
 
 {% hint style="info" %}
-#### Option recommended for advanced users and users who want to improve the censorship resistance of their Bitcoin Knots
+#### Option recommended for advanced users and users who want to improve the censorship resistance of their Bitcoin Knots.
 {% endhint %}
 
-* Install the next dependency packages. Press "**y**" and `enter` or directly `enter` when the prompt asks you
+* Install the next dependency packages. Press "**y**" and `enter` or directly `enter` when the prompt asks you:
 
 {% code overflow="wrap" %}
 ```shell
@@ -199,19 +203,19 @@ sudo apt install build-essential cmake curl patch pkg-config python3 xz-utils --
 
 #### Installation
 
-* Change to the temporary directory, which is cleared on reboot
+* Change to the temporary directory, which is cleared on reboot:
 
 ```sh
 cd /tmp
 ```
 
-* Set the next environment variables
+* Set the next environment variables:
 
 ```sh
-VERSION=29.3.knots20260210 && BRANCH=29.x
+VERSION=29.3.knots20260508 && BRANCH=29.x
 ```
 
-* Get the latest source code, the list of cryptographic checksums, and the signatures attesting to the validity of the checksums
+* Get the latest source code, the list of cryptographic checksums, and the signatures attesting to the validity of the checksums:
 
 ```sh
 wget https://bitcoinknots.org/files/$BRANCH/$VERSION/bitcoin-$VERSION.tar.gz
@@ -227,7 +231,7 @@ wget https://bitcoinknots.org/files/$BRANCH/$VERSION/SHA256SUMS.asc
 
 #### **Checksum check**
 
-* Check that the reference checksum in the file `SHA256SUMS` matches the checksum calculated by you
+* Check that the reference checksum in the file `SHA256SUMS` matches the checksum calculated by you:
 
 ```sh
 sha256sum --ignore-missing --check SHA256SUMS
@@ -243,7 +247,7 @@ bitcoin-28.1.knots20250305.tar.gz: OK
 
 Bitcoin releases are signed by several individuals, each using their key. To verify the validity of these signatures, you must first import the corresponding public keys into your GPG key database.
 
-* The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs)
+* The next command downloads and automatically imports all signatures from [the Bitcoin Knots release attestations (Guix) repository](https://github.com/bitcoinknots/guix.sigs):
 
 {% code overflow="wrap" %}
 ```bash
@@ -270,15 +274,13 @@ gpg:               imported: 1
 [...]
 ```
 
-* Verify that the checksums file is cryptographically signed by the release signing keys. The following command prints signature checks for each of the public keys that signed the checksums
+* Verify that the checksums file is cryptographically signed by the release signing keys. The following command prints signature checks for each of the public keys that signed the checksums:
 
 ```sh
-gpg --verify SHA256SUMS.asc
+gpg --verify SHA256SUMS.asc SHA256SUMS
 ```
 
-* Check that at least a few signatures show the following text
-
-Expected output:
+* Check that at least a few signatures show the following text:
 
 ```
 gpg: Good signature from ...
@@ -313,17 +315,19 @@ bitcoin-28.0/.github/workflows/
 
 #### **Build it from the source code**
 
-* Enter the bitcoin source code folder
+* Enter the bitcoin source code folder:
 
 ```sh
 cd bitcoin-$VERSION
 ```
 
-* Execute the `autogen.sh` script
+* Execute the `autogen.sh` script:
 
+{% code overflow="wrap" %}
 ```sh
-make -C depends -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
+make -C depends HOST=aarch64-linux-gnu -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
 ```
+{% endcode %}
 
 Expected output:
 
@@ -353,7 +357,7 @@ Extracting libevent...
 [...]
 ```
 
-* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press `Enter`
+* Pre-configure the installation, we will discard some features and include others. Enter the complete next command in the terminal and press `Enter`:
 
 ```sh
 BITCOIN_GENBUILD_NO_GIT=1 cmake -B build \
@@ -363,28 +367,29 @@ BITCOIN_GENBUILD_NO_GIT=1 cmake -B build \
   -DBUILD_WALLET_TOOL=OFF \
   -DINSTALL_MAN=OFF \
   -DWITH_ZMQ=ON \
-  --toolchain depends/aarch64-unknown-linux-gnu/toolchain.cmake
+  -DRDTS_CONSENT=RUNTIME_WARN \
+  -DCMAKE_TOOLCHAIN_FILE=depends/aarch64-linux-gnu/toolchain.cmake
 ```
 
 #### **Apply the UA patch (optional)**
 
 {% hint style="info" %}
-This patch removes the Bitcoin Knots reference from the **user agent** to make it look like Bitcoin Core, improving its censorship resistance
+This patch removes the Bitcoin Knots reference from the **user agent** to make it look like Bitcoin Core, improving its censorship resistance.
 {% endhint %}
 
 {% hint style="info" %}
-Skip this step if you want only to build Bitcoin Knots from the source code, but not apply the user agent patch
+Skip this step if you want only to build Bitcoin Knots from the source code, but not apply the user agent patch.
 {% endhint %}
 
-* Create the UA patch
+* Create the UA patch:
 
 ```sh
 nano mod-ua-knots.patch
 ```
 
-* Enter the next content. Save and exit
+* Enter the next content. Save and exit.
 
-```
+```cpp
 diff --git a/src/clientversion.cpp b/src/clientversion.cpp
 index 6bf7ef6406..9445e3b6f5 100644
 --- a/src/clientversion.cpp
@@ -408,7 +413,7 @@ index 6bf7ef6406..9445e3b6f5 100644
  std::string CopyrightHolders(const std::string& strPrefix)
 ```
 
-* Apply the patch
+* Apply the patch:
 
 ```sh
 git apply mod-ua-knots.patch
@@ -416,7 +421,7 @@ git apply mod-ua-knots.patch
 
 #### **Build**
 
-* Enter the command to compile
+* Enter the command to compile:
 
 ```sh
 cmake --build build -j2
@@ -479,12 +484,12 @@ cmake --build build -j2
 </details>
 
 {% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again. You can use [Tmux](https://github.com/tmux/tmux) to leave it in the background
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again. You can use [Tmux](https://github.com/tmux/tmux) to leave it in the background.
 {% endhint %}
 
 #### **Install**
 
-* Enter the next command to install the new binaries precompiled for you on the OS
+* Enter the next command to install the new binaries precompiled for you on the OS:
 
 ```sh
 sudo cmake --install build
@@ -498,7 +503,7 @@ Expected output:
 -- Installing: /usr/local/bin/bitcoin-cli
 ```
 
-* Check the correct installation by requesting the output of the version
+* Check the correct installation by requesting the output of the version:
 
 ```sh
 bitcoin-cli --version
@@ -514,16 +519,16 @@ Copyright (C) 2009-2025 The Bitcoin Core developers
 ```
 
 {% hint style="info" %}
-Now you can continue with the installation process of the Bitcoin Client: Bitcoin Core, by following the [Create the bitcoin user](../../bitcoin/bitcoin/bitcoin-client.md#create-the-bitcoin-user-and-group) section from now on, or if you already have it installed, only continue with the next steps
+Now you can continue with the installation process of the Bitcoin Client: Bitcoin Core, by following the [Create the bitcoin user](../../bitcoin/bitcoin/bitcoin-client.md#create-the-bitcoin-user-and-group) section from now on, or if you already have it installed, only continue with the next steps.
 {% endhint %}
 
-* Return to the `tmp` folder
+* Return to the `tmp` folder:
 
 ```bash
 cd ..
 ```
 
-* **(Optional)** Clean the installation files to be ready for the next update
+* **(Optional)** Clean the installation files to be ready for the next update:
 
 {% code overflow="wrap" %}
 ```bash
@@ -532,34 +537,67 @@ sudo rm -r bitcoin-$VERSION bitcoin-$VERSION.tar.gz SHA256SUMS SHA256SUMS.asc
 {% endcode %}
 
 {% hint style="info" %}
-**(Optional)** If you have an existing Bitcoin Knots installation without the UA patch applied, restart it using systemd and start a new instance with the UA patch applied
+**(Optional)** If you have an existing Bitcoin Knots installation without the UA patch applied, restart it using systemd and start a new instance with the UA patch applied:
 
 ```bash
 sudo systemctl restart bitcoind
 ```
 {% endhint %}
 
-* Monitor the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl+ C` and continue
+* Monitor the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl+ C` and continue:
 
 ```sh
 journalctl -fu bitcoind
 ```
 
-## Extras (optional)
-
-### Enforce spam and arbitrary data rejection
-
 {% hint style="info" %}
-Configuring `bitcoin.conf` with targeted Bitcoin Knots parameters, enhance the network’s ability to block spam and arbitrary data
+If you want to signal support for the RDTS (BIP110) soft fork, follow the [Enable RDTS (BIP110) consensus rules](bitcoin-knots.md#enable-rdts-bip110-consensus-rules) extra section.
+
+More info: [bip110.org](https://bip110.org/)
 {% endhint %}
 
-* With the user admin, edit the `bitcoin.conf` file
+## Extras (optional)
+
+### Enable RDTS (BIP110) consensus rules
+
+{% hint style="info" %}
+Enable the RDTS (BIP110) consensus rules in Bitcoin Knots to participate in the deployment and enforce the new reduced-data transaction validation rules once activated by the network.
+{% endhint %}
+
+* With the user admin, edit the `bitcoin.conf` file:
 
 ```bash
 sudo nano /data/bitcoin/bitcoin.conf
 ```
 
-* Add the next parameters to the end of the file. Save and exit
+* Add the next parameters to the end of the file. Save and exit.
+
+{% code overflow="wrap" %}
+```
+# Enable BIP110/RDTS consensus rules
+consensusrules=rdts
+```
+{% endcode %}
+
+* Restart Bitcoin Knots to apply changes:
+
+```bash
+sudo systemctl restart bitcoind
+```
+
+### Enforce spam and arbitrary data rejection
+
+{% hint style="info" %}
+Configuring `bitcoin.conf` with targeted Bitcoin Knots parameters, enhance the network’s ability to block spam and arbitrary data.
+{% endhint %}
+
+* With the user admin, edit the `bitcoin.conf` file:
+
+```bash
+sudo nano /data/bitcoin/bitcoin.conf
+```
+
+* Add the next parameters to the end of the file. Save and exit.
 
 ```
 # No relay or mine data carrier transactions
@@ -572,7 +610,7 @@ rejecttokens=1
 dustrelayfee=0.00010
 ```
 
-* Restart Bitcoin Knots to apply changes
+* Restart Bitcoin Knots to apply changes:
 
 ```bash
 sudo systemctl restart bitcoind
@@ -582,26 +620,26 @@ sudo systemctl restart bitcoind
 
 By applying a spam and arbitrary data filter to our node, we can have a different version of the mempool compared to the rest of the network, and with it, the estimation of the fees. It is possible to point the fee estimator to another node without a spam or arbitrary data filter applied.
 
-* With the user admin, stop LND if you have installed it
+* With the user admin, stop LND if you have installed it:
 
 ```bash
 sudo systemctl stop lnd
 ```
 
-* Edit `lnd.conf`
+* Edit `lnd.conf`:
 
 ```bash
 sudo nano /data/lnd/lnd.conf
 ```
 
-* Add the next lines at the end of the file
+* Add the next lines at the end of the file:
 
 <pre><code><strong>[fee]
 </strong># Use external fee estimator
 fee.url=https://nodes.lightning.computer/fees/v1/btc-fee-estimates.json
 </code></pre>
 
-* Start LND again
+* Start LND again:
 
 ```bash
 sudo systemctl start lnd
@@ -609,22 +647,22 @@ sudo systemctl start lnd
 
 ## Upgrade
 
-The latest release can be found on the [GitHub page](https://github.com/bitcoinknots/bitcoin) of the Bitcoin Knots project. Always read the [RELEASE NOTES](https://github.com/bitcoinknots/bitcoin/tree/28.x-knots/doc/release-notes) first! When upgrading, there might be breaking changes or changes in the data structure that need special attention
+The latest release can be found on the [GitHub page](https://github.com/bitcoinknots/bitcoin) of the Bitcoin Knots project. Always read the [RELEASE NOTES](https://github.com/bitcoinknots/bitcoin/tree/28.x-knots/doc/release-notes) first! When upgrading, there might be breaking changes or changes in the data structure that need special attention.
 
 Go to the **Option 1**: Using precompiled binaries - [Installation section](bitcoin-knots.md#installation), or **Option 2**: Compiling from source code - [Installation section](bitcoin-knots.md#installation-1), depending on the selected option, and replace the environment variables `"VERSION=x.xx"` and `"BRANCH="x.xx"` values for the latest version and branch, if they have not already been changed in this guide. Continue until you complete the entire Installation section.
 
 {% hint style="info" %}
-Remember to restart the Bitcoin Knots to apply the new version with: `sudo systemctl restart bitcoind`
+Remember to restart the Bitcoin Knots to apply the new version with: `sudo systemctl restart bitcoind`.
 {% endhint %}
 
 ## Uninstall
 
 {% hint style="danger" %}
-Warning: This section removes the installation. Only run these commands if you intend to uninstall
+Warning: This section removes the installation. Only run these commands if you intend to uninstall.
 {% endhint %}
 
-To uninstall Bitcoin Knots, follow the entire [Bitcoin Client: Bitcoin Core uninstall section](../../bitcoin/bitcoin/bitcoin-client.md#uninstall)
+To uninstall Bitcoin Knots, follow the entire [Bitcoin Client: Bitcoin Core uninstall section](../../bitcoin/bitcoin/bitcoin-client.md#uninstall).
 
 ## Port reference
 
-Same as the [Bitcoin Client: Bitcoin Core section](../../bitcoin/bitcoin/bitcoin-client.md#port-reference)
+Same as the [Bitcoin Client: Bitcoin Core section](../../bitcoin/bitcoin/bitcoin-client.md#port-reference).

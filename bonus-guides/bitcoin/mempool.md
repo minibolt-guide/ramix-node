@@ -756,13 +756,13 @@ npm run build
 
 ### Install the frontend
 
-* Change to the frontend directory
+* Change to the frontend directory:
 
 ```bash
 cd /home/mempool/mempool/frontend
 ```
 
-* Create a `mempool-frontend` configuration file
+* Create a `mempool-frontend` configuration file:
 
 {% code overflow="wrap" %}
 ```bash
@@ -770,12 +770,12 @@ nano mempool-frontend-config.json
 ```
 {% endcode %}
 
-* Type the next context. Save and exit
+* Type the next context. Save and exit.
 
 {% hint style="info" %}
-If you want to have the Lightning explorer and tab associated enabled and connected to your internal [LND](../../lightning/lightning-client.md) node, change the parameter `"LIGHTNING": false,`  to -> true ( `"LIGHTNING": true,`)
+If you want to have the Lightning explorer connected to your internal [LND](../../lightning/lightning-client.md) node and you followed the [Enable Lightning with a local LND node](mempool.md#enable-lightning-with-a-local-lnd-node) extra section, change the parameter `"LIGHTNING": false,`  to -> true ( `"LIGHTNING": true,`).
 
-**Keep in mind:** you need to have a [LND ](../../lightning/lightning-client.md)node already running and synchronized, and for a better experience with a public channel, at least
+**Keep in mind:** you need to have a [LND ](../../lightning/lightning-client.md)node already running and synchronized, and for a better experience with a public channel, at least.
 {% endhint %}
 
 <pre data-overflow="wrap"><code>{
@@ -820,7 +820,7 @@ If you want to have the Lightning explorer and tab associated enabled and connec
 }
 </code></pre>
 
-* Install all dependencies and the necessary modules using NPM
+* Install all dependencies and the necessary modules using NPM:
 
 ```bash
 npm install --omit=dev --omit=optional
@@ -852,7 +852,7 @@ Run `npm audit` for details.
 **Not to run** the `npm audit fix` command, which could break the original code!!
 {% endhint %}
 
-* Build it
+* Build it:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1005,7 +1005,7 @@ total size is 15,089,079  speedup is 1.00
 
 </details>
 
-* Come back to the `admin` user
+* Come back to the `admin` user:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1013,7 +1013,7 @@ exit
 ```
 {% endcode %}
 
-* Sync the frontend files with the system and enforce secure ownership and permissions
+* Sync the frontend files with the system and enforce secure ownership and permissions:
 
 {% code overflow="wrap" %}
 ```sh
@@ -1058,13 +1058,13 @@ total size is 203,208,811  speedup is 1.00
 
 ### **Create systemd service**
 
-* As user `admin`, create the service file
+* As user `admin`, create the service file:
 
 ```bash
 sudo nano /etc/systemd/system/mempool.service
 ```
 
-* Paste the following configuration. Save and exit
+* Paste the following configuration. Save and exit.
 
 ```
 # RaMiX: systemd unit for Mempool
@@ -1098,13 +1098,13 @@ PrivateDevices=true
 WantedBy=multi-user.target
 ```
 
-* Enable autoboot **(optional)**
+* Enable autoboot **(optional)**:
 
 ```bash
 sudo systemctl enable mempool
 ```
 
-* Prepare “mempool” monitoring by the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl-C`
+* Prepare “mempool” monitoring by the systemd journal and check the logging output. You can exit monitoring at any time with `Ctrl-C`:
 
 ```bash
 journalctl -fu mempool
@@ -1114,7 +1114,7 @@ journalctl -fu mempool
 
 To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md) (eg, PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
-* Start mempool
+* Start mempool:
 
 ```bash
 sudo systemctl start mempool
@@ -1318,7 +1318,7 @@ Apr 15 10:24:08 ramix node[1564876]: Apr 15 10:24:08 [1564876] DEBUG: 0 websocke
 
 ### Validation
 
-* Ensure the service is working and listening on the default HTTP port `8999` and SSL `4081` port
+* Ensure the service is working and listening on the default HTTP port `8999` and SSL `4081` port:
 
 ```bash
 sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:8001|:8999|:4081)'
@@ -1333,13 +1333,13 @@ tcp   LISTEN 0      511                *:8999             *:*    users:(("node",
 ```
 
 {% hint style="info" %}
-> Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the Mempool web interface
+> Your browser will display a warning because we use a self-signed SSL certificate. We can do nothing about that because we would need a proper domain name (e.g., https://yournode.com) to get an official certificate that browsers recognize. Click on "Advanced" and proceed to the Mempool web interface.
 
-> Now point your browser to `https://ramix.local:4081` or the IP address (e.g. `https://192.168.x.xxx:4081`). You should see the home page of Mempool
+> Now point your browser to `https://ramix.local:4081` or the IP address (e.g. `https://192.168.x.xxx:4081`). You should see the home page of Mempool.
 {% endhint %}
 
 {% hint style="success" %}
-Congrat&#x73;**!** You now have Mempool up and running
+Congrat&#x73;**!** You now have Mempool up and running.
 {% endhint %}
 
 ## Extras (optional)
@@ -1347,16 +1347,16 @@ Congrat&#x73;**!** You now have Mempool up and running
 ### Enable Lightning with a local LND node
 
 {% hint style="info" %}
-**Keep in mind:** you need to have a [LND](../../lightning/lightning-client.md) node already running and synchronized, and for a better experience with a public channel, at least
+**Keep in mind:** you need to have a [LND](../../lightning/lightning-client.md) node already running and synchronized, and for a better experience with a public channel, at least.
 {% endhint %}
 
 #### Backend
 
 {% hint style="info" %}
-Unlike the [frontend](mempool.md#frontend), the backend configuration can be changed at any time after installation, just like the systemd service
+Unlike the [frontend](mempool.md#frontend), the backend configuration can be changed at any time after installation, just like the systemd service.
 {% endhint %}
 
-* Stop the mempool service&#x20;
+* Stop the mempool service:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1364,13 +1364,43 @@ sudo systemctl stop mempool
 ```
 {% endcode %}
 
-* Edit the `mempool-config.json` file
+* Change to the user mempool:
+
+{% code overflow="wrap" %}
+```bash
+sudo su - mempool
+```
+{% endcode %}
+
+* Create the GeoIP folder:
+
+{% code overflow="wrap" %}
+```bash
+mkdir -p /home/mempool/mempool/backend/GeoIP
+```
+{% endcode %}
+
+* Download `GeoLite2-City` and `GeoLite2-ASN` databases:
+
+{% code overflow="wrap" %}
+```bash
+wget -P mempool/backend/GeoIP https://raw.githubusercontent.com/mempool/geoip-data/master/GeoLite2-City.mmdb
+```
+{% endcode %}
+
+{% code overflow="wrap" %}
+```bash
+wget -P mempool/backend/GeoIP https://raw.githubusercontent.com/mempool/geoip-data/master/GeoLite2-ASN.mmdb
+```
+{% endcode %}
+
+* Edit the `mempool-config.json` file:
 
 ```bash
-sudo nano /home/mempool/mempool/backend/mempool-config.json
+nano /home/mempool/mempool/backend/mempool-config.json
 ```
 
-* Replace the complete config with this or add the "`LIGHTNING`" and "`LND`" sections at the end of the file. Save and exit
+* Replace the complete config with this or add the "`MAXMIND`", "`LIGHTNING`" and "`LND`" sections at the end of the file. Save and exit.
 
 <pre data-overflow="wrap"><code>{
     "MEMPOOL": {
@@ -1398,7 +1428,7 @@ sudo nano /home/mempool/mempool/backend/mempool-config.json
   },
   "ELECTRUM": {
     "HOST": "127.0.0.1",
-    "PORT": <a data-footnote-ref href="#user-content-fn-4">50001</a>,
+    "PORT": 50001,
     "TLS_ENABLED": false
   },
   "DATABASE": {
@@ -1409,8 +1439,13 @@ sudo nano /home/mempool/mempool/backend/mempool-config.json
     "PASSWORD": "admin",
     "DATABASE": "mempool"
   },
-  "<a data-footnote-ref href="#user-content-fn-5">LIGHTNING</a>": {
-    "ENABLED": <a data-footnote-ref href="#user-content-fn-1">true</a>,
+  "<a data-footnote-ref href="#user-content-fn-4">MAXMIND</a>": {
+    "ENABLED": true,
+    "GEOLITE2_CITY": "/home/mempool/mempool/backend/GeoIP/GeoLite2-City.mmdb",
+    "GEOLITE2_ASN": "/home/mempool/mempool/backend/GeoIP/GeoLite2-ASN.mmdb"
+  },
+  "<a data-footnote-ref href="#user-content-fn-4">LIGHTNING</a>": {
+    "ENABLED": true,
     "BACKEND": "lnd",
     "STATS_REFRESH_INTERVAL": 600,
     "GRAPH_REFRESH_INTERVAL": 600,
@@ -1418,7 +1453,7 @@ sudo nano /home/mempool/mempool/backend/mempool-config.json
     "FORENSICS_INTERVAL": 43200,
     "FORENSICS_RATE_LIMIT": 20
   },
-  "<a data-footnote-ref href="#user-content-fn-5">LND</a>": {
+  "<a data-footnote-ref href="#user-content-fn-4">LND</a>": {
     "TLS_CERT_PATH": "/data/lnd/tls.cert",
     "MACAROON_PATH": "/data/lnd/data/chain/bitcoin/mainnet/readonly.macaroon",
     "REST_API_URL": "https://localhost:8080",
@@ -1429,7 +1464,7 @@ sudo nano /home/mempool/mempool/backend/mempool-config.json
 
 #### Systemd service
 
-* Edit the `mempool.service` file
+* Edit the `mempool.service` file:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1437,13 +1472,13 @@ sudo nano /etc/systemd/system/mempool.service
 ```
 {% endcode %}
 
-* Add the new `lnd.service` dependence in these lines. Save and exit
+* Add the new `lnd.service` dependence in these lines. Save and exit.
 
-<pre data-overflow="wrap"><code>Requires=mariadb.service bitcoind.service fulcrum.service <a data-footnote-ref href="#user-content-fn-6">lnd.service</a>
-After=mariadb.service bitcoind.service fulcrum.service <a data-footnote-ref href="#user-content-fn-6">lnd.service</a>
+<pre data-overflow="wrap"><code>Requires=mariadb.service bitcoind.service fulcrum.service <a data-footnote-ref href="#user-content-fn-5">lnd.service</a>
+After=mariadb.service bitcoind.service fulcrum.service <a data-footnote-ref href="#user-content-fn-5">lnd.service</a>
 </code></pre>
 
-* Reload the systemctl daemon to apply changes
+* Reload the systemctl daemon to apply changes:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1451,7 +1486,7 @@ sudo systemctl daemon-reload
 ```
 {% endcode %}
 
-* Start mempool again
+* Start mempool again:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1459,7 +1494,7 @@ sudo systemctl start mempool
 ```
 {% endcode %}
 
-* (Optional) Check if all is running fine again
+* (Optional) Check if all is running fine again:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1515,44 +1550,44 @@ Apr 15 10:16:39 minibolt node[1561962]: Apr 15 10:16:39 [1561962] DEBUG: <lightn
 #### Frontend
 
 {% hint style="info" %}
-If you want to have the mempool Lightning explorer and tab-associated enabled and connected to your internal LND node, for the frontend, you need to repeat the complete [Install frontend](mempool.md#install-the-frontend) installation section, keeping in mind to modify the parameter `"LIGHTNING": false,`  to -> true ( `"LIGHTNING": true,`) in `mempool-frontend-config.json` file
+If you want to have the mempool Lightning explorer and tab-associated enabled and connected to your internal LND node, for the frontend, you need to repeat the complete [Install frontend](mempool.md#install-the-frontend) installation section, keeping in mind to modify the parameter `"LIGHTNING": false,`  to -> true ( `"LIGHTNING": true,`) in `mempool-frontend-config.json` file.
 {% endhint %}
 
 ### Use Electrs like Electrum server
 
-If you followed the [Electrs](../../bonus/bitcoin/electrs.md) instead of the [Fulcrum](../../bitcoin/bitcoin/electrum-server.md) guide, you need to do the next steps
+If you followed the [Electrs](../../bonus/bitcoin/electrs.md) instead of the [Fulcrum](../../bitcoin/bitcoin/electrum-server.md) guide, you need to do the next steps.
 
-* As user `admin`, stop the mempool service
+* As user `admin`, stop the mempool service:
 
 ```bash
 sudo systemctl stop mempool
 ```
 
-* Edit the mempool service
+* Edit the mempool service:
 
 ```sh
 sudo nano /etc/systemd/system/mempool.service
 ```
 
-* Replace the `fulcrum.service` with the `electrs.service`. Save and exit
+* Replace the `fulcrum.service` with the `electrs.service`. Save and exit.
 
-<pre><code>Requires=mariadb.service bitcoind.service <a data-footnote-ref href="#user-content-fn-7">electrs.service</a> <a data-footnote-ref href="#user-content-fn-8">lnd.service</a>
-After=mariadb.service bitcoind.service <a data-footnote-ref href="#user-content-fn-7">electrs.service</a> <a data-footnote-ref href="#user-content-fn-8">lnd.service</a>
+<pre><code>Requires=mariadb.service bitcoind.service <a data-footnote-ref href="#user-content-fn-6">electrs.service</a> <a data-footnote-ref href="#user-content-fn-7">lnd.service</a>
+After=mariadb.service bitcoind.service <a data-footnote-ref href="#user-content-fn-6">electrs.service</a> <a data-footnote-ref href="#user-content-fn-7">lnd.service</a>
 </code></pre>
 
-* Reload the systemctl daemon to apply changes
+* Reload the systemctl daemon to apply changes:
 
 ```bash
 sudo systemctl daemon-reload
 ```
 
-* Start the mempool service again
+* Start the mempool service again:
 
 ```sh
 sudo systemctl start mempool
 ```
 
-* (Optional) Check if all is running fine with
+* (Optional) Check if all is running fine with:
 
 {% code overflow="wrap" %}
 ```bash
@@ -1562,13 +1597,13 @@ journalctl -fu mempool
 
 ### Remote access over Tor
 
-* With the user `admin`, edit the `torrc` file
+* With the user `admin`, edit the `torrc` file:
 
 ```bash
 sudo nano +63 /etc/tor/torrc --linenumbers
 ```
 
-* Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`". Save and exit
+* Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`". Save and exit.
 
 ```
 # Hidden Service Mempool
@@ -1578,13 +1613,13 @@ HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 80 127.0.0.1:8001
 ```
 
-* Reload Tor to apply changes
+* Reload Tor to apply changes:
 
 ```bash
 sudo systemctl reload tor
 ```
 
-* Get your Onion address
+* Get your Onion address:
 
 ```bash
 sudo cat /var/lib/tor/hidden_service_mempool/hostname
@@ -1596,68 +1631,68 @@ Expected output:
 abcdefg..............xyz.onion
 ```
 
-* With the [Tor browser](https://www.torproject.org), you can access this onion address from any device
+* With the [Tor browser](https://www.torproject.org), you can access this onion address from any device.
 
 ### Use Cloudflare tunnel to expose publicly
 
 You may want to expose your Mempool publicly using a clearnet address. To do this, follow the next steps:
 
-* Follow the [Cloudflare tunnel](../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your RaMiX to Cloudflare
-* When you finish the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section, you can skip the [Start routing traffic](../networking/cloudflare-tunnel.md#id-5-start-routing-traffic) section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**
-* Click on the **\[+ Add record]** button
+* Follow the [Cloudflare tunnel](../networking/cloudflare-tunnel.md) guide to install and create the Cloudflare tunnel from your RaMiX to Cloudflare.
+* When you finish the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section, you can skip the [Start routing traffic](../networking/cloudflare-tunnel.md#id-5-start-routing-traffic) section and go to your [Cloudflare account](https://dash.cloudflare.com/login) -> From the left sidebar, select **Websites,** click on your site, and again from the new left sidebar, click on **DNS -> Records**.
+* Click on the **\[+ Add record]** button.
 
 <figure><img src="../../.gitbook/assets/add_new_cname_tunnel_cloudflare.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-> Select the **CNAME** type
+> Select the **CNAME** type.
 
-> Type the selected subdomain (i.e service name "mempool") as the **Name** field
+> Type the selected subdomain (i.e service name "mempool") as the **Name** field.
 
-> Type the tunnel `<UUID>` of your previously obtained in the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section as the **Target** field
+> Type the tunnel `<UUID>` of your previously obtained in the [Create a tunnel and give it a name](../networking/cloudflare-tunnel.md#id-3-create-a-tunnel-and-give-it-a-name) section as the **Target** field.
 
-> Ensure you enable the switch on the `Proxy status` field to be "Proxied"
+> Ensure you enable the switch on the `Proxy status` field to be "Proxied".
 
 Click on the \[Save] button to save the new DNS registry
 {% endhint %}
 
-* If you didn't follow before, continue with the [Configuration](../networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service)
-* Edit the`config.yml`
+* If you didn't follow before, continue with the [Configuration](../networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service).
+* Edit the`config.yml`:
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo nano /home/admin/.cloudflared/config.yml
 </strong></code></pre>
 
-* Add the next lines to the `config.yml`
+* Add the next lines to the `config.yml`:
 
 <pre><code># Mempool
-  - hostname: <a data-footnote-ref href="#user-content-fn-9">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-10">&#x3C;domain.com></a>
+  - hostname: <a data-footnote-ref href="#user-content-fn-8">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-9">&#x3C;domain.com></a>
     service: http://localhost:8001
 </code></pre>
 
 {% hint style="info" %}
-> You can choose the subdomain you want; the above information is an example, but keep in mind to use the port `8001` and always maintaining the "`- service: http_status:404`" line at the end of the file
+> You can choose the subdomain you want; the above information is an example, but keep in mind to use the port `8001` and always maintaining the "`- service: http_status:404`" line at the end of the file.
 {% endhint %}
 
-* Restart Cloudflared to apply changes
+* Restart Cloudflared to apply changes:
 
 ```bash
 sudo systemctl restart cloudflared
 ```
 
 {% hint style="info" %}
-Try to access the newly created public access to the service by going to the `https://<subdomain>.<domain.com>`, e.g `https://mempool.domain.com`
+Try to access the newly created public access to the service by going to the `https://<subdomain>.<domain.com>`, e.g `https://mempool.domain.com`.
 {% endhint %}
 
 ## Upgrade
 
 Follow the complete [Installation section](mempool.md#installation) again, replacing the environment variable `"VERSION=x.xx"` value to the latest if it has not already been changed in this guide **(at your own risk)**.
 
-* Restart the service to apply the changes
+* Restart the service to apply the changes:
 
 ```shellscript
 sudo systemctl restart mempool
 ```
 
-* Check the logs with
+* Check the logs with:
 
 ```shellscript
 journalctl -fu mempool
@@ -1666,24 +1701,24 @@ journalctl -fu mempool
 ## Uninstall
 
 {% hint style="danger" %}
-Warning: This section removes the installation. Only run these commands if you intend to uninstall
+Warning: This section removes the installation. Only run these commands if you intend to uninstall.
 {% endhint %}
 
 ### Uninstall service
 
-* Ensure you are logged in as the user `admin`, stop Mempool
+* Ensure you are logged in as the user `admin`, stop Mempool:
 
 ```shellscript
 sudo systemctl stop mempool
 ```
 
-* Disable autoboot (if enabled)
+* Disable autoboot (if enabled):
 
 ```shellscript
 sudo systemctl disable mempool
 ```
 
-* Delete the service
+* Delete the service:
 
 ```shellscript
 sudo rm /etc/systemd/system/mempool.service
@@ -1691,7 +1726,7 @@ sudo rm /etc/systemd/system/mempool.service
 
 ### Delete user & group
 
-* Delete the `mempool` user
+* Delete the `mempool` user:
 
 ```shellscript
 sudo userdel -rf mempool
@@ -1705,7 +1740,7 @@ userdel: mempool mail spool (/var/mail/mempool) not found
 
 ### Delete all Mempool files
 
-* Delete the frontend files
+* Delete the frontend files:
 
 ```shellscript
 sudo rm -rf /var/www/mempool
@@ -1713,7 +1748,7 @@ sudo rm -rf /var/www/mempool
 
 ### Uninstall Tor hidden service
 
-* Ensure that you are logged in as the user `admin` and delete or comment the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`" in the torrc file. Save and exit
+* Ensure that you are logged in as the user `admin` and delete or comment the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`" in the torrc file. Save and exit.
 
 ```bash
 sudo nano +63 /etc/tor/torrc --linenumbers
@@ -1793,18 +1828,16 @@ sudo ufw delete X
 
 [^3]: Change to -> true if you want to enable the Lightning explorer feature (keeping the final comma \[","])
 
-[^4]: Change to 500011 if you use Electrs
+[^4]: Add this section
 
-[^5]: Add this section
+[^5]: Add this
 
-[^6]: Add this
+[^6]: Replace to this
 
-[^7]: Replace to this
+[^7]: Optional, depending if you connected mempool to your internal LND node
 
-[^8]: Optional, depending if you connected mempool to your internal LND node
-
-[^9]: Replace with the selected name of your service\
+[^8]: Replace with the selected name of your service\
     i.e: `explorer`
 
-[^10]: Replace with your domain\
+[^9]: Replace with your domain\
     i.e: `domain.com`

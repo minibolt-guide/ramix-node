@@ -50,7 +50,7 @@ There is no mention of data storage on the chain, and only financial transaction
 
 ...while paying 4x less for the same bytes.
 
-[Ordisrespector](https://twitter.com/oomahq/status/1621899175079051264) is a _**spam patch filter**_ that works by detecting the pattern of Ordinals transactions that are entering the mempool of the node and _**rejecting them**_. The original patch was created by Luke Dashjr; you can see it here. [Archive](https://web.archive.org/web/20230207212859/https://gist.github.com/luke-jr/4c022839584020444915c84bdd825831)
+Ordisrespector is a _**spam patch filter**_ that works by detecting the pattern of Ordinals transactions that are entering the mempool of the node and _**rejecting them**_. The original patch was created by Luke Dashjr; you can see it here.
 
 {% embed url="https://gist.github.com/luke-jr/4c022839584020444915c84bdd825831" %}
 
@@ -99,7 +99,7 @@ wget https://bitcoincore.org/bin/bitcoin-core-$VERSION/SHA256SUMS.asc
 ```
 
 {% hint style="info" %}
-If you already had Bitcoin Core installed and the OTS client with the IBD completed, you could do the timestamp check verification
+If you already have Bitcoin Core installed, and the OTS client with the IBD completed, you could do the timestamp check verification
 {% endhint %}
 
 * Download the timestamp file
@@ -233,9 +233,11 @@ cd bitcoin-$VERSION
 
 * Build all Bitcoin Core dependencies
 
+{% code overflow="wrap" %}
 ```sh
-make -C depends -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
+make -C depends HOST=aarch64-linux-gnu -j$(nproc) NO_QR=1 NO_QT=1 NO_NATPMP=1 NO_UPNP=1 NO_USDT=1
 ```
+{% endcode %}
 
 **Example** of expected output:
 
@@ -275,7 +277,7 @@ BITCOIN_GENBUILD_NO_GIT=1 cmake -B build \
   -DBUILD_WALLET_TOOL=OFF \
   -DINSTALL_MAN=OFF \
   -DWITH_ZMQ=ON \
-  --toolchain depends/aarch64-unknown-linux-gnu/toolchain.cmake
+  -DCMAKE_TOOLCHAIN_FILE=depends/aarch64-linux-gnu/toolchain.cmake
 ```
 
 **Example** of expected output:
