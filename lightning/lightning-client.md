@@ -18,6 +18,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # 3.1 Lightning client: LND
@@ -117,7 +119,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```sh
-VERSION=0.20.1
+VERSION=0.21.0
 ```
 
 * Download the application, checksums, and signature

@@ -21,6 +21,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Electrs
@@ -483,7 +485,7 @@ nano /data/electrs/electrs.conf
 
 # Bitcoin Core settings
 network = "bitcoin"
-cookie_file= "/data/bitcoin/.cookie"
+cookie_file = "/data/bitcoin/.cookie"
 
 # Electrs settings
 electrum_rpc_addr = "0.0.0.0:50021"
@@ -493,7 +495,7 @@ skip_block_download_wait = true
 
 # Allow concurrent DB background operations. e.g., for 4 threads max use.
 # Customise with your available threads.
-db_parallelism=4
+db_parallelism = 4
 
 # Logging
 log_filters = "INFO"
