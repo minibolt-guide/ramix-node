@@ -15,15 +15,13 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Public Pool
 
 [Public Pool](https://web.public-pool.io/#/) is a NestJS and Typescript Bitcoin stratum mining server. It provides a lightweight and easy to use web interface to accomplish just that, a solo mining pool.
-
-{% hint style="danger" %}
-Status: Not tested on RaMiX
-{% endhint %}
 
 {% hint style="warning" %}
 Difficulty: Medium
@@ -43,7 +41,7 @@ Others
 
 ### Check Node + NPM
 
-* With the user `admin`, check if you have already installed Nodejs
+* With the user `admin`, check if you have already installed Nodejs:
 
 ```sh
 node -v
@@ -55,7 +53,7 @@ node -v
 v16.14.2
 ```
 
-* Check the NPM version
+* Check the NPM version:
 
 ```sh
 npm -v
@@ -70,29 +68,29 @@ npm -v
 {% hint style="info" %}
 2 options:
 
--> If you have `node -v` output, **you can move to the** [**next section**](public-pool.md#reverse-proxy-and-firewall)
+-> If you have `node -v` output, **you can move to the** [**next section**](public-pool.md#reverse-proxy-and-firewall)**.**
 
--> If Node.js is not installed, output: `-bash: /usr/bin/node: No such file or directory.` Follow this [Node + NPM bonus guide](../../bonus/system/nodejs-npm.md) to install it
+-> If Node.js is not installed, output: `-bash: /usr/bin/node: No such file or directory.` Follow this [Node + NPM bonus guide](../../bonus/system/nodejs-npm.md) to install it.
 {% endhint %}
 
 ### Reverse proxy & Firewall
 
 In the [security section](../../index-1/security.md#nginx), we set up Nginx as a reverse proxy. Now we can add the Public Pool configuration.
 
-* Edit your Nginx configuration file
+* Edit your Nginx configuration file:
 
 ```bash
 sudo nano +17 /etc/nginx/nginx.conf -l
 ```
 
-* Check that you have these two lines below line 17: (`include /etc/nginx/sites-enabled/*.conf;`). If not, add them. Save and exit
+* Check that you have these two lines below line 17: (`include /etc/nginx/sites-enabled/*.conf;`). If not, add them. Save and exit.
 
 ```nginx
 include /etc/nginx/mime.types;
 default_type application/octet-stream;
 ```
 
-* Test this barebone Nginx configuration
+* Test this barebone Nginx configuration:
 
 ```bash
 sudo nginx -t
@@ -105,7 +103,7 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-* Reload Nginx to apply the configuration
+* Reload Nginx to apply the configuration:
 
 ```bash
 sudo systemctl reload nginx
@@ -117,13 +115,13 @@ Watch your indentation! To see the differences between the two configurations mo
 
 Enable the Nginx reverse proxy to route external encrypted HTTPS traffic internally to the Public Pool. The `error_page 497` directive instructs browsers that send HTTP requests to resend them over HTTPS.
 
-* With the user `admin`, create the reverse proxy configuration
+* With the user `admin`, create the reverse proxy configuration:
 
 ```sh
 sudo nano /etc/nginx/sites-available/public-pool-reverse-proxy.conf
 ```
 
-* Paste the following complete configuration. Save and exit
+* Paste the following complete configuration. Save and exit.
 
 ```nginx
 server {
@@ -148,7 +146,7 @@ server {
 }
 ```
 
-* Create the symbolic link that points to the directory `sites-enabled`
+* Create the symbolic link that points to the directory `sites-enabled`:
 
 {% code overflow="wrap" %}
 ```bash
@@ -156,7 +154,7 @@ sudo ln -s /etc/nginx/sites-available/public-pool-reverse-proxy.conf /etc/nginx/
 ```
 {% endcode %}
 
-* Test Nginx configuration
+* Test Nginx configuration:
 
 ```sh
 sudo nginx -t
@@ -169,7 +167,7 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-* Reload the Nginx configuration to apply changes
+* Reload the Nginx configuration to apply changes:
 
 ```bash
 sudo systemctl reload nginx
@@ -185,27 +183,27 @@ sudo ufw allow 4040/tcp comment 'Allow Public Pool UI SSL from anywhere' && sudo
 
 ### Configure Bitcoin Core
 
-We need to set up settings in the Bitcoin Core configuration file - add new lines if they are not present
+We need to set up settings in the Bitcoin Core configuration file - add new lines if they are not present.
 
-* Edit `bitcoin.conf` file
+* Edit `bitcoin.conf` file:
 
 ```sh
 sudo nano /data/bitcoin/bitcoin.conf
 ```
 
-* Check that you have this line in the `"# Connections"` section, if not, add it. Save and exit
+* Check that you have this line in the `"# Connections"` section, if not, add it. Save and exit.
 
 ```
 zmqpubrawblock=tcp://127.0.0.1:28332
 ```
 
-* Restart Bitcoin Core to apply changes (if needed)
+* Restart Bitcoin Core to apply changes (if needed):
 
 ```sh
 sudo systemctl restart bitcoind
 ```
 
-* Check if Bitcoin Core has been enabled `zmqpubrawblock` on the `28322` port
+* Check if Bitcoin Core has been enabled `zmqpubrawblock` on the `28322` port:
 
 ```bash
 sudo ss -tulpn | grep -E '(:28332)'
@@ -221,13 +219,13 @@ tcp   LISTEN 0      100        127.0.0.1:28332      0.0.0.0:*    users:(("bitcoi
 
 We do not want to run the Public Pool code alongside `bitcoind` because of security reasons. For that, we will create a separate user and run the code as the new user.
 
-* Create a new `public-pool` user and group
+* Create a new `public-pool` user and group:
 
 ```sh
 sudo adduser --disabled-password --gecos "" public-pool
 ```
 
-* Add `public-pool` user to the `bitcoin` group to allow the user `public-pool` reading the `.cookie` file
+* Add `public-pool` user to the `bitcoin` group to allow the user `public-pool` reading the `.cookie` file:
 
 ```sh
 sudo adduser public-pool bitcoin
@@ -235,13 +233,13 @@ sudo adduser public-pool bitcoin
 
 ### Create data folder
 
-* Create the fulcrum data folder
+* Create the fulcrum data folder:
 
 ```sh
 sudo mkdir -p /data/public-pool
 ```
 
-* Assign the owner to the `public-pool` user
+* Assign the owner to the `public-pool` user:
 
 ```sh
 sudo chown -R public-pool:public-pool /data/public-pool
@@ -251,13 +249,13 @@ sudo chown -R public-pool:public-pool /data/public-pool
 
 ### Install the backend
 
-* Still with the user `admin` , change to a temporary directory, which is cleared on reboot
+* Still with the user `admin` , change to a temporary directory, which is cleared on reboot:
 
 ```sh
 cd /tmp
 ```
 
-* Download the source code directly from GitHub and change to the Public Pool folder
+* Download the source code directly from GitHub and change to the Public Pool folder:
 
 {% code overflow="wrap" %}
 ```sh
@@ -265,7 +263,7 @@ git clone https://github.com/benjamin-wilson/public-pool.git && cd public-pool
 ```
 {% endcode %}
 
-* Install all dependencies and the necessary modules using NPM
+* Install all dependencies and the necessary modules using NPM:
 
 {% hint style="warning" %}
 **Not to run** the `npm audit fix` command, which could break the original code!!
@@ -322,7 +320,7 @@ npm notice
 
 </details>
 
-* Build it
+* Build it:
 
 ```sh
 npm run build
@@ -339,38 +337,38 @@ npm run build
 
 </details>
 
-* Create the folder for the executable
+* Create the folder for the executable:
 
 ```sh
 mkdir -p dist/bin
 ```
 
-* Create a new file called `cli.sh`
+* Create a new file called `cli.sh`:
 
 ```sh
 nano dist/bin/cli.sh
 ```
 
-* Copy and paste the following information. Save and exit
+* Copy and paste the following information. Save and exit.
 
 ```
 #!/bin/sh
 node "$@" /var/lib/public-pool/main
 ```
 
-* Make the file executable
+* Make the file executable:
 
 ```sh
 chmod +x dist/bin/cli.sh
 ```
 
-* Create the `public-pool` folder
+* Create the `public-pool` folder:
 
 ```sh
 sudo install -d -o public-pool -g public-pool /var/lib/public-pool
 ```
 
-* Sync the necessary files into the system
+* Sync the necessary files into the system:
 
 {% code overflow="wrap" %}
 ```sh
@@ -378,7 +376,7 @@ sudo rsync -av --delete --chown=public-pool:public-pool /tmp/public-pool/dist/ /
 ```
 {% endcode %}
 
-* Create the corresponding symbolic links
+* Create the corresponding symbolic links:
 
 {% code overflow="wrap" %}
 ```sh
@@ -388,7 +386,7 @@ sudo ln -s /var/lib/public-pool /usr/lib/node_modules/public-pool && sudo ln -s 
 
 ### Install the frontend
 
-* Still with the user `admin` , change the root of the temporary directory again
+* Still with the user `admin` , change the root of the temporary directory again:
 
 ```sh
 cd /tmp
@@ -405,7 +403,7 @@ git clone https://github.com/benjamin-wilson/public-pool-ui.git && cd public-poo
 * Install all dependencies and the necessary modules using NPM
 
 {% hint style="warning" %}
-**Not to run** the `npm audit fix` command, which could break the original code!!
+**Do not run** the `npm audit fix` command, which could break the original code!!
 {% endhint %}
 
 ```sh
@@ -559,7 +557,7 @@ nano public-pool.env
 
 * Paste the following content. Note that you can edit the `POOL_IDENTIFIER` parameter if you wish. Save and exit
 
-<pre><code># RaMiX: Public Pool  configuration
+<pre><code># RaMiX: Public Pool configuration
 # /home/public-pool/public-pool.env
 
 ## Bitcoin Core settings

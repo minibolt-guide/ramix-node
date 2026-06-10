@@ -18,11 +18,13 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # RaMiX
 
-[![Forks](https://img.shields.io/github/forks/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/network/members) [![Stargazers](https://img.shields.io/github/stars/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/stargazers) [![MIT License](https://img.shields.io/github/license/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/LICENSE) [![Contributors](https://img.shields.io/github/contributors/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/graphs/contributors) [![Issues](https://img.shields.io/github/issues/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/minibolt-guide/ramix-node?style=for-the-badge&label=latest%20release)](https://github.com/minibolt-guide/ramix-node/releases) [![GitHub followers](https://img.shields.io/github/followers/minibolt-guide?style=for-the-badge)](https://github.com/orgs/minibolt-guide/followers) [![GitBook](https://img.shields.io/static/v1?message=Documented%20on%20GitBook\&logo=gitbook\&logoColor=ffffff\&label=%20\&labelColor=5c5c5c\&color=3F89A1\&style=for-the-badge)](https://www.gitbook.com/preview?utm_source=gitbook_readme_badge\&utm_medium=organic\&utm_campaign=preview_documentation\&utm_content=link)
+[![Forks](https://img.shields.io/github/forks/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/network/members) [![Stargazers](https://img.shields.io/github/stars/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/stargazers) [![MIT License](https://img.shields.io/github/license/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://raw.githubusercontent.com/minibolt-guide/ramix-node/main/LICENSE) [![Contributors](https://img.shields.io/github/contributors/minibolt-guide/ramix-node.svg?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/graphs/contributors) [![Issues](https://img.shields.io/github/issues/minibolt-guide/ramix-node?style=for-the-badge)](https://github.com/minibolt-guide/ramix-node/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/minibolt-guide/ramix-node?style=for-the-badge\&label=latest%20release)](https://github.com/minibolt-guide/ramix-node/releases) [![GitHub followers](https://img.shields.io/github/followers/minibolt-guide?style=for-the-badge)](https://github.com/orgs/minibolt-guide/followers) [![GitBook](https://img.shields.io/static/v1?message=Documented%20on%20GitBook\&logo=gitbook\&logoColor=ffffff\&label=%20\&labelColor=5c5c5c\&color=3F89A1\&style=for-the-badge)](https://www.gitbook.com/preview?utm_source=gitbook_readme_badge\&utm_medium=organic\&utm_campaign=preview_documentation\&utm_content=link)
 
 {% hint style="danger" %}
 <mark style="color:red;">**Attention!! This guide is in the WIP (work in progress) state and hasn't been tested yet. Many steps may be incorrect. Pay special attention to the "Status: Not tested on RaMiX" tag at the beginning of the guides. Be careful and act behind your responsibility.**</mark>
@@ -101,7 +103,7 @@ Feel free to join the many other contributors if you see something that can be i
 {% tabs %}
 {% tab title="Nostr relay" %}
 {% hint style="info" %}
-Use [a Nostr client](bonus-guides/nostr/nostr-relay.md#nostr-clients) to connect
+Use [a Nostr client](bonus-guides/nostr/nostr-rs-relay.md#nostr-clients) to connect
 {% endhint %}
 
 * Nostr relay in Rust (🚾clearnet):

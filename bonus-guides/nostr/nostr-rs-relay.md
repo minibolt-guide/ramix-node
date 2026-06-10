@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Nostr relay in Rust
@@ -33,15 +35,15 @@ Difficulty: Medium
 
 ## What is Nostr?
 
-Nostr is a straightforward and open protocol for global, decentralized, and censorship-resistant social media. It offers numerous advantages for users and is completely free, requiring no ID or third-party verification to begin connecting with like-minded individuals and expanding your community. While nostr is sometimes confused as just another social media platform, it goes beyond that. Explore the resources provided here to discover their significant potential.
+Nostr is a straightforward and open protocol for global, decentralized, and censorship-resistant social media. It offers numerous advantages for users and is completely free, requiring no ID or third-party verification to begin connecting with like-minded individuals and expanding your community. While nostr is sometimes confused as just another social media platform, it goes beyond that. Explore the resources provided here to discover its significant potential.
 
-This protocol is based on relays. Relays are servers that can be operated by anyone. By opening a persistent connection with the server, clients (or apps) can push and pull events in real-time.
+This protocol is based on relays. Relays are servers that can be operated by anyone. By opening a persistent connection with the server, clients (or apps) can push and pull events in real time.
 
 [Relays](https://usenostr.org/#relays) are the central element of the nostr protocol, responsible for storing events received from clients.
 
 Crucially, relays do not communicate with each other. Only the relays you're connected to will receive and store your events. This is a key feature of nostr, emphasizing the lack of communication between relays. Therefore, you should connect to as many relays as you wish to share your data with.
 
-Clients should always provide users the flexibility to connect to multiple relays. Users can also decide whether they want to read, write, or do both with the relays they're connected to. This means I can choose to connect to a specific relay to access content without necessarily sharing my own events there, or vice versa.
+Clients should always provide users with the flexibility to connect to multiple relays. Users can also decide whether they want to read, write, or do both with the relays they're connected to. This means I can choose to connect to a specific relay to access content without necessarily sharing my own events there, or vice versa.
 
 <figure><img src="../../.gitbook/assets/nostr-arch.PNG" alt="" width="295"><figcaption></figcaption></figure>
 
@@ -63,13 +65,13 @@ You can obtain more info about nostr on these additional resources:
 
 ### Install dependencies
 
-* With user `admin`, update and upgrade your OS
+* With user `admin`, update and upgrade your OS:
 
 ```bash
 sudo apt update && sudo apt full-upgrade
 ```
 
-* Make sure that all necessary software packages are installed
+* Make sure that all necessary software packages are installed:
 
 {% code overflow="wrap" %}
 ```bash
@@ -78,12 +80,12 @@ sudo apt install build-essential cmake protobuf-compiler pkg-config libssl-dev
 {% endcode %}
 
 {% hint style="info" %}
-If you want to use the default SQLite database backend, go to the [Use the default SQLite database backend extra section](nostr-relay.md#use-the-default-sqlite-database-backend) to install the additional SQLite dependency packages
+If you want to use the default SQLite database backend, go to the [Use the default SQLite database backend extra section](nostr-rs-relay.md#use-the-default-sqlite-database-backend) to install the additional SQLite dependency packages.
 {% endhint %}
 
 ### Install Rustup + Cargo
 
-* Check if you already have Rustup installed
+* Check if you already have Rustup installed:
 
 ```bash
 rustc --version
@@ -95,7 +97,7 @@ rustc --version
 rustc 1.71.0 (8ede3aae2 2023-07-12)
 ```
 
-* Also Cargo
+* Also Cargo:
 
 ```bash
 cargo -V
@@ -108,16 +110,16 @@ cargo 1.71.0 (cfd3bbd8f 2023-06-08)
 ```
 
 {% hint style="info" %}
-If you obtain "**command not found**" output, you need to follow the [Rustup + Cargo bonus guide](../system/rustup-+-cargo.md) to install it and then come back to continue with the guide
+If you obtain "**command not found**" output, you need to follow the [Rustup + Cargo bonus guide](../system/rustup-+-cargo.md) to install it and then come back to continue with the guide.
 {% endhint %}
 
 ### Install PostgreSQL
 
 {% hint style="info" %}
-Skip this step if you want to use the SQLite database; go directly to the [next section](nostr-relay.md#installation)
+Skip this step if you want to use the SQLite database; go directly to the [next section](nostr-rs-relay.md#installation).
 {% endhint %}
 
-* Check if you already have PostgreSQL installed
+* Check if you already have PostgreSQL installed:
 
 ```bash
 psql -V
@@ -133,31 +135,31 @@ psql (PostgreSQL) 15.3 (Ubuntu 15.3-1.pgdg22.04+1)
 If you obtain "**command not found**" outputs, you need to follow the [PostgreSQL bonus guide](../system/postgresql.md) to install it, and then come back to continue with the guide
 {% endhint %}
 
-#### Create PostgreSQL database
+### Create PostgreSQL database
 
-* With user `admin`, create a new database with the `postgres` user and assign it as the owner to the `admin` user
+* With user `admin`, create a new database with the `postgres` user and assign it as the owner to the `admin` user:
 
 {% code overflow="wrap" %}
 ```bash
-sudo -u postgres createdb -O admin nostrelay
+sudo -u postgres createdb -O admin nostrsrelay
 ```
 {% endcode %}
 
 ## Installation
 
-* With user `admin`, go to the temporary folder
+* With user `admin`, go to the temporary folder:
 
 ```bash
 cd /tmp
 ```
 
-* Set a temporary version environment variable for the installation
+* Set a temporary version environment variable for the installation:
 
 ```bash
 VERSION=0.9.0
 ```
 
-* Clone the source code directly from the GitHub repository, and then build a release version of the relay and go to the `nostr-rs-relay` folder
+* Clone the source code directly from the GitHub repository, then build a release version of the relay and go to the `nostr-rs-relay` folder:
 
 {% code overflow="wrap" %}
 ```bash
@@ -165,7 +167,7 @@ git clone --branch $VERSION https://github.com/scsibug/nostr-rs-relay.git && cd 
 ```
 {% endcode %}
 
-* Build a release version of the relay
+* Build a release version of the relay:
 
 ```bash
 cargo build --release
@@ -219,23 +221,23 @@ cargo build --release
 </details>
 
 {% hint style="info" %}
-This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again
+If the prompt shows you this error:
+
+`error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured. help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain`.
+
+You need to type **`rustup default stable`** and wait for the process to finish, then try the command again.
 {% endhint %}
 
 {% hint style="info" %}
-If the prompt shows you this error:
-
-`error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured. help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.`
-
-You need to type **`rustup default stable`** and wait for the process to finish, then try the command again before
+This process can take quite **a long time**, 10-15 minutes or more, depending on the performance of your device. Please be patient until the prompt shows again.
 {% endhint %}
 
-* Install it
+* Install it:
 
 <pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>sudo install -m 0755 -o root -g root -t /usr/local/bin /tmp/nostr-rs-relay/target/release/nostr-rs-relay
 </strong></code></pre>
 
-* Check the correct installation
+* Check the correct installation:
 
 ```bash
 nostr-rs-relay -V
@@ -248,48 +250,48 @@ nostr-rs-relay 0.8.9
 ```
 
 {% hint style="info" %}
-If you come to update, this is the final step. Continue with the indications of the [Upgrade section](nostr-relay.md#upgrade)
+If you come to update, this is the final step. Continue with the instructions in the [Upgrade section](nostr-rs-relay.md#upgrade).
 {% endhint %}
 
 ### Create the nostr user
 
-* Create the user `nostr` with this command
+* Create the user `nostr` with this command:
 
 ```bash
-sudo adduser --gecos "" --disabled-password nostr
+sudo adduser --gecos "" --disabled-password nostrsrelay
 ```
 
-Expected output:
+**Example** of expected output:
 
 ```
-Adding user `nostr' ...
-Adding new group `nostr' (1007) ...
-Adding new user `nostr' (1007) with group `nostr' ...
-Creating home directory `/home/nostr' ...
+Adding user `nostrsrelay' ...
+Adding new group `nostrsrelay' (1007) ...
+Adding new user `nostrsrelay' (1007) with group `nostrsrelay' ...
+Creating home directory `/home/nostrsrelay' ...
 Copying files from `/etc/skel' ...
 ```
 
-* Change to the home `nostr` user folder
+* Change to the home `nostrsrelay` user folder:
 
 ```bash
-sudo su - nostr
+sudo su - nostrsrelay
 ```
 
-* **(Optional)** If you want to use the RaMiX [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/favicon.ico) file, download it by entering this command, if not, download your own, or skip this step, not to provide any (remember to leave the `favicon.ico` commented on the configuration file)
+* **(Optional)** If you want to use the RaMiX [`favicon.ico`](https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/favicon.ico) file, download it by entering this command; if not, download your own, or skip this step, not to provide any (remember to leave the `favicon.ico` commented on the configuration file)
 
 {% code overflow="wrap" %}
 ```bash
-wget https://raw.githubusercontent.com/minibolt-guide/minibolt/refs/heads/main/resources/favicons/favicon.ico
+wget https://raw.githubusercontent.com/minibolt-guide/ramix-node/refs/heads/main/resources/favicon.ico
 ```
 {% endcode %}
 
-* Create the `rs-relay` folder
+* Create the `nostr-rs-relay` folder:
 
 ```bash
-mkdir rs-relay
+mkdir nostr-rs-relay
 ```
 
-* Exit to the `admin` user
+* Exit to the `admin` user:
 
 ```bash
 exit
@@ -297,28 +299,28 @@ exit
 
 ## Configuration
 
-* Copy-paste the configuration file template into the folder you created before
+* Copy-paste the configuration file template into the folder you created before:
 
 ```bash
-sudo cp /tmp/nostr-rs-relay/config.toml /home/nostr/rs-relay/
+sudo cp /tmp/nostr-rs-relay/config.toml /home/nostrsrelay/nostr-rs-relay/
 ```
 
-* Assign the owner of the file to the `nostr` user
+* Assign the owner of the file to the `nostr` user:
 
 ```bash
-sudo chown nostr:nostr /home/nostr/rs-relay/config.toml
+sudo chown nostrsrelay:nostrsrelay /home/nostrsrelay/nostr-rs-relay/config.toml
 ```
 
-* **(Optional)** Delete the `nostr-rs-relay` folder to be ready for the next update
+* **(Optional)** Delete the `nostr-rs-relay` folder to be ready for the next update:
 
 ```bash
 sudo rm -r /tmp/nostr-rs-relay
 ```
 
-* Edit the config file, uncomment, and replace the needed information in the next parameters. Save and exit
+* Edit the config file, uncomment, and replace the needed information in the next parameters. Save and exit.
 
 ```bash
-sudo nano /home/nostr/rs-relay/config.toml
+sudo nano /home/nostrsrelay/nostr-rs-relay/config.toml
 ```
 
 > > **Customize this with your own info (\*):**
@@ -338,9 +340,9 @@ sudo nano /home/nostr/rs-relay/config.toml
 > > [relay\_icon = "\<yourelayiconURL>"](#user-content-fn-4)[^4]
 
 {% hint style="info" %}
-If you don't have a pubkey generated yet, you can follow the [Create your nostr key pair](nostr-relay.md#create-your-nostr-key-pair) section and then continue with this
+If you don't have a pubkey generated yet, you can follow the [Create your nostr key pair](nostr-rs-relay.md#create-your-nostr-key-pair) section and then continue with this.
 
-You can use [this tool](https://nostrdebug.com/converter/) to convert your "npub" pubkey to hexadecimal format
+You can use [this tool](https://nostrdebug.com/converter/) to convert your "npub" pubkey to hexadecimal format.
 {% endhint %}
 
 {% hint style="info" %}
@@ -348,13 +350,13 @@ If you want to use the default SQLite database backend, pay attention to **not i
 
 > engine = "postgres"
 
-> connection = "postgresql://admin:admin@localhost:5432/nostrelay"
+> connection = "postgresql://admin:admin@localhost:5432/nostrsrelay"
 
 Uncomment and replace only the next line:
 
-> data\_directory = "/data/nostr/rs-relay/db"
+> data\_directory = "/data/nostr-rs-relay/db"
 
--> More details and additional steps in the exclusive [extra section](nostr-relay.md#use-the-default-sqlite-database-backend)
+-> More details and additional steps in the exclusive [extra section](nostr-rs-relay.md#use-the-default-sqlite-database-backend)
 {% endhint %}
 
 > > **Required same as next (\*):**
@@ -365,7 +367,7 @@ Uncomment and replace only the next line:
 >
 > > [engine = "postgres"](#user-content-fn-3)[^3]
 >
-> > [connection = "postgresql://admin:admin@localhost:5432/nostrelay"](#user-content-fn-3)[^3]
+> > [connection = "postgresql://admin:admin@localhost:5432/nostrsrelay"](#user-content-fn-3)[^3]
 >
 > > [address = "127.0.0.1"](#user-content-fn-2)[^2]
 >
@@ -383,14 +385,15 @@ The system needs to run the nostr relay daemon automatically in the background, 
 
 * As user `admin`, create the service file
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo nano /etc/systemd/system/nostr-relay.service
-</strong></code></pre>
+```bash
+sudo nano /etc/systemd/system/nostr-rs-relay.service
+```
 
 * Paste the following configuration. Save and exit
 
 ```
 # RaMiX: systemd unit for nostr relay
-# /etc/systemd/system/nostr-relay.service
+# /etc/systemd/system/nostr-rs-relay.service
 
 [Unit]
 Description=Nostr relay
@@ -398,12 +401,12 @@ Requires=network-online.target postgresql.service
 After=network-online.target postgresql.service
 
 [Service]
-WorkingDirectory=/home/nostr
-ExecStart=/usr/local/bin/nostr-rs-relay -c /home/nostr/rs-relay/config.toml
+WorkingDirectory=/home/nostrsrelay
+ExecStart=/usr/local/bin/nostr-rs-relay -c /home/nostrsrelay/nostr-rs-relay/config.toml
 Environment=RUST_LOG=info,nostr_rs_relay=info
 
-User=nostr
-Group=nostr
+User=nostrsrelay
+Group=nostrsrelay
 
 # Process management
 ####################
@@ -419,28 +422,28 @@ WantedBy=multi-user.target
 * Enable autoboot **(optional)**
 
 ```bash
-sudo systemctl enable nostr-relay
+sudo systemctl enable nostr-rs-relay
 ```
 
-* Prepare “nostr-relay” monitoring by the systemd journal and check the logging output. You can exit monitoring at any time with Ctrl-C
+* Prepare `nostr-rs-relay` monitoring by the systemd journal and check the logging output. You can exit monitoring at any time with Ctrl-C
 
 ```bash
-journalctl -fu nostr-relay
+journalctl -fu nostr-rs-relay
 ```
 
 ## Run
 
 To keep an eye on the software movements, [start your SSH program](../../index-1/remote-access.md#access-with-secure-shell) (eg. PuTTY) a second time, connect to the RaMiX node, and log in as `admin`
 
-* Start the nostr relay
+* Start the nostr-rs-relay service
 
 ```bash
-sudo systemctl start nostr-relay
+sudo systemctl start nostr-rs-relay
 ```
 
 <details>
 
-<summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu nostr-relay</code>⬇️</summary>
+<summary><strong>Example</strong> of expected output on the first terminal with <code>journalctl -fu nostr-rs-relay</code> ⬇️</summary>
 
 ```
 Jun 07 10:49:45 ramix systemd[1]: Started Nostr relay.
@@ -511,34 +514,34 @@ sudo apt install sqlite3 libsqlite3-dev
 ```
 {% endcode %}
 
-* Create the `rs-relay` and `db` folder
+* Create the `nostr-rs-relay` and `db` folder
 
 ```bash
-mkdir -p /data/nostr/rs-relay/db
+mkdir -p /data/nostr-rs-relay/db
 ```
 
 * Copy-paste the configuration file template to the folder
 
 ```bash
-sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr/rs-relay/db
+sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr-rs-relay
 ```
 
 * Assign the owner to the `nostr` user
 
 ```bash
-sudo chown -R nostr:nostr /data/nostr
+sudo chown -R nostr:nostr /data/nostr-rs-relay
 ```
 
 * Edit the config file
 
 ```bash
-sudo nano /data/nostr/rs-relay/config.toml
+sudo nano /data/nostr-rs-relay/config.toml
 ```
 
 * Uncomment and replace the needed information in the next parameters. Save and exit
 
 ```
-data_directory = "/data/nostr/rs-relay/db"
+data_directory = "/data/nostr-rs-relay/db"
 ```
 
 {% hint style="info" %}
@@ -547,7 +550,7 @@ Ignore the next lines related to PostgreSQL **(do not uncomment or edit)**:
 ```
 engine = "postgres"
 
-connection = "postgresql://admin:admin@localhost:5432/nostrelay"
+connection = "postgresql://admin:admin@localhost:5432/nostrsrelay"
 ```
 {% endhint %}
 
@@ -559,7 +562,7 @@ After=network-online.target
 ```
 
 {% hint style="info" %}
-[Continue](nostr-relay.md#run) with the guide; the rest of the steps are the same as those for PostgreSQL use
+[Continue](nostr-rs-relay.md#run) with the guide; the rest of the steps are the same as those for PostgreSQL use.
 {% endhint %}
 
 ### Create your Nostr key pair
@@ -604,7 +607,7 @@ Select a strong password for the Alby extension (this password is for encrypting
 
 <figure><img src="../../.gitbook/assets/select-nostr-alby.png" alt="" width="360"><figcaption></figcaption></figure>
 
-* Select to create a **new one nostr key pairs** or **import an existing one** if you have
+* Select to create a **new one nostr key pair** or **import an existing one** if you have one
 
 <figure><img src="../../.gitbook/assets/create-import-nostr-alby.PNG" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -615,7 +618,7 @@ Select a strong password for the Alby extension (this password is for encrypting
 <figure><img src="../../.gitbook/assets/seed-saved-alby.PNG" alt="" width="205"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-You will see the nostr public & private keys in the property section:
+You will see the nostr public & private keys in the proper section:
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/nostr-public-key-alby.PNG" alt=""><figcaption></figcaption></figure>
@@ -630,10 +633,10 @@ Click on the **\[Nostr Settings]** box to **obtain your private key and backup o
 
 <figure><img src="../../.gitbook/assets/private-key-method-import-alby.PNG" alt="" width="375"><figcaption></figcaption></figure>
 
-* If you selected the Nostr private key, fill in the "**Nostr Private key**" box with your private key, it will derive for you the "**Nostr Public Key"**, check if correct
+* If you selected the Nostr private key, fill in the "**Nostr Private key**" box with your private key; it will derive for you the "**Nostr Public Key"**, check if correct
 
 {% hint style="info" %}
-If you see this banner when you enter the "**Nostr Settings**" section, this means that you should backup carefully the private key, because the existing seeds that you have are not compatible with Alby, only the private key
+If you see this banner when you enter the "**Nostr Settings**" section, this means that you should backup the private key carefully, because the existing seeds that you have are not compatible with Alby; only the private key.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/advice-private-key-imported.PNG" alt=""><figcaption></figcaption></figure>
@@ -643,7 +646,7 @@ If you see this banner when you enter the "**Nostr Settings**" section, this mea
 <figure><img src="../../.gitbook/assets/seed-saved-alby.PNG" alt="" width="205"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-You will see the **Nostr Public key** in the property section, check if it is correct:
+You will see the **Nostr Public key** in the proper section; check if correct:
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/nostr-public-key-alby.PNG" alt=""><figcaption></figcaption></figure>
@@ -801,8 +804,8 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 * Add the following lines in the "location hidden services" section, below "`## This section is just for location-hidden services ##`" in the torrc file. Save and exit
 
 ```
-# Hidden Service Nostr relay
-HiddenServiceDir /var/lib/tor/hidden_service_nostr_relay/
+# Hidden Service Nostr RS relay
+HiddenServiceDir /var/lib/tor/hidden_service_nostr_rs_relay/
 HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
 HiddenServicePort 80 127.0.0.1:8880
@@ -816,8 +819,8 @@ sudo systemctl reload tor
 
 * Get your Onion address
 
-```
-sudo cat /var/lib/tor/hidden_service_nostr_relay/hostname
+```bash
+sudo cat /var/lib/tor/hidden_service_nostr_rs_relay/hostname
 ```
 
 Expected output:
@@ -835,7 +838,7 @@ You should now be able to connect to your Nostr relay remotely via Tor using you
 This is necessary to access you `ws://` URL, since Tor does not use `wss://` due to the Tor network being encrypted by design
 
 * Go to the browser configuration by typing `about:config` in the address bar. Press the button: "Accept the Risk and Continue" when it shows you.
-* Type `network.websocket.allowInsecureFromHTTPS` on the search bar
+* Type `network.websocket.allowInsecureFromHTTPS` in the search bar
 * Set `network.websocket.allowInsecureFromHTTPS` to `true`
 
 <figure><img src="../../.gitbook/assets/websocket_allowInsecureFromHTTPS_nostr_relay.png" alt=""><figcaption></figcaption></figure>
@@ -862,9 +865,7 @@ You may want to expose your Nostr relay publicly using a clearnet address. To do
 Click on the **\[Save]** button to save the new DNS registry
 {% endhint %}
 
-*   If you didn't follow before, continue with the [Configuration](../networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service)
-
-
+* If you didn't follow before, continue with the [Configuration](../networking/cloudflare-tunnel.md#configuration) section of the [Cloudflare tunnel guide](../networking/cloudflare-tunnel.md) to [Increase the maximum UDP Buffer Sizes](../networking/cloudflare-tunnel.md#increase-the-maximum-udp-buffer-sizes) and [Create systemd service](../networking/cloudflare-tunnel.md#create-systemd-service)
 * Edit the`config.yml`
 
 ```bash
@@ -873,10 +874,11 @@ sudo nano /home/admin/.cloudflared/config.yml
 
 * Add the next lines to the `config.yml`
 
-<pre><code># Nostr relay
-  - hostname: <a data-footnote-ref href="#user-content-fn-6">&#x3C;subdomain></a>.<a data-footnote-ref href="#user-content-fn-7">&#x3C;domain.com></a>
+```
+# Nostr RS relay
+  - hostname: <subdomain>.<domain.com>
     service: http://localhost:8880
-</code></pre>
+```
 
 {% hint style="info" %}
 > You can choose the subdomain you want; the above information is an example, but keep in mind to use the port `8880` and always maintaining the "`- service: http_status:404`" line at the end of the file
@@ -910,18 +912,18 @@ To ensure reliable connections for Nostr relays operating over the Tor network, 
 
 Display the related log events to ensure this rule is being applied correctly:
 
-&#x20;1\. On the `Security` submenu -> Click on `Analytics` -> `Events` (Tab)
+1\. On the `Security` submenu -> Click on `Analytics` -> `Events` (Tab)
 
-2. Add the next filters by pushing on the `[+ Add filter]` button:
+2. Add the next filters by clicking on the `[+ Add filter]` button:
    1. In the dropdown `Host` -> `equals` -> `<relay.domain.com>` click on `[Apply]`
 
 <div align="center"><figure><img src="../../.gitbook/assets/host_filter_relay_cloudflare.png" alt="" width="482"><figcaption></figcaption></figure></div>
 
 {% hint style="info" %}
-Replace `<relay.domain.com>` to your proper subdomain relay
+Replace `<relay.domain.com>` with your proper subdomain relay
 {% endhint %}
 
-3. Push again on the `[+ Add filter]` button: On the dropdown `Action` -> `equals` -> `Skip` click on `[Apply]`
+3. Press again the `[+ Add filter]` button: In the dropdown `Action` -> `equals` -> `Skip` click on `[Apply]`
 
 <figure><img src="../../.gitbook/assets/action_filter_relay_cloudflare.png" alt=""><figcaption></figcaption></figure>
 
@@ -934,17 +936,17 @@ Example of expected output:
 * With user `admin`, stop `nostr-rs-relay` service
 
 ```bash
-sudo systemctl stop nostr-relay
+sudo systemctl stop nostr-rs-relay
 ```
 
-* Follow the complete [Installation](nostr-relay.md#installation) section with the new VERSION number changed to match the [latest tag release](https://github.com/scsibug/nostr-rs-relay/tags)
+* Follow the complete [Installation](nostr-rs-relay.md#installation) section with the new VERSION number changed to match the [latest tag release](https://github.com/scsibug/nostr-rs-relay/tags)
 * Replace the `config.toml` file with the new one of the new version **(if needed)**
 
 {% hint style="warning" %}
-**This step is only necessary if you see changes in the config file template from your current version until the current release (not common)**. You can display this on this [history link](https://github.com/scsibug/nostr-rs-relay/commits/master/config.toml). If there are no changes, jump directly to the next **"Start `nostr-rs-relay` service again" >**`sudo systemctl start nostr-relay` step
+**This step is only necessary if you see changes in the config file template from your current version until the current release (not common)**. You can view this [history link](https://github.com/scsibug/nostr-rs-relay/commits/master/config.toml). If there are no changes, jump directly to the next **"Start `nostr-rs-relay` service again" >**`sudo systemctl start nostr-rs-relay` step
 {% endhint %}
 
-Here are 2 cases depending on your chosen database backend:
+-> Here are 2 cases depending on your chosen database backend:
 
 {% tabs %}
 {% tab title="Case 1: PostgreSQL database backend" %}
@@ -952,26 +954,28 @@ Here are 2 cases depending on your chosen database backend:
 
 {% code overflow="wrap" %}
 ```bash
-sudo cp /home/nostr/rs-relay/config.toml /home/nostr/rs-relay/config.toml.backup
+sudo cp /home/nostrsrelay/nostr-rs-relay/config.toml /home/nostrsrelay/nostr-rs-relay/config.toml.backup
 ```
 {% endcode %}
 
 * Assign the owner of the backup file to the `nostr` user
 
+{% code overflow="wrap" %}
 ```bash
-sudo chown nostr:nostr /home/nostr/rs-relay/config.toml.backup
+sudo chown nostrsrelay:nostrsrelay /home/nostrsrelay/nostr-rs-relay/config.toml.backup
 ```
+{% endcode %}
 
 * Replace the `config.toml` file with the new version
 
 ```bash
-sudo cp /tmp/nostr-rs-relay/config.toml /home/nostr/rs-relay/
+sudo cp /tmp/nostr-rs-relay/config.toml /home/nostrsrelay/nostr-rs-relay/
 ```
 
 * Edit the config file and replace it with the same old information as the file you had. Save and exit
 
 ```bash
-sudo nano /home/nostr/rs-relay/config.toml
+sudo nano /home/nostrsrelay/nostr-rs-relay/config.toml
 ```
 {% endtab %}
 
@@ -980,26 +984,26 @@ sudo nano /home/nostr/rs-relay/config.toml
 
 {% code overflow="wrap" %}
 ```bash
-sudo cp /data/nostr/rs-relay/config.toml /data/nostr/rs-relay/config.toml.backup
+sudo cp /data/nostr-rs-relay/config.toml /data/nostr-rs-relay/config.toml.backup
 ```
 {% endcode %}
 
 * Assign the owner of the backup file to the `nostr` user
 
 ```bash
-sudo chown nostr:nostr /data/nostr/rs-relay/config.toml.backup
+sudo chown nostr:nostr /data/nostr-rs-relay/config.toml.backup
 ```
 
 * Replace the `config.toml` file with the new version
 
 ```bash
-sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr/rs-relay/
+sudo cp /tmp/nostr-rs-relay/config.toml /data/nostr-rs-relay/
 ```
 
 * Edit the config file and replace it with the same old information as the file you had. Save and exit
 
 ```bash
-sudo nano /data/nostr/rs-relay/config.toml
+sudo nano /data/nostr-rs-relay/config.toml
 ```
 {% endtab %}
 {% endtabs %}
@@ -1047,23 +1051,23 @@ sudo rm /etc/systemd/system/nostr-relay.service
 * Delete the nostr user. Don't worry about `userdel: nostr mail spool (/var/mail/nym) not found` output, the uninstall has been successful
 
 ```bash
-sudo userdel -rf nostr
+sudo userdel -rf nostrsrelay
 ```
 
-### Delete SQLite data directory [(if used)](nostr-relay.md#use-the-default-sqlite-database-backend)
-
-* Delete the nostr relay data folder
-
-```bash
-sudo rm -r /data/nostr/rs-relay
-```
-
-### Delete the PostgreSQL database [(if used)](nostr-relay.md#install-postgresql)
+### Delete the PostgreSQL database [(if used)](nostr-rs-relay.md#install-postgresql)
 
 * Delete the `nostrelay` database
 
 ```bash
-sudo -u postgres psql -c "DROP DATABASE nostrelay;"
+sudo -u postgres psql -c "DROP DATABASE nostrsrelay;"
+```
+
+### Delete SQLite data directory [(if used)](nostr-rs-relay.md#use-the-default-sqlite-database-backend)
+
+* Delete the nostr relay data folder
+
+```bash
+sudo rm -r /data/nostr-rs-relay
 ```
 
 ### Uninstall the nostr relay of the Cloudflare tunnel
@@ -1074,7 +1078,7 @@ sudo -u postgres psql -c "DROP DATABASE nostrelay;"
 nano /home/admin/.cloudflared/config.yml
 ```
 
-* Comment or delete the nostr relay-associated ingress rule. Save and exit
+* Comment or delete the Nostr RS relay associated ingress rule. Save and exit
 
 ```
 # RaMiX: cloudflared configuration
@@ -1085,7 +1089,7 @@ credentials-file: /home/admin/.cloudflared/<UUID>.json
 
 ingress:
 
-# Nostr relay
+# Nostr RS relay
 #  - hostname: relay.<domain.com>
 #    service: ws://localhost:8880
 
@@ -1100,7 +1104,7 @@ sudo systemctl restart cloudflared
 
 ### Uninstall binaries
 
-* With the user `admin`, delete the nostr-rs-relay binary of the system
+* With the user `admin`, delete the nostr-rs-relay binary from the system
 
 ```bash
 sudo rm /usr/local/bin/nostr-rs-relay
@@ -1110,7 +1114,7 @@ sudo rm /usr/local/bin/nostr-rs-relay
 
 <table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="num77UwJ0B8y" label="TCP" color="blue"></option><option value="XSh7sPgg6lAG" label="SSL" color="blue"></option><option value="Mg3W3cBvH33R" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">8880</td><td><span data-option="num77UwJ0B8y">TCP</span></td><td align="center">Default port</td></tr></tbody></table>
 
-[^1]: **\<Edit>** This information will be get later on the [Cloudflare tunnel](nostr-relay.md#cloudflare-tunnel) section
+[^1]: **\<Edit>** This information will be get later on the [Cloudflare tunnel](nostr-rs-relay.md#cloudflare-tunnel) section
 
 [^2]: **\<Edit>**
 
@@ -1119,7 +1123,3 @@ sudo rm /usr/local/bin/nostr-rs-relay
 [^4]: **\<Uncomment> & \<Edit> with** [**https://twofaktor.github.io/logo\_circle%2BB.png**](https://twofaktor.github.io/logo_circle%2BB.png) **if you want**
 
 [^5]: **\<Uncomment>**
-
-[^6]: Replace with the selected name of your service i.e: `relay`
-
-[^7]: Replace with your domain i.e: `domain.com`

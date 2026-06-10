@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # 2.1 Bitcoin client: Bitcoin Core
@@ -988,7 +990,7 @@ sudo rm -r /tmp/bitcoin
 
 ### Accelerate the IBD
 
-If you already have another fully-synced RaMiX node on your local network, connecting directly to it can greatly accelerate synchronization by bypassing Tor’s added latency and bandwidth constraints. Local connections offer lower latency and higher throughput, delivering data—such as blockchain history—more reliably while reducing potential connectivity issues.&#x20;
+If you already have another fully-synced RaMiX node on your local network, connecting directly to it can greatly accelerate synchronization by bypassing Tor’s added latency and bandwidth constraints. Local connections offer lower latency and higher throughput, delivering data—such as blockchain history—more reliably while reducing potential connectivity issues.
 
 {% hint style="info" %}
 To get this, you will need a **full-sync RaMiX** node on the same local network
@@ -1142,8 +1144,6 @@ bitcoin-cli -netinfo 4 | grep manual
 out manual onion  2    209    240    5   12   49   99      1016        384 281 mdiwdyjucocysdvx5dk2iyo5wsav3ehyiggegzfk3ezfcce6nstp4nid.onion:8333 70016/Satoshi:28.1.0
 out manual   i2p  1    401    939    1   49  418           1019        455 271 axxwcwzsqw42hjbpzupvffvdsjvniyt5apyt53sdxijqy6y6pdha.b32.i2p:0       70016/Satoshi:28.1.0
 ```
-
-
 {% endhint %}
 
 ### Activate private transaction broadcasting
@@ -1467,7 +1467,7 @@ sudo gpasswd -d admin bitcoin; sudo gpasswd -d fulcrum bitcoin; sudo gpasswd -d 
 ```
 {% endcode %}
 
-* Delete the `bitcoin` user. Don't worry about `userdel: bitcoin mail spool (/var/mail/bitcoin) not found` output, the uninstall has been successful
+* Delete the `bitcoin` user. Don't worry about `userdel: bitcoin mail spool (/var/mail/bitcoin) not found` output; the uninstall has been successful
 
 ```bash
 sudo userdel -rf bitcoin
@@ -1535,7 +1535,7 @@ sudo ufw delete X
 
 [^5]: (Optional)
 
-[^6]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.&#x20;
+[^6]: -> Set `dbcache` size in MiB (min 4, default: 450) according to the available RAM of your device.
 
     -> Recommended: dbcache=1/2 x RAM available e.g: 4GB RAM -> dbcache=2048
 

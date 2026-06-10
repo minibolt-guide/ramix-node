@@ -4,7 +4,7 @@ nav_order: 2000
 parent: Bonus Section
 has_children: false
 has_toc: false
-icon: bitcoin-sign
+icon: bitcoin
 layout:
   width: default
   title:
@@ -20,6 +20,8 @@ layout:
   metadata:
     visible: true
   tags:
+    visible: true
+  actions:
     visible: true
 ---
 
