@@ -45,7 +45,7 @@ layout:
 
 ### Resilience
 
-* [**Safu Ninja**](safu-ninja.md) - create resilient DIY metal backups of your seed phrases
+* [**Safu Ninja**](/broken/pages/dNcZk53plVhDPDHGx44e) - create resilient DIY metal backups of your seed phrases
 * [**Ordirespector**](ordisrespector.md) - an Ordinals NFTs spam filter for mempool politics of Bitcoin Core
 
 ### Fun

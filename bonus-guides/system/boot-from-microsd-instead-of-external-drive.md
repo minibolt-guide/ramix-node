@@ -15,9 +15,11 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
-# Boot from microSD instead of an external drive
+# Boot from a microSD instead of an external drive
 
 If the Raspberry Pi cannot boot from your external drive, you can boot from a microSD card and store all the application data on the external drive.
 
@@ -40,7 +42,7 @@ When writing Raspberry Pi OS to the boot medium, use a **high endurance microSD 
 
 ## **Format external drive**
 
-Now, we will condition the external drive to create partitions. As a server installation, the Linux native file system Ext4 is the best choice for the external hard disk.
+Now, we will condition the external drive to create partitions. As the server installation's native file system, Ext4 is the best choice for the external hard disk.
 
 * List all block devices with additional information. The list shows the devices (e.g. `sda`) and the partitions they contain (e.g. `sda1`)
 
@@ -48,7 +50,7 @@ Now, we will condition the external drive to create partitions. As a server inst
 lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
 ```
 
-**Example** of expected output without existing partitions:
+**Example** of expected output **without existing partitions**:
 
 ```
 NAME        MOUNTPOINT      UUID                                 FSTYPE     SIZE LABEL  MODEL
@@ -58,7 +60,7 @@ mmcblk0                                                                      58G
 └─mmcblk0p2 /               ce208fd3-38a8-424a-87a2-cd44114eb820 ext4      57.5G rootfs
 ```
 
-**Example** of expected output with existing partitions:
+**Example** of expected output **with existing partitions**:
 
 <pre><code>NAME        MOUNTPOINT      UUID                                 FSTYPE     SIZE LABEL  MODEL
 sda                                                                       931.5G        Ext_SSD
@@ -80,7 +82,7 @@ sudo fdisk /dev/sda
 {% tab title="Case 1: doesn't contain existing partitions" %}
 If you didn't see any "sda**X**" partition in the previous step, i.e `sda1`:
 
-* Press **`"n"`** to create a new partition and then press ENTER until the prompt shows you:&#x20;
+* Press **`"n"`** to create a new partition and then press ENTER until the prompt shows you:
 
 ```
 Created a new partition X of type 'Linux filesystem'
@@ -111,7 +113,7 @@ Created a new partition X of type 'Linux filesystem'
 {% endtab %}
 {% endtabs %}
 
--> Finally, don't forget, to type **`w`**  and **ENTER** to write table to disk and exit
+-> Finally, don't forget to type **`w`** and **ENTER** to write the table to disk and exit
 
 {% hint style="info" %}
 This will create a new partition called probably **`"sda1"` -> Take note of this reference for the next step**
@@ -254,14 +256,14 @@ sudo nano -l +12 /etc/dphys-swapfile
 CONF_SWAPFILE=/data/swapfile
 ```
 
-* Comment on the entry `CONF_SWAPSIZE` by placing a "`#"` symbol in front of it. Save and exit
+* Comment out the entry `CONF_SWAPSIZE` by placing a "`#"` symbol in front of it. Save and exit
 
 ```
 #CONF_SWAPSIZE=512
 ```
 
 {% hint style="info" %}
-It will then be created dynamically to use ½ of the total RAM size installed
+It will then be created dynamically to use ½ of the total RAM installed
 {% endhint %}
 
 * Recreate and activate a new swapfile

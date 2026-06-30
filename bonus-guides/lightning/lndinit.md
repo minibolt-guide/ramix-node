@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # lndinit
@@ -36,7 +38,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=0.1.33
+VERSION=0.1.36
 ```
 
 * Download the application, checksums, and signature

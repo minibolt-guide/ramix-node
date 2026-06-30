@@ -344,7 +344,7 @@ server=1
 txindex=1
 
 # Set OP_RETURN limit to value before v30.0
-datacarrier=83
+datacarriersize=83
 
 # Disable cjdns network
 onlynet=onion
@@ -372,7 +372,7 @@ nodebuglogfile=1
 
 # Avoid assuming that a block and its ancestors are valid,
 # and potentially skipping their script verification.
-# We will set it to 0, to verify all.
+# We will set it to 0 to verify all.
 assumevalid=0
 
 # Enable all compact filters

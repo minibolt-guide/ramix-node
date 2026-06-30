@@ -90,11 +90,11 @@ Once all of this is done, you need to wait for the registrar to update the names
 <figure><img src="../../.gitbook/assets/DNS-records.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-You can manually add a new record by clicking the "**Add record"** button. More later, we will use this. Right now, you will not have any record
+You can manually add a new record by clicking the "**Add record"** button. Later, we will use this. Right now, you will not have any records.
 {% endhint %}
 
 {% hint style="info" %}
-Keep this Cloudflare session open. We will add and modify some registries to configure the tunnel
+Keep this Cloudflare session open. We will add and modify some records to configure the tunnel.
 {% endhint %}
 
 ## Installation
@@ -108,7 +108,7 @@ cd /tmp
 * Set a temporary version environment variable for the installation
 
 ```bash
-VERSION=2026.5.2
+VERSION=2026.6.0
 ```
 
 * Download Cloudflare Tunnel Client (Cloudflared)
@@ -116,10 +116,10 @@ VERSION=2026.5.2
 <pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>wget https://github.com/cloudflare/cloudflared/releases/download/$VERSION/cloudflared-linux-arm64.deb
 </strong></code></pre>
 
-* Set a temporary SHA256 environment variable to the installation
+* Set a temporary SHA256 environment variable for the installation
 
 ```bash
-SHA256=7f1703c3f62fe725500cfe38950e4afcbf70e876b7c6e961192782380ae78e81
+SHA256=b0bcc293670cafd150380efebea85073424e332f136003ae9fdf99b2c83a0231
 ```
 
 * Check the checksum of the file
@@ -531,7 +531,7 @@ sudo systemctl stop cloudflared
 cloudflared --version
 ```
 
-* Follow again the [Installation section](cloudflare-tunnel.md#installation) of this guide, replacing the environment variable `"VERSION=x.xx"` value for the [latest](https://github.com/cloudflare/cloudflared/releases) if it has not already been changed in this guide
+* Follow the [Installation section](cloudflare-tunnel.md#installation) of this guide again, replacing the environment variable `"VERSION=x.xx"` value for the [latest](https://github.com/cloudflare/cloudflared/releases) if it has not already been changed in this guide
 * Start Cloudflared again
 
 ```bash
@@ -548,7 +548,7 @@ Monitor logs with **`journalctl -fu cloudflared`** to ensure that all is still w
 Warning: This section removes the installation. Only run these commands if you intend to uninstall
 {% endhint %}
 
-* With user `admin`, stop the Cloudflared
+* With user `admin`, stop Cloudflared
 
 ```bash
 sudo systemctl stop cloudflared

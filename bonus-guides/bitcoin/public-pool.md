@@ -125,17 +125,38 @@ sudo nano /etc/nginx/sites-available/public-pool-reverse-proxy.conf
 
 ```nginx
 server {
-    listen 4040 ssl;
-    error_page 497 =301 https://$host:$server_port$request_uri;
- 
+    listen 127.0.0.1:4200;
+    server_name _;
+
     root /var/www/public-pool-ui;
- 
     index index.html;
- 
+
     location / {
         try_files $uri $uri/ =404;
     }
- 
+
+    location ~* ^/api/ {
+        proxy_pass http://127.0.0.1:23334;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+server {
+    listen 4040 ssl;
+    http2 on;
+    error_page 497 =301 https://$host:$server_port$request_uri;
+
+    root /var/www/public-pool-ui;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
     location ~* ^/api/ {
         proxy_pass http://127.0.0.1:23334;
         proxy_set_header Host $host;
@@ -181,9 +202,9 @@ sudo ufw allow 4040/tcp comment 'Allow Public Pool UI SSL from anywhere' && sudo
 ```
 {% endcode %}
 
-### Configure Bitcoin Core
+### Configure Bitcoin client
 
-We need to set up settings in the Bitcoin Core configuration file - add new lines if they are not present.
+We need to set up settings in the Bitcoin client configuration file - add new lines if they are not present.
 
 * Edit `bitcoin.conf` file:
 
@@ -191,19 +212,19 @@ We need to set up settings in the Bitcoin Core configuration file - add new line
 sudo nano /data/bitcoin/bitcoin.conf
 ```
 
-* Check that you have this line in the `"# Connections"` section, if not, add it. Save and exit.
+* Check that you have this line in the file; if not, add it. Save and exit.
 
 ```
 zmqpubrawblock=tcp://127.0.0.1:28332
 ```
 
-* Restart Bitcoin Core to apply changes (if needed):
+* Restart the Bitcoin client to apply changes (if needed):
 
 ```sh
 sudo systemctl restart bitcoind
 ```
 
-* Check if Bitcoin Core has been enabled `zmqpubrawblock` on the `28322` port:
+* Check if the Bitcoin client has been enabled `zmqpubrawblock` on the `28322` port:
 
 ```bash
 sudo ss -tulpn | grep -E '(:28332)'
@@ -233,7 +254,7 @@ sudo adduser public-pool bitcoin
 
 ### Create data folder
 
-* Create the fulcrum data folder:
+* Create the `public-pool` data folder:
 
 ```sh
 sudo mkdir -p /data/public-pool
@@ -266,7 +287,7 @@ git clone https://github.com/benjamin-wilson/public-pool.git && cd public-pool
 * Install all dependencies and the necessary modules using NPM:
 
 {% hint style="warning" %}
-**Not to run** the `npm audit fix` command, which could break the original code!!
+**Do not run** the `npm audit fix` command, which could break the original code!!
 {% endhint %}
 
 ```sh
@@ -560,7 +581,7 @@ nano public-pool.env
 <pre><code># RaMiX: Public Pool configuration
 # /home/public-pool/public-pool.env
 
-## Bitcoin Core settings
+## Bitcoin client settings
 BITCOIN_RPC_URL=http://127.0.0.1
 BITCOIN_RPC_PORT=8332
 BITCOIN_RPC_COOKIEFILE="/data/bitcoin/.cookie"
@@ -570,7 +591,7 @@ NETWORK=mainnet
 ## Public Pool  general settings
 API_PORT=23334
 STRATUM_PORT=23333
-POOL_IDENTIFIER="<a data-footnote-ref href="#user-content-fn-1">Public Pool on RaMiX</a>"
+POOL_IDENTIFIER="\<a data-footnote-ref href="#user-content-fn-1">Public Pool on RaMiX</a>\"
 </code></pre>
 
 * Exit of the `public-pool` user session to return to the `admin` user session
@@ -596,7 +617,7 @@ sudo nano /etc/systemd/system/public-pool.service
 # /etc/systemd/system/public-pool.service
 
 [Unit]
-Description=Public-Pool
+Description=Public Pool
 Requires=bitcoind.service
 After=bitcoind.service
 
@@ -711,18 +732,19 @@ Jan 25 12:33:21 ramix public-pool[642441]: getblocktemplate tx count: 64
 
 #### Validation
 
-* Ensure the service is working and listening on the SSL `4040` port, Stratum `23333` port and the API `23334` port
+* Ensure the service is working and listening on the HTTP `4200` port, SSL `4040` port, Stratum `23333` port and the API `23334` port
 
 ```sh
-sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4040|:23333|:23334)'
+sudo ss -tulpn | grep -v 'dotnet' | grep -E '(:4200|:4040|:23333|:23334)'
 ```
 
 Expected output:
 
 ```
-tcp   LISTEN 0      511          0.0.0.0:4040       0.0.0.0:*    users:(("nginx",pid=86475,fd=22),("nginx",pid=86474,fd=22),("nginx",pid=86473,fd=22),("nginx",pid=86472,fd=22),("nginx",pid=809,fd=22))
-tcp   LISTEN 0      511          0.0.0.0:23334      0.0.0.0:*    users:(("node",pid=97483,fd=36))                                                                                                       
-tcp   LISTEN 0      511                *:23333            *:*    users:(("node",pid=97483,fd=34))
+tcp   LISTEN 0      511        127.0.0.1:4200       0.0.0.0:*    users:(("nginx",pid=153439,fd=19),("nginx",pid=153438,fd=19),("nginx",pid=153437,fd=19),("nginx",pid=153436,fd=19),("nginx",pid=925,fd=19))
+tcp   LISTEN 0      511          0.0.0.0:23334      0.0.0.0:*    users:(("node",pid=136971,fd=36))
+tcp   LISTEN 0      511          0.0.0.0:4040       0.0.0.0:*    users:(("nginx",pid=153439,fd=8),("nginx",pid=153438,fd=8),("nginx",pid=153437,fd=8),("nginx",pid=153436,fd=8),("nginx",pid=925,fd=8))
+tcp   LISTEN 0      511                *:23333            *:*    users:(("node",pid=136971,fd=34))
 ```
 
 {% hint style="info" %}
@@ -752,7 +774,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 HiddenServiceDir /var/lib/tor/hidden_service_public-pool/
 HiddenServiceEnableIntroDoSDefense 1
 HiddenServicePoWDefensesEnabled 1
-HiddenServicePort 443 127.0.0.1:4040
+HiddenServicePort 80 127.0.0.1:4200
 ```
 
 * Reload Tor to apply changes
@@ -777,7 +799,7 @@ abcdefg..............xyz.onion
 
 ## Upgrade
 
-Follow the complete [Installation section](public-pool.md#installation) until the [Create the public-pool user and group](public-pool.md#create-the-public-pool-user-and-group) (NOT included).
+Follow the complete [Installation section](public-pool.md#installation) until [Create the public-pool user and group](public-pool.md#create-the-public-pool-user-and-group) (NOT included).
 
 * Restart the service to apply the changes
 
@@ -875,7 +897,7 @@ sudo nano +63 /etc/tor/torrc --linenumbers
 #HiddenServiceDir /var/lib/tor/hidden_service_public-pool/
 #HiddenServiceEnableIntroDoSDefense 1
 #HiddenServicePoWDefensesEnabled 1
-#HiddenServicePort 443 127.0.0.1:4040
+#HiddenServicePort 80 127.0.0.1:4200
 ```
 
 * Reload the torrc config
@@ -939,6 +961,6 @@ sudo ufw delete Y
 
 ## Port reference
 
-<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="K1YTaXNgK9iY" label="TCP" color="blue"></option><option value="rBwkQwPZUMt0" label="SSL" color="blue"></option><option value="zQnHZmzcUdq4" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">4040</td><td><span data-option="rBwkQwPZUMt0">SSL</span></td><td align="center">HTTPS port (encrypted)</td></tr><tr><td align="center">23333</td><td><span data-option="K1YTaXNgK9iY">TCP</span></td><td align="center">Default API port</td></tr><tr><td align="center">23334</td><td><span data-option="K1YTaXNgK9iY">TCP</span></td><td align="center">Default Stratum port</td></tr></tbody></table>
+<table><thead><tr><th align="center">Port</th><th width="100">Protocol<select><option value="K1YTaXNgK9iY" label="TCP" color="blue"></option><option value="rBwkQwPZUMt0" label="SSL" color="blue"></option><option value="zQnHZmzcUdq4" label="UDP" color="blue"></option></select></th><th align="center">Use</th></tr></thead><tbody><tr><td align="center">4200</td><td><span data-option="rBwkQwPZUMt0">SSL</span></td><td align="center">HTTP port</td></tr><tr><td align="center">4040</td><td><span data-option="rBwkQwPZUMt0">SSL</span></td><td align="center">HTTPS port</td></tr><tr><td align="center">23333</td><td><span data-option="K1YTaXNgK9iY">TCP</span></td><td align="center">Default API port</td></tr><tr><td align="center">23334</td><td><span data-option="K1YTaXNgK9iY">TCP</span></td><td align="center">Default Stratum port</td></tr></tbody></table>
 
 [^1]: Change for your selection if you want
